@@ -1,0 +1,42 @@
+{
+  "name": "lean-web-kit",
+  "version": "1.0.0",
+  "description": "Lean Web Kit to kick-start your web project.",
+  "author": "De Voorhoede (https://www.voorhoede.nl)",
+  "private": true,
+  "scripts": {
+    "prebuild": "touch ./.env && rimraf dist/ && npm run data",
+    "build": "NODE_ENV=production run-s build:*",
+    "build:client": "nuxt generate",
+    "build:server": "netlify-lambda build src/server/functions/",
+    "predata": "rimraf src/static/data/",
+    "data": "dato dump",
+    "predev": "rimraf dist/ && npm run data",
+    "dev": "run-p dev:*",
+    "dev:client": "nuxt",
+    "dev:server": "netlify-lambda serve src/server/functions/",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "@nuxtjs/proxy": "1.2.4",
+    "dotenv": "6.0.0",
+    "nuxt": "^1.0.0"
+  },
+  "devDependencies": {
+    "ajv": "6.5.1",
+    "babel-eslint": "^8.2.1",
+    "datocms-client": "0.5.2",
+    "eslint": "^4.15.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-vue": "^4.0.0",
+    "lodash": "4.17.10",
+    "netlify-lambda": "0.4.0",
+    "npm-run-all": "4.1.3",
+    "request": "2.87.0",
+    "request-promise-native": "1.0.5",
+    "rimraf": "2.6.2",
+    "slugify": "1.3.0"
+  }
+}

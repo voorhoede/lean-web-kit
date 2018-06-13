@@ -1,0 +1,18 @@
+# environment variables
+.env
+.envrc
+
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# generated files
+dist/
+src/client/static/data/
+src/client/static/sitemap.xml
+src/client/static/sw.js
