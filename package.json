@@ -1,9 +1,14 @@
 {
   "name": "lean-web-kit",
+  "private": true,
   "version": "1.0.0",
   "description": "Lean Web Kit to kick-start your web project.",
   "author": "De Voorhoede (https://www.voorhoede.nl)",
-  "private": true,
+  "homepage": "https://github.com/voorhoede/lean-web-kit#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/voorhoede/lean-web-kit"
+  },
   "scripts": {
     "prebuild": "touch ./.env && rimraf dist/ && npm run data",
     "build": "NODE_ENV=production run-s build:*",
