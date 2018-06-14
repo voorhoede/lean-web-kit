@@ -4,6 +4,9 @@ const slugify = require('slugify')
 const dataDir = `src/client/static/data`
 
 module.exports = (dato, root, i18n) => {
+  const locales = i18n.availableLocales
+  i18n.locale = locales[0]
+  root.createDataFile(`${dataDir}/locales.json`, 'json', locales)
   root.createDataFile(`${dataDir}/menu.json`, 'json', menuToJson(dato.menu))
   root.createDataFile(`${dataDir}/pages.json`, 'json', pageListJson(dato.pages))
   dato.pages.forEach(page => {
