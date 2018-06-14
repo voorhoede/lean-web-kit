@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import menu from '../static/data/menu.json'
+import menu from '../../static/data/menu.json'
 
 export default {
   data() {

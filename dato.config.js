@@ -15,19 +15,19 @@ function pageListJson (pages = []) {
   return pages.map(page => pick(page, ['title', 'slug']))
 }
 
-function pageToJson ({ title, slug, seo, content }) {
+function pageToJson ({ title, slug, seo, sections }) {
   return {
     title,
     slug,
     seo: seo.toMap(),
-    content: content
-      .map(item => item.toMap())
-      .map(item => ({
-        ...item,
-        slug: slugify(item.title, { lower: true }),
-        type: item.itemType,
+    sections: sections
+      .map(({ title, items }) => ({
+        title,
+        slug: slugify(title, { lower: true }),
+        items: items.toMap()
+          .map(item => ({ ...item, type: item.itemType }))
+          .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
       }))
-      .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
   }
 }
 

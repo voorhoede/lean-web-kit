@@ -1,16 +1,17 @@
 <template>
   <main>
     <h1>{{ page.title }}</h1>
-    <content-item v-for="(item, index) in page.content" :key="index" :item="item" />
+    <table-of-contents :items="tocItems" />
+    <content-section v-for="(section, index) in sections" :key="index" :section="section" />
   </main>
 </template>
 
 <script>
-import { ContentItem } from '../components/'
-import { getPageData, seoHead } from '../lib/'
+import { ContentSection, TableOfContents } from '../components/'
+import { getPageData, pick, seoHead } from '../lib/'
 
 export default {
-  components: { ContentItem },
+  components: { ContentSection, TableOfContents },
   async asyncData ({ params }) {
     const { slug } = params
     const page = await getPageData({ slug })
@@ -18,6 +19,10 @@ export default {
   },
   head () {
     return seoHead(this.page.seo)
+  },
+  computed: {
+    sections() { return this.page.sections },
+    tocItems() { return this.sections.map(section => pick(section, ['title', 'slug'])) },
   },
 }
 </script>
