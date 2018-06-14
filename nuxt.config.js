@@ -1,5 +1,8 @@
-const isProduction = (process.env.NODE_ENV === 'production')
+const locales = require('./src/client/static/data/locales.json')
 const pages = require('./src/client/static/data/pages.json')
+
+const defaultLocale = locales[0]
+const isProduction = (process.env.NODE_ENV === 'production')
 
 module.exports = {
   srcDir: 'src/client/',
@@ -7,7 +10,8 @@ module.exports = {
   generate: {
     dir: 'dist/client/',
     routes: [
-      ...pages.map(page => `/${page.slug}/`)
+      '/',
+      ...pages.map(page => `/${defaultLocale}/${page.slug}/`)
     ],
   },
 
@@ -39,6 +43,23 @@ module.exports = {
 
   modules: [
     '@nuxtjs/proxy',
+    ['nuxt-i18n', {
+      locales: locales.map(locale => ({
+        code: locale,
+        name: locale,
+        iso: locale,
+      })),
+      defaultLocale,
+      detectBrowserLanguage: {
+        useCookie: true,
+        cookieKey: 'i18n_redirected'
+      },
+      rootRedirect: defaultLocale,
+      strategy: 'prefix',
+      vueI18n: {
+        fallbackLocale: defaultLocale,
+      }
+    }],
   ],
 
   /*
