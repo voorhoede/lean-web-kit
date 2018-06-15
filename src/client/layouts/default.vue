@@ -13,3 +13,7 @@
     components: { AppFooter, AppHeader }
   }
 </script>
+
+<style>
+@import '../assets/core.css'
+</style>
