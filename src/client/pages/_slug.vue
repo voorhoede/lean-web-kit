@@ -1,9 +1,9 @@
 <template>
-  <main>
+  <div>
     <h1>{{ page.title }}</h1>
     <table-of-contents :items="tocItems" />
     <content-section v-for="(section, index) in sections" :key="index" :section="section" />
-  </main>
+  </div>
 </template>
 
 <script>
@@ -12,9 +12,10 @@ import { getPageData, pick, seoHead } from '../lib/'
 
 export default {
   components: { ContentSection, TableOfContents },
-  async asyncData ({ params }) {
+  async asyncData ({ app, params, store }) {
     const { slug } = params
-    const page = await getPageData({ slug })
+    const page = await getPageData({ slug, locale: app.i18n.locale })
+    store.commit('setSlugI18n', page.slugI18n)
     return { page }
   },
   head () {

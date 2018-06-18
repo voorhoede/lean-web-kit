@@ -10,11 +10,12 @@
     "url": "https://github.com/voorhoede/lean-web-kit"
   },
   "scripts": {
+    "analyze": "nuxt build --analyze",
     "prebuild": "touch ./.env && rimraf dist/ && npm run data",
     "build": "NODE_ENV=production run-s build:*",
     "build:client": "nuxt generate",
     "build:server": "netlify-lambda build src/server/functions/",
-    "predata": "rimraf src/static/data/",
+    "predata": "rimraf src/client/static/data/",
     "data": "dato dump",
     "predev": "rimraf dist/ && npm run data",
     "dev": "run-p dev:*",
@@ -27,7 +28,8 @@
     "@nuxtjs/proxy": "1.2.4",
     "dotenv": "6.0.0",
     "normalize.css": "8.0.0",
-    "nuxt": "^1.0.0"
+    "nuxt": "^1.0.0",
+    "nuxt-i18n": "4.0.0"
   },
   "devDependencies": {
     "ajv": "6.5.1",

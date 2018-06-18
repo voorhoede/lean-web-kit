@@ -1,14 +1,23 @@
-const isProduction = (process.env.NODE_ENV === 'production')
+const flattenDeep = require('lodash/flattenDeep')
+
+const locales = require('./src/client/static/data/locales.json')
 const pages = require('./src/client/static/data/pages.json')
+
+const defaultLocale = locales[0]
+const isProduction = (process.env.NODE_ENV === 'production')
 
 module.exports = {
   srcDir: 'src/client/',
 
   generate: {
     dir: 'dist/client/',
-    routes: [
-      ...pages.map(page => `/${page.slug}/`)
-    ],
+    routes: flattenDeep([
+      '/',
+      Object.keys(pages).map(key => {
+        const slugI18n = pages[key]
+        return Object.keys(slugI18n).map(locale => `/${locale}/${slugI18n[locale]}`)
+      })
+    ])
   },
 
   /*
@@ -39,6 +48,26 @@ module.exports = {
 
   modules: [
     '@nuxtjs/proxy',
+    ['nuxt-i18n', {
+      defaultLocale,
+      detectBrowserLanguage: {
+        useCookie: true,
+        cookieKey: 'i18n_redirected'
+      },
+      lazy: true,
+      langDir: 'static/data/',
+      locales: locales.map(locale => ({
+        code: locale,
+        file: `${locale}/messages.json`,
+        iso: locale,
+        name: locale,
+      })),
+      rootRedirect: defaultLocale,
+      strategy: 'prefix',
+      vueI18n: {
+        fallbackLocale: defaultLocale,
+      }
+    }],
   ],
 
 
