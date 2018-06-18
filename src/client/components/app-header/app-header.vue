@@ -1,6 +1,9 @@
 <template>
   <header role="banner" class="app-header">
-    <a :href="localePath('index')">Lean Web Kit</a>
+    <nuxt-link :to="localePath('index')">
+      <h1>Lean Web Kit</h1>
+    </nuxt-link>
+    <a :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
     <nav>
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
       <ul>
@@ -16,13 +19,24 @@
 </template>
 
 <script>
-import menu from '../../static/data/menu.json'
+import menuI18n from '../../static/data/menu.json'
 import LanguageSelector from '../language-selector'
 
 export default {
   components: { LanguageSelector },
-  data() {
-    return { menu }
+  props: ['contentId'],
+  data () {
+    return { menuI18n }
+  },
+  computed: {
+    locale() { return this.$i18n.locale },
+    menu() { return this.menuI18n[this.locale] },
   },
 }
 </script>
+
+<style>
+.app-header .nuxt-link-active {
+  font-weight: bold;
+}
+</style>

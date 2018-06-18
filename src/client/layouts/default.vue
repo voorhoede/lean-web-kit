@@ -1,7 +1,9 @@
 <template>
   <div>
-    <app-header />
-    <nuxt/>
+    <app-header :contentId="contentId" />
+    <main :id="contentId">
+      <nuxt/>
+    </main>
     <app-footer />
   </div>
 </template>
@@ -10,6 +12,11 @@
   import { AppFooter, AppHeader } from '../components/'
 
   export default {
-    components: { AppFooter, AppHeader }
+    components: { AppFooter, AppHeader },
+    data() {
+      return {
+        contentId: 'content',
+      }
+    },
   }
 </script>

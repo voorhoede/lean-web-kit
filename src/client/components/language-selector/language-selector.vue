@@ -1,9 +1,12 @@
 <template>
   <ul>
     <li v-for="locale in $i18n.locales" :key="locale.code">
-      <strong v-if="locale.code === $i18n.locale">
+      <nuxt-link v-if="isSlugRoute"
+        rel="alternate"
+        :hreflang="locale.code"
+        :to="localePath({ name: 'slug', params: { slug: slugI18n[locale.code] } }, locale.code)">
         {{ locale.name }}
-      </strong>
+      </nuxt-link>
       <nuxt-link v-else
         rel="alternate"
         :hreflang="locale.code"
@@ -13,3 +16,12 @@
     </li>
   </ul>
 </template>
+
+<script>
+export default {
+  computed: {
+    slugI18n() { return this.$store.state.slugI18n },
+    isSlugRoute() { return this.$route.name === `slug${this.$i18n.routesNameSeparator}${this.$i18n.locale}` },
+  },
+}
+</script>
