@@ -10,16 +10,20 @@
       <responsive-image v-if="item.type === 'image'"
         :key="index"
         :image="item.image" />
+      <responsive-video v-if="item.type === 'video'"
+        :key="index"
+        :video="item.video" />
     </template>
   </section>
 </template>
 
 <script>
 import ResponsiveImage from '../responsive-image'
+import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
 
 export default {
-  components: { ResponsiveImage, RichText },
+  components: { ResponsiveImage, ResponsiveVideo, RichText },
   props: ['section'],
 }
 </script>
