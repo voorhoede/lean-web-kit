@@ -20,3 +20,7 @@
     },
   }
 </script>
+
+<style>
+@import '../assets/core.css'
+</style>

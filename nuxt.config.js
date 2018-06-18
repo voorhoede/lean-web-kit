@@ -70,10 +70,18 @@ module.exports = {
     }],
   ],
 
+
+  css: [
+    'normalize.css'
+  ],
+
   /*
   ** Build configuration
   */
   build: {
+    postcss: [
+      require('postcss-custom-properties')()
+    ],
     /*
     ** Run ESLint on save
     */
