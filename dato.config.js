@@ -1,5 +1,8 @@
+const dotenv = require('dotenv-safe')
 const { pick, omit } = require('lodash')
 const slugify = require('slugify')
+
+dotenv.config()
 
 const dataDir = `src/client/static/data`
 let locales = []

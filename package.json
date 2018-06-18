@@ -27,6 +27,7 @@
   "dependencies": {
     "@nuxtjs/proxy": "1.2.4",
     "dotenv": "6.0.0",
+    "dotenv-safe": "6.0.0",
     "normalize.css": "8.0.0",
     "nuxt": "^1.0.0",
     "nuxt-i18n": "4.0.0"

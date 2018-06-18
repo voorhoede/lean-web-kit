@@ -1,4 +1,4 @@
-import dotenv from 'dotenv'
+import dotenv from 'dotenv-safe'
 import request from 'request-promise-native'
 
 dotenv.config()
