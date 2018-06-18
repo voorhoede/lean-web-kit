@@ -1,14 +1,14 @@
 <template>
   <div>
     <h1>{{ page.title }}</h1>
-    <table-of-contents :items="tocItems" />
-    <content-section v-for="(section, index) in sections" :key="index" :section="section" />
+    <table-of-contents v-if="page.hasToc" :items="page.tocItems" />
+    <content-section v-for="(section, index) in page.sections" :key="index" :section="section" />
   </div>
 </template>
 
 <script>
 import { ContentSection, TableOfContents } from '../components/'
-import { getPageData, pick, seoHead } from '../lib/'
+import { getPageData, seoHead } from '../lib/'
 
 export default {
   components: { ContentSection, TableOfContents },
@@ -21,9 +21,6 @@ export default {
   head () {
     return seoHead(this.page.seo)
   },
-  computed: {
-    sections() { return this.page.sections },
-    tocItems() { return this.sections.map(section => pick(section, ['title', 'slug'])) },
-  },
+  computed: {},
 }
 </script>

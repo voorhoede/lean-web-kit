@@ -34,25 +34,22 @@ function pageSlugMap (dato, i18n) {
 }
 
 function pageToJson (page, i18n) {
-  const { title, slug, seo, sections } = page
+  const { title, slug, hasToc } = page
+  const sections = page.sections.map(({ title, items }) => ({
+    title,
+    slug: slugify(title, { lower: true }),
+    items: items.toMap()
+      .map(item => ({ ...item, type: item.itemType }))
+      .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
+  }))
+  const seo = page.seo.toMap()
   const slugI18n = locales.reduce((out, locale) => {
     i18n.withLocale(locale, () => out[locale] = page.slug)
     return out
   }, {})
-  return {
-    title,
-    slug,
-    slugI18n,
-    seo: seo.toMap(),
-    sections: sections
-      .map(({ title, items }) => ({
-        title,
-        slug: slugify(title, { lower: true }),
-        items: items.toMap()
-          .map(item => ({ ...item, type: item.itemType }))
-          .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
-      }))
-  }
+  const tocItems = sections.map(section => pick(section, ['title', 'slug']))
+
+  return { title, slug, slugI18n, seo, sections, hasToc, tocItems }
 }
 
 function menuToJson (dato, i18n) {
