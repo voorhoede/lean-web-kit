@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="locale in $i18n.locales" :key="locale.code">
+    <li v-for="locale in locales" :key="locale.code">
       <nuxt-link v-if="isSlugRoute"
         rel="alternate"
         :hreflang="locale.code"
@@ -19,6 +19,7 @@
 
 <script>
 export default {
+  props: ['locales'],
   computed: {
     slugI18n() { return this.$store.state.slugI18n },
     isSlugRoute() { return this.$route.name === `slug${this.$i18n.routesNameSeparator}${this.$i18n.locale}` },
