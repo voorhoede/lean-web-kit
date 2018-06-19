@@ -1,24 +1,24 @@
 <template>
-  <div class="social-sharing-fixed visible">
-    <button class="button-fixed">
-      <img class="share-icon" src="~static/images/share.svg" alt="">
+  <div class="social-sharing-fixed">
+    <button class="button-fixed" @click="share()">
+      <img class="icon" src="~static/images/share.svg" alt="">
     </button>
 
     <div class="sharing-buttons">
-      <a class="icon fb" href="#">
-        <img class="share-icon" src="~static/images/fb-logo.svg" alt="">
+      <a class="fb" href="#">
+        <img class="icon" src="~static/images/fb-logo.svg" alt="">
       </a>
-      <a class="icon gplus" href="#">
-        <img class="share-icon" src="~static/images/gplus-logo.svg" alt="">
+      <a class="gplus" href="#">
+        <img class="icon" src="~static/images/gplus-logo.svg" alt="">
       </a>
-      <a class="icon linkedin" href="#">
-        <img class="share-icon" src="~static/images/linkedin-logo.svg" alt="">
+      <a class="linkedin" href="#">
+        <img class="icon" src="~static/images/linkedin-logo.svg" alt="">
       </a>
-      <a class="icon twitter" href="#">
-        <img class="share-icon" src="~static/images/twitter-logo.svg" alt="">
+      <a class="twitter" href="#">
+        <img class="icon" src="~static/images/twitter-logo.svg" alt="">
       </a>
-      <a class="icon mail" href="#">
-        <img class="share-icon" src="~static/images/mail.svg" alt="">
+      <a class="mail" href="#">
+        <img class="icon" src="~static/images/mail.svg" alt="">
       </a>
     </div>
   </div>
@@ -26,12 +26,23 @@
 
 <script>
 export default {
-  
+  props: ['url', 'title', 'description'],
+  methods: {
+    share () {
+      if (navigator.share) {
+        return navigator.share({
+          title: this.title,
+          text: this.description,
+          url: this.url,
+        })
+      }
+
+    }
+  }
 }
 </script>
 
 <style>
-
 button {
   border: none;
   outline: none;
@@ -46,7 +57,8 @@ button {
   width: 50px;
 }
 
-.social-sharing-fixed:hover {
+.social-sharing-fixed:hover,
+.social-sharing-fixed:active {
   height: 340px;
 }
 
@@ -81,7 +93,8 @@ button {
           transition: all 0.45s cubic-bezier(.15,.2,.1,1);
 }
 
-.social-sharing-fixed:hover .button-fixed:before {
+.social-sharing-fixed:hover .button-fixed:before,
+.social-sharing-fixed:active .button-fixed:before {
   box-shadow: 1px 5px 15px rgba(0,0,0,.2);
   -webkit-transform: scale(1.23) translateZ(0); 
          transform: scale(1.23) translateZ(0);
@@ -101,7 +114,8 @@ button {
   border-radius: 50%;
 }
 
-.social-sharing-fixed:hover .button-fixed:after {
+.social-sharing-fixed:hover .button-fixed:after,
+.social-sharing-fixed:active .button-fixed:after, {
   -webkit-animation: socialButtonFlash 0.45s cubic-bezier(.15,.2,.1,1) forwards; 
           animation: socialButtonFlash 0.45s cubic-bezier(.15,.2,.1,1) forwards;
 }
@@ -185,46 +199,52 @@ button {
 
 /* sets all links to 1 and add transition */
 
-.social-sharing-fixed:hover .sharing-buttons > a {
+.social-sharing-fixed:hover .sharing-buttons > a, 
+.social-sharing-fixed:active .sharing-buttons > a {
   -webkit-transition: all 0.45s cubic-bezier(.15,.2,.1,1);
           transition: all 0.45s cubic-bezier(.15,.2,.1,1);
   opacity: 1;
 }
 
-.social-sharing-fixed:hover .sharing-buttons a:nth-child(1) {
+.social-sharing-fixed:hover .sharing-buttons a:nth-child(1),
+.social-sharing-fixed:active .sharing-buttons a:nth-child(1) {
   -webkit-transform: translateY(-56px) scale(1); 
           transform: translateY(-56px) scale(1); 
 }
 
-.social-sharing-fixed:hover .sharing-buttons a:nth-child(2) {
+.social-sharing-fixed:hover .sharing-buttons a:nth-child(2),
+.social-sharing-fixed:active .sharing-buttons a:nth-child(2) {
   -webkit-transform: translateY(-106px) scale(1); 
           transform: translateY(-106px) scale(1);  
 }
 
-.social-sharing-fixed:hover .sharing-buttons a:nth-child(3) {
+.social-sharing-fixed:hover .sharing-buttons a:nth-child(3),
+.social-sharing-fixed:active .sharing-buttons a:nth-child(3) {
   -webkit-transform: translateY(-156px) scale(1); 
           transform: translateY(-156px) scale(1);  
 }
 
-.social-sharing-fixed:hover .sharing-buttons a:nth-child(4) {
+.social-sharing-fixed:hover .sharing-buttons a:nth-child(4),
+.social-sharing-fixed:active .sharing-buttons a:nth-child(4) {
   -webkit-transform: translateY(-206px) scale(1); 
           transform: translateY(-206px) scale(1);  
 }
 
-.social-sharing-fixed:hover .sharing-buttons a:nth-child(5) {
+.social-sharing-fixed:hover .sharing-buttons a:nth-child(5),
+.social-sharing-fixed:active .sharing-buttons a:nth-child(5) {
   -webkit-transform: translateY(-256px) scale(1); 
           transform: translateY(-256px) scale(1);  
 }
 
-.share-icon {
+.icon {
   width: 20px;
 }
 
-.linkedin .share-icon {
+.linkedin .icon {
   width: 15px;
 }
 
-.fb .share-icon {
+.fb .icon {
   height: 20px;
 }
 </style>
