@@ -13,7 +13,7 @@
           </nuxt-link>
         </li>
       </ul>
-      <language-selector />
+      <language-selector :locales="$i18n.locales" />
     </nav>
   </header>
 </template>
