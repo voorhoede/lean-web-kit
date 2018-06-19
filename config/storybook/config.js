@@ -41,7 +41,9 @@ const nuxtRootDir = `${__dirname}/../../src/client`
 function loadStories() {
     //req.keys().map(path => req(path))
     require(`${__dirname}/../../src/client/components/app-footer/app-footer.stories`)
+    require(`${__dirname}/../../src/client/components/app-header/app-header.stories`)
     require(`${__dirname}/../../src/client/components/language-selector/language-selector.stories`)
+    require(`${__dirname}/../../src/client/components/responsive-image/responsive-image.stories`)
     require(`${__dirname}/../../src/client/components/responsive-video/responsive-video.stories`)
     require(`${__dirname}/../../src/client/components/rich-text/rich-text.stories`)
     require(`${__dirname}/../../src/client/components/table-of-contents/table-of-contents.stories`)

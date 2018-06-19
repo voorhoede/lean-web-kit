@@ -48,6 +48,9 @@ After installing dependencies using `npm install` the following scripts are avai
 `npm run ...` | Description
 ---|---
 `analyze` | Analyze the bundles created during build.
-`build` | Builds client and server for production to `dist/`.
+`build` | Builds client, guide and server for production to `dist/`.
 `data` | Download data from Dato CMS to `src/static/data/`.
-`dev` | Serves client app on [`http://localhost:3000`](http://localhost:3000) with hot reloading.
+`dev` | Serves client app on [`http://localhost:5326`](http://localhost:5326) ("lean" in T9) with hot reloading.
+`guide` | Serves guide on [`http://localhost:5327`](http://localhost:5327) for local development.
+`proxy` | Exposes app on localhost to world wide web for testing on other devices.
+`start` | Serves production version of client app from (`/dist/`) on [`http://localhost:5326`](http://localhost:5326).
