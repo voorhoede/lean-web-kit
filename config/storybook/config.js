@@ -30,16 +30,39 @@ Vue.mixin({
   }
 })
 
+/**
+ * Demo component to wrap story items in a consistent layout
+ */
+Vue.component('Demo', {
+  props: { inset: { type: Boolean }, title: { type: String } },
+  template: `
+    <section>
+      <h1 style="padding:16px; background-color:#F3F3F3; font-weight:700;">
+        {{ title }}
+      </h1>
+      <div :style="inset ? 'padding:20px' : ''">
+        <slot>Demo</slot>
+      </div>
+    </section>
+  `,
+})
+
+/**
+ * Mock nuxt-link
+ * https://nuxtjs.org/api/components-nuxt-link/
+ */
 Vue.component('NuxtLink', {
-  props:   ['to'],
+  props: ['to'],
   template: '<a :href="to"><slot>RouterLink</slot></a>',
 })
+
 
 const nuxtRootDir = `${__dirname}/../../src/client`
 // const req = require.context(`${nuxtRootDir}/components`, true, /\.stories\.js$/)
 
 function loadStories() {
     //req.keys().map(path => req(path))
+    require(`${__dirname}/../../src/client/components/app-core/app-core.stories`)
     require(`${__dirname}/../../src/client/components/app-footer/app-footer.stories`)
     require(`${__dirname}/../../src/client/components/app-header/app-header.stories`)
     require(`${__dirname}/../../src/client/components/language-selector/language-selector.stories`)

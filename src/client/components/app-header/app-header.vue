@@ -6,9 +6,11 @@
     <a :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
     <nav>
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
-      <ul>
+      <ul class="inline-list">
         <li v-for="item in menu.items" :key="item.slug">
-          <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })">
+          <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
+            class="app-header__menu-link"
+          >
             {{ item.title }}
           </nuxt-link>
         </li>
@@ -36,7 +38,25 @@ export default {
 </script>
 
 <style>
-.app-header .nuxt-link-active {
+@import '../app-core/index.css';
+
+.app-header__menu-link {
+  text-decoration: none;
+}
+
+.app-header__menu-link {
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
+}
+
+.app-header__menu-link:focus,
+.app-header__menu-link:hover {
+  color: var(--action-color);
+}
+
+.app-header__menu-link.nuxt-link-active {
   font-weight: bold;
+  border-bottom-color: var(--action-color);
 }
 </style>

@@ -22,5 +22,5 @@
 </script>
 
 <style>
-@import '../assets/core.css'
+@import '../components/app-core/index.css';
 </style>
