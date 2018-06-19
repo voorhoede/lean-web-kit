@@ -7,14 +7,13 @@ storiesOf('Table of contents', module)
   .add('Default', () => ({
       components: { TableOfContents },
       template: `
-        <article>
-          <h1>Article with sections</h1>
+        <demo title="Sections with Table of Contents" inset>
           <table-of-contents :items="items" />
           <section v-for="(item, index) in items" :key="index" :id="item.slug">
             <h2>{{ item.title }}</h2>
             <p>{{ body }}</p>
           </section>
-        </article>
+        </demo>
       `,
       data() {
         return {

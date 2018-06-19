@@ -34,13 +34,13 @@ Vue.mixin({
  * Demo component to wrap story items in a consistent layout
  */
 Vue.component('Demo', {
-  props: ['title'],
+  props: { inset: { type: Boolean }, title: { type: String } },
   template: `
     <section>
       <h1 style="padding:16px; background-color:#F3F3F3; font-weight:700;">
         {{ title }}
       </h1>
-      <div style="padding:20px">
+      <div :style="inset ? 'padding:20px' : ''">
         <slot>Demo</slot>
       </div>
     </section>

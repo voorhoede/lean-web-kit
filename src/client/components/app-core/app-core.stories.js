@@ -9,21 +9,21 @@ storiesOf('App core', module)
   .add('Lists', () => ({
     template: `
       <div>
-        <demo title="Default list">
+        <demo title="Default list" inset>
           <ul>
             <li><a href="/">Link 1</a></li>
             <li><a href="/">Link 2</a></li>
             <li><a href="/">Link 3</a></li>
           </ul>
         </demo>
-        <demo title="Flat list">
+        <demo title="Flat list" inset>
           <ul class="flat-list">
             <li><a href="/">Link 1</a></li>
             <li><a href="/">Link 2</a></li>
             <li><a href="/">Link 3</a></li>
           </ul>
         </demo>
-        <demo title="Inline list">
+        <demo title="Inline list" inset>
           <ul class="inline-list">
             <li><a href="/">Link 1</a></li>
             <li><a href="/">Link 2</a></li>
