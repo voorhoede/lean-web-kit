@@ -18,8 +18,12 @@ src/client/static/_redirects
 src/client/static/sitemap.xml
 src/client/static/sw.js
 
+<<<<<<< HEAD
 #OSX
 
+=======
+# OSX
+>>>>>>> style/app-header
 .DS_Store
 src/.DS_Store
 src/client/.DS_Store
