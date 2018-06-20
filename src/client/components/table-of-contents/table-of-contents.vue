@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <h2>Table of Contents</h2>
+    <h2>{{ $t('table_of_contents') }}</h2>
     <ol>
       <li v-for="(item, index) in items" :key="index">
         <a :href="`#${item.slug}`">

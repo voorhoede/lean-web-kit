@@ -1,0 +1,22 @@
+.flat-list,
+.inline-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.flat-list li,
+.inline-list li {
+  padding-left: 0;
+}
+
+.flat-list li:before,
+.inline-list li:before {
+  content: '';
+}
+
+.inline-list li {
+  display: inline-block;
+  padding-left: 4px;
+  padding-right: 4px;
+}
