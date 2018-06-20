@@ -1,3 +1,7 @@
 :root {
-  --action-color: red;
+  --action-color: #6a9ce4;
+  --neutral-color: #f5f5f5;
+  --dark-neutral: #4c4c4c;
+  --white: #fff;
+  --black: #000;
 }
