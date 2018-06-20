@@ -16,7 +16,7 @@
     "build:client": "nuxt generate",
     "build:guide": "build-storybook -c config/storybook -o dist/client/guide/",
     "build:server": "netlify-lambda build src/server/functions/",
-    "predata": "rimraf src/client/static/data/",
+    "predata": "rimraf src/client/static/data/ src/client/static/_redirects",
     "data": "dato dump",
     "predev": "rimraf dist/ && npm run data",
     "dev": "run-p dev:*",

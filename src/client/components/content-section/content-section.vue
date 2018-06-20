@@ -1,8 +1,8 @@
 <template>
-  <section :id="section.slug">
-    <a :href="`#${section.slug}`">
-      <h2>{{ section.title }}</h2>
-    </a>
+  <section class="page-content" :id="section.slug">
+    <!-- <a :href="`#${section.slug}`"> -->
+    <h2 class="section-title">{{ section.title }}</h2>
+    <!-- </a> -->
     <template v-for="(item, index) in section.items">
       <rich-text v-if="item.type === 'text'"
         :key="index"
@@ -27,3 +27,11 @@ export default {
   props: ['section'],
 }
 </script>
+
+<style>
+.section-title {
+  font-size: 1.6785rem;
+  font-weight: bolder;
+  margin-bottom: 1.5rem;
+}
+</style>
