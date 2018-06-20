@@ -1,14 +1,18 @@
+const fs = require('fs')
 const dotenv = require('dotenv-safe')
 const { pick, omit } = require('lodash')
 const slugify = require('slugify')
 
 dotenv.config()
 
-const dataDir = `src/client/static/data`
+const staticDir = `src/client/static`
+const dataDir = `${staticDir}/data`
 let locales = []
 
 module.exports = (dato, root, i18n) => {
   locales = i18n.availableLocales
+
+  fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects), 'utf8')
 
   root.createDataFile(`${dataDir}/locales.json`, 'json', locales)
   root.createDataFile(`${dataDir}/menu.json`, 'json', menuToJson(dato, i18n))
@@ -21,6 +25,16 @@ module.exports = (dato, root, i18n) => {
     })
     root.createDataFile(`${dataDir}/${locale}/messages.json`, 'json', translationsToJson(dato.translations))
   })
+}
+
+/**
+ * Write redirects to text with 1 redirect per line
+ * @see https://www.netlify.com/docs/redirects/
+ */
+function redirectsToText (redirects) {
+  return redirects
+    .map(redirect => `${redirect.from} ${redirect.to} ${redirect.statusCode}`)
+    .join("\n")
 }
 
 function pageSlugMap (dato, i18n) {
