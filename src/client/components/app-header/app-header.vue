@@ -1,9 +1,10 @@
 <template>
   <header role="banner" class="app-header">
-    <nuxt-link :to="localePath('index')">
+    <nuxt-link :to="localePath('index')" class="app-header__identity">
+      <img class="app-header__logo" src="/images/wings.svg" alt="" />
       <h1>Lean Web Kit</h1>
     </nuxt-link>
-    <a :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
+    <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
     <nav>
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
       <ul class="inline-list">
@@ -15,7 +16,7 @@
           </nuxt-link>
         </li>
       </ul>
-      <language-selector :locales="$i18n.locales" />
+      <!-- <language-selector :locales="$i18n.locales" /> -->
     </nav>
   </header>
 </template>
@@ -40,23 +41,54 @@ export default {
 <style>
 @import '../app-core/index.css';
 
-.app-header__menu-link {
+.app-header {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0 1rem;
+  background-color: #fff;
+  opacity: .9;
+  box-shadow: 0 2px 15px 0 rgba(214,214,214,.5);
+  z-index: 10000;
+}
+
+.app-header__identity {
+  display: flex;
+  align-items: center;
+  color: #000;
   text-decoration: none;
 }
 
+.app-header .inline-list {
+  display: flex;
+}
+
+.app-header__logo {
+  height: 50px;
+  transform: rotate(35deg);
+}
+
+.app-header h1 {
+  font-size: 1.125rem;
+}
+
 .app-header__menu-link {
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-  border-bottom-color: transparent;
+  margin: 0 1rem;
+  padding-bottom: 1rem;
+  font-size: .875rem;
+  font-weight: bold;
+  color: #000;
+  text-transform: uppercase;
+  text-decoration: none;
 }
 
 .app-header__menu-link:focus,
 .app-header__menu-link:hover {
-  color: var(--action-color);
-}
-
-.app-header__menu-link.nuxt-link-active {
-  font-weight: bold;
-  border-bottom-color: var(--action-color);
+  border-bottom: 2px solid var(--action-color);
 }
 </style>
