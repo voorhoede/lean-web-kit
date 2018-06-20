@@ -16,3 +16,9 @@ dist/
 src/client/static/data/
 src/client/static/sitemap.xml
 src/client/static/sw.js
+
+# OSX
+/.DS_Store
+src/.DS_Store
+src/client/.DS_Store
+src/client/static/.DS_Store
