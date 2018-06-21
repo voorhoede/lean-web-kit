@@ -1,7 +1,7 @@
 <template>
   <header role="banner" class="app-header">
     <nuxt-link :to="localePath('index')" class="app-header__identity">
-      <img class="app-header__logo" src="/images/wings.svg" alt="" />
+      <img class="app-header__logo" src="/images/logo.svg" alt="" />
       <h1 class="app-header__title">Lean Web Kit</h1>
     </nuxt-link>
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
