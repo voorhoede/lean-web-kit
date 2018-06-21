@@ -2,7 +2,13 @@
   <figure>
     <div class="fixed-ratio">
       <div class="fixed-ratio__content">
-        <img :alt="image.alt" :src="image.url" />
+        <picture>
+          <!--[if IE 9]><video style="display: none;"><![endif]-->
+          <source media="(min-width: 400px)" :srcset="image.url">
+          <source :srcset="`${image.url}?w400&h=225`">
+          <!--[if IE 9]></video><![endif]-->
+          <img :alt="image.alt" :src="image.url" />
+        </picture>
       </div>
     </div>
     <figcaption v-if="image.title">{{ image.title }}</figcaption>
