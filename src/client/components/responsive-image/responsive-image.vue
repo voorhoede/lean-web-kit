@@ -4,6 +4,8 @@
       <div class="fixed-ratio__content">
         <picture>
           <!--[if IE 9]><video style="display: none;"><![endif]-->
+          <source type="image/webp" media="(min-width: 400px)" :srcset="`${image.url}?fm=webp`">
+          <source type="image/webp" :srcset="`${image.url}?w400&h=225&fm=webp`">
           <source media="(min-width: 400px)" :srcset="image.url">
           <source :srcset="`${image.url}?w400&h=225`">
           <!--[if IE 9]></video><![endif]-->
