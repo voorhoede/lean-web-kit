@@ -1,12 +1,15 @@
 <template>
-  <div class="page" id="page">
-    <header class="page-header">
-        <h1 class="page-header__title">{{ page.title }}</h1>
-        <p class="page-header__subtitle" v-if="page.subtitle">{{ page.subtitle }}</p>
+  <div class="page">
+    <header class="page__header">
+      <h1 class="page__title">{{ page.title }}</h1>
+      <p class="page__subtitle" v-if="page.subtitle">{{ page.subtitle }}</p>
     </header>
 
-    <table-of-contents v-if="page.hasToc" :items="page.tocItems" />
-    <div class="content">
+    <div class="page__sidebar" v-if="page.hasToc">
+      <table-of-contents :items="page.tocItems" />
+    </div>
+
+    <div class="page__content">
       <content-section v-for="(section, index) in page.sections" :key="index" :section="section" />
     </div>
   </div>
@@ -37,20 +40,19 @@ export default {
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-template-areas:
-    "header header"
-    "sidebar content";
+    "page-header page-header"
+    "page-sidebar page-content";
 }
 
 .page-header {
-  grid-area: header;
-  height: 250px;
+  grid-area: page-header;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
   margin-bottom: 4rem;
-  padding-bottom: 3rem;
+  padding-bottom: 3rem 0;
 }
 
 .page-header::after {
@@ -69,12 +71,12 @@ export default {
   font-weight: bold;
 }
 
-.table-of-contents {
-  grid-area: sidebar;
+.page__sidebar {
+  grid-area: page-sidebar;
 }
 
-.content {
-  grid-area: content;
+.page__content {
+  grid-area: page-content;
 }
 </style>
 
