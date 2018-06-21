@@ -43,7 +43,7 @@ export default {
 
 .app-header {
   width: 100%;
-  height: 80px;
+  height: var(--app-header-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -55,6 +55,10 @@ export default {
   opacity: .9;
   box-shadow: 0 2px 15px 0 rgba(214,214,214,.5);
   z-index: 10000;
+}
+
+.app-header + * {
+  margin-top: var(--app-header-height);
 }
 
 .app-header__identity {
