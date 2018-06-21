@@ -1,0 +1,39 @@
+.story {
+  padding: 2rem;
+}
+
+.title,
+.subtitle {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #c5c5c5;
+}
+
+.subtitle {
+  margin-top: 2rem;
+}
+
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.color {
+  margin-right: 1rem;
+  text-align: center;
+}
+
+.color-box {
+  width:140px;
+  height:140px;
+  box-shadow: 1px 1px 10px #ccc;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-bottom: .5rem;
+}
+
+.headings > *,
+.paragraphs > * {
+  margin-bottom: 1rem;
+}
