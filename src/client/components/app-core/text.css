@@ -4,13 +4,13 @@ html {
 
 a {
   font-size: 1rem;
-  color: var(--black);
+  color: var(--action-color);
   text-decoration: none;
 }
 
 a:focus,
 a:hover {
-  color: var(--action-color);
+  border-bottom: 1px solid var(--action-color);
 }
 
 p {
