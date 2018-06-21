@@ -1,11 +1,11 @@
 <template>
-  <header role="banner" class="app-header" id="app-header">
+  <header role="banner" class="app-header">
     <nuxt-link :to="localePath('index')" class="app-header__identity">
       <img class="app-header__logo" src="/images/wings.svg" alt="" />
-      <h1>Lean Web Kit</h1>
+      <h1 class="app-header__title">Lean Web Kit</h1>
     </nuxt-link>
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
-    <nav>
+    <nav class="app-header__navigation">
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
       <ul class="app-header__inline-list">
         <li v-for="item in menu.items" :key="item.slug">
@@ -47,7 +47,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   padding: 0 1rem;
@@ -73,7 +73,7 @@ export default {
   transform: rotate(35deg);
 }
 
-.app-header h1 {
+.app-header__title {
   font-size: 1.125rem;
 }
 
@@ -90,5 +90,9 @@ export default {
 .app-header__menu-link:focus,
 .app-header__menu-link:hover {
   border-bottom: 2px solid var(--action-color);
+}
+
+.app-header__navigation {
+  display: flex;
 }
 </style>
