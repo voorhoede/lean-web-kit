@@ -16,7 +16,6 @@ export default {
   data() {
     return {
       contentId: 'content',
-      lastScroll: 0,
     }
   },
   

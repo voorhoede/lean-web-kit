@@ -35,28 +35,6 @@ export default {
     locale() { return this.$i18n.locale },
     menu() { return this.menuI18n[this.locale] },
   },
-
-  methods: {
-    handleScroll () {
-      const appHeader = document.getElementById('app-header')
-      
-      if ((scrollY > 400) && (scrollY > this.lastScroll)) {
-        appHeader.classList.add('hide')
-      } else {
-        appHeader.classList.remove('hide')
-      }
-
-      this.lastScroll = scrollY
-    }
-  },
-
-  beforeMount () {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-
-  beforeDestroy () {
-    window.removeEventListener('scroll', this.handleScroll)
-  }
 }
 </script>
 
@@ -77,12 +55,6 @@ export default {
   opacity: .9;
   box-shadow: 0 2px 15px 0 rgba(214,214,214,.5);
   z-index: 10000;
-}
-
-.hide {
-  opacity: 0;
-  transform: translateY(-90px);
-  transition: all .5s ease;
 }
 
 .app-header__identity {
