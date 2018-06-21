@@ -1,7 +1,7 @@
 <template>
   <div class="page" id="page">
     <header class="page-header">
-        <h1>{{ page.title }}</h1>
+        <h1 class="page-header__title">{{ page.title }}</h1>
         <p class="page-header__subtitle" v-if="page.subtitle">{{ page.subtitle }}</p>
     </header>
 
@@ -62,7 +62,7 @@ export default {
   border-bottom: 1px solid var(--action-color);
 }
 
-.page-header h1 {
+.page-header__title {
   margin-bottom: 1rem;
   margin-top: auto;
   font-size: 4rem;
