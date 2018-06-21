@@ -1,8 +1,8 @@
 <template>
   <section class="page-content" :id="section.slug">
-    <!-- <a :href="`#${section.slug}`"> -->
-    <h2 class="section-title">{{ section.title }}</h2>
-    <!-- </a> -->
+    <a :href="`#${section.slug}`">
+      <h2 class="section-title">{{ section.title }}</h2>
+    </a>
     <template v-for="(item, index) in section.items">
       <rich-text v-if="item.type === 'text'"
         :key="index"
