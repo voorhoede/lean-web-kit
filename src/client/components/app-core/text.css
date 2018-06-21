@@ -3,13 +3,12 @@ html {
 }
 
 a {
-  font-weight: bold;
   font-size: 1rem;
   color: var(--black);
   text-decoration: none;
-  text-transform: uppercase;
 }
 
+a:focus,
 a:hover {
   color: var(--action-color);
 }
