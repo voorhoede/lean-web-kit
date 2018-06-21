@@ -14,25 +14,6 @@
 <script>
 export default {
   props: ['items'],
-  methods: {
-    handleScroll () {
-      const tableOfContents = document.getElementById('table-of-contents')
-      
-      if (scrollY > 315) {
-        tableOfContents.classList.add('fixed-left')
-      } else {
-        tableOfContents.classList.remove('fixed-left')
-      }
-    }
-  },
-
-  beforeMount () {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  
-  beforeDestroy () {
-    window.removeEventListener('scroll', this.handleScroll)
-  }
 }
 </script>
 
@@ -40,12 +21,6 @@ export default {
 
 .table-of-contents {
   margin: 0 2rem;
-}
-
-.fixed-left {
-  position: fixed;
-  top: 100px;
-  left: 0;
 }
 
 .table-of-contents li {
