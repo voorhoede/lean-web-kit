@@ -9,18 +9,20 @@
 </template>
 
 <script>
-  import { AppFooter, AppHeader } from '../components/'
+import { AppFooter, AppHeader } from '../components/'
 
-  export default {
-    components: { AppFooter, AppHeader },
-    data() {
-      return {
-        contentId: 'content',
-      }
-    },
-  }
+export default {
+  components: { AppFooter, AppHeader },
+  data() {
+    return {
+      contentId: 'content',
+    }
+  },
+  
+}
 </script>
 
 <style>
 @import '../components/app-core/index.css';
+
 </style>
