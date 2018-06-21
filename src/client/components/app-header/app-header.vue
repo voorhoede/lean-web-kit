@@ -7,7 +7,7 @@
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
     <nav>
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
-      <ul class="inline-list">
+      <ul class="app-header__inline-list">
         <li v-for="item in menu.items" :key="item.slug">
           <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
             class="app-header__menu-link"
@@ -16,7 +16,7 @@
           </nuxt-link>
         </li>
       </ul>
-      <!-- <language-selector :locales="$i18n.locales" /> -->
+      <language-selector :locales="$i18n.locales" />
     </nav>
   </header>
 </template>
@@ -92,7 +92,7 @@ export default {
   text-decoration: none;
 }
 
-.app-header .inline-list {
+.app-header__inline-list {
   display: flex;
 }
 
