@@ -1,5 +1,5 @@
 <template>
-  <nav class="table-of-contents" id="table-of-contents">
+  <nav class="table-of-contents">
     <h2 class="a11y-sr-only">{{ $t('table_of_contents') }}</h2>
     <ol>
       <li class="table-of-contents__item" v-for="(item, index) in items" :key="index">
