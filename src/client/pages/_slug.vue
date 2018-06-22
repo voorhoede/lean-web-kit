@@ -1,10 +1,6 @@
 <template>
   <main class="page">
-    <page-header 
-      class="page__header" 
-      :title="page.title"
-      :subtitle="page.subtitle"
-    />
+    <page-header :title="page.title" :subtitle="page.subtitle" />
 
     <div class="page__content">
       <div class="page__content__sidebar" v-if="page.hasToc">
@@ -40,17 +36,9 @@ export default {
 <style>
 @import '../components/app-core/index.css';
 
-.page__header {
-  max-width: 100%;
-  margin-bottom: 4rem;
-}
-
 .page__content {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  padding: 0 var(--spacing-default);
-  max-width: 920px;
+  flex-direction: column;
+  align-items: center;
 }
 
 .page__content__sidebar {
@@ -62,10 +50,13 @@ export default {
   max-width: 600px;
 }
 
-@media screen and (max-width: 880px) {
+@media screen and (min-width: 880px) {
   .page__content {
-    flex-direction: column;
-    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0 var(--spacing-default);
+    max-width: 920px;
   }
 
   .page__content__sidebar {
