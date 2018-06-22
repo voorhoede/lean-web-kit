@@ -15,26 +15,26 @@ storiesOf('App core', module)
       }
     },
     template: 
-      `<div class="story">
-        <h1 class="title">Colors:</h1>
-        <div class="colors">
-          <div v-for="color in this.colors" class="color">
-            <div class="color-box" :style="'background:' + color.color + ';'"></div>
-            <p class="variable-name">--{{color.varName}}</p>
+      `<div>
+        <demo title="Colors" inset>
+          <div class="colors">
+            <div v-for="color in this.colors" class="color">
+              <div class="color-box" :style="'background:' + color.color + ';'"></div>
+              <p class="variable-name">--{{color.varName}}</p>
+            </div>
           </div>
-        </div>
+        </demo>
       </div>`,
   }))
   .add('Text', () => ({
     template: `
-      <div class="story">
-        <h1 class="title">Fonts:</h1>
-        <div class="fonts">
+      <div>
+        <demo title="Fonts" inset>
           <p style="font-weight:lighter;">Font weight: lighter</p>
           <p style="font-weight:normal;">Font weight: normal</p>
           <p style="font-weight:bold;">Font weight: bold</p>
-        </div>
-        <div class="typography">
+        </demo>
+        <demo title="Typography" inset>
           <div class="headings">
             <h2 class="subtitle">Headings</h2>
             <h1>H1 She stared through the window at the stars.</h1>
@@ -49,9 +49,8 @@ storiesOf('App core', module)
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vel quam elementum pulvinar etiam non quam lacus suspendisse. Eu tincidunt tortor aliquam nulla.</p>
             <p>She stared through the window at the <a href="#starts">stars</a>.</p>
           </div>
-        </div>
-      </div>
-    `,
+        </demo>
+      </div>`,
   }))
   .add('Lists', () => ({
     template: `

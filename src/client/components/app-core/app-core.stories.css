@@ -1,9 +1,5 @@
 @import './index.css';
 
-.story {
-  padding: var(--spacing-double);
-}
-
 .title,
 .subtitle {
   margin-bottom: var(--spacing-double);
