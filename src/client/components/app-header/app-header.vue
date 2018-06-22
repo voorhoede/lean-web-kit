@@ -56,7 +56,6 @@ export default {
 }
 
 .app-header__menu-link.nuxt-link-active {
-  font-weight: bold;
   border-bottom-color: var(--action-color);
 }
 </style>

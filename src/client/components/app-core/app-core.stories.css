@@ -1,0 +1,32 @@
+@import './index.css';
+
+.title,
+.subtitle {
+  margin-bottom: var(--spacing-double);
+  padding-bottom: var(--spacing-default);
+  border-bottom: 1px solid #c5c5c5;
+}
+
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.color {
+  margin-right: var(--spacing-default);
+  text-align: center;
+}
+
+.color-box {
+  width: 140px;
+  height: 140px;
+  box-shadow: 1px 1px 10px #c5c5c5;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-bottom: var(--spacing-half);
+}
+
+.headings > * {
+  margin-bottom: var(--spacing-default);
+}
