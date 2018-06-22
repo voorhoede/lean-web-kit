@@ -3,12 +3,12 @@
     <div class="responsive-image__wrapper">
       <picture class="responsive-image__content">
         <!--[if IE 9]><video style="display: none;"><![endif]-->
-        <source type="image/webp" media="(min-width: 400px)" :srcset="`${image.url}?fm=webp`">
-        <source type="image/webp" :srcset="`${image.url}?w400&h=225&fm=webp`">
-        <source media="(min-width: 400px)" :srcset="image.url">
-        <source :srcset="`${image.url}?w400&h=225`">
+        <source type="image/webp" media="(min-width: 400px)" :srcset="`${imageSource}?fm=webp`">
+        <source type="image/webp" :srcset="`${imageSource}?w400&h=225&fm=webp`">
+        <source media="(min-width: 400px)" :srcset="imageSource">
+        <source :srcset="`${imageSource}?w400&h=225`">
         <!--[if IE 9]></video><![endif]-->
-        <img class="responsive-image__image" :alt="image.alt" :src="image.url" />
+        <img class="responsive-image__image" :alt="image.alt" :src="imageSource" />
       </picture>
     </div>
     <figcaption v-if="image.title">{{ image.title }}</figcaption>
@@ -17,7 +17,40 @@
 
 <script>
 export default {
-  props: ['image']
+  props: ['image'],
+  data: () => ({
+    observer: null,
+    setSource: false
+  }),
+  computed: {
+    imageSource() {
+      return this.setSource ? this.image.url : ''
+    }
+  },
+  mounted() {
+    const config = {
+      root: undefined,
+      rootMargin: '0px 0px 0px 0px',
+      threshold: 0
+    };
+
+    if ('IntersectionObserver' in window) {
+      this.observer = new IntersectionObserver(this.onIntersection, config)
+      this.observer.observe(this.$el)
+    } else {
+      this.setSource = true
+    }
+  },
+  methods: {
+    onIntersection(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.intersectionRatio > 0) {
+          this.setSource = true
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+  },
 }
 </script>
 
