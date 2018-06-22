@@ -1,9 +1,10 @@
 <template>
   <div class="page">
-    <header class="page__header">
-      <h1 class="page__title">{{ page.title }}</h1>
-      <p class="page__subtitle" v-if="page.subtitle">{{ page.subtitle }}</p>
-    </header>
+    <page-header 
+      class="page__header" 
+      :title="page.title"
+      :subtitle="page.subtitle"
+    />
 
     <div class="page__content">
       <div class="page__content__sidebar" v-if="page.hasToc">
@@ -18,11 +19,11 @@
 </template>
 
 <script>
-import { ContentSection, TableOfContents } from '../components/'
+import { ContentSection, TableOfContents, PageHeader } from '../components/'
 import { getPageData, seoHead } from '../lib/'
 
 export default {
-  components: { ContentSection, TableOfContents },
+  components: { ContentSection, TableOfContents, PageHeader },
   async asyncData ({ app, params, store }) {
     const { slug } = params
     const page = await getPageData({ slug, locale: app.i18n.locale })
@@ -38,47 +39,28 @@ export default {
 
 <style>
 .page__header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+  max-width: 100%;
   margin-bottom: 4rem;
-  padding-bottom: 3rem;
-}
-
-.page__header::after {
-  content: '';
-  display: block;
-  position: absolute;
-  bottom: 0;
-  width: 300px;
-  border-bottom: 1px solid var(--action-color);
-}
-
-.page__title {
-  margin-bottom: 1rem;
-  margin-top: auto;
-  font-size: 4rem;
-  font-weight: bold;
 }
 
 .page__content {
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  max-width: 900px;
+  padding: 0 var(--spacing-default);
+  max-width: 920px;
 }
 
 .page__content__sidebar {
   width: 300px;
+  margin-right: var(--spacing-double);
 }
 
 .page__content__main-content {
   max-width: 600px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 880px) {
   .page__content {
     flex-direction: column;
     align-items: center;
@@ -87,13 +69,7 @@ export default {
   .page__content__sidebar {
     width: 100%;
     max-width: 600px;
-    margin-bottom: 2rem;
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .page__title {
-    font-size: 3rem;
+    margin-bottom: var(--spacing-double);
   }
 }
 </style>
