@@ -1,6 +1,6 @@
 <template>
   <figure class="responsive-image">
-    <div class="responsive-image__wrapper">
+    <div class="responsive-image__wrapper" :style="{ paddingBottom: `${ratio}%` }">
       <picture class="responsive-image__content">
         <!--[if IE 9]><video style="display: none;"><![endif]-->
         <source type="image/webp" media="(min-width: 400px)" :srcset="`${imageSource}?fm=webp`">
@@ -25,6 +25,9 @@ export default {
   computed: {
     imageSource() {
       return this.setSource ? this.image.url : ''
+    },
+    ratio: function() {
+      return this.image.height / this.image.width * 100
     }
   },
   mounted() {
@@ -61,7 +64,6 @@ export default {
   position: relative;
   height: 0;
   overflow: hidden;
-  padding-bottom: 56.25%;
 }
 
 .responsive-image__content {
