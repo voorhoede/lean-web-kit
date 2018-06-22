@@ -1,12 +1,12 @@
 <template>
-  <figure class="responsive-image">
+  <figure class="responsive-image" :style="{ maxHeight: `${image.height}px`, maxWidth: `${image.width}px` }">
     <div class="responsive-image__wrapper" :style="{ paddingBottom: `${ratio}%` }">
       <picture class="responsive-image__content">
         <!--[if IE 9]><video style="display: none;"><![endif]-->
-        <source type="image/webp" media="(min-width: 400px)" :srcset="`${imageSource}?fm=webp`">
-        <source type="image/webp" :srcset="`${imageSource}?w400&h=225&fm=webp`">
-        <source media="(min-width: 400px)" :srcset="imageSource">
-        <source :srcset="`${imageSource}?w400&h=225`">
+        <source type="image/webp" media="(min-width: 360px)" :srcset="`${imageSource}?fm=webp`">
+        <source type="image/webp" :srcset="`${imageSource}?w360&fm=webp`">
+        <source media="(min-width: 360px)" :srcset="imageSource">
+        <source :srcset="`${imageSource}?w360`">
         <!--[if IE 9]></video><![endif]-->
         <img class="responsive-image__image" :alt="image.alt" :src="imageSource" />
       </picture>
@@ -58,6 +58,10 @@ export default {
 </script>
 
 <style scoped>
+.responsive-image {
+  margin-bottom: var(--spacing-double);
+}
+
 .responsive-image__wrapper {
   background-color: var(--neutral-color);
   display: block;
