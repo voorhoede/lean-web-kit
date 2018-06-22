@@ -1,7 +1,10 @@
 import { storiesOf } from '@storybook/vue'
+import { withReadme } from 'storybook-readme'
+import readme from './readme.md'
 import ResponsiveImage from './'
 
 storiesOf('Responsive image', module)
+  .addDecorator(withReadme(readme))
   .add('Default', () => ({
     components: { ResponsiveImage },
     template: '<responsive-image :image="image" />',
