@@ -5,12 +5,14 @@
       <p class="page__subtitle" v-if="page.subtitle">{{ page.subtitle }}</p>
     </header>
 
-    <div class="page__sidebar" v-if="page.hasToc">
-      <table-of-contents :items="page.tocItems" />
-    </div>
-
     <div class="page__content">
-      <content-section v-for="(section, index) in page.sections" :key="index" :section="section" />
+      <div class="page__content__sidebar" v-if="page.hasToc">
+        <table-of-contents :items="page.tocItems" />
+      </div>
+
+      <div class="page__content__main-content">
+        <content-section v-for="(section, index) in page.sections" :key="index" :section="section" />
+      </div>
     </div>
   </div>
 </template>
@@ -35,27 +37,17 @@ export default {
 </script>
 
 <style>
-.page {
-  margin-top: 80px;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-areas:
-    "page-header page-header"
-    "page-sidebar page-content";
-}
-
-.page-header {
-  grid-area: page-header;
+.page__header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
   margin-bottom: 4rem;
-  padding-bottom: 3rem 0;
+  padding-bottom: 3rem;
 }
 
-.page-header::after {
+.page__header::after {
   content: '';
   display: block;
   position: absolute;
@@ -64,19 +56,45 @@ export default {
   border-bottom: 1px solid var(--action-color);
 }
 
-.page-header__title {
+.page__title {
   margin-bottom: 1rem;
   margin-top: auto;
   font-size: 4rem;
   font-weight: bold;
 }
 
-.page__sidebar {
-  grid-area: page-sidebar;
+.page__content {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 900px;
 }
 
-.page__content {
-  grid-area: page-content;
+.page__content__sidebar {
+  width: 300px;
+}
+
+.page__content__main-content {
+  max-width: 600px;
+}
+
+@media screen and (max-width: 900px) {
+  .page__content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .page__content__sidebar {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .page__title {
+    font-size: 3rem;
+  }
 }
 </style>
 
