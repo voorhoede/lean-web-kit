@@ -27,19 +27,20 @@ img {
 }
 
 .responsive-image__wrapper {
-    display: block;
-    position: relative;
-    height: 0;
-    overflow: hidden;
-    padding-bottom: 56.25%;
+  background-color: var(--neutral-color);
+  display: block;
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%;
 }
 
 .responsive-image__content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    max-width: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-width: inherit;
 }
 </style>
