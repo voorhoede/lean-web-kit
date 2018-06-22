@@ -1,9 +1,12 @@
 import { storiesOf } from '@storybook/vue'
+import { withReadme } from 'storybook-readme'
+import readme from './readme.md'
 
 import './index.css'
 import './app-core.stories.css'
 
 storiesOf('App core', module)
+  .addDecorator(withReadme(readme))
   .add('Colors', () => ({
     data(){
       return {

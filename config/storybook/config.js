@@ -74,7 +74,10 @@ function loadStories() {
 
 setOptions({
   name: 'Lean Web Kit',
-  url: '#'
+  url: '#',
+  showLeftPanel: true,
+  showDownPanel: true,
+  downPanelInRight: true,
 })
 
 configure(loadStories, module)
