@@ -38,6 +38,8 @@ export default {
 </script>
 
 <style>
+@import '../components/app-core/index.css';
+
 .page__header {
   max-width: 100%;
   margin-bottom: 4rem;
@@ -69,8 +71,8 @@ export default {
   .page__content__sidebar {
     width: 100%;
     max-width: 600px;
+    margin-right: 0;
     margin-bottom: var(--spacing-double);
   }
 }
 </style>
-
