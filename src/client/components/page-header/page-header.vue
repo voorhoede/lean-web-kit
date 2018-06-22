@@ -13,7 +13,7 @@ export default {
 
 <style>
 .page-header {
-  max-width: 100%;
+  width: 100%;
   margin-bottom: 4rem;
   display: flex;
   flex-direction: column;
@@ -35,5 +35,15 @@ export default {
 
 .page-header__subtitle {
   font-size: var(--font-size-medium);
+}
+
+@media screen and (min-width: 500px) {
+  .page-header__title {
+    font-size: 4rem;
+  }
+
+  .page-header__subtitle {
+    font-size: var(--font-size-large);
+  }
 }
 </style>
