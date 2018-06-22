@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <main class="page">
     <page-header 
       class="page__header" 
       :title="page.title"
@@ -15,7 +15,7 @@
         <content-section v-for="(section, index) in page.sections" :key="index" :section="section" />
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
