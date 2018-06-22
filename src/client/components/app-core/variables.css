@@ -1,4 +1,17 @@
 :root {
+  --action-color: #6a9ce4;
   --neutral-color: #f5f5f5;
-  --action-color: red;
+  --dark-neutral-color: #4c4c4c;
+  --background-color: #fff;
+  --text-color: #000;
+
+  /* fonts */
+
+  --font-size-default: 1rem;
+
+  /* spacing */
+
+  --spacing-default: 1rem;
+  --spacing-double: 2rem;
+  --spacing-half: .5rem;
 }
