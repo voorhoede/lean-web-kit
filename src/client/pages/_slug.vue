@@ -1,8 +1,17 @@
 <template>
-  <div>
-    <h1>{{ page.title }}</h1>
-    <table-of-contents v-if="page.hasToc" :items="page.tocItems" />
-    <content-section v-for="(section, index) in page.sections" :key="index" :section="section" />
+  <div class="page">
+    <header class="page__header">
+      <h1 class="page__title">{{ page.title }}</h1>
+      <p class="page__subtitle" v-if="page.subtitle">{{ page.subtitle }}</p>
+    </header>
+
+    <div class="page__sidebar" v-if="page.hasToc">
+      <table-of-contents :items="page.tocItems" />
+    </div>
+
+    <div class="page__content">
+      <content-section v-for="(section, index) in page.sections" :key="index" :section="section" />
+    </div>
   </div>
 </template>
 
@@ -24,3 +33,50 @@ export default {
   computed: {},
 }
 </script>
+
+<style>
+.page {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+    "page-header page-header"
+    "page-sidebar page-content";
+}
+
+.page-header {
+  grid-area: page-header;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 4rem;
+  padding-bottom: 3rem 0;
+}
+
+.page-header::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 300px;
+  border-bottom: 1px solid var(--action-color);
+}
+
+.page-header__title {
+  margin-bottom: 1rem;
+  margin-top: auto;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.page__sidebar {
+  grid-area: page-sidebar;
+}
+
+.page__content {
+  grid-area: page-content;
+}
+</style>
+
