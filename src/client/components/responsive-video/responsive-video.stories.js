@@ -1,7 +1,10 @@
 import { storiesOf } from '@storybook/vue'
+import { withReadme } from 'storybook-readme'
+import readme from './readme.md'
 import ResponsiveVideo from './'
 
 storiesOf('Responsive video', module)
+  .addDecorator(withReadme(readme))
   .add('Default', () => ({
     components: { ResponsiveVideo },
     template: '<responsive-video :video="video" />',
