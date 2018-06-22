@@ -3,6 +3,11 @@ const flattenDeep = require('lodash/flattenDeep')
 const locales = require('./src/client/static/data/locales.json')
 const pages = require('./src/client/static/data/pages.json')
 
+/**
+ * Use Netlify's URL variable:
+ * https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
+ */
+const baseUrl = process.env.URL || ''
 const defaultLocale = locales[0]
 const isProduction = (process.env.NODE_ENV === 'production')
 
@@ -18,6 +23,10 @@ module.exports = {
         return Object.keys(slugI18n).map(locale => `/${locale}/${slugI18n[locale]}`)
       })
     ])
+  },
+
+  env: {
+    baseUrl,
   },
 
   /*
@@ -44,6 +53,10 @@ module.exports = {
       target: 'http://localhost:9000/',
       pathRewrite: { '^/.netlify/functions/': '' },
     }
+  },
+
+  router: {
+    middleware: ['meta-canonical'],
   },
 
   modules: [
