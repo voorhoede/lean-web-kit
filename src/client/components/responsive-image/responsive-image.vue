@@ -8,7 +8,7 @@
         <source media="(min-width: 400px)" :srcset="image.url">
         <source :srcset="`${image.url}?w400&h=225`">
         <!--[if IE 9]></video><![endif]-->
-        <img :alt="image.alt" :src="image.url" />
+        <img class="responsive-image__image" :alt="image.alt" :src="image.url" />
       </picture>
     </div>
     <figcaption v-if="image.title">{{ image.title }}</figcaption>
@@ -22,10 +22,6 @@ export default {
 </script>
 
 <style scoped>
-img {
-  max-width: 100%;
-}
-
 .responsive-image__wrapper {
   background-color: var(--neutral-color);
   display: block;
@@ -42,5 +38,25 @@ img {
   width: 100%;
   height: 100%;
   max-width: inherit;
+}
+
+.responsive-image__image:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: var(--neutral-color);
+}
+
+.responsive-image__image:after {
+  content: attr(alt);
+  display: block;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
 }
 </style>
