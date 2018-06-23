@@ -8,7 +8,7 @@
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
       <ul class="inline-list">
         <li v-for="item in menu.items" :key="item.slug">
-          <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } }) + '/'"
+          <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
             class="app-header__menu-link"
           >
             {{ item.title }}
