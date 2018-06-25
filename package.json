@@ -30,6 +30,7 @@
     "start:dist": "http-server './dist/client/' -c-1 -o -p 5326 --proxy 'http://localhost:9000/'"
   },
   "dependencies": {
+    "@nuxtjs/google-analytics": "2.0.2",
     "@nuxtjs/proxy": "1.2.4",
     "dotenv": "6.0.0",
     "dotenv-safe": "6.0.0",
