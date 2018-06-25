@@ -3,10 +3,10 @@
     <nuxt-link :to="localePath('index') + '/'">
       <h1>Lean Web Kit</h1>
     </nuxt-link>
-    <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
+    <a :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
     <nav>
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
-      <ul class="app-header__inline-list">
+      <ul class="inline-list">
         <li v-for="item in menu.items" :key="item.slug">
           <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
             class="app-header__menu-link"
@@ -23,7 +23,6 @@
 <script>
 import menuI18n from '../../static/data/menu.json'
 import LanguageSelector from '../language-selector'
-
 export default {
   components: { LanguageSelector },
   props: ['contentId'],
@@ -39,43 +38,18 @@ export default {
 
 <style>
 @import '../app-core/index.css';
-
-.app-header {
-  width: 100%;
-  height: 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0 1rem;
-  background-color: #fff;
-  opacity: .9;
-  box-shadow: 0 2px 15px 0 rgba(214,214,214,.5);
-  z-index: 10000;
-}
-
-.app-header__identity {
-  display: flex;
-  align-items: center;
-  color: #000;
+.app-header__menu-link {
   text-decoration: none;
 }
-
-.app-header__inline-list {
-  display: flex;
+.app-header__menu-link {
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
 }
-
-.app-header__logo {
-  height: 50px;
-  transform: rotate(35deg);
+.app-header__menu-link:focus,
+.app-header__menu-link:hover {
+  color: var(--action-color);
 }
-
-.app-header h1 {
-  font-size: 1.125rem;
-}
-
 .app-header__menu-link.nuxt-link-active {
   border-bottom-color: var(--action-color);
 }

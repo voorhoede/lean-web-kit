@@ -1,3 +1,4 @@
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
@@ -19,20 +20,4 @@ p {
 
 p:not(:last-child) {
   margin-bottom: var(--spacing-normal);
-}
-
-a {
-  font-size: 1rem;
-  color: var(--action-color);
-  text-decoration: none;
-}
-
-a:focus,
-a:hover {
-  border-bottom: 1px solid var(--action-color);
-}
-
-p {
-  font-size: 1rem;
-  margin-bottom: 1rem;
 }

@@ -1,7 +1,7 @@
 <template>
-  <section class="content-section" :id="section.slug">
+  <section :id="section.slug">
     <a :href="`#${section.slug}`">
-      <h2 class="content-section__title">{{ section.title }}</h2>
+      <h2>{{ section.title }}</h2>
     </a>
     <template v-for="(item, index) in section.items">
       <rich-text v-if="item.type === 'text'"
@@ -21,17 +21,8 @@
 import ResponsiveImage from '../responsive-image'
 import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
-
 export default {
   components: { ResponsiveImage, ResponsiveVideo, RichText },
   props: ['section'],
 }
 </script>
-
-<style>
-.section-title {
-  font-size: 1.6785rem;
-  font-weight: bolder;
-  margin-bottom: 1.5rem;
-}
-</style>
