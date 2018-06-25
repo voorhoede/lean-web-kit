@@ -17,7 +17,7 @@ storiesOf('App core', module)
                  { varName: 'text-color', color: '#000' }],
       }
     },
-    template: 
+    template:
       `<div>
         <demo title="Colors" inset>
           <div class="colors">
@@ -58,12 +58,37 @@ storiesOf('App core', module)
   .add('Lists', () => ({
     template: `
       <div>
-        <demo title="Default list" inset>
+        <demo title="Unordered list" inset>
           <ul>
-            <li><a href="/">Link 1</a></li>
-            <li><a href="/">Link 2</a></li>
-            <li><a href="/">Link 3</a></li>
+            <li>Item</li>
+            <li>
+              Item
+              <ul>
+                <li>Item</li>
+                <li>Item</li>
+              </ul>
+            </li>
+            <li>Item</li>
           </ul>
+        </demo>
+        <demo title="Ordered list" inset>
+          <ol>
+            <li>Item</li>
+            <li>
+              Item
+              <ol>
+                <li>Item</li>
+                <li>Item</li>
+              </ol>
+            </li>
+            <li>Item</li>
+          </ol>
+        </demo>
+        <demo title="Definition list" inset>
+          <dl>
+            <dt>Term A</dt><dd>Description A</dd>
+            <dt>Term B</dt><dd>Description B</dd>
+          </dl>
         </demo>
         <demo title="Flat list" inset>
           <ul class="flat-list">
