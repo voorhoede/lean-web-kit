@@ -23,6 +23,7 @@
 <script>
 import menuI18n from '../../static/data/menu.json'
 import LanguageSelector from '../language-selector'
+
 export default {
   components: { LanguageSelector },
   props: ['contentId'],
@@ -38,18 +39,22 @@ export default {
 
 <style>
 @import '../app-core/index.css';
+
 .app-header__menu-link {
   text-decoration: none;
 }
+
 .app-header__menu-link {
   border-bottom-width: 2px;
   border-bottom-style: solid;
   border-bottom-color: transparent;
 }
+
 .app-header__menu-link:focus,
 .app-header__menu-link:hover {
   color: var(--action-color);
 }
+
 .app-header__menu-link.nuxt-link-active {
   border-bottom-color: var(--action-color);
 }

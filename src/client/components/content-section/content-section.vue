@@ -21,6 +21,7 @@
 import ResponsiveImage from '../responsive-image'
 import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
+
 export default {
   components: { ResponsiveImage, ResponsiveVideo, RichText },
   props: ['section'],
