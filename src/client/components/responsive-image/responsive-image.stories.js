@@ -44,7 +44,7 @@ storiesOf('Responsive image', module)
           "format": "jpeg",
           "width": 360,
           "height": 360,
-          "title": "Landscape",
+          "title": "The view during our lunch break",
           "alt": "Mountain landscape with a cloudy sky",
           "url": "https://www.datocms-assets.com/6068/1529671983-random-image-square.jpeg"
         }
@@ -60,7 +60,7 @@ storiesOf('Responsive image', module)
           "format": "jpeg",
           "width": 360,
           "height": 360,
-          "title": "Landscape",
+          "title": "The view during our lunch break",
           "alt": "Mountain landscape with a cloudy sky",
           "url": "broken url"
         }
