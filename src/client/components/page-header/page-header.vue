@@ -1,5 +1,5 @@
 <template>
-  <header class="page-header" :class="image ? 'with-cover-image' : null" :style="image ? 'background-image:url(' + image.url + ');' : null">
+  <header class="page-header" :class="image ? 'page-header--with-cover-image' : null" :style="image ? 'background-image:url(' + image.url + ');' : null">
     <h1 class="page-header__title">{{ title }}</h1>
     <p class="page-header__subtitle" v-if="subtitle">{{ subtitle }}</p>
   </header>
@@ -25,16 +25,16 @@ export default {
 
 .page-header:after {
   content: '';
+  position: absolute;
+  bottom: 0;
   width: 40%;
   max-width: 250px;
   border: 1px solid var(--action-color);
-  position: absolute;
-  bottom: 0;
 }
 
 .page-header__title {
- font-size: 3rem;
- padding: var(--spacing-double) 0;
+  padding: var(--spacing-double) 0;
+  font-size: 3rem;
 }
 
 .page-header__subtitle {
@@ -42,7 +42,6 @@ export default {
   font-weight: 300;
   text-align: center;
   font-size: var(--font-size-medium);
-  letter-spacing: .3px;
   line-height: 1.3;
 }
 
@@ -54,19 +53,19 @@ export default {
   .page-header__subtitle {
     max-width: 80%;
     font-size: var(--font-size-large);
-    letter-spacing: .8px;
+    letter-spacing: .5px;
     line-height: 1.4;
   }
 }
 
-.with-cover-image {
+.page-header--with-cover-image {
+  position: relative;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  position: relative;
 }
 
-.with-cover-image:before {
+.page-header--with-cover-image:before {
   content: '';
   position: absolute;
   top: 0;
@@ -76,12 +75,12 @@ export default {
   height: 100%;
 }
 
-.with-cover-image:after {
+.page-header--with-cover-image:after {
   border: none;
 }
 
-.with-cover-image .page-header__title,
-.with-cover-image .page-header__subtitle {
+.page-header--with-cover-image .page-header__title,
+.page-header--with-cover-image .page-header__subtitle {
   color: var(--background-color);
   z-index: 1;
 }
