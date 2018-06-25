@@ -9,6 +9,9 @@
           <source :srcset="imageUrl(imageSource, { width: 360 })">
           <!--[if IE 9]></video><![endif]-->
           <img class="responsive-image__img" :alt="image.alt" :srcset="imageUrl(imageSource)" />
+          <noscript>
+            <img class="responsive-image__fallback" :src="image.url" :alt="image.alt" />
+          </noscript>
         </picture>
       </fixed-ratio>
       <figcaption class="responsive-image__caption" v-if="image.title">{{ image.title }}</figcaption>
@@ -89,6 +92,12 @@ export default {
   top: 50%;
   width: 100%;
   text-align: center;
+}
+
+.responsive-image__fallback {
+  position: relative;
+  width: 100%;
+  z-index: 1;
 }
 
 .responsive-image__caption {
