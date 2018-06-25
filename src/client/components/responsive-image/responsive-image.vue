@@ -4,9 +4,9 @@
       <picture class="responsive-image__content">
         <!--[if IE 9]><video style="display: none;"><![endif]-->
         <source type="image/webp" media="(min-width: 360px)" :srcset="`${imageSource}?fm=webp`">
-        <source type="image/webp" :srcset="`${imageSource}?w360&fm=webp`">
+        <source type="image/webp" :srcset="`${imageSource}?w=360&fm=webp`">
         <source media="(min-width: 360px)" :srcset="imageSource">
-        <source :srcset="`${imageSource}?w360`">
+        <source :srcset="`${imageSource}?w=360`">
         <!--[if IE 9]></video><![endif]-->
         <img class="responsive-image__image" :alt="image.alt" :src="imageSource" />
       </picture>
