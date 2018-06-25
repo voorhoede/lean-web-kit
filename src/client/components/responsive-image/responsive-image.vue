@@ -3,12 +3,12 @@
       <fixed-ratio :content="image">
         <picture class="responsive-image__picture">
           <!--[if IE 9]><video style="display: none;"><![endif]-->
-          <source type="image/webp" media="(min-width: 360px)" :srcset="`${imageSource}?fm=webp`">
-          <source type="image/webp" :srcset="`${imageSource}?w=360&fm=webp`">
-          <source media="(min-width: 360px)" :srcset="imageSource">
-          <source :srcset="`${imageSource}?w=360`">
+          <source type="image/webp" media="(min-width: 360px)" :srcset="imageUrl(imageSource, { fm: 'webp' })">
+          <source type="image/webp" :srcset="imageUrl(imageSource, { fm: 'webp', width: 360 })">
+          <source media="(min-width: 360px)" :srcset="imageUrl(imageSource)">
+          <source :srcset="imageUrl(imageSource, { width: 360 })">
           <!--[if IE 9]></video><![endif]-->
-          <img class="responsive-image__img" :alt="image.alt" :src="imageSource" />
+          <img class="responsive-image__img" :alt="image.alt" :srcset="imageUrl(imageSource)" />
         </picture>
       </fixed-ratio>
       <figcaption class="responsive-image__caption" v-if="image.title">{{ image.title }}</figcaption>
@@ -18,6 +18,7 @@
 <script>
 
 import FixedRatio from '../fixed-ratio'
+import imageUrl from '../../lib/image-url'
 
 export default {
   components: { FixedRatio },
@@ -48,6 +49,7 @@ export default {
     }
   },
   methods: {
+    imageUrl,
     onIntersection(entries, observer) {
       entries.forEach(entry => {
         if (entry.intersectionRatio > 0) {
@@ -55,8 +57,8 @@ export default {
           observer.unobserve(entry.target)
         }
       })
-    },
-  },
+    }
+  }
 }
 </script>
 
