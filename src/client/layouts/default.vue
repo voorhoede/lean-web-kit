@@ -10,7 +10,7 @@
 
 <script>
   import { AppFooter, AppHeader } from '../components/'
-  
+
   export default {
     components: { AppFooter, AppHeader },
     data() {

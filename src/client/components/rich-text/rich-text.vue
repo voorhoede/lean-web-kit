@@ -9,6 +9,12 @@ export default {
 </script>
 
 <style>
+.rich-text {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 .rich-text p {
   margin-bottom: .8rem;
   line-height: 1.3;
