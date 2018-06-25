@@ -1,8 +1,8 @@
 <template>
-  <main>
+  <div>
     <h1>Lean Web Kit</h1>
     <p>...</p>
-  </main>
+  </div>
 </template>
 
 <script>
