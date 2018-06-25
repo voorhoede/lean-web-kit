@@ -1,5 +1,6 @@
 const flattenDeep = require('lodash/flattenDeep')
 
+const appConfig = require('./src/client/static/data/app.json')
 const locales = require('./src/client/static/data/locales.json')
 const pages = require('./src/client/static/data/pages.json')
 
@@ -34,7 +35,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Lean Web Kit',
+    title: appConfig.title,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -63,7 +64,7 @@ module.exports = {
   modules: [
     '@nuxtjs/proxy',
     ['@nuxtjs/google-analytics', { // https://github.com/nuxt-community/analytics-module
-      id: 'UA-47742430-3',
+      id: appConfig.googleAnalyticsTrackingId,
       /**
        * Debug while in development mode
        * @see https://matteogabriele.gitbooks.io/vue-analytics/content/docs/debug.html
