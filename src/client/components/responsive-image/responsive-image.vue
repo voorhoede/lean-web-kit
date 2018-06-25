@@ -26,7 +26,7 @@ export default {
     imageSource() {
       return this.setSource ? this.image.url : ''
     },
-    ratio: function() {
+    ratio() {
       return this.image.height / this.image.width * 100
     }
   },
