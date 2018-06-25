@@ -12,10 +12,14 @@ storiesOf('Page Header', module)
     template: `
       <div>
         <demo title="With title" inset>
-          <page-header :title="title" />
+          <div style="box-shadow: 1px 2px 20px #ddd;">
+            <page-header :title="title" />
+          </div>
         </demo>
         <demo title="With title and subtitle" inset>
-        <page-header :title="title" :subtitle="subtitle" />
+          <div style="box-shadow: 1px 2px 20px #ddd;">
+            <page-header :title="title" :subtitle="subtitle" />
+          </div>
         </demo>
       </div>`,
     data () {
@@ -38,11 +42,11 @@ storiesOf('Page Header', module)
     },
     template: `
       <div>
-        <demo title="With title and subtitle" inset>
-          <page-header :title="title" :subtitle="subtitle" :image="image" />
-        </demo>
         <demo title="With title" inset>
           <page-header :title="title" :image="image" />
+        </demo>
+        <demo title="With title and subtitle" inset>
+          <page-header :title="title" :subtitle="subtitle" :image="image" />
         </demo>
       </div>`,
   }))
