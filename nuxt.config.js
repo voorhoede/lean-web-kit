@@ -58,7 +58,7 @@ module.exports = {
   },
 
   router: {
-    middleware: ['meta-canonical'],
+    middleware: ['enforce-trailing-slash', 'meta-canonical'],
   },
 
   modules: [
