@@ -18,10 +18,12 @@
 <script>
 export default {
   props: ['image'],
-  data: () => ({
-    observer: null,
-    setSource: false
-  }),
+  data() {
+    return {
+      observer: null,
+      setSource: false
+    }
+  },
   computed: {
     imageSource() {
       return this.setSource ? this.image.url : ''
