@@ -11,7 +11,7 @@
           <img class="responsive-image__img" :alt="image.alt" :src="imageSource" />
         </picture>
       </fixed-ratio>
-      <figcaption v-if="image.title">{{ image.title }}</figcaption>
+      <figcaption class="responsive-image__caption" v-if="image.title">{{ image.title }}</figcaption>
     </figure>
 </template>
 
@@ -86,6 +86,11 @@ export default {
   position: absolute;
   top: 50%;
   width: 100%;
+  text-align: center;
+}
+
+.responsive-image__caption {
+  margin-top: var(--spacing-half);
   text-align: center;
 }
 </style>
