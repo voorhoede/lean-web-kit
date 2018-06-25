@@ -1,11 +1,12 @@
 import VueI18n from 'vue-i18n'
 import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
+import { checkA11y } from '@storybook/addon-a11y';
 import readme from './readme.md'
 import AppHeader from './'
 
 storiesOf('App header', module)
-  .addDecorator(withReadme(readme))
+  .addDecorator(withReadme(readme), checkA11y)
   .add('Default', () => ({
     components: { AppHeader },
     template: '<app-header />',
