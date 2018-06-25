@@ -8,4 +8,4 @@
 - Uses **lowest acceptable quality**, so images load as quickly as possible.
 - **Supports WebP**, so images have an even smaller filesize in supporting browsers.
 - **Lazy loads**, so images only load just before they come into view.
-- Has a **broken image styling**, used in case an image can not be loaded at all.
+- Has a [**broken image styling**](https://bitsofco.de/styling-broken-images/), used in case an image can not be loaded at all.
