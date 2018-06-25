@@ -4,4 +4,14 @@
   --dark-neutral-color: #4c4c4c;
   --background-color: #fff;
   --text-color: #000;
+
+  /* fonts */
+
+  --font-size-default: 1rem;
+
+  /* spacing */
+
+  --spacing-default: 1rem;
+  --spacing-double: 2rem;
+  --spacing-half: .5rem;
 }

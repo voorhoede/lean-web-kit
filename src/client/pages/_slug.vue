@@ -1,26 +1,25 @@
 <template>
-  <div class="page">
-    <header class="page__header">
-      <h1 class="page__title">{{ page.title }}</h1>
-      <p class="page__subtitle" v-if="page.subtitle">{{ page.subtitle }}</p>
-    </header>
-
-    <div class="page__sidebar" v-if="page.hasToc">
-      <table-of-contents :items="page.tocItems" />
-    </div>
+  <main class="page">
+    <page-header :title="page.title" :subtitle="page.subtitle" />
 
     <div class="page__content">
-      <content-section v-for="(section, index) in page.sections" :key="index" :section="section" />
+      <div class="page__content__sidebar" v-if="page.hasToc">
+        <table-of-contents :items="page.tocItems" />
+      </div>
+
+      <div class="page__content__main-content">
+        <content-section v-for="(section, index) in page.sections" :key="index" :section="section" />
+      </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
-import { ContentSection, TableOfContents } from '../components/'
+import { ContentSection, TableOfContents, PageHeader } from '../components/'
 import { getPageData, seoHead } from '../lib/'
 
 export default {
-  components: { ContentSection, TableOfContents },
+  components: { ContentSection, TableOfContents, PageHeader },
   async asyncData ({ app, params, store }) {
     const { slug } = params
     const page = await getPageData({ slug, locale: app.i18n.locale })
@@ -35,48 +34,36 @@ export default {
 </script>
 
 <style>
-.page {
-  margin-top: 80px;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-areas:
-    "page-header page-header"
-    "page-sidebar page-content";
-}
-
-.page-header {
-  grid-area: page-header;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  margin-bottom: 4rem;
-  padding-bottom: 3rem 0;
-}
-
-.page-header::after {
-  content: '';
-  display: block;
-  position: absolute;
-  bottom: 0;
-  width: 300px;
-  border-bottom: 1px solid var(--action-color);
-}
-
-.page-header__title {
-  margin-bottom: 1rem;
-  margin-top: auto;
-  font-size: 4rem;
-  font-weight: bold;
-}
-
-.page__sidebar {
-  grid-area: page-sidebar;
-}
+@import '../components/app-core/index.css';
 
 .page__content {
-  grid-area: page-content;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page__content__sidebar {
+  width: 300px;
+  margin-right: var(--spacing-double);
+}
+
+.page__content__main-content {
+  max-width: 600px;
+}
+
+@media screen and (min-width: 880px) {
+  .page__content {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0 var(--spacing-default);
+    max-width: 920px;
+  }
+
+  .page__content__sidebar {
+    width: 100%;
+    max-width: 600px;
+    margin-right: 0;
+    margin-bottom: var(--spacing-double);
+  }
 }
 </style>
-

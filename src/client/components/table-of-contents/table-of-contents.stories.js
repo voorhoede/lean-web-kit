@@ -1,9 +1,12 @@
 import VueI18n from 'vue-i18n'
 import loremIpsum from 'lorem-ipsum'
 import { storiesOf } from '@storybook/vue'
+import { withReadme } from 'storybook-readme'
+import readme from './readme.md'
 import TableOfContents from './'
 
 storiesOf('Table of contents', module)
+  .addDecorator(withReadme(readme))
   .add('Default', () => ({
       components: { TableOfContents },
       template: `

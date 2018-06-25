@@ -1,7 +1,6 @@
 <template>
-  <header role="banner" class="app-header" id="app-header">
-    <nuxt-link :to="localePath('index')" class="app-header__identity">
-      <img class="app-header__logo" src="/images/wings.svg" alt="" />
+  <header role="banner" class="app-header">
+    <nuxt-link :to="localePath('index') + '/'">
       <h1>Lean Web Kit</h1>
     </nuxt-link>
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
@@ -77,18 +76,7 @@ export default {
   font-size: 1.125rem;
 }
 
-.app-header__menu-link {
-  margin: 0 1rem;
-  padding-bottom: 1rem;
-  font-size: .875rem;
-  font-weight: bold;
-  color: #000;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
-.app-header__menu-link:focus,
-.app-header__menu-link:hover {
-  border-bottom: 2px solid var(--action-color);
+.app-header__menu-link.nuxt-link-active {
+  border-bottom-color: var(--action-color);
 }
 </style>

@@ -1,10 +1,17 @@
 const flattenDeep = require('lodash/flattenDeep')
 
+const appConfig = require('./src/client/static/data/app.json')
 const locales = require('./src/client/static/data/locales.json')
 const pages = require('./src/client/static/data/pages.json')
 
+/**
+ * Use Netlify's URL variable:
+ * @see https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
+ */
+const { NODE_ENV, URL } = process.env
+const baseUrl = URL || ''
 const defaultLocale = locales[0]
-const isProduction = (process.env.NODE_ENV === 'production')
+const isProduction = (NODE_ENV === 'production')
 
 module.exports = {
   srcDir: 'src/client/',
@@ -20,11 +27,15 @@ module.exports = {
     ])
   },
 
+  env: {
+    baseUrl,
+  },
+
   /*
   ** Headers of the page
   */
   head: {
-    title: 'Lean Web Kit',
+    title: appConfig.title,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -46,8 +57,31 @@ module.exports = {
     }
   },
 
+  router: {
+    middleware: ['enforce-trailing-slash', 'meta-canonical'],
+  },
+
   modules: [
     '@nuxtjs/proxy',
+    ['@nuxtjs/google-analytics', { // https://github.com/nuxt-community/analytics-module
+      id: appConfig.googleAnalyticsTrackingId,
+      /**
+       * Debug while in development mode
+       * @see https://matteogabriele.gitbooks.io/vue-analytics/content/docs/debug.html
+       */
+      debug: {
+        enabled: !isProduction,
+        sendHitTask: isProduction,
+      },
+      /**
+       * Anonymize tracking
+       * @see https://www.themarketingtechnologist.co/setting-up-a-cookie-law-compliant-google-analytics-tracker/
+       */
+      set: [
+        { field: 'displayFeaturesTask', value: null },
+        { field: 'anonymizeIp', value: true },
+      ],
+    }],
     ['nuxt-i18n', {
       defaultLocale,
       detectBrowserLanguage: {
