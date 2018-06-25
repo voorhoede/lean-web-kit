@@ -1,18 +1,18 @@
 <template>
-  <fixed-ratio :content="image">
     <figure class="responsive-image">
-      <picture class="responsive-image__picture">
-        <!--[if IE 9]><video style="display: none;"><![endif]-->
-        <source type="image/webp" media="(min-width: 360px)" :srcset="`${imageSource}?fm=webp`">
-        <source type="image/webp" :srcset="`${imageSource}?w=360&fm=webp`">
-        <source media="(min-width: 360px)" :srcset="imageSource">
-        <source :srcset="`${imageSource}?w=360`">
-        <!--[if IE 9]></video><![endif]-->
-        <img class="responsive-image__img" :alt="image.alt" :src="imageSource" />
-      </picture>
+      <fixed-ratio :content="image">
+        <picture class="responsive-image__picture">
+          <!--[if IE 9]><video style="display: none;"><![endif]-->
+          <source type="image/webp" media="(min-width: 360px)" :srcset="`${imageSource}?fm=webp`">
+          <source type="image/webp" :srcset="`${imageSource}?w=360&fm=webp`">
+          <source media="(min-width: 360px)" :srcset="imageSource">
+          <source :srcset="`${imageSource}?w=360`">
+          <!--[if IE 9]></video><![endif]-->
+          <img class="responsive-image__img" :alt="image.alt" :src="imageSource" />
+        </picture>
+      </fixed-ratio>
       <figcaption v-if="image.title">{{ image.title }}</figcaption>
     </figure>
-  </fixed-ratio>
 </template>
 
 <script>
@@ -63,6 +63,10 @@ export default {
 <style scoped>
 .responsive-image {
   margin-bottom: var(--spacing-double);
+}
+
+.responsive-image__img {
+  width: 100%;
 }
 
 .responsive-image__img:before {
