@@ -6,7 +6,7 @@
     </nuxt-link>
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
     <transition name="slide-in">
-      <nav class="app-header__navigation">
+      <nav class="app-header__navigation" :class="{ 'app-header--open' : showNavigation }">
         <h2 class="a11y-sr-only">{{ menu.title }}</h2>
         <ul class="app-header__inline-list">
           <li class="app-header__list-item" v-for="item in menu.items" :key="item.slug">
@@ -98,10 +98,12 @@ export default {
 .app-header__navigation {
   position: absolute;
   top: var(--app-header-height);
+  display: none;
   width: 100%;
   background-color: #fff;
   padding: 1rem;
   box-shadow: 0px 11px 14px rgba(214,214,214,.3);
+  transition: all .2s ease-in-out;
 }
 
 .app-header__inline-list {
@@ -154,5 +156,9 @@ export default {
 .is-open .line,
 .line {
   transition: all .2s ease-in-out;
+}
+
+.app-header--open {
+  display: block;
 }
 </style>
