@@ -22,7 +22,7 @@
     </transition>
     <button class="app-header__toggle-menu" @click="toggleNavigation" >
       <span class="a11y-sr-only">Toggle navigation</span>
-      <svg class="menu__icon" :class="{ 'is-open': showNavigation }" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100">
+      <svg class="app-header__menu-icon" :class="{ 'is-open': showNavigation }" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100">
         <g>
           <path class="line line-1" fill="#000000" d="M5 13h90v14H5z"/>
           <path class="line line-2" fill="#000000" d="M5 43h90v14H5z"/>
@@ -74,6 +74,11 @@ export default {
   border: none;
 }
 
+.app-header__menu-icon {
+  max-width: 30px;
+  height: auto;;
+}
+
 .app-header {
   display: flex;
   justify-content: space-between;
@@ -81,9 +86,9 @@ export default {
   position: sticky;
   top: 0;
   left: 0;
-  background-color: #fff;
+  background-color: var(--background-color);
   width: 100%;
-  height: var(--app-header-height);
+  height: 55px;
   box-shadow: 0 2px 15px 0 rgba(214,214,214,.5);
   z-index: 1;
 }
@@ -91,7 +96,7 @@ export default {
 .app-header__identity {
   display: flex;
   align-items: center;
-  color: #000;
+  color: var(--text-color);
   text-decoration: none;
 }
 
@@ -100,8 +105,8 @@ export default {
   top: var(--app-header-height);
   display: none;
   width: 100%;
-  background-color: #fff;
-  padding: 1rem;
+  background-color: var(--background-color);
+  padding: var(--spacing-default);
   box-shadow: 0px 11px 14px rgba(214,214,214,.3);
   transition: all .2s ease-in-out;
 }
@@ -114,7 +119,7 @@ export default {
 
 .app-header__list-item {
   list-style-type: none;
-  padding: 1rem 0;
+  padding: var(--spacing-default) 0;
 }
 
 .app-header__logo {
@@ -127,7 +132,7 @@ export default {
 }
 
 .app-header__menu-link {
-  padding-bottom: 1rem;
+  padding-bottom: var(--spacing-default);
   color: var(--text-color);
   text-transform: uppercase;
   text-decoration: none;
@@ -139,7 +144,7 @@ export default {
 }
 
 .is-open .line-1 {
-  transform: rotate(45deg) translateY(0) translateX(0);
+  transform: rotate(45deg);
   transform-origin: 1em 2.7em;
 
 }
@@ -149,7 +154,7 @@ export default {
 }
 
 .is-open .line-3 {
-  transform: rotate(-45deg) translateY(0em) translateX(0em);
+  transform: rotate(-45deg) ;
   transform-origin: 1em 3.7em;
 }
 
@@ -167,11 +172,11 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1rem;
+    padding: 0 var(--spacing-default);
+    height: var(--app-header-height);
   }
 
   .app-header__navigation {
-    display: block;
     width: auto;
     position: relative;
     top: 0;
@@ -181,7 +186,7 @@ export default {
     justify-content: space-between;
     padding: 0;
     background-color: transparent;
-    margin: 0 1rem 0 auto;
+    margin: 0 var(--spacing-default) 0 auto;
   }
 
   .app-header__inline-list {
