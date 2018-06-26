@@ -1,6 +1,6 @@
 <template>
-  <ul>
-    <li v-for="locale in locales" :key="locale.code">
+  <ul class="language-selector">
+    <li class="language-selector__item" v-for="locale in locales" :key="locale.code">
       <nuxt-link v-if="isSlugRoute"
         rel="alternate"
         :hreflang="locale.code"
@@ -26,3 +26,21 @@ export default {
   },
 }
 </script>
+
+<style>
+.language-selector {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.language-selector__item {
+  text-transform: uppercase;
+  list-style-type: none;
+}
+
+.language-selector__item:not(:last-child) {
+  margin-right: 1rem;
+}
+</style>
+
