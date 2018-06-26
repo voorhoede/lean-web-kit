@@ -161,4 +161,37 @@ export default {
 .app-header--open {
   display: block;
 }
+
+@media screen and (min-width: 640px) {
+  .app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+  }
+
+  .app-header__navigation {
+    display: block;
+    width: auto;
+    position: relative;
+    top: 0;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    background-color: transparent;
+    margin: 0 1rem 0 auto;
+  }
+
+  .app-header__inline-list {
+    display: flex;
+    padding: 0 !important;
+    margin: 0;
+  }
+
+  .app-header__list-item {
+    margin-right: 1.5rem;
+  }
+}
 </style>
