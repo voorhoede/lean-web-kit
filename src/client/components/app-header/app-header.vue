@@ -21,7 +21,7 @@
           </li>
         </ul>
         
-        <language-selector :locales="$i18n.locales" />
+        <language-selector v-if="$i18n.locales" :locales="$i18n.locales" />
       </nav>
     </transition>
     <button class="action-button" v-if="action" @click="doSomething">{{ action.title }}</button>
@@ -45,15 +45,11 @@ import LanguageSelector from '../language-selector'
 
 export default {
   components: { LanguageSelector },
-  props: ['contentId'],
+  props: ['contentId', 'action'],
   data () {
     return { 
       menuI18n,
       showNavigation: false,
-      action: {
-        title: 'sign up',
-        url: 'something'
-      }
     }
   },
   computed: {
@@ -80,10 +76,9 @@ export default {
 }
 
 .app-header__toggle-menu {
+  padding: 0;
   width: 40px;
   height: 40px;
-  padding: 0;
-  border: none;
 }
 
 .app-header__menu-icon {
@@ -134,13 +129,18 @@ export default {
   padding: var(--spacing-default) 0;
 }
 
+.app-header__list-item:hover .app-header__menu-link {
+  border-bottom: 2px solid var(--action-color);
+}
+
 .app-header__logo {
   height: 50px;
   transform: rotate(35deg);
 }
 
 .app-header__title {
-  font-size: 1.125rem;
+  font-size: 1rem;
+  font-weight: lighter;
 }
 
 .app-header__menu-link {
@@ -179,11 +179,14 @@ export default {
 }
 
 @media screen and (min-width: 640px) {
+  .app-header__toggle-menu {
+    display: none;
+  }
+
   .app-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 var(--spacing-default);
     height: var(--app-header-height);
   }
 
@@ -198,11 +201,13 @@ export default {
     box-shadow: none;
     width: auto;
     background-color: transparent;
+    flex-grow: 1;
   }
 
   .app-header__inline-list {
     display: flex;
     margin: 0;
+    margin-left: auto;
     padding: 0 !important;  
   }
 
@@ -221,6 +226,8 @@ export default {
   text-transform: uppercase;
   box-shadow: 0 1px 5px #ccc;
   border-radius: 3px;
+  font-size: 1rem;
+  margin-left: auto;
 }
 
 .action-button:hover {
