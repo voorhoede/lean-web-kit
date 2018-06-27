@@ -51,6 +51,9 @@ export default {
       this.setSource = true
     }
   },
+  unmounted() {
+    observer.unobserve(this.$el)
+  },
   methods: {
     imageUrl,
     onIntersection(entries, observer) {
