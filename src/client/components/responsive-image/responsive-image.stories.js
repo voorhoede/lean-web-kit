@@ -5,19 +5,93 @@ import ResponsiveImage from './'
 
 storiesOf('Responsive image', module)
   .addDecorator(withReadme(readme))
-  .add('Default', () => ({
+  .add('Ratio 16x9', () => ({
     components: { ResponsiveImage },
     template: '<responsive-image :image="image" />',
     data() {
       return {
         image: {
-          "format": "png",
-          "size": 1193739,
-          "width": 2878,
-          "height": 1610,
-          "title": "My caption",
-          "alt": "My alt text",
-          "url": "https://www.datocms-assets.com/6068/1528887636-screen-shot-2018-06-05-at-21-26-26.png"
+          "format": "jpeg",
+          "width": 1280,
+          "height": 720,
+          "alt": "Two hands forming a heart around the sun during a sunset",
+          "url": "https://www.datocms-assets.com/6068/1529572359-random-image.jpeg"
+        }
+      }
+    },
+  }))
+  .add('Ratio 1x1', () => ({
+    components: { ResponsiveImage },
+    template: '<responsive-image :image="image" />',
+    data() {
+      return {
+        image: {
+          "format": "jpeg",
+          "width": 360,
+          "height": 360,
+          "alt": "Mountain landscape with a cloudy sky",
+          "url": "https://www.datocms-assets.com/6068/1529671983-random-image-square.jpeg"
+        }
+      }
+    },
+  }))
+  .add('Ratio 1x1 - with caption', () => ({
+    components: { ResponsiveImage },
+    template: '<responsive-image :image="image" />',
+    data() {
+      return {
+        image: {
+          "format": "jpeg",
+          "width": 360,
+          "height": 360,
+          "title": "The view during our lunch break",
+          "alt": "Mountain landscape with a cloudy sky",
+          "url": "https://www.datocms-assets.com/6068/1529671983-random-image-square.jpeg"
+        }
+      }
+    },
+  }))
+  .add('Broken image', () => ({
+    components: { ResponsiveImage },
+    template: '<responsive-image :image="image" />',
+    data() {
+      return {
+        image: {
+          "format": "jpeg",
+          "width": 360,
+          "height": 360,
+          "title": "The view during our lunch break",
+          "alt": "Mountain landscape with a cloudy sky",
+          "url": "broken url"
+        }
+      }
+    },
+  }))
+  .add('Lazy loading in action', () => ({
+    components: { ResponsiveImage },
+    template: '<div><responsive-image :image="imageSquare" /><responsive-image :image="imageLarge" /><responsive-image :image="imageSmall" /></div>',
+    data() {
+      return {
+        imageSquare: {
+          "format": "jpeg",
+          "width": 500,
+          "height": 500,
+          "alt": "",
+          "url": "https://picsum.photos/500/500"
+        },
+        imageLarge: {
+          "format": "jpeg",
+          "width": 1200,
+          "height": 400,
+          "alt": "",
+          "url": "https://picsum.photos/1200/400"
+        },
+        imageSmall: {
+          "format": "jpeg",
+          "width": 600,
+          "height": 250,
+          "alt": "",
+          "url": "https://picsum.photos/600/250"
         }
       }
     },
