@@ -24,6 +24,7 @@
         <language-selector :locales="$i18n.locales" />
       </nav>
     </transition>
+    <button class="action-button" v-if="action" @click="doSomething">{{ action.title }}</button>
     
     <button class="app-header__toggle-menu" @click="toggleNavigation" >
       <span class="a11y-sr-only">Toggle navigation</span>
@@ -49,6 +50,10 @@ export default {
     return { 
       menuI18n,
       showNavigation: false,
+      action: {
+        title: 'sign up',
+        url: 'something'
+      }
     }
   },
   computed: {
@@ -58,6 +63,10 @@ export default {
   methods: {
     toggleNavigation () {
       this.showNavigation = !this.showNavigation
+    },
+
+    doSomething () {
+      console.log('button clicked')
     }
   }
 }
@@ -200,5 +209,22 @@ export default {
   .app-header__list-item {
     margin-right: 1.5rem;
   }
+}
+
+.action-button {
+  border: none;
+  height: 40px;
+  padding: 0 2rem;
+  margin-right: 1rem;
+  background-color: var(--action-color);
+  color: var(--background-color);
+  text-transform: uppercase;
+  box-shadow: 0 1px 5px #ccc;
+  border-radius: 3px;
+}
+
+.action-button:hover {
+  cursor: pointer;
+  opacity: .9;
 }
 </style>
