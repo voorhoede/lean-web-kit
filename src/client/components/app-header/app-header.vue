@@ -1,6 +1,6 @@
 <template>
   <header role="banner" class="app-header">
-    <nuxt-link :to="localePath('index')">
+    <nuxt-link :to="localePath('index') + '/'">
       <h1>Lean Web Kit</h1>
     </nuxt-link>
     <a :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
@@ -56,7 +56,6 @@ export default {
 }
 
 .app-header__menu-link.nuxt-link-active {
-  font-weight: bold;
   border-bottom-color: var(--action-color);
 }
 </style>

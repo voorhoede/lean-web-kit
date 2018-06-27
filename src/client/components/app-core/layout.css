@@ -6,3 +6,12 @@
 html {
   box-sizing: border-box;
 }
+
+figure {
+  margin: 0 auto;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
