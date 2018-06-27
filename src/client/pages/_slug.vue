@@ -37,33 +37,31 @@ export default {
 @import '../components/app-core/index.css';
 
 .page__content {
+  display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 920px;
+  padding: 0 var(--spacing-default);
 }
 
 .page__content__sidebar {
-  width: 300px;
-  margin-right: var(--spacing-double);
-}
-
-.page__content__main-content {
-  max-width: var(--max-width);
+  width: 100%;
+  margin-bottom: var(--spacing-double);
 }
 
 @media screen and (min-width: 880px) {
   .page__content {
-    display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: flex-start;
     margin: 0 auto;
     padding: 0 var(--spacing-default);
-    max-width: 920px;
   }
 
   .page__content__sidebar {
-    width: 100%;
-    max-width: var(--max-width);
-    margin-right: 0;
-    margin-bottom: var(--spacing-double);
+    max-width: 300px;
+    margin-right: var(--spacing-double);
+    margin-bottom: 0;
   }
 }
 </style>
