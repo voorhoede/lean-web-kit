@@ -4,10 +4,13 @@
       <img class="app-header__logo" src="/images/logo.svg" alt="" />
       <h1 class="app-header__title">Lean Web Kit</h1>
     </nuxt-link>
+    
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
+    
     <transition name="slide-in">
       <nav class="app-header__navigation" :class="{ 'app-header--open' : showNavigation }">
         <h2 class="a11y-sr-only">{{ menu.title }}</h2>
+        
         <ul class="app-header__inline-list">
           <li class="app-header__list-item" v-for="item in menu.items" :key="item.slug">
             <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
@@ -17,17 +20,19 @@
             </nuxt-link>
           </li>
         </ul>
+        
         <language-selector :locales="$i18n.locales" />
       </nav>
     </transition>
+    
     <button class="app-header__toggle-menu" @click="toggleNavigation" >
       <span class="a11y-sr-only">Toggle navigation</span>
       <svg class="app-header__menu-icon" :class="{ 'is-open': showNavigation }" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512">
-        	<g>
-            <path class="line line-2" d="M491.318,235.318H20.682C9.26,235.318,0,244.577,0,256s9.26,20.682,20.682,20.682h470.636 c11.423,0,20.682-9.259,20.682-20.682C512,244.578,502.741,235.318,491.318,235.318z"/>
-            <path class="line line-1" d="M491.318,78.439H20.682C9.26,78.439,0,87.699,0,99.121c0,11.422,9.26,20.682,20.682,20.682h470.636 c11.423,0,20.682-9.26,20.682-20.682C512,87.699,502.741,78.439,491.318,78.439z"/>
-            <path class="line line-3" d="M491.318,392.197H20.682C9.26,392.197,0,401.456,0,412.879s9.26,20.682,20.682,20.682h470.636 c11.423,0,20.682-9.259,20.682-20.682S502.741,392.197,491.318,392.197z"/>
-          </g>
+        <g>
+          <path class="line line-2" d="M491.318,235.318H20.682C9.26,235.318,0,244.577,0,256s9.26,20.682,20.682,20.682h470.636 c11.423,0,20.682-9.259,20.682-20.682C512,244.578,502.741,235.318,491.318,235.318z"/>
+          <path class="line line-1" d="M491.318,78.439H20.682C9.26,78.439,0,87.699,0,99.121c0,11.422,9.26,20.682,20.682,20.682h470.636 c11.423,0,20.682-9.26,20.682-20.682C512,87.699,502.741,78.439,491.318,78.439z"/>
+          <path class="line line-3" d="M491.318,392.197H20.682C9.26,392.197,0,401.456,0,412.879s9.26,20.682,20.682,20.682h470.636 c11.423,0,20.682-9.259,20.682-20.682S502.741,392.197,491.318,392.197z"/>
+        </g>
       </svg>
     </button>
   </header>
@@ -43,7 +48,6 @@ export default {
   data () {
     return { 
       menuI18n,
-      windowWidth: 0,
       showNavigation: false,
     }
   },
@@ -74,7 +78,7 @@ export default {
 }
 
 .app-header__menu-icon {
-  max-width: 30px;
+  width: 30px;
   height: auto;;
 }
 
@@ -175,22 +179,22 @@ export default {
   }
 
   .app-header__navigation {
-    width: auto;
-    position: relative;
-    top: 0;
-    box-shadow: none;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0;
-    background-color: transparent;
+    position: relative;
+    top: 0;
     margin: 0 var(--spacing-default) 0 auto;
+    padding: 0;
+    box-shadow: none;
+    width: auto;
+    background-color: transparent;
   }
 
   .app-header__inline-list {
     display: flex;
-    padding: 0 !important;
     margin: 0;
+    padding: 0 !important;  
   }
 
   .app-header__list-item {
