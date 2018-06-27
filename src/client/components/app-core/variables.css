@@ -6,8 +6,12 @@
   --text-color: #000;
 
   /* fonts */
-
+  
+  --font-size-small: .75rem;
   --font-size-default: 1rem;
+  --font-size-medium: 1.125rem;
+  --font-size-large: 1.5rem;
+  --font-size-extra-large: 1.6875rem;
 
   /* spacing */
 
