@@ -47,7 +47,7 @@ export default {
 }
 
 .page__content__main-content {
-  max-width: 600px;
+  max-width: var(--max-width);
 }
 
 @media screen and (min-width: 880px) {
@@ -61,7 +61,7 @@ export default {
 
   .page__content__sidebar {
     width: 100%;
-    max-width: 600px;
+    max-width: var(--max-width);
     margin-right: 0;
     margin-bottom: var(--spacing-double);
   }

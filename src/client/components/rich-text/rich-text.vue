@@ -11,13 +11,17 @@ export default {
 <style>
 .rich-text {
   width: 100%;
-  max-width: 600px;
+  max-width: var(--max-width);
   margin: 0 auto;
 }
 
 .rich-text p {
   margin-bottom: .8rem;
   line-height: 1.3;
+}
+
+.rich-text td {
+  padding: var(--spacing-half);
 }
 
 .rich-text blockquote {
@@ -38,14 +42,14 @@ export default {
 .rich-text blockquote p {
   margin: 0;
   margin-left: 50px;
-  font-size: 1.2rem;
+  font-size: var(--font-size-medium);
   font-weight: 300;
 }
 
 @media screen and (min-width: 450px) {
   .rich-text blockquote {
     margin: var(--spacing-double) 0 var(--spacing-double) 3rem;
-    padding: 2rem 0;
+    padding: var(--spacing-double) 0;
   }
 
   .rich-text blockquote:before {
@@ -55,12 +59,8 @@ export default {
 
   .rich-text blockquote p {
     margin-left: 70px;
-    font-size: 1.5rem;
+    font-size: var(--font-size-large);
   }
-}
-
-.rich-text td {
-  padding: var(--spacing-half) !important;
 }
 </style>
 
