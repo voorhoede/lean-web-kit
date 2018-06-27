@@ -54,6 +54,12 @@ export default {
   },
   methods: {
     play() {
+      this.$ga.event({
+        eventCategory: 'video',
+        eventAction: 'play',
+        eventLabel: this.video.url,
+        eventValue: 1
+      })
       this.playing = true
     }
   },
