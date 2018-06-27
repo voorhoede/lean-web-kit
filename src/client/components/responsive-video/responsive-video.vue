@@ -37,7 +37,14 @@ export default {
   components: { FixedRatio },
   computed: {
     videoSource() {
-      return this.playing ? `https://player.vimeo.com/video/${this.video.providerUid}?autoplay=1` : ''
+      switch(this.video.provider) {
+        case 'vimeo':
+          return this.playing ? `https://player.vimeo.com/video/${this.video.providerUid}?autoplay=1` : ''
+          break;
+        case 'youtube':
+          return this.playing ? `https://www.youtube.com/embed/${this.video.providerUid}?autoplay=1` : ''
+          break;
+      }
     }
   },
   data () {
