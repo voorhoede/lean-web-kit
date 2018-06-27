@@ -1,5 +1,8 @@
 :root {
   --app-header-height: 80px;
+  --max-width: 600px;
+
+/* colors */
 
   --action-color: #6a9ce4;
   --neutral-color: #f5f5f5;
@@ -7,9 +10,13 @@
   --background-color: #fff;
   --text-color: #000;
 
-  /* fonts */
+ /* fonts */
 
-  --font-size-default: 1rem;
+ --font-size-small: .75rem;
+ --font-size-default: 1rem;
+ --font-size-medium: 1.125rem;
+ --font-size-large: 1.5rem;
+ --font-size-extra-large: 1.6875rem;
 
   /* spacing */
 
