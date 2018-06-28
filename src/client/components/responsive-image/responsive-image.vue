@@ -1,18 +1,20 @@
 <template>
     <figure class="responsive-image">
       <fixed-ratio :content="image">
-        <picture class="responsive-image__picture">
-          <!--[if IE 9]><video style="display: none;"><![endif]-->
-          <source type="image/webp" media="(min-width: 360px)" :srcset="imageUrl(imageSource, { fm: 'webp' })">
-          <source type="image/webp" :srcset="imageUrl(imageSource, { fm: 'webp', width: 360 })">
-          <source media="(min-width: 360px)" :srcset="imageUrl(imageSource)">
-          <source :srcset="imageUrl(imageSource, { width: 360 })">
-          <!--[if IE 9]></video><![endif]-->
-          <img class="responsive-image__img" :alt="image.alt" :srcset="imageUrl(imageSource)" />
-          <noscript>
-            <img class="responsive-image__fallback" :src="image.url" :alt="image.alt" />
-          </noscript>
-        </picture>
+        <lazy-load :url="image.url">
+          <picture class="responsive-image__picture" slot-scope="imageSource">
+            <!--[if IE 9]><video style="display: none;"><![endif]-->
+            <source type="image/webp" media="(min-width: 360px)" :srcset="imageUrl(imageSource.computed, { fm: 'webp' })">
+            <source type="image/webp" :srcset="imageUrl(imageSource.computed, { fm: 'webp', width: 360 })">
+            <source media="(min-width: 360px)" :srcset="imageUrl(imageSource.computed)">
+            <source :srcset="imageUrl(imageSource.computed, { width: 360 })">
+            <!--[if IE 9]></video><![endif]-->
+            <img class="responsive-image__img" :alt="image.alt" :srcset="imageUrl(imageSource.computed)" />
+            <noscript>
+              <img class="responsive-image__fallback" :src="image.url" :alt="image.alt" />
+            </noscript>
+          </picture>
+        </lazy-load>
       </fixed-ratio>
       <figcaption class="responsive-image__caption" v-if="image.title">{{ image.title }}</figcaption>
     </figure>
@@ -21,49 +23,14 @@
 <script>
 
 import FixedRatio from '../fixed-ratio'
+import LazyLoad from '../lazy-load'
 import imageUrl from '../../lib/image-url'
 
 export default {
-  components: { FixedRatio },
+  components: { FixedRatio, LazyLoad },
   props: ['image'],
-  data() {
-    return {
-      observer: null,
-      setSource: false
-    }
-  },
-  computed: {
-    imageSource() {
-      return this.setSource ? this.image.url : ''
-    }
-  },
-  mounted() {
-    const config = {
-      root: undefined,
-      rootMargin: '0px 0px 0px 0px',
-      threshold: 0
-    };
-
-    if ('IntersectionObserver' in window) {
-      this.observer = new IntersectionObserver(this.onIntersection, config)
-      this.observer.observe(this.$el)
-    } else {
-      this.setSource = true
-    }
-  },
-  unmounted() {
-    observer.unobserve(this.$el)
-  },
   methods: {
-    imageUrl,
-    onIntersection(entries, observer) {
-      entries.forEach(entry => {
-        if (entry.intersectionRatio > 0) {
-          this.setSource = true
-          observer.unobserve(entry.target)
-        }
-      })
-    }
+    imageUrl
   }
 }
 </script>

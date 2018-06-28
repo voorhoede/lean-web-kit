@@ -2,13 +2,15 @@
   <div class="responsive-video">
     <figure>
       <fixed-ratio :content="video">
-        <img
-          v-if="!playing"
-          alt=""
-          :src="video.thumbnailUrl"
-          :width="video.width"
-          :height="video.height"
-        />
+        <lazy-load :url="video.thumbnailUrl">
+          <img
+            slot-scope="imageSource"
+            class="responsive-video__image"
+            v-if="!playing"
+            alt=""
+            :src="imageSource.computed"
+          />
+        </lazy-load>
         <iframe
           v-if="playing"
           :src="videoSource"
@@ -36,11 +38,12 @@
 <script>
 
 import FixedRatio from '../fixed-ratio'
+import LazyLoad from '../lazy-load'
 import PlayIcon from '../../static/images/play.svg'
 
 export default {
   props: ['video'],
-  components: { FixedRatio, PlayIcon },
+  components: { FixedRatio, LazyLoad, PlayIcon },
   computed: {
     videoSource() {
       switch(this.video.provider) {
@@ -75,6 +78,11 @@ export default {
 <style>
 .responsive-video {
   position: relative;
+}
+
+.responsive-video__image {
+  height: 100%;
+  width: 100%;
 }
 
 .responsive-video__button {
