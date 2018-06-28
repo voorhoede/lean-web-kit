@@ -26,7 +26,7 @@
         </a>
       </figcaption>
     </figure>
-    <button class="responsive-video__button" @click="play()">
+    <button v-if="!playing" class="responsive-video__button" @click="play()">
       <span class="a11y-sr-only">Play</span>
       <play-icon />
     </button>
