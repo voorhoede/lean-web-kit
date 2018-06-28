@@ -21,7 +21,6 @@ export default {
 <style>
 .table-of-contents {
   display: block;
-  margin: 0 var(--spacing-double);
 }
 
 .table-of-contents__inline-list {
@@ -34,9 +33,13 @@ export default {
   text-transform: uppercase;
 }
 
+.table-of-contents__list-item:not(:first-child) .table-of-contents__link-item {
+  padding-top: var(--spacing-default);
+}
+
 .table-of-contents__link-item {
   display: block;
-  padding: var(--spacing-default) 0;
+  padding-bottom: var(--spacing-default);
   color: var(--text-color);
   background: linear-gradient(to right, var(--action-color), var(--action-color)) no-repeat;
   background-size: 0% 3px;

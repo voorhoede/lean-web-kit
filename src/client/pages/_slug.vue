@@ -38,10 +38,10 @@ export default {
 
 .page__content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 920px;
+  justify-content: center;
+  margin: 0 auto;
   padding: 0 var(--spacing-default);
+  max-width: 920px;
 }
 
 .page__content__sidebar {
@@ -50,18 +50,16 @@ export default {
 
 @media screen and (min-width: 880px) {
   .page__content {
-    flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 0 auto;
-    padding: 0 var(--spacing-default);
+    padding: 0 var(--spacing-double);
   }
 
   .page__content__sidebar {
-    display: inline-block;
-    max-width: 300px;
+    display: block;
+    flex-grow: 1;
     margin-right: var(--spacing-double);
-    margin-bottom: 0;
+    max-width: 300px;
   }
 }
 </style>
