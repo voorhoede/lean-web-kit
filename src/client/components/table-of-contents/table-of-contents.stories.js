@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
 import readme from './readme.md'
 import TableOfContents from './'
+import './table-of-contents.stories.css'
 
 storiesOf('Table of contents', module)
   .addDecorator(withReadme(readme))
@@ -11,11 +12,17 @@ storiesOf('Table of contents', module)
       components: { TableOfContents },
       template: `
         <demo title="Sections with Table of Contents" inset>
-          <table-of-contents :items="items" />
-          <section v-for="(item, index) in items" :key="index" :id="item.slug">
-            <h2>{{ item.title }}</h2>
-            <p>{{ body }}</p>
-          </section>
+          <div class="main-content">
+            <div class="main-content__sidebar">
+              <table-of-contents :items="items" />
+            </div>
+            <div class="main-content__content">
+              <section v-for="(item, index) in items" :key="index" :id="item.slug">
+                <h2>{{ item.title }}</h2>
+                <p>{{ body }}</p>
+              </section>
+            </div>
+          </div>
         </demo>
       `,
       data() {

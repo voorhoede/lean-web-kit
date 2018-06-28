@@ -46,7 +46,7 @@ export default {
   background-size: 50% 3px;
 }
 
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 820px) {
   .table-of-contents {
     margin: 0 var(--spacing-double);
   }
