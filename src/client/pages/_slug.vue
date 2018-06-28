@@ -45,8 +45,7 @@ export default {
 }
 
 .page__content__sidebar {
-  width: 100%;
-  margin-bottom: var(--spacing-double);
+  display: none;
 }
 
 @media screen and (min-width: 880px) {
@@ -59,6 +58,7 @@ export default {
   }
 
   .page__content__sidebar {
+    display: inline-block;
     max-width: 300px;
     margin-right: var(--spacing-double);
     margin-bottom: 0;

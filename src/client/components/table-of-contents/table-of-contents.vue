@@ -19,9 +19,14 @@ export default {
 </script>
 
 <style>
+.table-of-contents {
+  display: block;
+  margin: 0 var(--spacing-double);
+}
+
 .table-of-contents__inline-list {
   padding: 0;
-  text-align: center;
+  text-align: left;
 }
 
 .table-of-contents__list-item {
@@ -32,31 +37,18 @@ export default {
 .table-of-contents__link-item {
   display: block;
   padding: var(--spacing-default) 0;
+  color: var(--text-color);
   background: linear-gradient(to right, var(--action-color), var(--action-color)) no-repeat;
   background-size: 0% 3px;
-  background-position: bottom;
+  background-position: bottom left;
   transition: 1s;
-  color: var(--text-color);
 }
 
 .table-of-contents__link-item:hover,
 .table-of-contents__link-item:focus{
   border: none;
-  outline: none;  
+  outline: none;
+  color: var(--action-color);
   background-size: 50% 3px;
-}
-
-@media screen and (min-width: 820px) {
-  .table-of-contents {
-    margin: 0 var(--spacing-double);
-  }
-
-  .table-of-contents__inline-list {
-    text-align: left;
-  }
-
-  .table-of-contents__link-item {
-    background-position: bottom left;
-  }
 }
 </style>
