@@ -2,7 +2,7 @@
   <header role="banner" class="app-header">
     <nuxt-link :to="localePath('index')" class="app-header__identity">
       <img class="app-header__logo" src="/images/logo.svg" alt="" />
-      <h1 class="app-header__title">Lean Web Kit</h1>
+      <h1 class="app-header__title">{{ appTitle }}</h1>
     </nuxt-link>
     
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
@@ -42,7 +42,7 @@ import LanguageSelector from '../language-selector'
 
 export default {
   components: { LanguageSelector },
-  props: ['contentId', 'menuI18n'],
+  props: ['contentId', 'appTitle', 'menuI18n'],
   data () {
     return {
       showNavigation: false,
