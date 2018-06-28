@@ -22,9 +22,10 @@
         </ul>
         
         <language-selector v-if="$i18n.locales" :locales="$i18n.locales" />
+        <button class="action-button" v-if="menu.callToAction" @click="handleClick">{{ menu.callToAction.title }}</button>
       </nav>
     </transition>
-    <button class="action-button" v-if="action" @click="handleClick">{{ action.title }}</button>
+    
     
     <button class="app-header__toggle-menu" @click="toggleNavigation" >
       <span class="a11y-sr-only">Toggle navigation</span>
@@ -40,22 +41,20 @@
 </template>
 
 <script>
-import menuI18n from '../../static/data/menu.json'
 import LanguageSelector from '../language-selector'
 
 export default {
   components: { LanguageSelector },
-  props: ['contentId', 'action'],
+  props: ['contentId', 'menuI18n'],
   data () {
-    return { 
-      menuI18n,
+    return {
       showNavigation: false,
     }
   },
   computed: {
     locale() { return this.$i18n.locale },
     menu() { return this.menuI18n[this.locale] },
-    slicedMenu() { return this.sliceMenu(this.menu.items)}
+    slicedMenu() { return this.sliceMenuItems(this.menu)}
   },
   methods: {
     toggleNavigation () {
@@ -66,12 +65,12 @@ export default {
       console.log('button clicked')
     },
 
-    sliceMenu (menu) {
-      if (menu.action || this.$i18n.locales) {
-        return menu.slice(0, 3)
+    sliceMenuItems ({ items }) {
+      if (this.menu.callToAction || this.$i18n.locales) {
+        return items.slice(0, 3)
       }
 
-      return menu.slice(0, 5)
+      return items.slice(0, 5)
     }
   }
 }
@@ -103,6 +102,7 @@ export default {
   position: sticky;
   top: 0;
   left: 0;
+  padding: 0 1rem;
   background-color: var(--background-color);
   width: 100%;
   height: var(--app-header-mobile-height);
@@ -149,6 +149,7 @@ export default {
 }
 
 .app-header__title {
+  display: none;
   font-size: var(--font-size-default);
   font-weight: lighter;
 }
@@ -219,7 +220,7 @@ export default {
     display: flex;
     margin: 0;
     margin-left: auto;
-    padding: 0 !important;  
+    padding: 0 ;  
   }
 
   .app-header__list-item {
@@ -227,17 +228,22 @@ export default {
   }
 }
 
+@media screen and (min-width: 700px) {
+  .app-header__title {
+    display: block;
+  }
+}
+
 .action-button {
   border: none;
   height: 40px;
-  padding: 0 2rem;
-  margin-right: 1rem;
+  padding: 0 var(--spacing-default);
   background-color: var(--action-color);
   color: var(--background-color);
   text-transform: uppercase;
   box-shadow: 0 1px 5px #ccc;
   border-radius: 3px;
-  font-size: 1rem;
+  font-size: var(--font-size-default);
   margin-left: auto;
 }
 
