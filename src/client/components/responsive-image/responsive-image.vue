@@ -102,9 +102,4 @@ export default {
   width: 100%;
   z-index: 1;
 }
-
-.responsive-image__caption {
-  margin-top: var(--spacing-half);
-  text-align: center;
-}
 </style>
