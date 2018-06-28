@@ -6,7 +6,7 @@
           <img
             slot-scope="imageSource"
             class="responsive-video__image"
-            v-if="!playing"
+            v-if="!playing && imageSource.computed"
             alt=""
             :src="imageSource.computed"
           />

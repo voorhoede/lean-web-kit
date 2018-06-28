@@ -2,7 +2,7 @@
     <figure class="responsive-image">
       <fixed-ratio :content="image">
         <lazy-load :url="image.url">
-          <picture class="responsive-image__picture" slot-scope="imageSource">
+          <picture v-if="imageSource.computed" class="responsive-image__picture" slot-scope="imageSource">
             <!--[if IE 9]><video style="display: none;"><![endif]-->
             <source type="image/webp" media="(min-width: 360px)" :srcset="imageUrl(imageSource.computed, { fm: 'webp' })">
             <source type="image/webp" :srcset="imageUrl(imageSource.computed, { fm: 'webp', width: 360 })">
