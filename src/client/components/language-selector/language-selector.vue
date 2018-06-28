@@ -2,12 +2,14 @@
   <ul class="language-selector">
     <li class="language-selector__item" v-for="locale in locales" :key="locale.code">
       <nuxt-link v-if="isSlugRoute"
+        class="language-selector__link"
         rel="alternate"
         :hreflang="locale.code"
         :to="localePath({ name: 'slug', params: { slug: slugI18n[locale.code] } }, locale.code)">
         {{ locale.name }}
       </nuxt-link>
       <nuxt-link v-else
+        class="language-selector__link"
         rel="alternate"
         :hreflang="locale.code"
         :to="switchLocalePath(locale.code)">
@@ -35,12 +37,18 @@ export default {
 }
 
 .language-selector__item {
+  margin-right: var(--spacing-half);
   text-transform: uppercase;
   list-style-type: none;
 }
 
 .language-selector__item:not(:last-child) {
-  margin-right: 1rem;
+  border-right: 1px solid var(--action-color);
+  padding-right: var(--spacing-half);
+}
+
+.language-selector__link {
+  font-size: var(--font-size-small);
 }
 </style>
 
