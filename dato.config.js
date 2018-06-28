@@ -77,10 +77,12 @@ function pageToJson (page, i18n) {
 function menuToJson (dato, i18n) {
   return locales.reduce((menu, locale) => {
     i18n.locale = locale
-    const { title, items } = dato.menu
+    const { title, items, links, callToAction, isSticky } = dato.menu
     menu[locale] = {
       title,
       items: items.map(item => pick(item.page, ['title', 'slug'])),
+      links: links.map(link => pick(link.page, ['title', 'slug'])),
+      callToAction: pick(callToAction, ['title']),
     }
     return menu
   }, {})
