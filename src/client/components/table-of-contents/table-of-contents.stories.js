@@ -14,7 +14,7 @@ storiesOf('Table of contents', module)
         <demo title="Sections with Table of Contents" inset>
           <div class="main-content">
             <div class="main-content__sidebar">
-              <table-of-contents :items="items" />
+              <table-of-contents :items="items" :currentSection="'section-1'" />
             </div>
             <div class="main-content__content">
               <section v-for="(item, index) in items" :key="index" :id="item.slug">
@@ -32,8 +32,11 @@ storiesOf('Table of contents', module)
             { slug: 'section-2', title: 'Section 2' },
             { slug: 'section-3', title: 'Section 3' },
             { slug: 'section-4', title: 'Section 4' },
+            { slug: 'section-5', title: 'Section 5' },
+            { slug: 'section-6', title: 'Section 6' },
+            { slug: 'section-7', title: 'Section 7' },
           ],
-          body: loremIpsum({ count: 10, units: 'sentences' })
+          body: loremIpsum({ count: 20, units: 'sentences' })
         }
       },
       i18n: new VueI18n({

@@ -8,7 +8,7 @@
       </div>
 
       <div class="page__content__main-content">
-        <content-section v-for="(section, index) in page.sections" :key="index" :section="section" />
+        <content-section v-for="(section, index) in page.sections" :key="index" :section="section"  :id="section.slug"/>
       </div>
     </div>
   </main>
@@ -46,6 +46,8 @@ export default {
 
 .page__content__sidebar {
   display: none;
+  position: sticky;
+  top: 80px;
 }
 
 @media screen and (min-width: 880px) {
