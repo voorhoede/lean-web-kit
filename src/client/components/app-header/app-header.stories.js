@@ -2,8 +2,6 @@ import VueI18n from 'vue-i18n'
 import { storiesOf } from '@storybook/vue'
 import AppHeader from './'
 
-
-
 storiesOf('App header', module)
   .add('Default', () => ({
     components: { AppHeader },
@@ -104,19 +102,19 @@ const defaultMenu = {
       },
       {
         "title": "Careers",
-        "slug": "about-us"
+        "slug": "careers"
       },
       {
         "title": "FAQ",
-        "slug": "faq"
+        "slug": "fsq"
       },
       {
-        "title": "About Us",
-        "slug": "about-us"
+        "title": "something",
+        "slug": "something"
       },
       {
-        "title": "FAQ",
-        "slug": "faq"
+        "title": "something else",
+        "slug": "something else"
       }
     ],
   },
@@ -137,15 +135,15 @@ const defaultMenu = {
       },
       {
         "title": "Veelgestelde vragen",
-        "slug": "veelgestelde-vragen"
+        "slug": "veelgestelde-vragesn"
       },
       {
         "title": "Over ons",
-        "slug": "over-ons"
+        "slug": "over-osns"
       },
       {
         "title": "Veelgestelde vragen",
-        "slug": "veelgestelde-vragen"
+        "slug": "veelgesteldse-vragen"
       }
     ],
   }
@@ -165,19 +163,19 @@ const menuWithAction = {
       },
       {
         "title": "Careers",
-        "slug": "about-us"
+        "slug": "careers"
       },
       {
         "title": "FAQ",
-        "slug": "faq"
+        "slug": "fasq"
       },
       {
-        "title": "About Us",
-        "slug": "about-us"
+        "title": "something",
+        "slug": "something"
       },
       {
-        "title": "FAQ",
-        "slug": "faq"
+        "title": "something else",
+        "slug": "something else"
       }
     ],
     "callToAction": {
@@ -201,15 +199,15 @@ const menuWithAction = {
       },
       {
         "title": "Veelgestelde vragen",
-        "slug": "veelgestelde-vragen"
+        "slug": "veelgestelde-vragesn"
       },
       {
         "title": "Over ons",
-        "slug": "over-ons"
+        "slug": "over-osns"
       },
       {
         "title": "Veelgestelde vragen",
-        "slug": "veelgestelde-vragen"
+        "slug": "veelgesteldse-vragen"
       }
     ],
     "callToAction": {

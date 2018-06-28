@@ -6,26 +6,22 @@
     </nuxt-link>
     
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
-    
-    <transition name="slide-in">
-      <nav class="app-header__navigation" :class="{ 'app-header__navigation--open' : showNavigation }">
-        <h2 class="a11y-sr-only">{{ menu.title }}</h2>
-        
-        <ul class="app-header__inline-list">
-          <li class="app-header__list-item" v-for="item in slicedMenu" :key="item.slug">
-            <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
-              class="app-header__menu-link"
-            >
-              {{ item.title }}
-            </nuxt-link>
-          </li>
-        </ul>
-        
-        <language-selector v-if="$i18n.locales" :locales="$i18n.locales" />
-        <button class="action-button" v-if="menu.callToAction" @click="handleClick">{{ menu.callToAction.title }}</button>
-      </nav>
-    </transition>
-    
+    <nav class="app-header__navigation" :class="{ 'app-header__navigation--open' : showNavigation }">
+      <h2 class="a11y-sr-only">{{ menu.title }}</h2>
+      
+      <ul class="app-header__inline-list">
+        <li class="app-header__list-item" v-for="item in slicedMenu" :key="item.slug">
+          <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
+            class="app-header__menu-link"
+          >
+            {{ item.title }}
+          </nuxt-link>
+        </li>
+      </ul>
+      
+      <button class="action-button" v-if="menu.callToAction" @click="handleClick">{{ menu.callToAction.title }}</button>
+      <language-selector v-if="$i18n.locales" :locales="$i18n.locales" />
+    </nav>
     
     <button class="app-header__toggle-menu" @click="toggleNavigation" >
       <span class="a11y-sr-only">Toggle navigation</span>
@@ -123,7 +119,6 @@ export default {
   display: none;
   width: 100%;
   background-color: var(--background-color);
-  padding: var(--spacing-default);
   box-shadow: 0px 11px 14px rgba(214,214,214,.3);
   transition: all .2s ease-in-out;
 }
@@ -187,51 +182,14 @@ export default {
 }
 
 .app-header__navigation--open {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: var(--spacing-default);
 }
 
-@media screen and (min-width: 640px) {
-  .app-header__toggle-menu {
-    display: none;
-  }
-
-  .app-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: var(--app-header-height);
-  }
-
-  .app-header__navigation {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    top: 0;
-    margin: 0 var(--spacing-default) 0 auto;
-    padding: 0;
-    box-shadow: none;
-    width: auto;
-    background-color: transparent;
-    flex-grow: 1;
-  }
-
-  .app-header__inline-list {
-    display: flex;
-    margin: 0;
-    margin-left: auto;
-    padding: 0 ;  
-  }
-
-  .app-header__list-item {
-    margin-right: 1.5rem;
-  }
-}
-
-@media screen and (min-width: 700px) {
-  .app-header__title {
-    display: block;
-  }
+.app-header__navigation--open .action-button {
+  margin: 0 0 1.5rem 0;
 }
 
 .action-button {
@@ -250,5 +208,51 @@ export default {
 .action-button:hover {
   cursor: pointer;
   opacity: .9;
+}
+
+@media screen and (min-width: 640px) {
+  .app-header__toggle-menu {
+    display: none;
+  }
+
+  .app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--app-header-height);
+  }
+
+  .app-header__navigation {
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 0;
+    margin-left: auto;
+    padding: 0;
+    box-shadow: none;
+    width: auto;
+    background-color: transparent;
+  }
+
+  .app-header__inline-list {
+    display: flex;
+    margin: 0;
+    margin-left: auto;
+    padding: 0 ;  
+  }
+
+  .app-header__list-item {
+    margin-right: 1.5rem;
+  }
+
+  .action-button {
+    margin-right: var(--spacing-default);
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .app-header__title {
+    display: block;
+  }
 }
 </style>
