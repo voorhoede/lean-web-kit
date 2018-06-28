@@ -6,6 +6,7 @@
     </nuxt-link>
     
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
+    
     <nav class="app-header__navigation" :class="{ 'app-header__navigation--open' : showNavigation }">
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
       
@@ -19,7 +20,7 @@
         </li>
       </ul>
       
-      <button class="action-button" v-if="menu.callToAction" @click="handleClick">{{ menu.callToAction.title }}</button>
+      <button class="app-header__action-button" v-if="menu.callToAction" @click="handleClick">{{ menu.callToAction.title }}</button>
       <language-selector v-if="$i18n.locales" :locales="$i18n.locales" />
     </nav>
     
@@ -75,22 +76,6 @@ export default {
 <style>
 @import '../app-core/index.css';
 
-.app-header__identity:hover,
-.app-header__identity:focus {
-  border: none;
-}
-
-.app-header__toggle-menu {
-  padding: 0;
-  width: 40px;
-  height: 40px;
-}
-
-.app-header__menu-icon {
-  width: 30px;
-  height: auto;
-}
-
 .app-header {
   display: flex;
   justify-content: space-between;
@@ -98,12 +83,55 @@ export default {
   position: sticky;
   top: 0;
   left: 0;
-  padding: 0 1rem;
-  background-color: var(--background-color);
+  z-index: 1;
+  padding: 0 var(--spacing-default);
   width: 100%;
   height: var(--app-header-mobile-height);
+  background-color: var(--background-color);
   box-shadow: 0 2px 15px 0 rgba(214,214,214,.5);
-  z-index: 1;
+}
+
+.app-header__navigation {
+  position: absolute;
+  top: var(--app-header-mobile-height);
+  left: 0;
+  display: none;
+  width: 100%;
+  background-color: var(--background-color);
+  box-shadow: 0px 11px 14px rgba(214,214,214,.3);
+  transition: all .2s ease-in-out;
+}
+
+.app-header__navigation--open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: var(--spacing-default);
+}
+
+.app-header__inline-list {
+  margin-bottom: var(--spacing-default);
+  padding: 0;
+  text-align: center;
+}
+
+.app-header__list-item {
+  height: auto;
+  margin-bottom: var(--spacing-double);
+  list-style-type: none;
+}
+
+.app-header__menu-link {
+  padding: var(--spacing-default) 0;
+  color: var(--text-color);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.app-header__menu-link:focus,
+.app-header__menu-link:hover {
+  outline: none;
+  border-bottom: 3px solid var(--action-color);
 }
 
 .app-header__identity {
@@ -113,34 +141,14 @@ export default {
   text-decoration: none;
 }
 
-.app-header__navigation {
-  position: absolute;
-  top: var(--app-header-mobile-height);
-  display: none;
-  width: 100%;
-  background-color: var(--background-color);
-  box-shadow: 0px 11px 14px rgba(214,214,214,.3);
-  transition: all .2s ease-in-out;
-}
-
-.app-header__inline-list {
-  padding: 0;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.app-header__list-item {
-  list-style-type: none;
-  padding: var(--spacing-default) 0;
-}
-
-.app-header__list-item:hover .app-header__menu-link {
-  border-bottom: 2px solid var(--action-color);
+.app-header__identity:hover,
+.app-header__identity:focus {
+  border: none;
 }
 
 .app-header__logo {
+  margin-right: .3rem;
   height: 40px;
-  margin-right: .3rem;;
 }
 
 .app-header__title {
@@ -149,17 +157,37 @@ export default {
   font-weight: lighter;
 }
 
-.app-header__menu-link {
-  padding-bottom: var(--spacing-default);
-  color: var(--text-color);
+.app-header__action-button {
+  margin-left: auto;
+  padding: 0 var(--spacing-default);
+  font-size: var(--font-size-default);
+  color: var(--background-color);
   text-transform: uppercase;
-  text-decoration: none;
+  height: 40px;
+  background-color: var(--action-color);
+  box-shadow: 0 1px 5px #ccc;
+  border: none;
+  border-radius: 3px;
 }
 
-.app-header__menu-link:focus,
-.app-header__menu-link:hover {
-  outline: none;
-  border-bottom: 2px solid var(--action-color);
+.app-header__action-button:hover {
+  cursor: pointer;
+  opacity: .9;
+}
+
+.app-header__navigation--open .app-header__action-button {
+  margin: 0 0 1.5rem 0;
+}
+
+.app-header__toggle-menu {
+  padding: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.app-header__toggle-menu__icon {
+  width: 30px;
+  height: auto;
 }
 
 .is-open .line-1 {
@@ -172,7 +200,7 @@ export default {
 }
 
 .is-open .line-3 {
-  transform: rotate(-45deg) ;
+  transform: rotate(-45deg);
   transform-origin: 10% 63%;
 }
 
@@ -181,40 +209,7 @@ export default {
   transition: all .2s ease-in-out;
 }
 
-.app-header__navigation--open {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: var(--spacing-default);
-}
-
-.app-header__navigation--open .action-button {
-  margin: 0 0 1.5rem 0;
-}
-
-.action-button {
-  border: none;
-  height: 40px;
-  padding: 0 var(--spacing-default);
-  background-color: var(--action-color);
-  color: var(--background-color);
-  text-transform: uppercase;
-  box-shadow: 0 1px 5px #ccc;
-  border-radius: 3px;
-  font-size: var(--font-size-default);
-  margin-left: auto;
-}
-
-.action-button:hover {
-  cursor: pointer;
-  opacity: .9;
-}
-
 @media screen and (min-width: 640px) {
-  .app-header__toggle-menu {
-    display: none;
-  }
-
   .app-header {
     display: flex;
     justify-content: space-between;
@@ -229,30 +224,32 @@ export default {
     top: 0;
     margin-left: auto;
     padding: 0;
-    box-shadow: none;
     width: auto;
     background-color: transparent;
+    box-shadow: none;
   }
 
   .app-header__inline-list {
     display: flex;
-    margin: 0;
-    margin-left: auto;
-    padding: 0 ;  
+    margin: 0 0 0 auto;
   }
 
   .app-header__list-item {
+    margin: 0 1.5rem 0 0;
+  }
+
+  .app-header__action-button {
     margin-right: 1.5rem;
   }
 
-  .action-button {
-    margin-right: var(--spacing-default);
+  .app-header__toggle-menu {
+    display: none;
   }
 }
 
 @media screen and (min-width: 700px) {
   .app-header__title {
-    display: block;
+    display: inline-block;
   }
 }
 </style>
