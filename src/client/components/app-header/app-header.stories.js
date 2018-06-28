@@ -2,10 +2,17 @@ import VueI18n from 'vue-i18n'
 import { storiesOf } from '@storybook/vue'
 import AppHeader from './'
 
+
+
 storiesOf('App header', module)
   .add('Default', () => ({
     components: { AppHeader },
-    template: '<app-header />',
+    template: '<app-header :menuI18n="menu" />',
+    data () {
+      return {
+        menu: defaultMenu,
+      }
+    },
     i18n: new VueI18n({
       locale: 'en',
       messages: {
@@ -17,12 +24,10 @@ storiesOf('App header', module)
   }))
   .add('With action button', () => ({
     components: { AppHeader },
-    template: '<app-header :action="action" />',
+    template: '<app-header :menuI18n="menu" />',
     data () {
       return {
-        action: {
-          title: "Sign up",
-        }
+        menu: menuWithAction,
       }
     },
     i18n: new VueI18n({
@@ -36,7 +41,12 @@ storiesOf('App header', module)
   }))
   .add('With language selection', () => ({
     components: { AppHeader },
-    template: '<app-header />',
+    template: '<app-header :menuI18n="menu" />',
+    data () {
+      return {
+        menu: defaultMenu,
+      }
+    },
     i18n: new VueI18n({
       locale: 'en',
       messages: {
@@ -56,12 +66,10 @@ storiesOf('App header', module)
 }))
 .add('With action button and language selection', () => ({
   components: { AppHeader },
-  template: '<app-header :action="action" />',
+  template: '<app-header :menuI18n="menu" />',
   data () {
     return {
-      action: {
-        title: "Sign up",
-      }
+      menu: menuWithAction,
     }
   },
   i18n: new VueI18n({
@@ -81,3 +89,131 @@ storiesOf('App header', module)
     }))
   }
 }))
+
+const defaultMenu = {
+  "en": {
+    "title": "Site menu",
+    "items": [
+      {
+        "title": "About Us",
+        "slug": "about-us"
+      },
+      {
+        "title": "Portfolio",
+        "slug": "faq"
+      },
+      {
+        "title": "Careers",
+        "slug": "about-us"
+      },
+      {
+        "title": "FAQ",
+        "slug": "faq"
+      },
+      {
+        "title": "About Us",
+        "slug": "about-us"
+      },
+      {
+        "title": "FAQ",
+        "slug": "faq"
+      }
+    ],
+  },
+  "nl": {
+    "title": "Site menu",
+    "items": [
+      {
+        "title": "Over ons",
+        "slug": "over-ons"
+      },
+      {
+        "title": "Veelgestelde vragen",
+        "slug": "veelgestelde-vragen"
+      },
+      {
+        "title": "Over ons",
+        "slug": "over-ons"
+      },
+      {
+        "title": "Veelgestelde vragen",
+        "slug": "veelgestelde-vragen"
+      },
+      {
+        "title": "Over ons",
+        "slug": "over-ons"
+      },
+      {
+        "title": "Veelgestelde vragen",
+        "slug": "veelgestelde-vragen"
+      }
+    ],
+  }
+}
+
+const menuWithAction = {
+  "en": {
+    "title": "Site menu",
+    "items": [
+      {
+        "title": "About Us",
+        "slug": "about-us"
+      },
+      {
+        "title": "Portfolio",
+        "slug": "faq"
+      },
+      {
+        "title": "Careers",
+        "slug": "about-us"
+      },
+      {
+        "title": "FAQ",
+        "slug": "faq"
+      },
+      {
+        "title": "About Us",
+        "slug": "about-us"
+      },
+      {
+        "title": "FAQ",
+        "slug": "faq"
+      }
+    ],
+    "callToAction": {
+      "title": "Start Now"
+    }
+  },
+  "nl": {
+    "title": "Site menu",
+    "items": [
+      {
+        "title": "Over ons",
+        "slug": "over-ons"
+      },
+      {
+        "title": "Veelgestelde vragen",
+        "slug": "veelgestelde-vragen"
+      },
+      {
+        "title": "Over ons",
+        "slug": "over-ons"
+      },
+      {
+        "title": "Veelgestelde vragen",
+        "slug": "veelgestelde-vragen"
+      },
+      {
+        "title": "Over ons",
+        "slug": "over-ons"
+      },
+      {
+        "title": "Veelgestelde vragen",
+        "slug": "veelgestelde-vragen"
+      }
+    ],
+    "callToAction": {
+      "title": "Start Nu"
+    }
+  }
+}
