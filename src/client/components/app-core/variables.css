@@ -1,5 +1,6 @@
 :root {
   --app-header-height: 80px;
+  --app-header-mobile-height: 55px;
   --max-width: 600px;
 
 /* colors */
