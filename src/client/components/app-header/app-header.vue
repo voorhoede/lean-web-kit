@@ -8,11 +8,11 @@
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
     
     <transition name="slide-in">
-      <nav class="app-header__navigation" :class="{ 'app-header--open' : showNavigation }">
+      <nav class="app-header__navigation" :class="{ 'app-header__navigation--open' : showNavigation }">
         <h2 class="a11y-sr-only">{{ menu.title }}</h2>
         
         <ul class="app-header__inline-list">
-          <li class="app-header__list-item" v-for="item in menu.items" :key="item.slug">
+          <li class="app-header__list-item" v-for="item in slicedMenu" :key="item.slug">
             <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
               class="app-header__menu-link"
             >
@@ -24,7 +24,7 @@
         <language-selector v-if="$i18n.locales" :locales="$i18n.locales" />
       </nav>
     </transition>
-    <button class="action-button" v-if="action" @click="doSomething">{{ action.title }}</button>
+    <button class="action-button" v-if="action" @click="handleClick">{{ action.title }}</button>
     
     <button class="app-header__toggle-menu" @click="toggleNavigation" >
       <span class="a11y-sr-only">Toggle navigation</span>
@@ -55,14 +55,23 @@ export default {
   computed: {
     locale() { return this.$i18n.locale },
     menu() { return this.menuI18n[this.locale] },
+    slicedMenu() { return this.sliceMenu(this.menu.items)}
   },
   methods: {
     toggleNavigation () {
       this.showNavigation = !this.showNavigation
     },
 
-    doSomething () {
+    handleClick () {
       console.log('button clicked')
+    },
+
+    sliceMenu (menu) {
+      if (menu.action || this.$i18n.locales) {
+        return menu.slice(0, 3)
+      }
+
+      return menu.slice(0, 5)
     }
   }
 }
@@ -71,7 +80,8 @@ export default {
 <style>
 @import '../app-core/index.css';
 
-.app-header__identity:hover {
+.app-header__identity:hover,
+.app-header__identity:focus {
   border: none;
 }
 
@@ -83,7 +93,7 @@ export default {
 
 .app-header__menu-icon {
   width: 30px;
-  height: auto;;
+  height: auto;
 }
 
 .app-header {
@@ -95,7 +105,7 @@ export default {
   left: 0;
   background-color: var(--background-color);
   width: 100%;
-  height: 55px;
+  height: var(--app-header-mobile-height);
   box-shadow: 0 2px 15px 0 rgba(214,214,214,.5);
   z-index: 1;
 }
@@ -109,7 +119,7 @@ export default {
 
 .app-header__navigation {
   position: absolute;
-  top: var(--app-header-height);
+  top: var(--app-header-mobile-height);
   display: none;
   width: 100%;
   background-color: var(--background-color);
@@ -134,12 +144,12 @@ export default {
 }
 
 .app-header__logo {
-  height: 50px;
-  transform: rotate(35deg);
+  height: 40px;
+  margin-right: .3rem;;
 }
 
 .app-header__title {
-  font-size: 1rem;
+  font-size: var(--font-size-default);
   font-weight: lighter;
 }
 
@@ -152,6 +162,7 @@ export default {
 
 .app-header__menu-link:focus,
 .app-header__menu-link:hover {
+  outline: none;
   border-bottom: 2px solid var(--action-color);
 }
 
@@ -174,7 +185,7 @@ export default {
   transition: all .2s ease-in-out;
 }
 
-.app-header--open {
+.app-header__navigation--open {
   display: block;
 }
 
