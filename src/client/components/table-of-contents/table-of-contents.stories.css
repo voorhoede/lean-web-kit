@@ -19,6 +19,8 @@
 
   .main-content__sidebar {
     display: inline-block;
+    position: sticky;
+    top: 10px;
     flex-grow: 1;
     max-width: 300px;
     margin-right: var(--spacing-double);

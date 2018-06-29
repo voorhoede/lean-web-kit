@@ -4,7 +4,7 @@
     
     <ol class="table-of-contents__inline-list">
       <li class="table-of-contents__list-item" v-for="(item, index) in items" :key="index">
-        <a class="table-of-contents__link-item" :href="`#${item.slug}`" :class="{ 'active' : (item.slug === currentSection) }">
+        <a :href="`#${item.slug}`" class="table-of-contents__link-item" :class="{ 'active' : (item.slug === currentSection) }">
           {{ item.title }}
         </a>
       </li>
@@ -31,22 +31,18 @@ export default {
   methods: {
     getClosestSection () {
       let sectionsLenght = this.items.length
-      console.log(this.items)
 
       for (var i = 0; i < sectionsLenght; i++) {
         let myElement = document.getElementById(this.items[i].slug)
 
         if (this.isBelowScroll(myElement)) {
-          console.log('current section:', myElement.id)
           this.currentSection = myElement.id
         }
       }
     },
 
     isBelowScroll (el) {
-      console.log(el)
       let position = el.getBoundingClientRect()
-      console.log(el, position)
       
       return position.top < 200 && ((position.top + position.height) > 0)
     }
@@ -77,10 +73,12 @@ export default {
   display: block;
   padding-bottom: var(--spacing-default);
   color: var(--text-color);
-  background: linear-gradient(to right, var(--action-color), var(--action-color)) no-repeat;
+  background: linear-gradient(to right, var(--action-color), var(--action-color));
   background-size: 0% 3px;
   background-position: bottom left;
-  transition: 1s;
+  background-repeat: no-repeat;
+  -webkit-transition: 1s;
+          transition: 1s;
 }
 
 .table-of-contents__link-item:hover,
