@@ -7,29 +7,23 @@
     <nav>
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
       <ul class="inline-list">
-        <li v-for="item in menu.items" :key="item.slug">
-          <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
-            class="app-header__menu-link"
-          >
-            {{ item.title }}
-          </nuxt-link>
+        <li v-for="(item, index) in menu.items" :key="index">
+          <smart-link :item="item" class="app-header__menu-link" />
         </li>
       </ul>
       <language-selector :locales="$i18n.locales" />
+      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="app-header__menu-link" />
     </nav>
   </header>
 </template>
 
 <script>
-import menuI18n from '../../static/data/menu.json'
 import LanguageSelector from '../language-selector'
+import SmartLink from '../smart-link'
 
 export default {
-  components: { LanguageSelector },
-  props: ['contentId'],
-  data () {
-    return { menuI18n }
-  },
+  components: { LanguageSelector, SmartLink },
+  props: ['contentId', 'menuI18n'],
   computed: {
     locale() { return this.$i18n.locale },
     menu() { return this.menuI18n[this.locale] },

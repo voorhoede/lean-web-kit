@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-header :contentId="contentId" />
+    <app-header :contentId="contentId" :menuI18n="menuI18n" />
     <main :id="contentId">
       <nuxt/>
     </main>
@@ -9,16 +9,18 @@
 </template>
 
 <script>
-  import { AppFooter, AppHeader } from '../components/'
+import menuI18n from '../static/data/menu.json'
+import { AppFooter, AppHeader } from '../components/'
 
-  export default {
-    components: { AppFooter, AppHeader },
-    data() {
-      return {
-        contentId: 'content',
-      }
-    },
-  }
+export default {
+  components: { AppFooter, AppHeader },
+  data() {
+    return {
+      contentId: 'content',
+      menuI18n,
+    }
+  },
+}
 </script>
 
 <style>
