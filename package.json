@@ -47,6 +47,7 @@
     "@storybook/vue": "^3.4.7",
     "ajv": "^6.5.1",
     "babel-eslint": "^8.2.1",
+    "body-parser": "^1.18.3",
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
