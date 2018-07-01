@@ -46,7 +46,8 @@ export default {
   components: { FixedRatio, LazyLoad, PlayIcon },
   computed: {
     videoSource() {
-      switch(this.video.provider) {
+      if (!this.isPlaying) return ''
+      switch (this.video.provider) {
         case 'vimeo':
           return this.isPlaying ? `https://player.vimeo.com/video/${this.video.providerUid}?autoplay=1` : ''
           break;
