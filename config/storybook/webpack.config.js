@@ -18,7 +18,7 @@ module.exports = (baseConfig, env, defaultConfig) => {
   defaultConfig.module.rules.push({
     test: /\.svg$/,
     loader: 'vue-svg-loader'
-  });
+  })
 
   // TODO: share loaders between Nuxt and Storybook (does not work like this)
   // nuxtConfig.build.extend(defaultConfig, {isDev, isClient})

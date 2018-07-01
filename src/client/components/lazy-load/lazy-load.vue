@@ -7,7 +7,18 @@
 <script>
 
 export default {
-  props: ['url'],
+  props: {
+    url: String,
+    rootMargin: {
+      default: '0px 0px 0px 0px',
+      type: String
+    },
+    threshold: {
+      default: 0,
+      type: Number
+    }
+  },
+  // props: ['url'],
   data() {
     return {
       observer: null,
@@ -22,8 +33,8 @@ export default {
   mounted() {
     const config = {
       root: undefined,
-      rootMargin: '0px 0px 0px 0px',
-      threshold: 0
+      rootMargin: this.rootMargin,
+      threshold: this.threshold
     };
 
     if ('IntersectionObserver' in window) {
