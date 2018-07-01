@@ -6,13 +6,13 @@
           <img
             slot-scope="imageSource"
             class="responsive-video__image"
-            v-if="!playing && imageSource.computed"
+            v-if="!isPlaying && imageSource.computed"
             alt=""
             :src="imageSource.computed"
           />
         </lazy-load>
         <iframe
-          v-if="playing"
+          v-if="isPlaying"
           :src="videoSource"
           style="width:100%; height:100%;"
           frameborder="0"
@@ -28,7 +28,7 @@
         </a>
       </figcaption>
     </figure>
-    <button v-if="!playing" class="responsive-video__button" @click="play()">
+    <button v-if="!isPlaying" class="responsive-video__button" @click="play()">
       <span class="a11y-sr-only">Play</span>
       <play-icon />
     </button>
@@ -48,17 +48,17 @@ export default {
     videoSource() {
       switch(this.video.provider) {
         case 'vimeo':
-          return this.playing ? `https://player.vimeo.com/video/${this.video.providerUid}?autoplay=1` : ''
+          return this.isPlaying ? `https://player.vimeo.com/video/${this.video.providerUid}?autoplay=1` : ''
           break;
         case 'youtube':
-          return this.playing ? `https://www.youtube.com/embed/${this.video.providerUid}?autoplay=1` : ''
+          return this.isPlaying ? `https://www.youtube.com/embed/${this.video.providerUid}?autoplay=1` : ''
           break;
       }
     }
   },
   data () {
     return {
-      playing: false
+      isPlaying: false
     }
   },
   methods: {
@@ -69,7 +69,7 @@ export default {
         eventLabel: this.video.url,
         eventValue: 1
       })
-      this.playing = true
+      this.isPlaying = true
     }
   },
 }
