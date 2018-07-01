@@ -21,6 +21,10 @@
           allowfullscreen
           allow="autoplay">
         </iframe>
+        <a :href="video.url" v-if="!isPlaying" class="responsive-video__button" @click="play()">
+          <span class="a11y-sr-only">Play</span>
+          <play-icon class="responsive-video__icon" />
+        </a>
       </fixed-ratio>
       <figcaption v-if="video.title">
         <a :href="video.url" target="_blank" rel="noopener">
@@ -28,10 +32,6 @@
         </a>
       </figcaption>
     </figure>
-    <button v-if="!isPlaying" class="responsive-video__button" @click="play()">
-      <span class="a11y-sr-only">Play</span>
-      <play-icon />
-    </button>
   </div>
 </template>
 
@@ -63,6 +63,7 @@ export default {
   },
   methods: {
     play() {
+      event.preventDefault();
       this.$ga.event({
         eventCategory: 'video',
         eventAction: 'play',
@@ -87,11 +88,23 @@ export default {
 
 .responsive-video__button {
   position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: background-color .25s ease;
+}
+
+.responsive-video__button:hover,
+.responsive-video__button:focus {
+  border-bottom: none;
+  background-color: rgba(0, 0, 0, .25);
+}
+
+.responsive-video__icon {
+  position: absolute;
   top: 50%;
   left: 50%;
-  transform:translate(-50%,-50%);
-  padding: var(--spacing-default);
-  background-color: transparent;
-  border: none;
+  transform: translate(-50%,-50%);
 }
 </style>
