@@ -23,7 +23,7 @@
         </iframe>
         <a :href="video.url" v-if="!isPlaying" class="responsive-video__button" @click="play()">
           <span class="a11y-sr-only">Play</span>
-          <play-icon class="responsive-video__icon" />
+          <img class="responsive-video__icon" src="/images/play.svg" />
         </a>
       </fixed-ratio>
       <figcaption v-if="video.title">
@@ -39,11 +39,10 @@
 
 import FixedRatio from '../fixed-ratio'
 import LazyLoad from '../lazy-load'
-import PlayIcon from '../../static/images/play.svg'
 
 export default {
   props: ['video'],
-  components: { FixedRatio, LazyLoad, PlayIcon },
+  components: { FixedRatio, LazyLoad },
   computed: {
     videoSource() {
       if (!this.isPlaying) return ''
