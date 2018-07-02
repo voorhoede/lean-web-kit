@@ -1,53 +1,57 @@
 <template>
   <footer role="contentinfo" class="app-footer">
-    <nuxt-link :to="localePath('index') + '/'">
-      <h1>Lean Web Kit</h1>
-    </nuxt-link>
-    <div class="app-footer__social">
-      <a v-if="social.facebook" :href="social.facebook" @click="track(social.facebook)">
-        <img src="/images/facebook.svg" />
-        <span class="a11y-sr-only">Facebook</span>
-      </a>
-      <a v-if="social.twitter" :href="social.twitter" @click="track(social.twitter)">
-        <img src="/images/twitter.svg" />
-        <span class="a11y-sr-only">Twitter</span>
-      </a>
-      <a v-if="social.googlePlus" :href="social.googlePlus" @click="track(social.googlePlus)">
-        <img src="/images/googleplus.svg" />
-        <span class="a11y-sr-only">Google Plus</span>
-      </a>
-      <a v-if="social.instagram" :href="social.instagram" @click="track(social.instagram)">
-        <img src="/images/instagram.svg" />
-        <span class="a11y-sr-only">Instagram</span>
-      </a>
-      <a v-if="social.youtube" :href="social.youtube" @click="track(social.youtube)">
-        <img src="/images/youtube.svg" />
-        <span class="a11y-sr-only">YouTube</span>
-      </a>
-      <a v-if="social.linkedin" :href="social.linkedin" @click="track(social.linkedin)">
-        <img src="/images/linkedin.svg" />
-        <span class="a11y-sr-only">LinkedIn</span>
-      </a>
+    <div>
+      <nuxt-link :to="localePath('index') + '/'">
+        <h1 class="app-footer__title">Lean Web Kit</h1>
+      </nuxt-link>
+      <div class="app-footer__social">
+        <a class="app-footer__social-link" v-if="social.facebook" :href="social.facebook" @click="track(social.facebook)">
+          <img src="/images/facebook.svg" />
+          <span class="a11y-sr-only">Facebook</span>
+        </a>
+        <a class="app-footer__social-link" v-if="social.twitter" :href="social.twitter" @click="track(social.twitter)">
+          <img src="/images/twitter.svg" />
+          <span class="a11y-sr-only">Twitter</span>
+        </a>
+        <a class="app-footer__social-link" v-if="social.googlePlus" :href="social.googlePlus" @click="track(social.googlePlus)">
+          <img src="/images/googleplus.svg" />
+          <span class="a11y-sr-only">Google Plus</span>
+        </a>
+        <a class="app-footer__social-link" v-if="social.instagram" :href="social.instagram" @click="track(social.instagram)">
+          <img src="/images/instagram.svg" />
+          <span class="a11y-sr-only">Instagram</span>
+        </a>
+        <a class="app-footer__social-link" v-if="social.youtube" :href="social.youtube" @click="track(social.youtube)">
+          <img src="/images/youtube.svg" />
+          <span class="a11y-sr-only">YouTube</span>
+        </a>
+        <a class="app-footer__social-link" v-if="social.linkedin" :href="social.linkedin" @click="track(social.linkedin)">
+          <img src="/images/linkedin.svg" />
+          <span class="a11y-sr-only">LinkedIn</span>
+        </a>
+      </div>
     </div>
-    <nav>
-      <h2 class="a11y-sr-only">{{ menu.title }}</h2>
-      <ul class="inline-list">
-        <li v-for="item in menu.items" :key="item.slug">
-          <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
-            class=""
-          >
-            {{ item.title }}
-          </nuxt-link>
-        </li>
-      </ul>
-    </nav>
-    <section>
-      <h2 class="a11y-sr-only">Contact</h2>
-      {{ contact.emailAddress }}
-      {{ contact.phoneNumber }}
-      {{ contact.street }}
-      {{ contact.city }}
-    </section>
+    <div class="app-footer__content">
+      <nav class="app-footer__nav">
+        <h2 class="a11y-sr-only">{{ menu.title }}</h2>
+        <ul class="flat-list">
+          <li class="app-footer__nav-item" v-for="item in menu.items" :key="item.slug">
+            <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
+              class=""
+            >
+              {{ item.title }}
+            </nuxt-link>
+          </li>
+        </ul>
+      </nav>
+      <section class="app-footer__contact">
+        <h2 class="a11y-sr-only">Contact</h2>
+        <span class="app-footer__contact-line">{{ contact.emailAddress }}</span>
+        <span class="app-footer__contact-line">{{ contact.phoneNumber }}</span>
+        <span class="app-footer__contact-line">{{ contact.street }}</span>
+        <span class="app-footer__contact-line">{{ contact.city }}</span>
+      </section>
+    </div>
   </footer>
 </template>
 
@@ -82,8 +86,65 @@ export default {
 <style>
 
 .app-footer {
-  padding: var(--spacing-default);
+  padding: var(--spacing-double) var(--spacing-default);
   background-color: var(--neutral-color);
+}
+
+.app-footer__title {
+  margin: 0 0 var(--spacing-double);
+  color: var(--text-color);
+  font-size: var(--font-size-medium);
+  text-align: center;
+}
+
+.app-footer__nav-item {
+  line-height: 1.5rem;
+}
+
+.app-footer__social {
+  margin-bottom: var(--spacing-double);
+  text-align: center;
+}
+
+.app-footer__social-link {
+  margin: 0 var(--spacing-half);
+}
+
+.app-footer__nav {
+  margin-bottom: var(--spacing-double);
+}
+
+@media (min-width: 480px) {
+  .app-footer__nav {
+    margin-bottom: 0;
+  }
+}
+
+.app-footer__contact-line {
+  display: block;
+  line-height: 1.5rem;
+}
+
+@media (min-width: 480px) {
+  .app-footer__content {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+
+@media (min-width: 960px) {
+  .app-footer {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .app-footer__content {
+    width: 65%
+  }
+
+  .app-footer__social {
+    margin-bottom: 0;
+  }
 }
 
 </style>
