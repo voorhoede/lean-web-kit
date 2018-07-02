@@ -3,6 +3,7 @@ import { configure } from '@storybook/vue'
 import { setOptions } from '@storybook/addon-options'
 
 import Vue from 'vue'
+import VueAnalytics from 'vue-analytics'
 import VueI18n from 'vue-i18n'
 import Vuex from 'vuex'
 
@@ -14,6 +15,10 @@ setOptions({
   downPanelInRight: true,
 })
 
+Vue.use(VueAnalytics,
+  { debug: { enabled: true, sendHitTask: false },
+  id: 'UA-MOCK-X',
+})
 Vue.use(VueI18n)
 Vue.use(Vuex)
 
