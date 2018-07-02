@@ -1,62 +1,55 @@
 <template>
   <div>
-    <slot :computed="imageSource"></slot>
+    <slot v-if="isIntersected" />
+    <slot v-if="isIntersected" name="content" />
+    <slot v-if="!isIntersected" name="placeholder" />
   </div>
 </template>
 
 <script>
-
 export default {
   props: {
-    url: String,
     rootMargin: {
+      type: String,
       default: '0px 0px 0px 0px',
-      type: String
     },
     threshold: {
+      type: [Number, Array],
       default: 0,
-      type: Number
-    }
+    },
   },
-  // props: ['url'],
   data() {
     return {
+      isIntersected: false,
       observer: null,
-      setSource: false
-    }
-  },
-  computed: {
-    imageSource() {
-      return this.setSource ? this.url : ''
     }
   },
   mounted() {
-    const config = {
-      root: undefined,
-      rootMargin: this.rootMargin,
-      threshold: this.threshold
-    };
-
     if ('IntersectionObserver' in window) {
-      this.observer = new IntersectionObserver(this.onIntersection, config)
-      this.observer.observe(this.$el)
+      this.observe()
     } else {
-      this.setSource = true
+      this.isIntersected = true
     }
   },
   unmounted() {
-    observer.unobserve(this.$el)
+    this.unobserve()
   },
   methods: {
-    onIntersection(entries, observer) {
-      entries.forEach(entry => {
-        if (entry.intersectionRatio > 0) {
-          this.setSource = true
-          observer.unobserve(entry.target)
-        }
-      })
-    }
-  }
+    observe () {
+      const { rootMargin, threshold } = this
+      const config = { root: undefined, rootMargin, threshold }
+      this.observer = new IntersectionObserver(this.onIntersection, config)
+      this.observer.observe(this.$el)
+    },
+    onIntersection (entries, observer) {
+      this.isIntersected = entries.some(entry => entry.intersectionRatio > 0)
+      if (this.isIntersected) {
+        this.unobserve()
+      }
+    },
+    unobserve () {
+      this.observer.unobserve(this.$el)
+    },
+  },
 }
-
 </script>

@@ -1,36 +1,42 @@
 <template>
-    <figure class="responsive-image">
-      <fixed-ratio :content="image">
-        <lazy-load :url="image.url">
-          <picture v-if="imageSource.computed" class="responsive-image__picture" slot-scope="imageSource">
-            <!--[if IE 9]><video style="display: none;"><![endif]-->
-            <source type="image/webp" media="(min-width: 360px)" :srcset="imageUrl(imageSource.computed, { fm: 'webp' })">
-            <source type="image/webp" :srcset="imageUrl(imageSource.computed, { fm: 'webp', width: 360 })">
-            <source media="(min-width: 360px)" :srcset="imageUrl(imageSource.computed)">
-            <source :srcset="imageUrl(imageSource.computed, { width: 360 })">
-            <!--[if IE 9]></video><![endif]-->
-            <img class="responsive-image__img" :alt="image.alt" :srcset="imageUrl(imageSource.computed)" />
-            <noscript>
-              <img class="responsive-image__fallback" :src="image.url" :alt="image.alt" />
-            </noscript>
-          </picture>
-        </lazy-load>
-      </fixed-ratio>
-      <figcaption class="responsive-image__caption" v-if="image.title">{{ image.title }}</figcaption>
-    </figure>
+  <figure class="responsive-image">
+    <fixed-ratio class="responsive-image__canvas" :width="image.width" :height="image.height">
+      <lazy-load>
+        <picture class="responsive-image__picture">
+          <!--[if IE 9]><video style="display: none;"><![endif]-->
+          <source type="image/webp" media="(min-width: 360px)" :srcset="imageUrl({ width: 800, fm: 'webp' })">
+          <source type="image/webp" :srcset="imageUrl({ fm: 'webp', width: 360 })">
+          <source :type="`image/${image.format}`" media="(min-width: 360px)" :srcset="imageUrl({ width: 800 })">
+          <source :type="`image/${image.format}`" :srcset="imageUrl({ width: 360 })">
+          <!--[if IE 9]></video><![endif]-->
+          <img class="responsive-image__img" :alt="image.alt" :srcset="imageUrl({ width: 360 })" />
+        </picture>
+      </lazy-load>
+      <no-script>
+        <picture class="responsive-image__picture">
+          <img class="responsive-image__img" :alt="image.alt" :src="imageUrl({ width: 360 })" />
+        </picture>
+      </no-script>
+    </fixed-ratio>
+    <figcaption class="responsive-image__caption" v-if="image.title">
+      {{ image.title }}
+    </figcaption>
+  </figure>
 </template>
 
 <script>
-
 import FixedRatio from '../fixed-ratio'
 import LazyLoad from '../lazy-load'
+import NoScript from '../no-script'
 import imageUrl from '../../lib/image-url'
 
 export default {
-  components: { FixedRatio, LazyLoad },
+  components: { FixedRatio, LazyLoad, NoScript },
   props: ['image'],
   methods: {
-    imageUrl
+    imageUrl(options) {
+      return imageUrl(this.image.url, options)
+    },
   }
 }
 </script>
@@ -38,6 +44,10 @@ export default {
 <style scoped>
 .responsive-image {
   margin-bottom: var(--spacing-double);
+}
+
+.responsive-image__canvas {
+  background-color: var(--neutral-color);
 }
 
 .responsive-image__img {
@@ -64,9 +74,8 @@ export default {
   text-align: center;
 }
 
-.responsive-image__fallback {
-  position: relative;
-  width: 100%;
-  z-index: 1;
+.responsive-image__caption {
+  margin-top: var(--spacing-half);
+  text-align: center;
 }
 </style>

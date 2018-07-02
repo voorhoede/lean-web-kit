@@ -4,6 +4,7 @@ Uses the [Intersection observer API](https://developer.mozilla.org/en-US/docs/We
 
 ### Props:
 
-| Name      |   Type   |  Required  |
-|:---------:|:--------:|:----------:|
-| url       |  string  |    true    |
+| Name       |   Type   |  Required  |
+|:----------:|:--------:|:----------:|
+| rootMargin |  string  |   false    |
+| treshold   |  number  |   false    |

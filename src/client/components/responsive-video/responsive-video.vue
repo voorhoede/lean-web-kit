@@ -1,14 +1,13 @@
 <template>
   <div class="responsive-video">
     <figure>
-      <fixed-ratio :content="video">
-        <lazy-load :url="video.thumbnailUrl">
+      <fixed-ratio class="responsive-video__canvas" :width="video.width" :height="video.height">
+        <lazy-load>
           <img
-            slot-scope="imageSource"
             class="responsive-video__image"
-            v-if="!isPlaying && imageSource.computed"
+            v-if="!isPlaying"
             alt=""
-            :src="imageSource.computed"
+            :src="video.thumbnailUrl"
           />
         </lazy-load>
         <iframe
@@ -63,6 +62,7 @@ export default {
   },
   methods: {
     play() {
+      console.log(this.video)
       event.preventDefault();
       this.$ga.event({
         eventCategory: 'video',
@@ -79,6 +79,10 @@ export default {
 <style>
 .responsive-video {
   position: relative;
+}
+
+.responsive-video__canvas {
+  background-color: var(--neutral-color);
 }
 
 .responsive-video__image {
