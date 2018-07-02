@@ -4,31 +4,31 @@
       <h1>Lean Web Kit</h1>
     </nuxt-link>
     <div class="app-footer__social">
-      <a v-if="social.facebook" :href="social.facebook">
+      <a v-if="social.facebook" :href="social.facebook" @click="track(social.facebook)">
         <img src="/images/facebook.svg" />
         <span class="a11y-sr-only">Facebook</span>
       </a>
-      <a v-if="social.twitter" href="social.twitter">
+      <a v-if="social.twitter" :href="social.twitter" @click="track(social.twitter)">
         <img src="/images/twitter.svg" />
         <span class="a11y-sr-only">Twitter</span>
       </a>
-      <a v-if="social.googlePlus" href="social.googlePlus">
+      <a v-if="social.googlePlus" :href="social.googlePlus" @click="track(social.googlePlus)">
         <img src="/images/googleplus.svg" />
         <span class="a11y-sr-only">Google Plus</span>
       </a>
-      <a v-if="social.instagram" href="social.instagram">
+      <a v-if="social.instagram" :href="social.instagram" @click="track(social.instagram)">
         <img src="/images/instagram.svg" />
         <span class="a11y-sr-only">Instagram</span>
       </a>
-      <a v-if="social.youtube" href="social.youtube">
+      <a v-if="social.youtube" :href="social.youtube" @click="track(social.youtube)">
         <img src="/images/youtube.svg" />
         <span class="a11y-sr-only">YouTube</span>
       </a>
-      <a v-if="social.linkedin" href="social.linkedin">
+      <a v-if="social.linkedin" :href="social.linkedin" @click="track(social.linkedin)">
         <img src="/images/linkedin.svg" />
         <span class="a11y-sr-only">LinkedIn</span>
       </a>
-    </div>  
+    </div>
     <nav>
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
       <ul class="inline-list">
@@ -66,6 +66,16 @@ export default {
     locale() { return this.$i18n.locale },
     menu() { return this.menuI18n[this.locale] },
   },
+  methods: {
+    track(url) {
+      this.$ga.event({
+        eventCategory: 'outbound',
+        eventAction: 'click',
+        eventLabel: url,
+        eventValue: 1
+      })
+    }
+  }
 }
 </script>
 
