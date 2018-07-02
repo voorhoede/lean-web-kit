@@ -7,7 +7,7 @@
 import { stringify } from 'query-string'
 
 const defaults = {
-  auto: ['compress']
+  auto: ['compress', 'quality'],
 }
 
 /**
