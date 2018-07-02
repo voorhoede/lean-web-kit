@@ -17,6 +17,7 @@ module.exports = (dato, root, i18n) => {
 
   root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
   root.createDataFile(`${dataDir}/contact.json`, 'json', contactToJson(dato.contact))
+  root.createDataFile(`${dataDir}/social.json`, 'json', contactToJson(dato.social))
   root.createDataFile(`${dataDir}/locales.json`, 'json', locales)
   root.createDataFile(`${dataDir}/menu.json`, 'json', menuToJson(dato, i18n))
   root.createDataFile(`${dataDir}/pages.json`, 'json', pageSlugMap(dato, i18n))
