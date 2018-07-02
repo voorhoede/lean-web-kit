@@ -62,7 +62,6 @@ export default {
   },
   methods: {
     play() {
-      console.log(this.video)
       event.preventDefault();
       this.$ga.event({
         eventCategory: 'video',
