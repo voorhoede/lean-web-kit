@@ -6,27 +6,27 @@
       </nuxt-link>
       <div class="app-footer__social">
         <a class="app-footer__social-link" v-if="social.facebook" :href="social.facebook" @click="track(social.facebook)">
-          <img src="/images/facebook.svg" />
+          <facebook-icon />
           <span class="a11y-sr-only">Facebook</span>
         </a>
         <a class="app-footer__social-link" v-if="social.twitter" :href="social.twitter" @click="track(social.twitter)">
-          <img src="/images/twitter.svg" />
+          <twitter-icon />
           <span class="a11y-sr-only">Twitter</span>
         </a>
         <a class="app-footer__social-link" v-if="social.googlePlus" :href="social.googlePlus" @click="track(social.googlePlus)">
-          <img src="/images/googleplus.svg" />
+          <google-plus-icon />
           <span class="a11y-sr-only">Google Plus</span>
         </a>
         <a class="app-footer__social-link" v-if="social.instagram" :href="social.instagram" @click="track(social.instagram)">
-          <img src="/images/instagram.svg" />
+          <instagram-icon />
           <span class="a11y-sr-only">Instagram</span>
         </a>
         <a class="app-footer__social-link" v-if="social.youtube" :href="social.youtube" @click="track(social.youtube)">
-          <img src="/images/youtube.svg" />
+          <youtube-icon />
           <span class="a11y-sr-only">YouTube</span>
         </a>
         <a class="app-footer__social-link" v-if="social.linkedin" :href="social.linkedin" @click="track(social.linkedin)">
-          <img src="/images/linkedin.svg" />
+          <linkedin-icon />
           <span class="a11y-sr-only">LinkedIn</span>
         </a>
       </div>
@@ -61,8 +61,17 @@ import contact from '../../static/data/contact.json'
 import social from '../../static/data/social.json'
 import menuI18n from '../../static/data/menu.json'
 
+import FacebookIcon from '../../static/images/facebook.svg'
+import TwitterIcon from '../../static/images/twitter.svg'
+import GooglePlusIcon from '../../static/images/googleplus.svg'
+import InstagramIcon from '../../static/images/instagram.svg'
+import LinkedinIcon from '../../static/images/linkedin.svg'
+import YoutubeIcon from '../../static/images/youtube.svg'
+
+
 export default {
   props: ['contentId'],
+  components: { FacebookIcon, TwitterIcon, GooglePlusIcon, InstagramIcon, LinkedinIcon, YoutubeIcon },
   data () {
     return { menuI18n, contact, social }
   },
@@ -109,6 +118,18 @@ export default {
 .app-footer__social-link {
   margin: 0 var(--spacing-half);
 }
+
+.app-footer__social-link:hover,
+.app-footer__social-link:focus {
+  border-bottom: none;
+}
+
+.app-footer__social-link:hover path,
+.app-footer__social-link:focus path {
+  fill: var(--action-color);
+  transition: all 250ms ease;
+}
+
 
 .app-footer__nav {
   margin-bottom: var(--spacing-double);
