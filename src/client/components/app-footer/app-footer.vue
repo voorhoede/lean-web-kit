@@ -46,8 +46,8 @@
       </nav>
       <section class="app-footer__contact">
         <h2 class="a11y-sr-only">Contact</h2>
-        <span class="app-footer__contact-line">{{ contact.emailAddress }}</span>
-        <span class="app-footer__contact-line">{{ contact.phoneNumber }}</span>
+        <span class="app-footer__contact-line"><a :href="`mailto:${contact.emailAddress}`">{{ contact.emailAddress }}</a></span>
+        <span class="app-footer__contact-line"><a :href="`tel:${contact.phoneNumber}`">{{ contact.phoneNumber }}</a></span>
         <span class="app-footer__contact-line">{{ contact.street }}</span>
         <span class="app-footer__contact-line">{{ contact.city }}</span>
       </section>
