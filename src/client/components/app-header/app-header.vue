@@ -185,30 +185,6 @@ export default {
   height: 40px;
 }
 
-.app-header__toggle-menu__icon {
-  width: 30px;
-  height: auto;
-}
-
-.is-open .line-1 {
-  transform: rotate(45deg);
-  transform-origin: 14% 33%;
-}
-
-.is-open .line-2 {
-  opacity: 0;
-}
-
-.is-open .line-3 {
-  transform: rotate(-45deg);
-  transform-origin: 10% 63%;
-}
-
-.is-open .line,
-.line {
-  transition: all .2s ease-in-out;
-}
-
 @media screen and (min-width: 640px) {
   .app-header {
     display: flex;
