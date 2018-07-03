@@ -9,9 +9,9 @@
     
     <nav class="app-header__navigation" :class="{ 'app-header__navigation--open' : menuIsOpen }">
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
-      <ul class="app-header__inline-list">
-        <li v-for="(item, index) in slicedMenu" :key="index" class="app-header__list-item">
-          <smart-link :item="item" class="app-header__menu-link" />
+      <ul class="app-header__navigation-list">
+        <li v-for="(item, index) in slicedMenu" :key="index" class="app-header__navigation-item">
+          <smart-link :item="item" class="app-header__navigation-link" />
         </li>
       </ul>
       <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="app-header__call-to-action" />
@@ -76,7 +76,7 @@ export default {
   display: none;
   width: 100%;
   background-color: var(--background-color);
-  box-shadow: 0px 11px 14px rgba(214,214,214,.3);
+  box-shadow: 0px 8px 10px rgba(214,214,214,.3);
   transition: all .2s ease-in-out;
 }
 
@@ -87,27 +87,27 @@ export default {
   padding-bottom: var(--spacing-default);
 }
 
-.app-header__inline-list {
-  margin-bottom: var(--spacing-default);
+.app-header__navigation-list {
+  margin: 0 0 var(--spacing-default) 0;
   padding: 0;
   text-align: center;
 }
 
-.app-header__list-item {
+.app-header__navigation-item {
   height: auto;
   margin-bottom: var(--spacing-double);
   list-style-type: none;
 }
 
-.app-header__menu-link {
+.app-header__navigation-link {
   padding: var(--spacing-default) 0;
   color: var(--text-color);
   text-transform: uppercase;
   text-decoration: none;
 }
 
-.app-header__menu-link:focus,
-.app-header__menu-link:hover {
+.app-header__navigation-link:focus,
+.app-header__navigation-link:hover {
   cursor: pointer;
   outline: none;
   border-bottom: 3px solid var(--action-color);
@@ -185,19 +185,17 @@ export default {
     box-shadow: none;
   }
 
-  .app-header__inline-list {
+  .app-header__navigation-list {
     display: flex;
     justify-content: flex-end;
-    margin-left: auto;
-    margin-right: 1.5rem;
+    margin: 0 1.5rem auto 0;
+  }
+
+  .app-header__navigation-item {
     margin-bottom: 0;
   }
 
-  .app-header__list-item {
-    margin-bottom: 0;
-  }
-
-  .app-header__list-item:not(:last-child) {
+  .app-header__navigation-item:not(:last-child) {
     margin-right: 1.5rem;
   }
 
