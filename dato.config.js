@@ -1,4 +1,5 @@
 const fs = require('fs')
+const cheerio = require('cheerio')
 const dotenv = require('dotenv-safe')
 const { pick, omit } = require('lodash')
 const slugify = require('slugify')
@@ -14,6 +15,7 @@ module.exports = (dato, root, i18n) => {
 
   fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects), 'utf8')
 
+  root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
   root.createDataFile(`${dataDir}/locales.json`, 'json', locales)
   root.createDataFile(`${dataDir}/menu.json`, 'json', menuToJson(dato, i18n))
   root.createDataFile(`${dataDir}/pages.json`, 'json', pageSlugMap(dato, i18n))
@@ -25,6 +27,10 @@ module.exports = (dato, root, i18n) => {
     })
     root.createDataFile(`${dataDir}/${locale}/messages.json`, 'json', translationsToJson(dato.translations))
   })
+}
+
+function appSettingsToJson(app) {
+  return pick(app, ['title', 'googleAnalyticsTrackingId'])
 }
 
 /**
@@ -50,6 +56,15 @@ function pageSlugMap (dato, i18n) {
   }, {})
 }
 
+function transformItem(item) {
+  if (item.type === 'text') {
+    const $ = cheerio.load(item.body)
+    $('img').remove()
+    item.body = $('body').html()
+  }
+  return item
+}
+
 function pageToJson (page, i18n) {
   const { title, slug, hasToc } = page
   const sections = page.sections.map(({ title, items }) => ({
@@ -58,6 +73,7 @@ function pageToJson (page, i18n) {
     items: items.toMap()
       .map(item => ({ ...item, type: item.itemType }))
       .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
+      .map(transformItem)
   }))
   const seo = page.seo.toMap()
   const slugI18n = locales.reduce((out, locale) => {

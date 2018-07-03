@@ -6,6 +6,14 @@ import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import Vuex from 'vuex'
 
+setOptions({
+  name: 'Lean Web Kit',
+  url: '#',
+  showLeftPanel: true,
+  showDownPanel: true,
+  downPanelInRight: true,
+})
+
 Vue.use(VueI18n)
 Vue.use(Vuex)
 
@@ -56,25 +64,17 @@ Vue.component('NuxtLink', {
   template: '<a :href="to"><slot>RouterLink</slot></a>',
 })
 
-
-const nuxtRootDir = `${__dirname}/../../src/client`
-// const req = require.context(`${nuxtRootDir}/components`, true, /\.stories\.js$/)
-
-function loadStories() {
-    //req.keys().map(path => req(path))
-    require(`${__dirname}/../../src/client/components/app-core/app-core.stories`)
-    require(`${__dirname}/../../src/client/components/app-footer/app-footer.stories`)
-    require(`${__dirname}/../../src/client/components/app-header/app-header.stories`)
-    require(`${__dirname}/../../src/client/components/language-selector/language-selector.stories`)
-    require(`${__dirname}/../../src/client/components/responsive-image/responsive-image.stories`)
-    require(`${__dirname}/../../src/client/components/responsive-video/responsive-video.stories`)
-    require(`${__dirname}/../../src/client/components/rich-text/rich-text.stories`)
-    require(`${__dirname}/../../src/client/components/table-of-contents/table-of-contents.stories`)
+function importAll (r) {
+  r.keys().forEach(r)
 }
 
-setOptions({
-  name: 'Lean Web Kit',
-  url: '#'
-})
+/**
+ * Load stories
+ * Note: don't try to move `${__dirname}/../../src/client/` to a variable,
+ * it will cause errors as then Webpack can no longer statically determine required files.
+ */
+function loadStories() {
+  importAll(require.context(`${__dirname}/../../src/client/`, true, /\.stories\.js$/))
+}
 
 configure(loadStories, module)

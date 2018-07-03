@@ -7,23 +7,11 @@ html {
   box-sizing: border-box;
 }
 
-ol {
-  list-style: none;
-  padding: 0;
-}
-
 figure {
   margin: 0 auto;
 }
 
 img {
   max-width: 100%;
-}
-
-figcaption {
-  font-size: .875rem;
-}
-
-figure {
-  margin-bottom: 3rem;
+  height: auto;
 }
