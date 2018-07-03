@@ -14,7 +14,7 @@
           <smart-link :item="item" class="app-header__menu-link" />
         </li>
       </ul>
-      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="app-header__call-to-action " />
+      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="app-header__call-to-action" />
       <language-selector :locales="$i18n.locales" />
     </nav>
     
@@ -187,13 +187,18 @@ export default {
 
   .app-header__inline-list {
     display: flex;
+    justify-content: flex-end;
     margin-left: auto;
     margin-right: 1.5rem;
     margin-bottom: 0;
   }
 
   .app-header__list-item {
-    margin: 0 1.5rem 0 0;
+    margin-bottom: 0;
+  }
+
+  .app-header__list-item:not(:last-child) {
+    margin-right: 1.5rem;
   }
 
   .app-header__call-to-action {
