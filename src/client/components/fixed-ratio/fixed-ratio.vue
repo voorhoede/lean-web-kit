@@ -7,12 +7,15 @@
 </template>
 
 <script>
-
+const dimension = { type: Number, required: true }
 export default {
-  props: ['content'],
+  props: {
+    height: dimension,
+    width:  dimension,
+  },
   computed: {
     ratio() {
-      return this.content.height / this.content.width * 100
+      return this.height / this.width * 100
     }
   },
 }
@@ -21,7 +24,6 @@ export default {
 
 <style>
 .fixed-ratio {
-  background-color: var(--neutral-color);
   display: block;
   position: relative;
   height: 0;
