@@ -1,5 +1,9 @@
 <template>
-  <header class="page-header" :class="image ? 'page-header--with-cover-image' : null" :style="image ? 'background-image:url(' + image.url + ');' : null">
+  <header v-if="image" class="page-header page-header--with-cover-image" :class="{ 'enhanced-image' : imageLoaded }" :style="`background-image:url(${ imageLoaded ? image.url : smallSrc });`">
+    <h1 class="page-header__title">{{ title }}</h1>
+    <p class="page-header__subtitle" v-if="subtitle">{{ subtitle }}</p>
+  </header>
+  <header v-else class="page-header">
     <h1 class="page-header__title">{{ title }}</h1>
     <p class="page-header__subtitle" v-if="subtitle">{{ subtitle }}</p>
   </header>
@@ -8,6 +12,23 @@
 <script>
 export default {
   props: ['title', 'subtitle', 'image'],
+  data () {
+    return {
+      smallSrc: 'https://www.datocms-assets.com/6068/1529677077-photo-1529599087-bcf1dc4a7ae4.jpeg?w=15',
+      imageLoaded: false,
+    }
+  },
+  mounted () {
+    let img = new Image()
+    img.src = this.image.url
+
+    img.onload = this.loadEnhancedImage
+  },
+  methods: {
+    loadEnhancedImage () {
+      this.imageLoaded = true
+    }
+  }
 }
 </script>
 
@@ -63,6 +84,7 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  overflow: hidden;
 }
 
 .page-header--with-cover-image:before {
@@ -84,4 +106,18 @@ export default {
   color: var(--background-color);
   z-index: 1;
 }
+
+/* .enhanced-image {
+  animation: sharpen .5s ease-in-out;
+}
+
+@keyframes sharpen {
+  from {
+    filter: blur(20px);
+  }
+
+  to {
+    filter: blur(0);
+  }
+} */
 </style>
