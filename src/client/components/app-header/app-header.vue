@@ -7,7 +7,7 @@
     
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
     
-    <nav class="app-header__navigation" :class="{ 'app-header__navigation--open' : isOpen }">
+    <nav class="app-header__navigation" :class="{ 'app-header__navigation--open' : menuIsOpen }">
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
       <ul class="app-header__inline-list">
         <li v-for="(item, index) in slicedMenu" :key="index" class="app-header__list-item">
@@ -20,7 +20,7 @@
     
     <button class="app-header__toggle-menu" @click="toggleMenu" >
       <span class="a11y-sr-only">Toggle navigation</span>
-      <menu-icon :isOpen="isOpen" />
+      <menu-icon :isOpen="menuIsOpen" />
     </button>
   </header>
 </template>
@@ -35,7 +35,7 @@ export default {
   props: ['contentId', 'menuI18n'],
   data () {
     return {
-      isOpen: false,
+      menuIsOpen: false,
     }
   },
   computed: {
@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     toggleMenu () {
-      this.isOpen = !this.isOpen
+      this.menuIsOpen = !this.menuIsOpen
     },
   }
 }
