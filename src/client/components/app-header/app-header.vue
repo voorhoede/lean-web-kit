@@ -2,73 +2,51 @@
   <header role="banner" class="app-header">
     <nuxt-link :to="localePath('index')" class="app-header__identity">
       <img class="app-header__logo" src="/images/logo.svg" alt="" />
-      <h1 class="app-header__title">{{ appTitle }}</h1>
+      <h1 class="app-header__title">Lean Web Kit</h1>
     </nuxt-link>
     
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
     
-    <nav class="app-header__navigation" :class="{ 'app-header__navigation--open' : showNavigation }">
+    <nav class="app-header__navigation" :class="{ 'app-header__navigation--open' : isOpen }">
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
-      
       <ul class="app-header__inline-list">
-        <li class="app-header__list-item" v-for="item in slicedMenu" :key="item.slug">
-          <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
-            class="app-header__menu-link"
-          >
-            {{ item.title }}
-          </nuxt-link>
+        <li v-for="(item, index) in slicedMenu" :key="index" class="app-header__list-item">
+          <smart-link :item="item" class="app-header__menu-link" />
         </li>
       </ul>
-      
-      <button class="app-header__action-button" v-if="menu.callToAction" @click="handleClick">{{ menu.callToAction.title }}</button>
-      <language-selector v-if="$i18n.locales" :locales="$i18n.locales" />
+      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="app-header__call-to-action " />
+      <language-selector :locales="$i18n.locales" />
     </nav>
     
-    <button class="app-header__toggle-menu" @click="toggleNavigation" >
+    <button class="app-header__toggle-menu" @click="toggleMenu" >
       <span class="a11y-sr-only">Toggle navigation</span>
-      <svg class="app-header__menu-icon" :class="{ 'is-open': showNavigation }" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512">
-        <g>
-          <path class="line line-2" d="M491.318,235.318H20.682C9.26,235.318,0,244.577,0,256s9.26,20.682,20.682,20.682h470.636 c11.423,0,20.682-9.259,20.682-20.682C512,244.578,502.741,235.318,491.318,235.318z"/>
-          <path class="line line-1" d="M491.318,78.439H20.682C9.26,78.439,0,87.699,0,99.121c0,11.422,9.26,20.682,20.682,20.682h470.636 c11.423,0,20.682-9.26,20.682-20.682C512,87.699,502.741,78.439,491.318,78.439z"/>
-          <path class="line line-3" d="M491.318,392.197H20.682C9.26,392.197,0,401.456,0,412.879s9.26,20.682,20.682,20.682h470.636 c11.423,0,20.682-9.259,20.682-20.682S502.741,392.197,491.318,392.197z"/>
-        </g>
-      </svg>
+      <menu-icon :isOpen="isOpen" />
     </button>
   </header>
 </template>
 
 <script>
 import LanguageSelector from '../language-selector'
+import SmartLink from '../smart-link'
+import MenuIcon from '../menu-icon'
 
 export default {
-  components: { LanguageSelector },
-  props: ['contentId', 'appTitle', 'menuI18n'],
+  components: { LanguageSelector, SmartLink, MenuIcon },
+  props: ['contentId', 'menuI18n'],
   data () {
     return {
-      showNavigation: false,
+      isOpen: false,
     }
   },
   computed: {
     locale() { return this.$i18n.locale },
     menu() { return this.menuI18n[this.locale] },
-    slicedMenu() { return this.sliceMenuItems(this.menu)}
+    slicedMenu() { return (this.menu.callToAction || this.$i18n.locales) ? this.menu.items.slice(0, 3) : this.menu.items.slice(0, 5)}
   },
   methods: {
-    toggleNavigation () {
-      this.showNavigation = !this.showNavigation
+    toggleMenu () {
+      this.isOpen = !this.isOpen
     },
-
-    handleClick () {
-      console.log('button clicked')
-    },
-
-    sliceMenuItems ({ items }) {
-      if (this.menu.callToAction || this.$i18n.locales) {
-        return items.slice(0, 3)
-      }
-
-      return items.slice(0, 5)
-    }
   }
 }
 </script>
@@ -130,6 +108,7 @@ export default {
 
 .app-header__menu-link:focus,
 .app-header__menu-link:hover {
+  cursor: pointer;
   outline: none;
   border-bottom: 3px solid var(--action-color);
 }
@@ -157,7 +136,7 @@ export default {
   font-weight: lighter;
 }
 
-.app-header__action-button {
+.app-header__call-to-action {
   margin-left: auto;
   padding: 0 var(--spacing-default);
   font-size: var(--font-size-default);
@@ -168,14 +147,15 @@ export default {
   box-shadow: 0 1px 5px #ccc;
   border: none;
   border-radius: 3px;
+  line-height: 40px;
 }
 
-.app-header__action-button:hover {
+.app-header__call-to-action:hover {
   cursor: pointer;
   opacity: .9;
 }
 
-.app-header__navigation--open .app-header__action-button {
+.app-header__navigation--open .app-header__call-to-action {
   margin: 0 0 1.5rem 0;
 }
 
@@ -207,14 +187,16 @@ export default {
 
   .app-header__inline-list {
     display: flex;
-    margin: 0 0 0 auto;
+    margin-left: auto;
+    margin-right: 1.5rem;
+    margin-bottom: 0;
   }
 
   .app-header__list-item {
     margin: 0 1.5rem 0 0;
   }
 
-  .app-header__action-button {
+  .app-header__call-to-action {
     margin-right: 1.5rem;
   }
 
