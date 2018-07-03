@@ -3,6 +3,26 @@ import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
 import readme from './readme.md'
 import AppHeader from './'
+import menuItems from './app-header.stories.json'
+
+const i18n = () => {
+  return new VueI18n({
+    locale: 'en',
+    messages: {
+      en: {
+        skip_to_content: 'Skip to content',
+      }
+    },
+  })
+}
+
+const mockLocales = () => {
+  return ['en', 'nl'].map(locale => ({
+    code: locale,
+    iso: locale,
+    name: locale,
+  }))
+}
 
 storiesOf('App header', module)
   .addDecorator(withReadme(readme))
@@ -11,210 +31,46 @@ storiesOf('App header', module)
     template: '<app-header :menuI18n="menu" />',
     data () {
       return {
-        menu: defaultMenu,
+        menu: menuItems.defaultMenu,
       }
     },
-    i18n: new VueI18n({
-      locale: 'en',
-      messages: {
-        en: {
-          skip_to_content: 'Skip to content',
-        }
-      },
-    }),
+    i18n: i18n()
   }))
   .add('With action button', () => ({
     components: { AppHeader },
     template: '<app-header :menuI18n="menu" />',
     data () {
       return {
-        menu: menuWithAction,
+        menu: menuItems.menuWithAction,
       }
     },
-    i18n: new VueI18n({
-      locale: 'en',
-      messages: {
-        en: {
-          skip_to_content: 'Skip to content',
-        }
-      },
-    }),
+    i18n: i18n()
   }))
   .add('With language selection', () => ({
     components: { AppHeader },
     template: '<app-header :menuI18n="menu" />',
     data () {
       return {
-        menu: defaultMenu,
+        menu: menuItems.defaultMenu,
       }
     },
-    i18n: new VueI18n({
-      locale: 'en',
-      messages: {
-        en: {
-          skip_to_content: 'Skip to content',
-        }
-      },
-    }),
+    i18n: i18n(),
     created() {
       // mock locales required for language selector
-      this.$i18n.locales = ['en', 'nl'].map(locale => ({
-        code: locale,
-        iso: locale,
-        name: locale,
-      }))
-  }
-}))
-.add('With action button and language selection', () => ({
-  components: { AppHeader },
-  template: '<app-header :menuI18n="menu" />',
-  data () {
-    return {
-      menu: menuWithAction,
+      this.$i18n.locales = mockLocales()
     }
-  },
-  i18n: new VueI18n({
-    locale: 'en',
-    messages: {
-      en: {
-        skip_to_content: 'Skip to content',
+  }))
+  .add('With action button and language selection', () => ({
+    components: { AppHeader },
+    template: '<app-header :menuI18n="menu" />',
+    data () {
+      return {
+        menu: menuItems.menuWithAction,
       }
     },
-  }),
-  created() {
-    // mock locales required for language selector
-    this.$i18n.locales = ['en', 'nl'].map(locale => ({
-      code: locale,
-      iso: locale,
-      name: locale,
-    }))
-  }
-}))
-
-const defaultMenu = {
-  "en": {
-    "title": "Site menu",
-    "items": [
-      {
-        "title": "About Us",
-        "slug": "about-us"
-      },
-      {
-        "title": "Portfolio",
-        "slug": "faq"
-      },
-      {
-        "title": "Careers",
-        "slug": "careers"
-      },
-      {
-        "title": "FAQ",
-        "slug": "fsq"
-      },
-      {
-        "title": "something",
-        "slug": "something"
-      },
-      {
-        "title": "something else",
-        "slug": "something else"
-      }
-    ],
-  },
-  "nl": {
-    "title": "Site menu",
-    "items": [
-      {
-        "title": "Over ons",
-        "slug": "over-ons"
-      },
-      {
-        "title": "Veelgestelde vragen",
-        "slug": "veelgestelde-vragen"
-      },
-      {
-        "title": "Over ons",
-        "slug": "over-ons"
-      },
-      {
-        "title": "Veelgestelde vragen",
-        "slug": "veelgestelde-vragesn"
-      },
-      {
-        "title": "Over ons",
-        "slug": "over-osns"
-      },
-      {
-        "title": "Veelgestelde vragen",
-        "slug": "veelgesteldse-vragen"
-      }
-    ],
-  }
-}
-
-const menuWithAction = {
-  "en": {
-    "title": "Site menu",
-    "items": [
-      {
-        "title": "About Us",
-        "slug": "about-us"
-      },
-      {
-        "title": "Portfolio",
-        "slug": "faq"
-      },
-      {
-        "title": "Careers",
-        "slug": "careers"
-      },
-      {
-        "title": "FAQ",
-        "slug": "fasq"
-      },
-      {
-        "title": "something",
-        "slug": "something"
-      },
-      {
-        "title": "something else",
-        "slug": "something else"
-      }
-    ],
-    "callToAction": {
-      "title": "Start Now"
+    i18n: i18n(),
+    created() {
+      // mock locales required for language selector
+      this.$i18n.locales = mockLocales()
     }
-  },
-  "nl": {
-    "title": "Site menu",
-    "items": [
-      {
-        "title": "Over ons",
-        "slug": "over-ons"
-      },
-      {
-        "title": "Veelgestelde vragen",
-        "slug": "veelgestelde-vragen"
-      },
-      {
-        "title": "Over ons",
-        "slug": "over-ons"
-      },
-      {
-        "title": "Veelgestelde vragen",
-        "slug": "veelgestelde-vragesn"
-      },
-      {
-        "title": "Over ons",
-        "slug": "over-osns"
-      },
-      {
-        "title": "Veelgestelde vragen",
-        "slug": "veelgesteldse-vragen"
-      }
-    ],
-    "callToAction": {
-      "title": "Start Nu"
-    }
-  }
-}
+  }))
