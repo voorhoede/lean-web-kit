@@ -9,19 +9,13 @@
     
     <nav class="app-header__navigation" :class="{ 'app-header__navigation--open' : showNavigation }">
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
-      
       <ul class="app-header__inline-list">
-        <li class="app-header__list-item" v-for="item in slicedMenu" :key="item.slug">
-          <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
-            class="app-header__menu-link"
-          >
-            {{ item.title }}
-          </nuxt-link>
+        <li v-for="(item, index) in menu.items" :key="index" class="app-header__list-item">
+          <smart-link :item="item" class="app-header__menu-link" />
         </li>
       </ul>
-      
-      <button class="app-header__action-button" v-if="menu.callToAction" @click="handleClick">{{ menu.callToAction.title }}</button>
-      <language-selector v-if="$i18n.locales" :locales="$i18n.locales" />
+      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="app-header__menu-link" />
+      <language-selector :locales="$i18n.locales" />
     </nav>
     
     <button class="app-header__toggle-menu" @click="toggleNavigation" >
@@ -39,13 +33,14 @@
 
 <script>
 import LanguageSelector from '../language-selector'
+import SmartLink from '../smart-link'
 
 export default {
-  components: { LanguageSelector },
-  props: ['contentId', 'appTitle', 'menuI18n'],
+  components: { LanguageSelector, SmartLink },
+  props: ['contentId', 'menuI18n'],
   data () {
     return {
-      showNavigation: false,
+      isOpen: false,
     }
   },
   computed: {
