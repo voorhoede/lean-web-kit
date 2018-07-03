@@ -1,12 +1,24 @@
 <template>
-  <header v-if="image" class="page-header page-header--with-cover-image" :class="{ 'enhanced-image' : imageLoaded }" :style="`background-image:url(${ imageLoaded ? image.url : smallSrc });`">
+  <!-- option 1 -->
+  <header class="page-header" :class="{ 'page-header--with-cover-image' : image }">
+    <img v-if="image" :src="imageLoaded ? image.url : smallImageSrc" alt="" class="cover-image"  :class="{ 'enhanced-image' : imageLoaded }">
     <h1 class="page-header__title">{{ title }}</h1>
     <p class="page-header__subtitle" v-if="subtitle">{{ subtitle }}</p>
   </header>
-  <header v-else class="page-header">
-    <h1 class="page-header__title">{{ title }}</h1>
-    <p class="page-header__subtitle" v-if="subtitle">{{ subtitle }}</p>
-  </header>
+
+  <!-- option 2 -->
+    <!-- <header v-if="image" 
+            class="page-header page-header--with-cover-image" 
+            :class="{ 'image-enhanced' : imageLoaded }"
+            :style="`background-image:url('${imageLoaded ? image.url : smallImageSrc }');`"
+    >
+      <h1 class="page-header__title">{{ title }}</h1>
+      <p class="page-header__subtitle" v-if="subtitle">{{ subtitle }}</p>
+    </header>
+    <header v-else class="page-header">
+      <h1 class="page-header__title">{{ title }}</h1>
+      <p class="page-header__subtitle" v-if="subtitle">{{ subtitle }}</p>
+    </header> -->
 </template>
 
 <script>
@@ -14,7 +26,7 @@ export default {
   props: ['title', 'subtitle', 'image'],
   data () {
     return {
-      smallSrc: 'https://www.datocms-assets.com/6068/1529677077-photo-1529599087-bcf1dc4a7ae4.jpeg?w=15',
+      smallImageSrc: 'https://www.datocms-assets.com/6068/1529677077-photo-1529599087-bcf1dc4a7ae4.jpeg?w=40',
       imageLoaded: false,
     }
   },
@@ -33,6 +45,8 @@ export default {
 </script>
 
 <style>
+
+
 .page-header {
   width: 100%;
   margin-bottom: 4rem;
@@ -97,6 +111,16 @@ export default {
   height: 100%;
 }
 
+
+.cover-image {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  object-fit: cover;
+  filter: blur(20px);
+  z-index: -1;
+}
+
 .page-header--with-cover-image:after {
   border: none;
 }
@@ -107,8 +131,11 @@ export default {
   z-index: 1;
 }
 
-/* .enhanced-image {
+/* transition for when swapping background images */
+
+.enhanced-image {
   animation: sharpen .5s ease-in-out;
+  animation-fill-mode: forwards;
 }
 
 @keyframes sharpen {
@@ -119,5 +146,5 @@ export default {
   to {
     filter: blur(0);
   }
-} */
+}
 </style>
