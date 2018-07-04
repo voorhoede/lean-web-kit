@@ -7,11 +7,11 @@
     
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
     
-    <nav class="app-header__navigation" :class="{ 'app-header__navigation--open' : menuIsOpen }">
+    <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }">
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
-      <ul class="app-header__navigation-list">
-        <li v-for="(item, index) in slicedMenu" :key="index" class="app-header__navigation-item">
-          <smart-link :item="item" class="app-header__navigation-link" />
+      <ul class="app-header__menu-list">
+        <li v-for="(item, index) in menuItems" :key="index" class="app-header__menu-item">
+          <smart-link :item="item" class="app-header__menu-link" />
         </li>
       </ul>
       <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="app-header__call-to-action" />
@@ -19,7 +19,7 @@
     </nav>
     
     <button class="app-header__toggle-menu" @click="toggleMenu" >
-      <span class="a11y-sr-only">Toggle navigation</span>
+      <span class="a11y-sr-only">Toggle menu</span>
       <menu-icon :isOpen="menuIsOpen" />
     </button>
   </header>
@@ -41,7 +41,7 @@ export default {
   computed: {
     locale() { return this.$i18n.locale },
     menu() { return this.menuI18n[this.locale] },
-    slicedMenu() { return (this.menu.callToAction || this.$i18n.locales) ? this.menu.items.slice(0, 3) : this.menu.items.slice(0, 5)}
+    menuItems() { return (this.menu.callToAction || this.$i18n.locales) ? this.menu.items.slice(0, 3) : this.menu.items.slice(0, 5)}
   },
   methods: {
     toggleMenu () {
@@ -69,7 +69,7 @@ export default {
   box-shadow: 0 2px 15px 0 rgba(214,214,214,.5);
 }
 
-.app-header__navigation {
+.app-header__menu {
   position: absolute;
   top: var(--app-header-mobile-height);
   left: 0;
@@ -80,34 +80,34 @@ export default {
   transition: all .2s ease-in-out;
 }
 
-.app-header__navigation--open {
+.app-header__menu--open {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-bottom: var(--spacing-default);
 }
 
-.app-header__navigation-list {
+.app-header__menu-list {
   margin: 0 0 var(--spacing-default) 0;
   padding: 0;
   text-align: center;
 }
 
-.app-header__navigation-item {
+.app-header__menu-item {
   height: auto;
   margin-bottom: var(--spacing-double);
   list-style-type: none;
 }
 
-.app-header__navigation-link {
+.app-header__menu-link {
   padding: var(--spacing-default) 0;
   color: var(--text-color);
   text-transform: uppercase;
   text-decoration: none;
 }
 
-.app-header__navigation-link:focus,
-.app-header__navigation-link:hover {
+.app-header__menu-link:focus,
+.app-header__menu-link:hover {
   cursor: pointer;
   outline: none;
   border-bottom: 3px solid var(--action-color);
@@ -155,7 +155,7 @@ export default {
   opacity: .9;
 }
 
-.app-header__navigation--open .app-header__call-to-action {
+.app-header__menu--open .app-header__call-to-action {
   margin: 0 0 1.5rem 0;
 }
 
@@ -173,7 +173,7 @@ export default {
     height: var(--app-header-height);
   }
 
-  .app-header__navigation {
+  .app-header__menu {
     display: flex;
     align-items: center;
     position: relative;
@@ -185,17 +185,17 @@ export default {
     box-shadow: none;
   }
 
-  .app-header__navigation-list {
+  .app-header__menu-list {
     display: flex;
     justify-content: flex-end;
     margin: 0 1.5rem auto 0;
   }
 
-  .app-header__navigation-item {
+  .app-header__menu-item {
     margin-bottom: 0;
   }
 
-  .app-header__navigation-item:not(:last-child) {
+  .app-header__menu-item:not(:last-child) {
     margin-right: 1.5rem;
   }
 
