@@ -117,10 +117,10 @@ export default {
 
 .table-of-contents__link {
   display: block;
+  margin-bottom: .3rem;
   padding: var(--spacing-default) 0;
   color: var(--text-color);
   background-color: var(--neutral-color);
-  margin-bottom: .3rem;
 }
 
 .table-of-contents__link:hover,
@@ -140,6 +140,7 @@ export default {
   }
 
   .table-of-contents__list {
+    display: block;
     text-align: left;
   }
 
