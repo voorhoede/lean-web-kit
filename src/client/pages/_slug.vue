@@ -3,7 +3,7 @@
     <page-header :title="page.title" :subtitle="page.subtitle" />
 
     <div class="page__content">
-      <div class="page__content__sidebar" v-if="page.hasToc">
+      <div class="page__sidebar" v-if="page.hasToc">
         <table-of-contents :items="page.tocItems" />
       </div>
 
@@ -44,7 +44,7 @@ export default {
   max-width: 920px;
 }
 
-.page__content__sidebar {
+.page__sidebar {
   display: none;
   position: sticky;
   top: 80px;
@@ -57,7 +57,7 @@ export default {
     padding: 0 var(--spacing-double);
   }
 
-  .page__content__sidebar {
+  .page__sidebar {
     display: block;
     flex-grow: 1;
     margin-right: var(--spacing-double);

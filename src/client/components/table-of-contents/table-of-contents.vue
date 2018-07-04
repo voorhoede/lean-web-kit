@@ -33,18 +33,18 @@ export default {
       const sectionsLenght = this.items.length
 
       for (var i = 0; i < sectionsLenght; i++) {
-        const myElement = document.getElementById(this.items[i].slug)
+        const section = document.getElementById(this.items[i].slug)
 
-        if (this.isBelowScroll(myElement)) {
-          this.activeItem = myElement.id
+        if (this.isBelowScroll(section)) {
+          this.activeItem = section.id
         }
       }
     },
 
     isBelowScroll (el) {
-      const position = el.getBoundingClientRect()
+      const { top, height } = el.getBoundingClientRect()
       
-      return position.top < 200 && ((position.top + position.height) > 0)
+      return top < 200 && ((top + height) > 0)
     }
   }
 }
@@ -77,8 +77,7 @@ export default {
   background-size: 0% 3px;
   background-position: bottom left;
   background-repeat: no-repeat;
-  -webkit-transition: 1s;
-          transition: 1s;
+  transition: 1s;
 }
 
 .table-of-contents__link:hover,
