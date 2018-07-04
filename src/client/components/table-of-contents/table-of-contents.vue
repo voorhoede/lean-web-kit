@@ -21,7 +21,7 @@ export default {
     }
   },
   mounted () {
-    window.addEventListener('scroll', this.updateActiveItem)
+    window.addEventListener('scroll', this.updateActiveItem, { passive: true })
   },
   
   beforeDestroy () {
