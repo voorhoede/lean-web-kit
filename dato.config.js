@@ -1,4 +1,5 @@
 const fs = require('fs')
+const cheerio = require('cheerio')
 const dotenv = require('dotenv-safe')
 const { pick, omit } = require('lodash')
 const slugify = require('slugify')
@@ -55,6 +56,15 @@ function pageSlugMap (dato, i18n) {
   }, {})
 }
 
+function transformItem(item) {
+  if (item.type === 'text') {
+    const $ = cheerio.load(item.body)
+    $('img').remove()
+    item.body = $('body').html()
+  }
+  return item
+}
+
 function pageToJson (page, i18n) {
   const { title, slug, hasToc } = page
   const sections = page.sections.map(({ title, items }) => ({
@@ -63,6 +73,7 @@ function pageToJson (page, i18n) {
     items: items.toMap()
       .map(item => ({ ...item, type: item.itemType }))
       .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
+      .map(transformItem)
   }))
   const seo = page.seo.toMap()
   const slugI18n = locales.reduce((out, locale) => {

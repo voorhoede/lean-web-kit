@@ -12,7 +12,7 @@ export default {
 .rich-text {
   width: 100%;
   max-width: var(--max-width);
-  margin: 0 auto;
+  margin: 0 auto var(--spacing-double);
 }
 
 .rich-text p {
