@@ -139,6 +139,7 @@ export default {
   .table-of-contents__link {
     display: block;
     padding-bottom: var(--spacing-default);
+    padding-left: 0;
     color: var(--text-color);
     background: linear-gradient(to right, var(--action-color), var(--action-color));
     background-size: 0% 3px;

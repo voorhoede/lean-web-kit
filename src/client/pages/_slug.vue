@@ -43,7 +43,6 @@ export default {
 }
 
 .page__sidebar {
-  display: block;
   margin: 0 auto var(--spacing-double) auto;
   width: 100%;
   max-width: var(--max-width);
@@ -58,7 +57,6 @@ export default {
   }
 
   .page__sidebar {
-    display: block;
     position: sticky;
     top: 80px;
     flex-grow: 1;
