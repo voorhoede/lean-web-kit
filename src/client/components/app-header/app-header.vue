@@ -14,12 +14,13 @@
           <smart-link :item="item" class="app-header__menu-link" />
         </li>
       </ul>
-      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="app-header__call-to-action" />
+      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="button app-header__button" />
       <language-selector :locales="$i18n.locales" />
     </nav>
     
     <button class="app-header__toggle-menu" @click="toggleMenu" >
-      <span class="a11y-sr-only">Toggle menu</span>
+      <span v-if="menuIsOpen" class="a11y-sr-only">{{ $t('close_menu') }}</span>
+      <span v-else class="a11y-sr-only">{{ $t('open_menu') }}</span>
       <menu-icon :isOpen="menuIsOpen" />
     </button>
   </header>
@@ -136,26 +137,11 @@ export default {
   font-weight: lighter;
 }
 
-.app-header__call-to-action {
+.app-header__button {
   margin-left: auto;
-  padding: 0 var(--spacing-default);
-  font-size: var(--font-size-default);
-  color: var(--background-color);
-  text-transform: uppercase;
-  height: 40px;
-  background-color: var(--action-color);
-  box-shadow: 0 1px 5px #ccc;
-  border: none;
-  border-radius: 3px;
-  line-height: 40px;
 }
 
-.app-header__call-to-action:hover {
-  cursor: pointer;
-  opacity: .9;
-}
-
-.app-header__menu--open .app-header__call-to-action {
+.app-header__menu--open .app-header__button {
   margin: 0 0 1.5rem 0;
 }
 
@@ -188,7 +174,7 @@ export default {
   .app-header__menu-list {
     display: flex;
     justify-content: flex-end;
-    margin: 0 1.5rem auto 0;
+    margin: 0 1.5rem 0 auto;
   }
 
   .app-header__menu-item {
@@ -199,7 +185,7 @@ export default {
     margin-right: 1.5rem;
   }
 
-  .app-header__call-to-action {
+  .app-header__button {
     margin-right: 1.5rem;
   }
 
