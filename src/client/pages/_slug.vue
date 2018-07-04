@@ -37,21 +37,21 @@ export default {
 @import '../components/app-core/index.css';
 
 .page__content {
-  display: flex;
-  justify-content: center;
   margin: 0 auto;
   padding: 0 var(--spacing-default);
   max-width: 920px;
 }
 
 .page__sidebar {
-  display: none;
-  position: sticky;
-  top: 80px;
+  display: block;
+  margin: 0 auto var(--spacing-double) auto;
+  width: 100%;
+  max-width: var(--max-width);
 }
 
 @media screen and (min-width: 880px) {
   .page__content {
+    display: flex;
     justify-content: space-between;
     align-items: flex-start;
     padding: 0 var(--spacing-double);
@@ -59,8 +59,10 @@ export default {
 
   .page__sidebar {
     display: block;
+    position: sticky;
+    top: 80px;
     flex-grow: 1;
-    margin-right: var(--spacing-double);
+    margin: 0 var(--spacing-double) 0 0;
     max-width: 300px;
   }
 }
