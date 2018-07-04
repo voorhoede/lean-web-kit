@@ -1,7 +1,10 @@
 <template>
   <nav class="table-of-contents" :class="{ 'table-of-contents--open' : tableOfContentsIsOpen }">
     <h2 class="a11y-sr-only">{{ $t('table_of_contents') }}</h2>
-    <button class="table-of-contents__button" @click="toggleTableOfContents" >{{ $t('table_of_contents') }}</button>
+    <button class="table-of-contents__button" @click="toggleTableOfContents" >{{ $t('table_of_contents') }}
+      <span v-if="tableOfContentsIsOpen" class="a11y-sr-only">{{ $t('close_menu') }}</span>
+      <span v-else class="a11y-sr-only">{{ $t('open_menu') }}</span>
+    </button>
     <ol class="table-of-contents__list">
       <li class="table-of-contents__item" v-for="(item, index) in items" :key="index">
         <a :href="`#${item.slug}`" class="table-of-contents__link" :class="{ 'active' : (item.slug === activeItem) }">
@@ -63,32 +66,29 @@ export default {
 }
 
 .table-of-contents__button {
-  background-color: var(--neutral-color);
-  padding: var(--spacing-default);
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: var(--font-size-medium);
-  margin-bottom: .3rem;
-  border: none;
-  width: 100%;
   position: relative;
+  margin-bottom: .3rem;
+  padding: var(--spacing-default);
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+  text-align: left;
+  text-transform: uppercase;
+  width: 100%;
+  background-color: var(--neutral-color);
+  border: none;
 }
 
 .table-of-contents__button:before {
-  content: '';
-  width: 30px;
-  height: 30px;
   background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 129 129' xmlns:xlink='http://www.w3.org/1999/xlink' enable-background='new 0 0 129 129'%3E%3Cg%3E%3Cpath d='m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z'/%3E%3C/g%3E%3C/svg%3E");
   background-position: center;
   background-size: contain;
+  transition: all .3s ease-in-out;
   position: absolute;
   top: calc(50% - 15px);
   right: var(--spacing-default);
-  transition: all .3s ease-in-out;
-}
-
-.table-of-contents__button:hover {
-  cursor: pointer;
+  content: '';
+  width: 30px;
+  height: 30px;
 }
 
 .table-of-contents--open .table-of-contents__button:before {
@@ -99,7 +99,6 @@ export default {
 .table-of-contents__list {
   display: none;
   padding: 0;
-  text-align: center;
 }
 
 .table-of-contents--open .table-of-contents__list {
@@ -111,14 +110,10 @@ export default {
   text-transform: uppercase;
 }
 
-.table-of-contents__item:not(:first-child) .table-of-contents__link {
-  padding-top: var(--spacing-default);
-}
-
 .table-of-contents__link {
   display: block;
   margin-bottom: .3rem;
-  padding: var(--spacing-default) 0;
+  padding: var(--spacing-default);
   color: var(--text-color);
   background-color: var(--neutral-color);
 }
@@ -131,10 +126,7 @@ export default {
 }
 
 @media screen and (min-width: 880px){
-  .table-of-contents__title {
-    display: none;
-  }
-
+  .table-of-contents__title,
   .table-of-contents__button {
     display: none;
   }
@@ -160,9 +152,13 @@ export default {
   .active {
     border: none;
     outline: none;
-    background-color: transparent;
     color: var(--action-color);
+    background-color: transparent;
     background-size: 50% 3px;
+  }
+
+  .table-of-contents__item:first-child .table-of-contents__link {
+    padding-top: 0;
   }
 }
 </style>

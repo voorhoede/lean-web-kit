@@ -15,3 +15,7 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+button:hover {
+  cursor: pointer;
+}
