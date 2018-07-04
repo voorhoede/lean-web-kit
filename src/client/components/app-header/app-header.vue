@@ -18,7 +18,7 @@
       <language-selector :locales="$i18n.locales" />
     </nav>
     
-    <button class="app-header__toggle-menu" @click="toggleMenu" >
+    <button class="app-header__menu-button" @click="toggleMenu" >
       <span v-if="menuIsOpen" class="a11y-sr-only">{{ $t('close_menu') }}</span>
       <span v-else class="a11y-sr-only">{{ $t('open_menu') }}</span>
       <menu-icon :isOpen="menuIsOpen" />
@@ -145,7 +145,7 @@ export default {
   margin: 0 0 1.5rem 0;
 }
 
-.app-header__toggle-menu {
+.app-header__menu-button {
   padding: 0;
   width: 40px;
   height: 40px;
@@ -189,7 +189,7 @@ export default {
     margin-right: 1.5rem;
   }
 
-  .app-header__toggle-menu {
+  .app-header__menu-button {
     display: none;
   }
 }
