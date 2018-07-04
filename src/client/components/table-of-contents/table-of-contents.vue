@@ -4,7 +4,7 @@
     
     <ol class="table-of-contents__list">
       <li class="table-of-contents__item" v-for="(item, index) in items" :key="index">
-        <a :href="`#${item.slug}`" class="table-of-contents__link" :class="{ 'active' : (item.slug === currentSection) }">
+        <a :href="`#${item.slug}`" class="table-of-contents__link" :class="{ 'active' : (item.slug === activeItem) }">
           {{ item.title }}
         </a>
       </li>
@@ -17,32 +17,32 @@ export default {
   props: ['items'],
   data () {
     return {
-      currentSection: this.items[0].slug
+      activeItem: this.items[0].slug
     }
   },
   mounted () {
-    window.addEventListener('scroll', this.getClosestSection)
+    window.addEventListener('scroll', this.updateActiveItem)
   },
   
   beforeDestroy () {
-    window.removeEventListener('scroll', this.getClosestSection)
+    window.removeEventListener('scroll', this.updateActiveItem)
   },
 
   methods: {
-    getClosestSection () {
-      let sectionsLenght = this.items.length
+    updateActiveItem () {
+      const sectionsLenght = this.items.length
 
       for (var i = 0; i < sectionsLenght; i++) {
-        let myElement = document.getElementById(this.items[i].slug)
+        const myElement = document.getElementById(this.items[i].slug)
 
         if (this.isBelowScroll(myElement)) {
-          this.currentSection = myElement.id
+          this.activeItem = myElement.id
         }
       }
     },
 
     isBelowScroll (el) {
-      let position = el.getBoundingClientRect()
+      const position = el.getBoundingClientRect()
       
       return position.top < 200 && ((position.top + position.height) > 0)
     }
