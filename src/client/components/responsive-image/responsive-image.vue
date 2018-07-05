@@ -1,23 +1,23 @@
 <template>
   <figure class="responsive-image">
-    <fixed-ratio class="responsive-image__canvas" :width="image.width" :height="image.height">
-      <lazy-load>
-        <picture class="responsive-image__picture">
-          <!--[if IE 9]><video style="display: none;"><![endif]-->
-          <source type="image/webp" media="(min-width: 360px)" :srcset="imageUrl({ width: 800, fm: 'webp' })">
-          <source type="image/webp" :srcset="imageUrl({ fm: 'webp', width: 360 })">
-          <source :type="`image/${image.format}`" media="(min-width: 360px)" :srcset="imageUrl({ width: 800 })">
-          <source :type="`image/${image.format}`" :srcset="imageUrl({ width: 360 })">
-          <!--[if IE 9]></video><![endif]-->
-          <img class="responsive-image__img" :alt="image.alt" :srcset="imageUrl({ width: 360 })" />
-        </picture>
-      </lazy-load>
-      <no-script>
-        <picture class="responsive-image__picture">
-          <img class="responsive-image__img" :alt="image.alt" :src="imageUrl({ width: 360 })" />
-        </picture>
-      </no-script>
-    </fixed-ratio>
+    <div class="responsive-image__sizer" :style="`max-width:${image.width}px;`">
+      <fixed-ratio class="responsive-image__canvas" :width="image.width" :height="image.height">
+        <lazy-load>
+          <picture class="responsive-image__picture" v-if="width">
+            <!--[if IE 9]><video style="display: none;"><![endif]-->
+            <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
+            <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
+            <!--[if IE 9]></video><![endif]-->
+            <img class="responsive-image__img" :alt="image.alt" :srcset="imageUrl({ w: width })" />
+          </picture>
+        </lazy-load>
+        <no-script>
+          <picture class="responsive-image__picture">
+            <img class="responsive-image__img" :alt="image.alt" :src="imageUrl({ w: 500 })" />
+          </picture>
+        </no-script>
+      </fixed-ratio>
+    </div>
     <figcaption class="responsive-image__caption" v-if="image.title">
       {{ image.title }}
     </figcaption>
@@ -32,7 +32,27 @@ import imageUrl from '../../lib/image-url'
 
 export default {
   components: { FixedRatio, LazyLoad, NoScript },
-  props: ['image'],
+  props: {
+    image: {
+      type: Object,
+      required: true,
+    },
+    widthStep: {
+      type: Number,
+      default: 100,
+    }
+  },
+  data() {
+    return {
+      width: undefined,
+    }
+  },
+  mounted() {
+    const pixelRatio = window.devicePixelRatio || 1
+    const cssWidth = this.$el.getBoundingClientRect().width
+    const width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
+    this.width = Math.min(width, this.image.width)
+  },
   methods: {
     imageUrl(options) {
       return imageUrl(this.image.url, options)
@@ -44,6 +64,11 @@ export default {
 <style scoped>
 .responsive-image {
   margin-bottom: var(--spacing-double);
+}
+
+.responsive-image__sizer {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .responsive-image__canvas {
