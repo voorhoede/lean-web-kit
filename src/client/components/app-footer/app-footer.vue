@@ -1,7 +1,8 @@
 <template>
   <footer role="contentinfo" class="app-footer">
     <div>
-      <nuxt-link :to="localePath('index') + '/'">
+      <nuxt-link :to="localePath('index') + '/'" class="app-footer__identity">
+        <img class="app-footer__logo" src="/images/logo.svg" alt="" />
         <h1 class="app-footer__title">Lean Web Kit</h1>
       </nuxt-link>
       <div class="app-footer__social">
@@ -37,7 +38,7 @@
         <ul class="flat-list">
           <li class="app-footer__nav-item" v-for="item in menu.items" :key="item.slug">
             <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
-              class=""
+              class="app-footer__nav-link"
             >
               {{ item.title }}
             </nuxt-link>
@@ -46,8 +47,8 @@
       </nav>
       <section class="app-footer__contact">
         <h2 class="a11y-sr-only">Contact</h2>
-        <span class="app-footer__contact-line"><a :href="`mailto:${contact.emailAddress}`">{{ contact.emailAddress }}</a></span>
-        <span class="app-footer__contact-line"><a :href="`tel:${contact.phoneNumber}`">{{ contact.phoneNumber }}</a></span>
+        <span class="app-footer__contact-line"><a :href="`mailto:${contact.emailAddress}`" class="app-footer__contact-link">{{ contact.emailAddress }}</a></span>
+        <span class="app-footer__contact-line"><a :href="`tel:${contact.phoneNumber}`" class="app-footer__contact-link">{{ contact.phoneNumber }}</a></span>
         <span class="app-footer__contact-line">{{ contact.street }}</span>
         <span class="app-footer__contact-line">{{ contact.city }}</span>
       </section>
@@ -99,15 +100,29 @@ export default {
   background-color: var(--neutral-color);
 }
 
+.app-footer__identity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-double);
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.app-footer__identity:hover,
+.app-footer__identity:focus {
+  border: none;
+}
+
+.app-footer__logo {
+  margin-right: .3rem;
+  height: 32px;
+}
+
 .app-footer__title {
-  margin: 0 0 var(--spacing-double);
   color: var(--text-color);
   font-size: var(--font-size-medium);
   text-align: center;
-}
-
-.app-footer__nav-item {
-  line-height: 1.5rem;
 }
 
 .app-footer__social {
@@ -130,9 +145,14 @@ export default {
   transition: all 250ms ease;
 }
 
-
 .app-footer__nav {
   margin-bottom: var(--spacing-double);
+}
+
+.app-footer__nav-link {
+  color: var(--text-color);
+  font-size: var(--font-size-small);
+  line-height: 2rem;
 }
 
 @media (min-width: 480px) {
@@ -143,8 +163,26 @@ export default {
 
 .app-footer__contact-line {
   display: block;
+  font-size: var(--font-size-small);
   line-height: 1.5rem;
 }
+
+.app-footer__contact-link {
+  color: var(--text-color);
+  font-size: var(--font-size-small);
+}
+
+@media (min-width: 400px) {
+  .app-footer__content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .app-footer__contact {
+    text-align: right;
+  }
+}
+
 
 @media (min-width: 480px) {
   .app-footer__content {
@@ -159,12 +197,22 @@ export default {
     justify-content: space-evenly;
   }
 
-  .app-footer__content {
-    width: 65%
+  .app-footer > * {
+    width: 50%;
   }
-
+  
   .app-footer__social {
     margin-bottom: 0;
+  }
+
+  .app-footer__content {
+    justify-content: space-between;
+    padding: var(--spacing-default) 3rem;
+    border-left: 2px solid var(--text-color);
+  }
+
+  .app-footer__contact {
+    text-align: center;
   }
 }
 
