@@ -52,6 +52,9 @@ export default {
         case 'youtube':
           return `https://www.youtube.com/embed/${this.video.providerUid}?autoplay=1`
           break;
+        default:
+          console.error(`unsupported video provider: ${this.video.provider}`);
+          return ''
       }
     }
   },
