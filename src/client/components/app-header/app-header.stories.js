@@ -17,7 +17,7 @@ const i18n = () => {
 }
 
 const mockLocales = () => {
-  return ['en', 'nl'].map(locale => ({
+  return ['en', 'nl', 'fr', 'pt'].map(locale => ({
     code: locale,
     iso: locale,
     name: locale,
