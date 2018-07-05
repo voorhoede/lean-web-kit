@@ -22,3 +22,19 @@ storiesOf('Language selector', module)
         locale: 'en',
       })
   }))
+  .add('Dropdown', () => ({
+      components: { LanguageSelector },
+      template: `<language-selector :locales="locales" />`,
+      data() {
+        return {
+          locales: ['en', 'nl', 'pt', 'fr'].map(locale => ({
+            code: locale,
+            iso: locale,
+            name: locale,
+          }))
+        }
+      },
+      i18n: new VueI18n({
+        locale: 'en',
+      })
+  }))
