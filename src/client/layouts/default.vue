@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-header :contentId="contentId" />
+    <app-header :contentId="contentId" :menuI18n="menuI18n" />
     <main :id="contentId">
       <nuxt/>
     </main>
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import menuI18n from '../static/data/menu.json'
 import { AppFooter, AppHeader } from '../components/'
 
 export default {
@@ -16,10 +17,9 @@ export default {
   data() {
     return {
       contentId: 'content',
-      lastScroll: 0,
+      menuI18n,
     }
   },
-  
 }
 </script>
 
