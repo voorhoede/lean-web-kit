@@ -1,0 +1,32 @@
+.main-content {
+  margin: 0 auto;
+  padding: 0 var(--spacing-default);
+  max-width: 920px;
+}
+
+.main-content__sidebar {
+  margin: 0 auto var(--spacing-double) auto;
+  width: 100%;
+  max-width: var(--max-width);
+}
+
+.main-content__content {
+  max-width: 600px;
+}
+
+@media screen and (min-width: 880px) {
+  .main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 var(--spacing-double);
+  }
+
+  .main-content__sidebar {
+    position: sticky;
+    top: 80px;
+    flex-grow: 1;
+    margin: 0 var(--spacing-double) 0 0;
+    max-width: 300px;
+  }
+}
