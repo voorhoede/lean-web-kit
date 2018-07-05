@@ -29,7 +29,7 @@ export default {
   computed: {
     slugI18n() { return this.$store.state.slugI18n },
     isSlugRoute() { return this.$route.name === `slug${this.$i18n.routesNameSeparator}${this.$i18n.locale}` },
-    isDropDown() { return this.locales.length > 1 }
+    isDropDown() { return this.locales.length > 3 }
   },
   data () {
     return {
@@ -48,7 +48,7 @@ export default {
 .language-selector__list {
   display: flex;
   justify-content: center;
-  padding: 0;
+  padding: var(--spacing-half) .7rem;
 }
 
 .language-selector__item {
@@ -69,13 +69,17 @@ export default {
 /* dropwdown version */
 
 @media screen and (min-width: 640px) {
+
+  .language-selector--dropdown {
+    align-self: flex-start;
+  }
+
   .language-selector--dropdown .language-selector__current-locale {
     display: block;
     font-size: var(--font-size-default);
     text-transform: uppercase;
     color: var(--action-color);
-    border-bottom: 1px solid var(--action-color);
-    padding: .5rem .7rem;
+    padding: var(--spacing-half) .7rem;
   }
 
   .language-selector--dropdown:hover .language-selector__current-locale {
@@ -86,8 +90,8 @@ export default {
     display: none;
     background-color: var(--background-color);
     box-shadow: 1px 2px 8px #ddd;
+    align-self: baseline;
   }
-
 
   .language-selector--dropdown:hover .language-selector__list,
   .language-selector--dropdown:active .language-selector__list {
@@ -114,7 +118,7 @@ export default {
   .language-selector--dropdown .language-selector__link {
     text-align: center;
     display: block;
-    padding: .5rem .7rem;
+    padding: var(--spacing-half) .7rem;
   }
 
   .language-selector--dropdown .language-selector__link:hover,

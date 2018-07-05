@@ -63,7 +63,7 @@ export default {
   top: 0;
   left: 0;
   z-index: 1;
-  padding: 0 var(--spacing-default);
+  padding: var(--spacing-default);
   width: 100%;
   height: var(--app-header-mobile-height);
   background-color: var(--background-color);
@@ -101,7 +101,7 @@ export default {
 }
 
 .app-header__menu-link {
-  padding: var(--spacing-default) 0;
+  padding-bottom: var(--spacing-default);
   color: var(--text-color);
   text-transform: uppercase;
   text-decoration: none;
@@ -155,15 +155,15 @@ export default {
   .app-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: unset;
     height: var(--app-header-height);
   }
 
   .app-header__menu {
     display: flex;
-    align-items: center;
+    align-items: unset;
     position: relative;
-    top: 0;
+    top: var(--spacing-half);
     margin-left: auto;
     padding: 0;
     width: auto;
@@ -174,11 +174,16 @@ export default {
   .app-header__menu-list {
     display: flex;
     justify-content: flex-end;
-    margin: 0 1.5rem 0 auto;
+    margin-right: 1.5rem;
+    padding: var(--spacing-half) .7rem;
   }
 
   .app-header__menu-item {
     margin-bottom: 0;
+  }
+
+  .app-header__menu-link {
+    padding: var(--spacing-half) 0;
   }
 
   .app-header__menu-item:not(:last-child) {
