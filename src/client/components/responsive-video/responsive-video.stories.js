@@ -5,7 +5,7 @@ import ResponsiveVideo from './'
 
 storiesOf('Responsive video', module)
   .addDecorator(withReadme(readme))
-  .add('Default', () => ({
+  .add('Vimeo', () => ({
     components: { ResponsiveVideo },
     template: '<responsive-video :video="video" />',
     data() {
@@ -18,6 +18,23 @@ storiesOf('Responsive video', module)
           "provider": "vimeo",
           "providerUid": "265601385",
           "thumbnailUrl": "https://i.vimeocdn.com/video/695812178_640.jpg"
+        }
+      }
+    },
+  }))
+  .add('YouTube', () => ({
+    components: { ResponsiveVideo },
+    template: '<responsive-video :video="video" />',
+    data() {
+      return {
+        video: {
+          "url": "https://www.youtube.com/watch?v=ZPIIT6siIaE&list=PL8HcoiB7g3NlaU-UU1boptT4tkz3KOXT2",
+          "title": "Een surfer neemt het op tegen de plastic vervuiling",
+          "width": 480,
+          "height": 270,
+          "provider": "youtube",
+          "providerUid": "ZPIIT6siIaE",
+          "thumbnailUrl": "https://i.ytimg.com/vi/ZPIIT6siIaE/hqdefault.jpg"
         }
       }
     },

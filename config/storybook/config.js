@@ -1,4 +1,3 @@
-import path from 'path'
 import { configure } from '@storybook/vue'
 import { setOptions } from '@storybook/addon-options'
 

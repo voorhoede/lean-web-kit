@@ -141,5 +141,9 @@ module.exports = {
         loader: 'vue-svg-loader'
       });
     }
-  }
+  },
+
+  plugins: [
+    { src: `~plugins/vimeo-player`, ssr: false }
+  ],
 }
