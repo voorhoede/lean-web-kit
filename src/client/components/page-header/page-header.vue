@@ -1,24 +1,16 @@
 <template>
-  <!-- option 1 -->
-  <header class="page-header" :class="{ 'page-header--with-cover-image' : image }">
-    <img v-if="image" :src="imageLoaded ? image.url : smallImageSrc" alt="" class="cover-image"  :class="{ 'enhanced-image' : imageLoaded }">
+  <header v-if="image" 
+          class="page-header page-header--with-cover-image" 
+          :class="{ 'image-enhanced' : imageLoaded }"
+          :style="`background-image:url('${imageLoaded ? image.url : smallImageSrc }');`"
+  >
     <h1 class="page-header__title">{{ title }}</h1>
     <p class="page-header__subtitle" v-if="subtitle">{{ subtitle }}</p>
   </header>
-
-  <!-- option 2 -->
-    <!-- <header v-if="image" 
-            class="page-header page-header--with-cover-image" 
-            :class="{ 'image-enhanced' : imageLoaded }"
-            :style="`background-image:url('${imageLoaded ? image.url : smallImageSrc }');`"
-    >
-      <h1 class="page-header__title">{{ title }}</h1>
-      <p class="page-header__subtitle" v-if="subtitle">{{ subtitle }}</p>
-    </header>
-    <header v-else class="page-header">
-      <h1 class="page-header__title">{{ title }}</h1>
-      <p class="page-header__subtitle" v-if="subtitle">{{ subtitle }}</p>
-    </header> -->
+  <header v-else class="page-header">
+    <h1 class="page-header__title">{{ title }}</h1>
+    <p class="page-header__subtitle" v-if="subtitle">{{ subtitle }}</p>
+  </header>
 </template>
 
 <script>
@@ -26,15 +18,19 @@ export default {
   props: ['title', 'subtitle', 'image'],
   data () {
     return {
-      smallImageSrc: 'https://www.datocms-assets.com/6068/1529677077-photo-1529599087-bcf1dc4a7ae4.jpeg?w=40',
       imageLoaded: false,
     }
   },
+  computed: {
+    smallImageSrc() { return this.image ? `${this.image.url}?w=15'` : null }
+  },
   mounted () {
-    let img = new Image()
-    img.src = this.image.url
+    if (this.image) {
+      let img = new Image()
+      img.src = this.image.url
 
-    img.onload = this.loadEnhancedImage
+      img.onload = this.loadEnhancedImage
+    }
   },
   methods: {
     loadEnhancedImage () {
@@ -45,8 +41,6 @@ export default {
 </script>
 
 <style>
-
-
 .page-header {
   width: 100%;
   margin-bottom: 4rem;
@@ -129,22 +123,5 @@ export default {
 .page-header--with-cover-image .page-header__subtitle {
   color: var(--background-color);
   z-index: 1;
-}
-
-/* transition for when swapping background images */
-
-.enhanced-image {
-  animation: sharpen .5s ease-in-out;
-  animation-fill-mode: forwards;
-}
-
-@keyframes sharpen {
-  from {
-    filter: blur(20px);
-  }
-
-  to {
-    filter: blur(0);
-  }
 }
 </style>

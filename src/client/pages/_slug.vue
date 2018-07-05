@@ -1,6 +1,6 @@
 <template>
   <main class="page">
-    <page-header :title="page.title" :subtitle="page.subtitle" />
+    <page-header :title="page.title" :subtitle="page.subtitle" :image="image" />
 
     <div class="page__content">
       <div class="page__content__sidebar" v-if="page.hasToc">
