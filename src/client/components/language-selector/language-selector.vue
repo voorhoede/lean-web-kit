@@ -1,6 +1,6 @@
 <template>
-  <div class="language-selector" :class="{ 'language-selector--dropdown' : isDropDown }">
-    <button class="language-selector__current-locale" v-if="isDropDown">{{ currentLocale }}</button>
+  <div class="language-selector" :class="{ 'language-selector--dropdown' : hasMoreThanTwoLocales }">
+    <button class="language-selector__current-locale" v-if="hasMoreThanTwoLocales">{{ currentLocale }}</button>
     
     <ul class="language-selector__list">
       <li class="language-selector__item" v-for="locale in locales" :key="locale.code">
@@ -29,7 +29,7 @@ export default {
   computed: {
     slugI18n() { return this.$store.state.slugI18n },
     isSlugRoute() { return this.$route.name === `slug${this.$i18n.routesNameSeparator}${this.$i18n.locale}` },
-    isDropDown() { return this.locales.length > 2 }
+    hasMoreThanTwoLocales() { return this.locales.length > 2 }
   },
   data () {
     return {
