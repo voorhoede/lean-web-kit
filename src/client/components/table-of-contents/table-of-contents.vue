@@ -48,8 +48,9 @@ export default {
 
     isBelowScroll (el) {
       const { top, height } = el.getBoundingClientRect()
-      
-      return top < 200 && ((top + height) > 0)
+      const sectionInViewOffset = 200
+
+      return top < sectionInViewOffset && ((top + height) > 0)
     },
 
     toggleTableOfContents () {
