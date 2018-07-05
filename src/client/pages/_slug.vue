@@ -58,7 +58,7 @@ export default {
 
   .page__sidebar {
     position: sticky;
-    top: 80px;
+    top: calc(var(--app-header-height) + var(--spacing-double));
     flex-grow: 1;
     margin: 0 var(--spacing-double) 0 0;
     max-width: 300px;
