@@ -1,0 +1,53 @@
+{
+  "defaultMenu": {
+    "en": {
+      "title": "Site menu",
+      "items": [
+        { "title": "About Us", "slug": "about-us" },
+        { "title": "Portfolio", "slug": "faq" },
+        { "title": "Careers", "slug": "careers" },
+        { "title": "FAQ", "slug": "fsq" },
+        { "title": "something", "slug": "something" },
+        { "title": "something else", "slug": "something else" }
+      ]
+    },
+    "nl": { 
+      "title": "Site menu",
+      "items": [
+        { "title": "Over ons", "slug": "over-ons" },
+        { "title": "Veelgestelde vragen", "slug": "veelgestelde-vragen" },
+        { "title": "Over ons", "slug": "over-ons" },
+        { "title": "Veelgestelde vragen", "slug": "veelgestelde-vragesn" },
+        { "title": "Over ons", "slug": "over-osns" },
+        { "title": "Veelgestelde vragen", "slug": "veelgesteldse-vragen" }
+      ]
+    }
+  },
+
+  "menuWithAction": {
+    "en": {
+      "title": "Site menu",
+      "items": [
+        { "title": "About Us", "slug": "about-us" },
+        { "title": "Portfolio", "slug": "faq" },
+        { "title": "Careers", "slug": "careers" },
+        { "title": "FAQ", "slug": "fasq" },
+        { "title": "something", "slug": "something" },
+        { "title": "something else", "slug": "something else" }
+      ],
+      "callToAction": { "title": "Start Now" }
+    },
+    "nl": {
+      "title": "Site menu",
+      "items": [
+        { "title": "Over ons", "slug": "over-ons" },
+        { "title": "Veelgestelde vragen", "slug": "veelgestelde-vragen" },
+        { "title": "Over ons", "slug": "over-ons" },
+        { "title": "Veelgestelde vragen", "slug": "veelgestelde-vragesn" },
+        { "title": "Over ons", "slug": "over-osns" },
+        { "title": "Veelgestelde vragen", "slug": "veelgesteldse-vragen" }
+      ],
+      "callToAction": { "title": "Start Nu" }
+    }
+  }
+}

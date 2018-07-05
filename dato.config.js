@@ -85,13 +85,32 @@ function pageToJson (page, i18n) {
   return { title, slug, slugI18n, seo, sections, hasToc, tocItems }
 }
 
+function formatLink (link) {
+  const { page, title, url } = link
+  if (page) {
+    return {
+      type: 'page',
+      title: title || page.title,
+      slug: page.slug,
+    }
+  } else {
+    return {
+      type: 'url',
+      title,
+      url,
+    }
+  }
+}
+
 function menuToJson (dato, i18n) {
   return locales.reduce((menu, locale) => {
     i18n.locale = locale
-    const { title, items } = dato.menu
+    const { title, callToAction, isSticky, links } = dato.menu
     menu[locale] = {
       title,
-      items: items.map(item => pick(item.page, ['title', 'slug'])),
+      isSticky,
+      callToAction: formatLink(callToAction),
+      items: links.map(link => formatLink(link)),
     }
     return menu
   }, {})
