@@ -16,6 +16,10 @@ img {
   height: auto;
 }
 
+button {
+  border: none;
+}
+
 button:hover {
   cursor: pointer;
 }

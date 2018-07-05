@@ -1,61 +1,202 @@
 <template>
   <header role="banner" class="app-header">
-    <nuxt-link :to="localePath('index') + '/'">
-      <h1>Lean Web Kit</h1>
+    <nuxt-link :to="localePath('index')" class="app-header__identity">
+      <img class="app-header__logo" src="/images/logo.svg" alt="" />
+      <h1 class="app-header__title">Lean Web Kit</h1>
     </nuxt-link>
-    <a :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
-    <nav>
+    
+    <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
+    
+    <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }">
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
-      <ul class="inline-list">
-        <li v-for="item in menu.items" :key="item.slug">
-          <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
-            class="app-header__menu-link"
-          >
-            {{ item.title }}
-          </nuxt-link>
+      <ul class="app-header__menu-list">
+        <li v-for="(item, index) in menuItems" :key="index" class="app-header__menu-item">
+          <smart-link :item="item" class="app-header__menu-link" />
         </li>
       </ul>
+      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="button app-header__button" />
       <language-selector :locales="$i18n.locales" />
     </nav>
+    
+    <button class="app-header__menu-button" @click="toggleMenu" >
+      <span v-if="menuIsOpen" class="a11y-sr-only">{{ $t('close_menu') }}</span>
+      <span v-else class="a11y-sr-only">{{ $t('open_menu') }}</span>
+      <menu-icon :isOpen="menuIsOpen" />
+    </button>
   </header>
 </template>
 
 <script>
-import menuI18n from '../../static/data/menu.json'
 import LanguageSelector from '../language-selector'
+import SmartLink from '../smart-link'
+import MenuIcon from '../menu-icon'
 
 export default {
-  components: { LanguageSelector },
-  props: ['contentId'],
+  components: { LanguageSelector, SmartLink, MenuIcon },
+  props: ['contentId', 'menuI18n'],
   data () {
-    return { menuI18n }
+    return {
+      menuIsOpen: false,
+    }
   },
   computed: {
     locale() { return this.$i18n.locale },
     menu() { return this.menuI18n[this.locale] },
+    menuItems() { return (this.menu.callToAction || this.$i18n.locales) ? this.menu.items.slice(0, 3) : this.menu.items.slice(0, 5)}
   },
+  methods: {
+    toggleMenu () {
+      this.menuIsOpen = !this.menuIsOpen
+    },
+  }
 }
 </script>
 
 <style>
 @import '../app-core/index.css';
 
-.app-header__menu-link {
-  text-decoration: none;
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 0 var(--spacing-default);
+  width: 100%;
+  height: var(--app-header-mobile-height);
+  background-color: var(--background-color);
+  box-shadow: 0 2px 15px 0 rgba(214,214,214,.5);
+}
+
+.app-header__menu {
+  position: absolute;
+  top: var(--app-header-mobile-height);
+  left: 0;
+  display: none;
+  width: 100%;
+  background-color: var(--background-color);
+  box-shadow: 0px 8px 10px rgba(214,214,214,.3);
+  transition: all .2s ease-in-out;
+}
+
+.app-header__menu--open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: var(--spacing-default);
+}
+
+.app-header__menu-list {
+  margin: 0 0 var(--spacing-default) 0;
+  padding: 0;
+  text-align: center;
+}
+
+.app-header__menu-item {
+  height: auto;
+  margin-bottom: var(--spacing-double);
+  list-style-type: none;
 }
 
 .app-header__menu-link {
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-  border-bottom-color: transparent;
+  padding: var(--spacing-default) 0;
+  color: var(--text-color);
+  text-transform: uppercase;
+  text-decoration: none;
 }
 
 .app-header__menu-link:focus,
 .app-header__menu-link:hover {
-  color: var(--action-color);
+  cursor: pointer;
+  outline: none;
+  border-bottom: 3px solid var(--action-color);
 }
 
-.app-header__menu-link.nuxt-link-active {
-  border-bottom-color: var(--action-color);
+.app-header__identity {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.app-header__identity:hover,
+.app-header__identity:focus {
+  border: none;
+}
+
+.app-header__logo {
+  margin-right: .3rem;
+  height: 40px;
+}
+
+.app-header__title {
+  display: none;
+  font-size: var(--font-size-default);
+  font-weight: lighter;
+}
+
+.app-header__button {
+  margin-left: auto;
+}
+
+.app-header__menu--open .app-header__button {
+  margin: 0 0 1.5rem 0;
+}
+
+.app-header__menu-button {
+  padding: 0;
+  width: 40px;
+  height: 40px;
+}
+
+@media screen and (min-width: 640px) {
+  .app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--app-header-height);
+  }
+
+  .app-header__menu {
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 0;
+    margin-left: auto;
+    padding: 0;
+    width: auto;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .app-header__menu-list {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 1.5rem 0 auto;
+  }
+
+  .app-header__menu-item {
+    margin-bottom: 0;
+  }
+
+  .app-header__menu-item:not(:last-child) {
+    margin-right: 1.5rem;
+  }
+
+  .app-header__button {
+    margin-right: 1.5rem;
+  }
+
+  .app-header__menu-button {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .app-header__title {
+    display: inline-block;
+  }
 }
 </style>
