@@ -7,7 +7,7 @@
             class="responsive-video__image"
             v-if="!isPlaying"
             alt=""
-            :src="video.thumbnailUrl"
+            :src="video.provider === 'youtube' ? video.thumbnailUrl.replace('/hqdefault.jpg', '/mqdefault.jpg') : video.thumbnailUrl"
           />
         </lazy-load>
         <iframe
