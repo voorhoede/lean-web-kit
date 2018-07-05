@@ -29,7 +29,7 @@ export default {
   computed: {
     slugI18n() { return this.$store.state.slugI18n },
     isSlugRoute() { return this.$route.name === `slug${this.$i18n.routesNameSeparator}${this.$i18n.locale}` },
-    isDropDown() { return this.locales.length > 3 }
+    isDropDown() { return this.locales.length > 2 }
   },
   data () {
     return {
@@ -66,10 +66,7 @@ export default {
   display: none;
 }
 
-/* dropwdown version */
-
 @media screen and (min-width: 640px) {
-
   .language-selector--dropdown {
     align-self: flex-start;
   }
@@ -91,6 +88,7 @@ export default {
     background-color: var(--background-color);
     box-shadow: 1px 2px 8px #ddd;
     align-self: baseline;
+    padding: 0;
   }
 
   .language-selector--dropdown:hover .language-selector__list,
