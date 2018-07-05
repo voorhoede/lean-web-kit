@@ -29,17 +29,17 @@ storiesOf('Language selector', module)
       components: { LanguageSelector },
       template: `
         <div>
-          <demo title="With three locales" style="margin-bottom:3rem;">
-            <language-selector :locales="localesThreeLanguages"/>
+          <demo title="With two locales" style="margin-bottom:3rem;">
+            <language-selector :locales="twoLocales"/>
           </demo>
-          <demo title="With more than three locales">
-            <language-selector :locales="localesMoreThanThreeLanguages" />
+          <demo title="With more than two locales">
+            <language-selector :locales="moreThanTwoLocales" />
           </demo>
         </div>`,
       data() {
         return {
-          localesThreeLanguages: mockLocales(['en', 'nl', 'pt']),
-          localesMoreThanThreeLanguages: mockLocales(['en', 'nl', 'pt', 'fr', 'it'])
+          twoLocales: mockLocales(['en', 'nl']),
+          moreThanTwoLocales: mockLocales(['en', 'nl', 'pt', 'fr', 'it'])
         }
       },
       i18n: i18n()
