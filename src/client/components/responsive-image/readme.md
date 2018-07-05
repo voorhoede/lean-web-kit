@@ -2,6 +2,7 @@
 
 ## Features
 
+- Works out-of-the-box with [**Dato CMS image file field**](https://www.datocms.com/docs/other/fields/#file-fields).
 - Uses a **responsive image strategy**, so the optimal size is loaded.
 - Has a **fixed ratio**, so space is reserved before the image is loaded.
 - Supports an optional **image caption**.
