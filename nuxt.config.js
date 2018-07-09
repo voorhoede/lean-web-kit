@@ -163,6 +163,7 @@ module.exports = {
   },
 
   plugins: [
-    { src: `~plugins/vimeo-player`, ssr: false }
+    { src: `~plugins/vimeo-player`, ssr: false },
+    { src: '~/plugins/install-notification.js', ssr: false }
   ],
 }
