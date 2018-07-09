@@ -4,52 +4,53 @@
 
     <div class="social-share__links">
       <a :href="`https://twitter.com/home?status=${url}`"
-         :class="{ 'visible' : isVisible }" 
+         :class="{ 'visible' : shareButtonsAreVisible }" 
          class="social-share__share-link twitter"
          target="_blank"
          rel="noopener"
-         @click="$emit('shared', 'Twitter')">
+         @click="handleClick('Twitter')">
       </a>
       
       <a :href="`https://www.facebook.com/sharer/sharer.php?u=${url}`"
-         :class="{ 'visible' : isVisible }" 
+         :class="{ 'visible' : shareButtonsAreVisible }" 
          class="social-share__share-link facebook"
          target="_blank"
          rel="noopener"
-         @click="$emit('shared', 'Facebook')">
+         @click="handleClick('Facebook')">
       </a>
 
       <a :href="`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${description}`"
-         :class="{ 'visible' : isVisible }" 
+         :class="{ 'visible' : shareButtonsAreVisible }" 
          class="social-share__share-link linkedin"
          target="_blank"
          rel="noopener"
-         @click="$emit('shared', 'Linkedin')">
+         @click="handleClick('Linkedin')">
       </a>
 
       <a :href="`whatsapp://send?text=${url}`"
          data-action="share/whatsapp/share"
-         :class="{ 'visible' : isVisible }" 
+         :class="{ 'visible' : shareButtonsAreVisible }" 
          class="social-share__share-link whatsapp"
          target="_blank"
          rel="noopener"
-         @click="$emit('shared', 'WhatsApp')">
+         @click="handleClick('WhatsApp')">
       </a>
 
       <a :href="`mailto:?&subject=${title}&body=${url}`"
-         :class="{ 'visible' : isVisible }" 
+         :class="{ 'visible' : shareButtonsAreVisible }" 
          class="social-share__share-link mail"
          target="_blank"
          rel="noopener"
-         @click="$emit('shared', 'Mail')">
+         @click="handleClick('Mail')">
       </a>
       
       <button
-        :class="{ 'visible' : isVisible }" 
+        :class="{ 'visible' : shareButtonsAreVisible }" 
         class="social-share__share-link copy-to-clipboard"
         @click="copyToClipboard">
       </button>
     </div>
+
     <div :class="{ 'snackbar-visible' : snackbarIsVisible }" class="snackbar">{{ copySuccessful ? snackbarSuccessText : snackbarErrorText }}</div>
   </div>
 </template>
@@ -59,7 +60,7 @@ export default {
   props: ['url', 'title', 'description'],
   data () {
     return {
-      isVisible: false,
+      shareButtonsAreVisible: false,
       snackbarSuccessText: 'Link copied to clipboard!',
       snackbarErrorText: 'Copy to clipboard is not supported on iPhone',
       snackbarIsVisible: false,
@@ -74,12 +75,22 @@ export default {
         })
       }
 
-      this.isVisible = !this.isVisible
+      this.shareButtonsAreVisible = !this.shareButtonsAreVisible
     },
 
     showSnackbar () {
       this.snackbarIsVisible = true
       window.setTimeout(() => this.snackbarIsVisible = false, 2000)
+    },
+
+    hideSharingButtons () {
+      this.shareButtonsAreVisible = false
+    },
+
+    handleClick (plataform) {
+      this.$emit('shared', plataform)
+      
+      this.hideSharingButtons()
     },
 
     copyToClipboard () {
@@ -107,8 +118,8 @@ export default {
 
 .snackbar {
   position: absolute;
-  bottom: -100px;
-  left: -300px;
+  bottom: -275px;
+  left: -215px;
   background-color: var(--text-color);
   text-align: center;
   color: var(--background-color);
@@ -117,11 +128,11 @@ export default {
   width: 200px;
   opacity: 0;
   transition: all .5s ease-in-out;
+  border-radius: 30px;
 }
 
 .snackbar-visible {
   opacity: 1;
-  transform: translateY(-100%);
 }
 
 .social-share {
