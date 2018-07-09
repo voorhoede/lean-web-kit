@@ -7,21 +7,24 @@
          :class="{ 'visible' : isVisible }" 
          class="social-share__share-link twitter"
          target="_blank"
-         rel="noopener">
+         rel="noopener"
+         @click="$emit('shared', 'Twitter')">
       </a>
       
       <a :href="`https://www.facebook.com/sharer/sharer.php?u=${url}`"
          :class="{ 'visible' : isVisible }" 
          class="social-share__share-link facebook"
          target="_blank"
-         rel="noopener">
+         rel="noopener"
+         @click="$emit('shared', 'Facebook')">
       </a>
 
       <a :href="`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${description}`"
          :class="{ 'visible' : isVisible }" 
          class="social-share__share-link linkedin"
          target="_blank"
-         rel="noopener">
+         rel="noopener"
+         @click="$emit('shared', 'Linkedin')">
       </a>
 
       <a :href="`whatsapp://send?text=${url}`"
@@ -29,14 +32,16 @@
          :class="{ 'visible' : isVisible }" 
          class="social-share__share-link whatsapp"
          target="_blank"
-         rel="noopener">
+         rel="noopener"
+         @click="$emit('shared', 'WhatsApp')">
       </a>
 
       <a :href="`mailto:?&subject=${title}&body=${url}`"
          :class="{ 'visible' : isVisible }" 
          class="social-share__share-link mail"
          target="_blank"
-         rel="noopener">
+         rel="noopener"
+         @click="$emit('shared', 'Mail')">
       </a>
       
       <button
@@ -72,10 +77,14 @@ export default {
       this.isVisible = !this.isVisible
     },
 
+    showSnackbar () {
+      this.snackbarIsVisible = true
+      window.setTimeout(() => this.snackbarIsVisible = false, 2000)
+    },
+
     copyToClipboard () {
       if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
-        return this.snackbarIsVisible = true
-        window.setTimeout(() => this.snackbarIsVisible = false, 2000)
+        return this.showSnackbar()
       }
       
       const el = document.createElement('textarea')
@@ -87,8 +96,7 @@ export default {
       document.body.removeChild(el)
       
       this.copySuccessful = true
-      this.snackbarIsVisible = true
-      window.setTimeout(() => this.snackbarIsVisible = false, 2000)
+      this.showSnackbar()
     },
   },
 }

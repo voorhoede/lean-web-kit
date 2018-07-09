@@ -3,7 +3,7 @@
     <page-header :title="page.title" :subtitle="page.subtitle" />
 
     <div class="page__content">
-      <div class="page__sidebar" v-if="page.hasToc">
+      <div class="page__sidebar" v-if="page.hasToc && page.tocItems.length">
         <table-of-contents :items="page.tocItems" />
       </div>
 
@@ -11,25 +11,58 @@
         <content-section v-for="(section, index) in page.sections" :key="index" :section="section"  :id="section.slug"/>
       </div>
     </div>
+
+    <share-button
+      :url="url"
+      :title="shareTitle"
+      :description="shareText"
+      @shared='shared'
+    />
   </main>
 </template>
 
 <script>
-import { ContentSection, TableOfContents, PageHeader } from '../components/'
+import { ContentSection, TableOfContents, PageHeader, ShareButton } from '../components/'
 import { getPageData, seoHead } from '../lib/'
 
 export default {
-  components: { ContentSection, TableOfContents, PageHeader },
+  components: { ContentSection, TableOfContents, PageHeader, ShareButton },
+  
   async asyncData ({ app, params, store }) {
     const { slug } = params
     const page = await getPageData({ slug, locale: app.i18n.locale })
     store.commit('setSlugI18n', page.slugI18n)
     return { page }
   },
+
   head () {
-    return seoHead(this.page.seo)
+    return seoHead(this.page.seo)   
   },
-  computed: {},
+
+  data () {
+    return {
+      url: '',
+    }
+  },
+
+  computed: {
+    shareText() { return this.page.seo.description },
+    shareTitle() { return this.page.seo.title },
+  },
+
+  mounted () {
+    this.url = window.location.href
+  },
+
+  methods: {
+    shared (plataform) {
+      return this.$ga.social({
+        socialNetwork: plataform,
+        socialAction: 'share',
+        socialTarget: this.url
+      })
+    }
+  }
 }
 </script>
 
