@@ -107,6 +107,13 @@ module.exports = {
     '@nuxtjs/sitemap'
   ],
 
+  sitemap: {
+    routes () {
+      return Object.keys(pages).reduce((acc, key) => {
+        return acc.concat(Object.keys(pages[key]).map(lang => `${lang}/${pages[key][lang]}`))
+      }, [])
+    }
+  },
 
   css: [
     'normalize.css'
