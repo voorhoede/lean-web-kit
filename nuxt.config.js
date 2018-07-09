@@ -92,6 +92,15 @@ module.exports = {
         display: 'standalone',
         background_color: appConfig.backgroundColor,
         theme_color: appConfig.themeColor
+      },
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: 'https://www.datocms-assets.com/.*',
+            handler: 'cacheFirst',
+            method: 'GET'
+          }
+        ]
       }
     }],
     ['nuxt-i18n', {
