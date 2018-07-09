@@ -3,68 +3,93 @@
     <button class="social-share__button" @click="showSharingOptions"></button>
 
     <div class="social-share__links">
-      <a :href="`https://twitter.com/home?status=${encodedUrl}`"
+      <a :href="`https://twitter.com/home?status=${url}`"
          :class="{ 'visible' : isVisible }" 
          class="social-share__share-link twitter"
-         target="_blank">
+         target="_blank"
+         rel="noopener">
       </a>
       
-      <a :href="`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`"
+      <a :href="`https://www.facebook.com/sharer/sharer.php?u=${url}`"
          :class="{ 'visible' : isVisible }" 
          class="social-share__share-link facebook"
-         target="_blank">
+         target="_blank"
+         rel="noopener">
       </a>
 
-      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//leanwebkit.voorhoede.nl/&title=title&summary=summary"
+      <a :href="`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${description}`"
          :class="{ 'visible' : isVisible }" 
          class="social-share__share-link linkedin"
-         target="_blank">
+         target="_blank"
+         rel="noopener">
       </a>
 
-      <a href="#"
+      <a :href="`whatsapp://send?text=${url}`"
+         data-action="share/whatsapp/share"
          :class="{ 'visible' : isVisible }" 
          class="social-share__share-link whatsapp"
-         target="_blank">
+         target="_blank"
+         rel="noopener">
       </a>
 
-      <a href="mailto:?&subject=something&body=https%3A//leanwebkit.voorhoede.nl/"
+      <a :href="`mailto:?&subject=${title}&body=${url}`"
          :class="{ 'visible' : isVisible }" 
          class="social-share__share-link mail"
-         target="_blank">
+         target="_blank"
+         rel="noopener">
       </a>
       
-      <a href="#"
-         :class="{ 'visible' : isVisible }" 
-         class="social-share__share-link copy-to-clipboard"
-         target="_blank">
-      </a>
+      <button
+        :class="{ 'visible' : isVisible }" 
+        class="social-share__share-link copy-to-clipboard"
+        @click="copyToClipboard">
+      </button>
     </div>
+    <div :class="{ 'snackbar-visible' : snackbarIsVisible }" class="snackbar">{{ copySuccessful ? snackbarSuccessText : snackbarErrorText }}</div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['url'],
+  props: ['url', 'title', 'description'],
   data () {
     return {
       isVisible: false,
-    }
-  },
-  computed: {
-    encodedUrl() {
-      return process.browser ? encodeURIComponent(this.url) : this.url
+      snackbarSuccessText: 'Link copied to clipboard!',
+      snackbarErrorText: 'Copy to clipboard is not supported on iPhone',
+      snackbarIsVisible: false,
+      copySuccessful: false,
     }
   },
   methods: {
     showSharingOptions () {
       if (navigator.share) {
         return navigator.share({
-          url: this.url,
+          url: this.url
         })
       }
 
       this.isVisible = !this.isVisible
-    }
+    },
+
+    copyToClipboard () {
+      if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+        return this.snackbarIsVisible = true
+        window.setTimeout(() => this.snackbarIsVisible = false, 2000)
+      }
+      
+      const el = document.createElement('textarea')
+      el.value = this.url
+      document.body.appendChild(el)
+      
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+      
+      this.copySuccessful = true
+      this.snackbarIsVisible = true
+      window.setTimeout(() => this.snackbarIsVisible = false, 2000)
+    },
   },
 }
 </script>
@@ -72,8 +97,27 @@ export default {
 <style>
 @import '../app-core/index.css';
 
+.snackbar {
+  position: absolute;
+  bottom: -100px;
+  left: -300px;
+  background-color: var(--text-color);
+  text-align: center;
+  color: var(--background-color);
+  font-size: var(--font-size-small);
+  padding: .5rem;
+  width: 200px;
+  opacity: 0;
+  transition: all .5s ease-in-out;
+}
+
+.snackbar-visible {
+  opacity: 1;
+  transform: translateY(-100%);
+}
+
 .social-share {
-  position: fixed; 
+  position: absolute; 
   right: var(--spacing-default);
   top: calc(var(--app-header-height) + var(--spacing-default));
   z-index: 1;
@@ -102,8 +146,7 @@ export default {
 .social-share__button:focus,
 .social-share__button:active {
   box-shadow: 1px 5px 15px rgba(0,0,0,.2);
-  -webkit-transform: scale(1.2); 
-          transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .social-share__links {
