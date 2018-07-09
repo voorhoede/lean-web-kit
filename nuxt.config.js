@@ -104,6 +104,7 @@ module.exports = {
         fallbackLocale: defaultLocale,
       }
     }],
+    '@nuxtjs/sitemap'
   ],
 
 
