@@ -84,6 +84,16 @@ module.exports = {
         { field: 'anonymizeIp', value: true },
       ],
     }],
+    ['@nuxtjs/pwa', { // https://pwa.nuxtjs.org
+      manifest: {
+        name: appConfig.title,
+        short_name: appConfig.title,
+        start_url: '/?standalone=true',
+        display: 'standalone',
+        background_color: appConfig.backgroundColor,
+        theme_color: appConfig.themeColor
+      }
+    }],
     ['nuxt-i18n', {
       defaultLocale,
       detectBrowserLanguage: {

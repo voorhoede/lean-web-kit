@@ -30,7 +30,18 @@ module.exports = (dato, root, i18n) => {
 }
 
 function appSettingsToJson(app) {
-  return pick(app, ['title', 'googleAnalyticsTrackingId'])
+  let appSettings = pick(app, ['title', 'googleAnalyticsTrackingId', 'themeColor', 'backgroundColor']);
+  appSettings = {
+    'title': appSettings.title,
+    'googleAnalyticsTrackingId': appSettings.googleAnalyticsTrackingId,
+    'themeColor': getRgbValue(appSettings.themeColor),
+    'backgroundColor': getRgbValue(appSettings.backgroundColor)
+  }
+  return appSettings;
+}
+
+function getRgbValue(color) {
+  return `rgb(${color.value.red}, ${color.value.green}, ${color.value.blue})`;
 }
 
 /**
