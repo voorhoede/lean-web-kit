@@ -159,13 +159,17 @@ export default {
   border-radius: 50%;
   outline: none;
   transition: all .3s ease-in-out;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
 }
 
 .social-share__button:hover,
-.social-share__button:focus,
-.social-share__button:active {
+.social-share__button:focus {
   box-shadow: 1px 5px 15px rgba(0,0,0,.2);
   transform: scale(1.2);
+}
+
+.social-share__button:active {
+  opacity: .8;
 }
 
 .social-share__links {
