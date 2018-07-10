@@ -3,12 +3,12 @@
     <page-header :title="page.title" :subtitle="page.subtitle" />
 
     <div class="page__content">
-      <div class="page__sidebar" v-if="page.hasToc">
+      <div class="page__sidebar" v-if="page.hasToc && page.tocItems.length">
         <table-of-contents :items="page.tocItems" />
       </div>
 
       <div class="page__content__main-content">
-        <content-section v-for="(section, index) in page.sections" :key="index" :section="section"  :id="section.slug"/>
+        <content-section v-for="(section, index) in page.sections" :key="index" :section="section" :id="section.slug"/>
       </div>
     </div>
   </main>
