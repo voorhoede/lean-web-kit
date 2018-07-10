@@ -33,7 +33,7 @@ export default {
   },
   data () {
     return {
-      currentLocale: 'en',
+      currentLocale: this.$i18n.locale,
     }
   }
 }
