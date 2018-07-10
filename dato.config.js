@@ -60,6 +60,12 @@ function transformItem(item) {
   if (item.type === 'text') {
     const $ = cheerio.load(item.body)
     $('img').remove()
+    const targetAttr= $('a').attr('target')
+    
+    if (targetAttr === '_blank') {
+      $('a').attr('rel', 'noopener')
+    }
+    
     item.body = $('body').html()
   }
   return item
