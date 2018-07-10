@@ -45,13 +45,14 @@
       </a>
       
       <button
+        v-if="copyToClipboardIsVisible"
         :class="{ 'visible' : shareButtonsAreVisible }" 
         class="social-share__share-link copy-to-clipboard"
         @click="copyToClipboard">
       </button>
     </div>
 
-    <div :class="{ 'snackbar-visible' : snackbarIsVisible }" class="snackbar">{{ copySuccessful ? snackbarSuccessText : snackbarErrorText }}</div>
+    <div :class="{ 'snackbar-visible' : snackbarIsVisible }" class="snackbar">{{ snackbarSuccessText }}</div>
   </div>
 </template>
 
@@ -62,9 +63,8 @@ export default {
     return {
       shareButtonsAreVisible: false,
       snackbarSuccessText: 'Link copied to clipboard!',
-      snackbarErrorText: 'Copy to clipboard is not supported on iPhone',
       snackbarIsVisible: false,
-      copySuccessful: false,
+      copyToClipboardIsVisible: true,
     }
   },
   methods: {
@@ -94,10 +94,6 @@ export default {
     },
 
     copyToClipboard () {
-      if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
-        return this.showSnackbar()
-      }
-      
       const el = document.createElement('textarea')
       el.value = this.url
       document.body.appendChild(el)
@@ -106,10 +102,14 @@ export default {
       document.execCommand('copy')
       document.body.removeChild(el)
       
-      this.copySuccessful = true
       this.showSnackbar()
     },
   },
+  mounted () {
+    if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+      this.copyToClipboardIsVisible = false
+    }
+  }
 }
 </script>
 
@@ -140,8 +140,8 @@ export default {
   right: var(--spacing-default);
   top: calc(var(--app-header-height) + var(--spacing-default));
   z-index: 1;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
 }
 
 .social-share__button {
@@ -153,8 +153,8 @@ export default {
   left: 0; 
   z-index: 10;
   background-color: var(--action-color);
-  height: 50px; 
-  width: 50px;
+  height: 40px; 
+  width: 40px;
   border: none;
   border-radius: 50%;
   outline: none;
@@ -209,7 +209,7 @@ export default {
   align-items: center;
   position: absolute;
   top: 0;
-  left: 7px;
+  left: 2px;
   height: 36px; 
   width: 36px;
   background-color: var(--action-color);
@@ -227,31 +227,31 @@ export default {
 
 .visible:nth-child(1) {
   transition-delay: .5s;
-  transform: translateY(65px) scale(1);
+  transform: translateY(55px) scale(1);
 }
 
 .visible:nth-child(2) {
   transition-delay: .4s;
-  transform: translateY(110px) scale(1);
+  transform: translateY(100px) scale(1);
 }
 
 .visible:nth-child(3) {
   transition-delay: .3s;
-  transform: translateY(155px) scale(1);
+  transform: translateY(145px) scale(1);
 }
 
 .visible:nth-child(4) {
   transition-delay: .2s;
-  transform: translateY(200px) scale(1);
+  transform: translateY(190px) scale(1);
 }
 
 .visible:nth-child(5) {
   transition-delay: .1s;
-  transform: translateY(245px) scale(1); 
+  transform: translateY(235px) scale(1); 
 }
 
 .visible:nth-child(6) {
-  transform: translateY(290px) scale(1); 
+  transform: translateY(280px) scale(1); 
 }
 
 .facebook {
