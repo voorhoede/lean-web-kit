@@ -138,10 +138,16 @@ export default {
 .social-share {
   position: absolute; 
   right: var(--spacing-default);
-  top: calc(var(--app-header-height) + var(--spacing-default));
+  top: calc(var(--app-header-mobile-height) + var(--spacing-default));
   z-index: 1;
   height: 40px;
   width: 40px;
+}
+
+@media screen and (min-width: 640px) {
+  .social-share {
+    top: calc(var(--app-header-height) + var(--spacing-default));
+  }
 }
 
 .social-share__button {
