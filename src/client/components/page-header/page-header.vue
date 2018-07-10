@@ -2,7 +2,7 @@
   <header v-if="image" 
           class="page-header page-header--with-cover-image" 
           :class="{ 'image-enhanced' : imageLoaded }"
-          :style="`background-image:url('${imageLoaded ? image.url : smallImageSrc }');`"
+          :style="`background-image:url('${imageLoaded ? image.src : smallImageSrc }');`"
   >
     <h1 class="page-header__title">{{ title }}</h1>
     <p class="page-header__subtitle" v-if="subtitle">{{ subtitle }}</p>
@@ -22,12 +22,12 @@ export default {
     }
   },
   computed: {
-    smallImageSrc() { return this.image ? `${this.image.url}?w=15'` : null }
+    smallImageSrc() { return this.image ? this.image.src + '?w=15' : null }
   },
   mounted () {
     if (this.image) {
       let img = new Image()
-      img.src = this.image.url
+      img.src = this.image.src
 
       img.onload = this.loadEnhancedImage
     }
@@ -93,7 +93,6 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   overflow: hidden;
-  border: none;
 }
 
 .page-header--with-cover-image:before {
@@ -104,6 +103,10 @@ export default {
   background-color: rgba(0,0,0,.4);
   width: 100%;
   height: 100%;
+}
+
+.page-header--with-cover-image:after {
+  border: none;
 }
 
 .page-header--with-cover-image .page-header__title,
