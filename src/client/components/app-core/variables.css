@@ -1,17 +1,22 @@
 :root {
+  --app-header-height: 80px;
+  --app-header-mobile-height: 55px;
+  --max-width: 600px;
+
+/* colors */
+
   --action-color: #6a9ce4;
   --neutral-color: #f5f5f5;
-  --dark-neutral-color: #4c4c4c;
   --background-color: #fff;
-  --text-color: #000;
+  --text-color: #4c4c4c;
 
-  /* fonts */
-  
-  --font-size-small: .75rem;
-  --font-size-default: 1rem;
-  --font-size-medium: 1.125rem;
-  --font-size-large: 1.5rem;
-  --font-size-extra-large: 1.6875rem;
+ /* fonts */
+
+ --font-size-small: .75rem;
+ --font-size-default: 1rem;
+ --font-size-medium: 1.125rem;
+ --font-size-large: 1.5rem;
+ --font-size-extra-large: 1.6875rem;
 
   /* spacing */
 

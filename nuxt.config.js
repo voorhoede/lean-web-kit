@@ -22,7 +22,7 @@ module.exports = {
       '/',
       Object.keys(pages).map(key => {
         const slugI18n = pages[key]
-        return Object.keys(slugI18n).map(locale => `/${locale}/${slugI18n[locale]}`)
+        return Object.keys(slugI18n).map(locale => `/${locale}/${slugI18n[locale]}/`)
       })
     ])
   },
@@ -39,10 +39,12 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Lean Web Kit to kick-start your web project.' }
+      { hid: 'description', name: 'description', content: 'Lean Web Kit to kick-start your web project.' },
+      { 'http-equiv': 'Accept-CH', content: 'DPR, Width, Viewport-Width, Save-Data' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'dns-prefetch', href: 'https://www.datocms-assets.com/' },
     ]
   },
   /*
@@ -120,6 +122,11 @@ module.exports = {
     ** Run ESLint on save
     */
     extend (config, { isDev, isClient }) {
+      // remove SVG from URL loader, so vue-svg-loader can be used for SVGs instead
+      // based on https://github.com/nuxt/nuxt.js/issues/1332#issuecomment-321694185
+      const urlLoader = config.module.rules.find((rule) => rule.loader === 'url-loader')
+      urlLoader.test = /\.(png|jpe?g|gif)$/
+
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -128,6 +135,15 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+
+      config.module.rules.push({
+        test: /\.svg$/,
+        loader: 'vue-svg-loader'
+      });
     }
-  }
+  },
+
+  plugins: [
+    { src: `~plugins/vimeo-player`, ssr: false }
+  ],
 }

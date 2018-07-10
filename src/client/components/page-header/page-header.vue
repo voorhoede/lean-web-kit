@@ -93,6 +93,7 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   overflow: hidden;
+  border: none;
 }
 
 .page-header--with-cover-image:before {
@@ -103,20 +104,6 @@ export default {
   background-color: rgba(0,0,0,.4);
   width: 100%;
   height: 100%;
-}
-
-
-.cover-image {
-  width: 100%;
-  height: auto;
-  position: absolute;
-  object-fit: cover;
-  filter: blur(20px);
-  z-index: -1;
-}
-
-.page-header--with-cover-image:after {
-  border: none;
 }
 
 .page-header--with-cover-image .page-header__title,

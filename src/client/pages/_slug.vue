@@ -3,12 +3,12 @@
     <page-header :title="page.title" :subtitle="page.subtitle" :image="image" />
 
     <div class="page__content">
-      <div class="page__content__sidebar" v-if="page.hasToc">
+      <div class="page__sidebar" v-if="page.hasToc">
         <table-of-contents :items="page.tocItems" />
       </div>
 
       <div class="page__content__main-content">
-        <content-section v-for="(section, index) in page.sections" :key="index" :section="section" />
+        <content-section v-for="(section, index) in page.sections" :key="index" :section="section"  :id="section.slug"/>
       </div>
     </div>
   </main>
@@ -37,33 +37,31 @@ export default {
 @import '../components/app-core/index.css';
 
 .page__content {
-  flex-direction: column;
-  align-items: center;
+  margin: 0 auto;
+  padding: 0 var(--spacing-default);
+  max-width: 920px;
 }
 
-.page__content__sidebar {
-  width: 300px;
-  margin-right: var(--spacing-double);
-}
-
-.page__content__main-content {
-  max-width: 600px;
+.page__sidebar {
+  margin: 0 auto var(--spacing-double) auto;
+  width: 100%;
+  max-width: var(--max-width);
 }
 
 @media screen and (min-width: 880px) {
   .page__content {
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
-    padding: 0 var(--spacing-default);
-    max-width: 920px;
+    align-items: flex-start;
+    padding: 0 var(--spacing-double);
   }
 
-  .page__content__sidebar {
-    width: 100%;
-    max-width: 600px;
-    margin-right: 0;
-    margin-bottom: var(--spacing-double);
+  .page__sidebar {
+    position: sticky;
+    top: calc(var(--app-header-height) + var(--spacing-double));
+    flex-grow: 1;
+    margin: 0 var(--spacing-double) 0 0;
+    max-width: 300px;
   }
 }
 </style>
