@@ -8,11 +8,9 @@
 - Supports share to Linkedin
 - Supports share to WhatsApp
 - Supports share via e-mail
-- Supports copy to clipboard*
+- Supports copy to clipboard (this feature doesn't work on iPhone/iPad, so the button is not shown on these devices.)
 
 - Tracks social interactions using Google Analytics
-
-* This feature doesn't work on iPhone/iPad, so the button is not shown on these devices.
 
 ### Props:
 
