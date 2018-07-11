@@ -144,7 +144,7 @@ export default {
 }
 
 .social-share {
-  position: absolute; 
+  position: fixed; 
   right: var(--spacing-default);
   top: calc(var(--app-header-mobile-height) + var(--spacing-default));
   z-index: 1;
@@ -172,7 +172,7 @@ export default {
   position: absolute; 
   top: 0; 
   left: 0; 
-  z-index: 10;
+  z-index: 1;
   padding: 0;
   background-color: var(--action-color);
   height: 46px; 

@@ -61,7 +61,7 @@ export default {
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   padding: 0 var(--spacing-default);
   width: 100%;
   height: var(--app-header-mobile-height);
