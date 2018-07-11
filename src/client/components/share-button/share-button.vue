@@ -52,7 +52,7 @@
       </button>
     </div>
 
-    <div :class="{ 'snackbar-visible' : snackbarIsVisible }" class="snackbar">{{ snackbarSuccessText }}</div>
+    <div :class="{ 'social-share__snackbar--visible' : snackbarIsVisible }" class="social-share__snackbar">Link copied to clipboard!</div>
   </div>
 </template>
 
@@ -62,7 +62,6 @@ export default {
   data () {
     return {
       shareButtonsAreVisible: false,
-      snackbarSuccessText: 'Link copied to clipboard!',
       snackbarIsVisible: false,
       copyToClipboardIsVisible: true,
     }
@@ -116,22 +115,22 @@ export default {
 <style>
 @import '../app-core/index.css';
 
-.snackbar {
+.social-share__snackbar {
   position: absolute;
   bottom: -275px;
   left: -215px;
+  padding: var(--spacing-half);
   background-color: var(--text-color);
   text-align: center;
   color: var(--background-color);
   font-size: var(--font-size-small);
-  padding: .5rem;
   width: 200px;
   opacity: 0;
-  transition: all .5s ease-in-out;
   border-radius: 30px;
+  transition: all .5s ease-in-out;
 }
 
-.snackbar-visible {
+.social-share__snackbar--visible {
   opacity: 1;
 }
 
