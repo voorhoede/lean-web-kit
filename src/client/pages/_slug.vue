@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <share-button
+    <social-share
       :url="url"
       :title="shareTitle"
       :description="shareText"
@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import { ContentSection, TableOfContents, PageHeader, ShareButton } from '../components/'
+import { ContentSection, TableOfContents, PageHeader, SocialShare } from '../components/'
 import { getPageData, seoHead } from '../lib/'
 
 export default {
-  components: { ContentSection, TableOfContents, PageHeader, ShareButton },
+  components: { ContentSection, TableOfContents, PageHeader, SocialShare },
   
   async asyncData ({ app, params, store }) {
     const { slug } = params

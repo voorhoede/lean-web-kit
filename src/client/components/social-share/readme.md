@@ -1,4 +1,4 @@
-# Share Button
+# Social Share
 
 ### Features:
 
@@ -12,7 +12,7 @@
 
 - Tracks social interactions using Google Analytics
 
-* This feature doesn't work on iPhone/iPad, so when the user clicks on it, an error message is displayed.
+* This feature doesn't work on iPhone/iPad, so the button is not shown on these devices.
 
 ### Props:
 

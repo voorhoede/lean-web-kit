@@ -6,7 +6,7 @@
 
     <div class="social-share__links">
       <a :href="`https://twitter.com/home?status=${url}`"
-         :class="{ 'visible' : shareButtonsAreVisible }" 
+         :class="{ 'visible' : SocialSharesAreVisible }" 
          class="social-share__link twitter"
          target="_blank"
          rel="noopener"
@@ -15,7 +15,7 @@
       </a>
       
       <a :href="`https://www.facebook.com/sharer/sharer.php?u=${url}`"
-         :class="{ 'visible' : shareButtonsAreVisible }" 
+         :class="{ 'visible' : SocialSharesAreVisible }" 
          class="social-share__link facebook"
          target="_blank"
          rel="noopener"
@@ -24,7 +24,7 @@
       </a>
 
       <a :href="`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${description}`"
-         :class="{ 'visible' : shareButtonsAreVisible }" 
+         :class="{ 'visible' : SocialSharesAreVisible }" 
          class="social-share__link linkedin"
          target="_blank"
          rel="noopener"
@@ -34,7 +34,7 @@
 
       <a :href="`whatsapp://send?text=${url}`"
          data-action="share/whatsapp/share"
-         :class="{ 'visible' : shareButtonsAreVisible }" 
+         :class="{ 'visible' : SocialSharesAreVisible }" 
          class="social-share__link whatsapp"
          target="_blank"
          rel="noopener"
@@ -43,7 +43,7 @@
       </a>
 
       <a :href="`mailto:?&subject=${title}&body=${url}`"
-         :class="{ 'visible' : shareButtonsAreVisible }" 
+         :class="{ 'visible' : SocialSharesAreVisible }" 
          class="social-share__link mail"
          target="_blank"
          rel="noopener"
@@ -53,7 +53,7 @@
       
       <button
         v-if="copyToClipboardIsVisible"
-        :class="{ 'visible' : shareButtonsAreVisible }" 
+        :class="{ 'visible' : SocialSharesAreVisible }" 
         class="social-share__link copy-to-clipboard"
         @click="copyToClipboard">
         <img class="social-share__icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 498.018 498.018' width='512' height='512'%3E%3Cpath d='M293.502 452.25H76.564V141.781h33.23v-45.76H68.128c-20.125 0-36.49 16.363-36.49 36.479v329.03c0 20.149 16.332 36.488 36.481 36.488h233.828c20.149 0 36.479-16.332 36.479-36.488v-9.733h-44.925v.453z' fill='%23FFF'/%3E%3Cpath d='M460.099 68.342L398.033 6.265C393.979 2.213 388.589 0 382.884 0H196.081c-20.125 0-36.49 16.364-36.49 36.488V365.51c0 20.15 16.332 36.49 36.49 36.49H429.9c20.148 0 36.48-16.332 36.48-36.49V83.49c0-5.722-2.227-11.105-6.281-15.148zm-38.644 287.896H204.51V45.769h150.856v40.136c0 14.305 11.631 25.944 25.936 25.944h40.153v244.389z' fill='%23FFF'/%3E%3C/svg%3E">
@@ -69,7 +69,7 @@ export default {
   props: ['url', 'title', 'description'],
   data () {
     return {
-      shareButtonsAreVisible: false,
+      SocialSharesAreVisible: false,
       snackbarIsVisible: false,
       copyToClipboardIsVisible: true,
     }
@@ -82,7 +82,7 @@ export default {
         })
       }
 
-      this.shareButtonsAreVisible = !this.shareButtonsAreVisible
+      this.SocialSharesAreVisible = !this.SocialSharesAreVisible
     },
 
     showSnackbar () {
@@ -91,7 +91,7 @@ export default {
     },
 
     hideSharingButtons () {
-      this.shareButtonsAreVisible = false
+      this.SocialSharesAreVisible = false
     },
 
     handleClick (platform) {
