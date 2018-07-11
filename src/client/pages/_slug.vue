@@ -55,9 +55,9 @@ export default {
   },
 
   methods: {
-    shared (plataform) {
+    shared (platform) {
       return this.$ga.social({
-        socialNetwork: plataform,
+        socialNetwork: platform,
         socialAction: 'share',
         socialTarget: this.url
       })

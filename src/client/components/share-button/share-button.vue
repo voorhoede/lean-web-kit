@@ -94,8 +94,8 @@ export default {
       this.shareButtonsAreVisible = false
     },
 
-    handleClick (plataform) {
-      this.$emit('shared', plataform)
+    handleClick (platform) {
+      this.$emit('shared', platform)
       
       this.hideSharingButtons()
     },
