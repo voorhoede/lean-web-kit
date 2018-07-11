@@ -36,7 +36,7 @@ storiesOf('Page Header', module)
         title: 'About us',
         subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Cursus in hac habitasse platea dictumst. Turpis egestas sed tempus urna et pharetra pharetra massa massa.',
         image: {
-          url: 'https://www.datocms-assets.com/6068/1529677077-photo-1529599087-bcf1dc4a7ae4.jpeg',
+          src: 'https://www.datocms-assets.com/6068/1529677077-photo-1529599087-bcf1dc4a7ae4.jpeg',
         }
       }
     },

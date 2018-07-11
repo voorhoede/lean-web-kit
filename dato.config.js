@@ -86,6 +86,17 @@ function pageToJson (page, i18n) {
       .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
       .map(transformItem)
   }))
+  const image = page.coverImage
+  let coverImage = null
+
+  if (image !== null) {
+    coverImage = {
+      src: image.imgixHost + image.upload.path,
+      width: image.upload.width,
+      height: image.upload.height,
+    }
+  }
+
   const seo = page.seo.toMap()
   const slugI18n = locales.reduce((out, locale) => {
     i18n.withLocale(locale, () => out[locale] = page.slug)
@@ -93,7 +104,7 @@ function pageToJson (page, i18n) {
   }, {})
   const tocItems = sections.map(section => pick(section, ['title', 'slug']))
 
-  return { title, slug, slugI18n, seo, sections, hasToc, tocItems }
+  return { title, slug, slugI18n, seo, sections, hasToc, tocItems, coverImage }
 }
 
 function formatLink (link) {
