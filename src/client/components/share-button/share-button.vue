@@ -5,7 +5,7 @@
     <div class="social-share__links">
       <a :href="`https://twitter.com/home?status=${url}`"
          :class="{ 'visible' : shareButtonsAreVisible }" 
-         class="social-share__share-link twitter"
+         class="social-share__link twitter"
          target="_blank"
          rel="noopener"
          @click="handleClick('Twitter')">
@@ -13,7 +13,7 @@
       
       <a :href="`https://www.facebook.com/sharer/sharer.php?u=${url}`"
          :class="{ 'visible' : shareButtonsAreVisible }" 
-         class="social-share__share-link facebook"
+         class="social-share__link facebook"
          target="_blank"
          rel="noopener"
          @click="handleClick('Facebook')">
@@ -21,7 +21,7 @@
 
       <a :href="`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${description}`"
          :class="{ 'visible' : shareButtonsAreVisible }" 
-         class="social-share__share-link linkedin"
+         class="social-share__link linkedin"
          target="_blank"
          rel="noopener"
          @click="handleClick('Linkedin')">
@@ -30,7 +30,7 @@
       <a :href="`whatsapp://send?text=${url}`"
          data-action="share/whatsapp/share"
          :class="{ 'visible' : shareButtonsAreVisible }" 
-         class="social-share__share-link whatsapp"
+         class="social-share__link whatsapp"
          target="_blank"
          rel="noopener"
          @click="handleClick('WhatsApp')">
@@ -38,7 +38,7 @@
 
       <a :href="`mailto:?&subject=${title}&body=${url}`"
          :class="{ 'visible' : shareButtonsAreVisible }" 
-         class="social-share__share-link mail"
+         class="social-share__link mail"
          target="_blank"
          rel="noopener"
          @click="handleClick('Mail')">
@@ -47,7 +47,7 @@
       <button
         v-if="copyToClipboardIsVisible"
         :class="{ 'visible' : shareButtonsAreVisible }" 
-        class="social-share__share-link copy-to-clipboard"
+        class="social-share__link copy-to-clipboard"
         @click="copyToClipboard">
       </button>
     </div>
@@ -182,7 +182,7 @@ export default {
   position: relative; 
 }
 
-.social-share__share-link:after {
+.social-share__link:after {
   transition: opacity .25s cubic-bezier(.15,.2,.1,1);
   opacity: 0; 
   content: ''; 
@@ -196,17 +196,17 @@ export default {
   border-radius: 50%;
 }
 
-.social-share__share-link:focus {
+.social-share__link:focus {
   outline: none;
 }
 
-.social-share__share-link:hover:after,
-.social-share__share-link:focus:after,
-.social-share__share-link:active:after {
+.social-share__link:hover:after,
+.social-share__link:focus:after,
+.social-share__link:active:after {
   opacity: .3;
 }
 
-.social-share__share-link {
+.social-share__link {
   transform: translateY(0px) scale(0);
   transition: all .5s ease;
   opacity: 0;
