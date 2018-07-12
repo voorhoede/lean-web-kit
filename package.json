@@ -37,7 +37,8 @@
     "normalize.css": "^8.0.0",
     "nuxt": "^1.0.0",
     "nuxt-i18n": "^4.0.0",
-    "query-string": "^6.1.0"
+    "query-string": "^6.1.0",
+    "vue-fuse": "1.5.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.7",
