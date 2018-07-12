@@ -11,10 +11,10 @@
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
       <ul class="app-header__menu-list">
         <li v-for="(item, index) in menuItems" :key="index" class="app-header__menu-item">
-          <smart-link :item="item" class="app-header__menu-link" />
+          <smart-link :item="item" class="app-header__menu-link" @clicked="closeMenu" />
         </li>
       </ul>
-      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="button app-header__button" />
+      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="button app-header__button" @clicked="closeMenu" />
       <language-selector :locales="$i18n.locales" />
     </nav>
     
@@ -47,6 +47,12 @@ export default {
     toggleMenu () {
       this.menuIsOpen = !this.menuIsOpen
     },
+
+    closeMenu () {
+      if (this.menuIsOpen) {
+        this.menuIsOpen = false
+      }
+    }
   }
 }
 </script>
@@ -61,7 +67,7 @@ export default {
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 10;
   padding: 0 var(--spacing-default);
   width: 100%;
   height: var(--app-header-mobile-height);

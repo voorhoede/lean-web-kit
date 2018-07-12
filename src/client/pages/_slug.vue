@@ -8,7 +8,7 @@
       </div>
 
       <div class="page__content__main-content">
-        <content-section v-for="(section, index) in page.sections" :key="index" :section="section"  :id="section.slug"/>
+        <content-section v-for="(section, index) in page.sections" :key="index" :section="section" :id="section.slug"/>
       </div>
     </div>
 
