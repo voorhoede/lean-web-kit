@@ -25,4 +25,5 @@ export default {
 
 <style>
 @import '../components/app-core/index.css';
+
 </style>
