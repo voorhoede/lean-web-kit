@@ -11,10 +11,10 @@
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
       <ul class="app-header__menu-list">
         <li v-for="(item, index) in menuItems" :key="index" class="app-header__menu-item">
-          <smart-link :item="item" class="app-header__menu-link" />
+          <smart-link :item="item" class="app-header__menu-link" @clicked="closeMenu" />
         </li>
       </ul>
-      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="button app-header__button" />
+      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="button app-header__button" @clicked="closeMenu" />
       <language-selector :locales="$i18n.locales" />
     </nav>
     
@@ -30,7 +30,6 @@
 import LanguageSelector from '../language-selector'
 import SmartLink from '../smart-link'
 import MenuIcon from '../menu-icon'
-
 export default {
   components: { LanguageSelector, SmartLink, MenuIcon },
   props: ['contentId', 'menuI18n'],
@@ -48,6 +47,11 @@ export default {
     toggleMenu () {
       this.menuIsOpen = !this.menuIsOpen
     },
+    closeMenu () {
+      if (this.menuIsOpen) {
+        this.menuIsOpen = false
+      }
+    }
   }
 }
 </script>
@@ -62,8 +66,8 @@ export default {
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 1;
-  padding: var(--spacing-default);
+  z-index: 10;
+  padding: 0 var(--spacing-default);
   width: 100%;
   height: var(--app-header-mobile-height);
   background-color: var(--background-color);
@@ -101,7 +105,7 @@ export default {
 }
 
 .app-header__menu-link {
-  padding-bottom: var(--spacing-default);
+  padding: var(--spacing-default) 0;
   color: var(--text-color);
   text-transform: uppercase;
   text-decoration: none;
@@ -155,15 +159,15 @@ export default {
   .app-header {
     display: flex;
     justify-content: space-between;
-    align-items: unset;
+    align-items: center;
     height: var(--app-header-height);
   }
 
   .app-header__menu {
     display: flex;
-    align-items: unset;
+    align-items: center;
     position: relative;
-    top: var(--spacing-half);
+    top: 0;
     margin-left: auto;
     padding: 0;
     width: auto;
@@ -174,18 +178,13 @@ export default {
   .app-header__menu-list {
     display: flex;
     justify-content: flex-end;
-    margin-right: 1.5rem;
-    padding: var(--spacing-half) .7rem;
+    margin: 0 1.5rem 0 auto;
   }
 
   .app-header__menu-item {
     margin-bottom: 0;
   }
-
-  .app-header__menu-link {
-    padding: var(--spacing-half) 0;
-  }
-
+  
   .app-header__menu-item:not(:last-child) {
     margin-right: 1.5rem;
   }
