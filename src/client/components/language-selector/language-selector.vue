@@ -66,6 +66,10 @@ export default {
   display: none;
 }
 
+.language-selector__link.nuxt-link-active {
+  font-weight: bold;
+}
+
 @media screen and (min-width: 640px) {
   .language-selector--dropdown {
     align-self: flex-start;
@@ -125,5 +129,4 @@ export default {
     color: var(--background-color);
   }  
 }
-
 </style>
