@@ -30,7 +30,6 @@
 import LanguageSelector from '../language-selector'
 import SmartLink from '../smart-link'
 import MenuIcon from '../menu-icon'
-
 export default {
   components: { LanguageSelector, SmartLink, MenuIcon },
   props: ['contentId', 'menuI18n'],
@@ -186,7 +185,7 @@ export default {
   .app-header__menu-item {
     margin-bottom: 0;
   }
-
+  
   .app-header__menu-item:not(:last-child) {
     margin-right: 1.5rem;
   }

@@ -20,7 +20,7 @@
           allowfullscreen
           allow="autoplay">
         </iframe>
-        <a :href="video.url" v-if="!isPlaying" class="responsive-video__button" @click="play()">
+        <a :href="video.url" v-if="!isPlaying" class="responsive-video__button" @click.prevent="play">
           <span class="a11y-sr-only">Play</span>
           <img class="responsive-video__icon" src="/images/play.svg" />
         </a>
@@ -65,7 +65,6 @@ export default {
   },
   methods: {
     play() {
-      event.preventDefault();
       this.$ga.event({
         eventCategory: 'video',
         eventAction: 'play',
