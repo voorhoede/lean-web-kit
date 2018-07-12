@@ -81,6 +81,10 @@ export default {
   max-width: var(--max-width);
 }
 
+.page__content__main-content {
+  margin: 0 auto;
+}
+
 @media screen and (min-width: 880px) {
   .page__content {
     display: flex;
