@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link v-if="item.type === 'page'" :to="localePath({ name: 'slug', params: { slug: item.slug } })">
+  <nuxt-link v-if="item.type === 'page'" :to="localePath({ name: 'slug', params: { slug: item.slug } })" @click.native="$emit('clicked')">
     {{ item.title }}
   </nuxt-link>
   <a v-else :href="item.url">
