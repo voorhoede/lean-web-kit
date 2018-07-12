@@ -144,6 +144,8 @@ module.exports = {
   },
 
   plugins: [
-    { src: `~plugins/vimeo-player`, ssr: false }
+    { src: `~plugins/vimeo-player`, ssr: false },
+    { src: `~plugins/crisp`, ssr: false},
+    { src: `~plugins/hotjar`, ssr: false}
   ],
 }
