@@ -6,10 +6,8 @@
 </template>
 
 <script>
-import { PageHeader } from '../components'
 
 export default {
-  components: { PageHeader },
 }
 </script>
 
