@@ -83,7 +83,7 @@ export default {
   .page-header {
     min-height: 400px;
   }
-  
+
   .page-header__title {
     font-size: 4rem;
   }
@@ -93,11 +93,6 @@ export default {
     font-size: var(--font-size-large);
     letter-spacing: .5px;
     line-height: 1.4;
-  }
-
-  .full-page-header {
-    min-height: 800px;
-    margin-bottom: 0;
   }
 }
 
