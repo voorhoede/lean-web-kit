@@ -61,6 +61,11 @@ export default {
   border: 1px solid var(--action-color);
 }
 
+.full-page-header {
+  min-height: 500px;
+  margin-bottom: 0;
+}
+
 .page-header__title {
   padding: var(--spacing-double) 0;
   font-size: 3rem;
@@ -87,6 +92,11 @@ export default {
     font-size: var(--font-size-large);
     letter-spacing: .5px;
     line-height: 1.4;
+  }
+
+  .full-page-header {
+    min-height: 800px;
+    margin-bottom: 0;
   }
 }
 
