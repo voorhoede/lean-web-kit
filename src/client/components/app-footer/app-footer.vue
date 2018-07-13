@@ -220,6 +220,9 @@ export default {
   .app-footer__container {
     display: flex;
     justify-content: space-evenly;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 960px;
   }
 
   .app-footer__container > div {
