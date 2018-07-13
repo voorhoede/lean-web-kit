@@ -24,13 +24,11 @@ export default {
   padding: var(--spacing-half);
 }
 
-blockquote {
-  padding-bottom: 0;
-}
 .rich-text blockquote {
   position: relative;
   margin: var(--spacing-double) 0;
   padding-top: 1.3rem;
+  padding-bottom: 0;
 }
 
 .rich-text blockquote:before {
