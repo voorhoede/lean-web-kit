@@ -16,6 +16,8 @@ module.exports = (dato, root, i18n) => {
   fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects), 'utf8')
 
   root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
+  root.createDataFile(`${dataDir}/contact.json`, 'json', contactToJson(dato.contact))
+  root.createDataFile(`${dataDir}/social.json`, 'json', contactToJson(dato.social))
   root.createDataFile(`${dataDir}/locales.json`, 'json', locales)
   root.createDataFile(`${dataDir}/menu.json`, 'json', menuToJson(dato, i18n))
   root.createDataFile(`${dataDir}/pages.json`, 'json', pageSlugMap(dato, i18n))
@@ -132,4 +134,8 @@ function translationsToJson (translations) {
     out[item.key] = item.value
     return out
   }, {})
+}
+
+function contactToJson (page) {
+  return [page.toMap()].pop()
 }
