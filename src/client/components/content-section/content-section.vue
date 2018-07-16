@@ -29,12 +29,14 @@ export default {
 </script>
 
 <style>
-
+:root {
+  --app-header-offset: 100px;
+}
 .content-section h2::before { 
   display: block; 
   content: " "; 
-  margin-top: -100px; 
-  height: 100px; 
+  margin-top: calc(-1 * var(--app-header-offset)); 
+  height: var(--app-header-offset); 
   visibility: hidden; 
   pointer-events: none;
 }
