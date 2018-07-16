@@ -7,7 +7,7 @@
         <table-of-contents :items="page.tocItems" />
       </div>
 
-      <div class="page__content__main-content">
+      <div class="page__content__sections">
         <content-section v-for="(section, index) in page.sections" :key="index" :section="section" :id="section.slug"/>
       </div>
     </div>
@@ -79,6 +79,10 @@ export default {
   margin: 0 auto var(--spacing-double) auto;
   width: 100%;
   max-width: var(--max-width);
+}
+
+.page__content__sections {
+  margin: 0 auto;
 }
 
 @media screen and (min-width: 880px) {

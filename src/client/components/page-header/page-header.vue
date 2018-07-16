@@ -75,6 +75,10 @@ export default {
 }
 
 @media screen and (min-width: 500px) {
+  .page-header {
+    min-height: 400px;
+  }
+  
   .page-header__title {
     font-size: 4rem;
   }
