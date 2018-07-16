@@ -7,18 +7,20 @@
     
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
     
-    <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }">
-      <h2 class="a11y-sr-only">{{ menu.title }}</h2>
-      <ul class="app-header__menu-list">
-        <li v-for="(item, index) in menuItems" :key="index" class="app-header__menu-item">
-          <smart-link :item="item" class="app-header__menu-link" @clicked="closeMenu" />
-        </li>
-      </ul>
-    </nav>
+    <div class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }">
+      <nav class="app-header__list">
+        <h2 class="a11y-sr-only">{{ menu.title }}</h2>
+        <ul class="app-header__menu-list">
+          <li v-for="(item, index) in menuItems" :key="index" class="app-header__menu-item">
+            <smart-link :item="item" class="app-header__menu-link" @clicked="closeMenu" />
+          </li>
+        </ul>
+      </nav>
 
-    <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="button app-header__button" @clicked="closeMenu" />
+      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="button app-header__button" @clicked="closeMenu" />
 
-    <language-selector :locales="$i18n.locales" />
+      <language-selector :locales="$i18n.locales" />
+    </div >
 
     <button class="app-header__menu-button" @click="toggleMenu" >
       <span v-if="menuIsOpen" class="a11y-sr-only">{{ $t('close_menu') }}</span>
@@ -84,14 +86,11 @@ export default {
   position: absolute;
   top: var(--app-header-mobile-height);
   left: 0;
+  display: none;
   width: 100%;
   background-color: var(--background-color);
   box-shadow: 0px 8px 10px rgba(214,214,214,.3);
   transition: all .2s ease-in-out;
-}
-
-.app-header__menu .app-header__menu-list {
-  display: none;
 }
 
 .app-header__menu--open {
