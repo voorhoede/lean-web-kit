@@ -35,7 +35,7 @@ export default {
   content: open-quote;
   position: absolute;
   left: 0;
-  top: -30px;
+  top: -2rem;
   font-size: 6rem;
   font-family: cursive;
 }
@@ -54,7 +54,6 @@ export default {
   }
 
   .rich-text blockquote:before {
-    top: -25px;
     font-size: 8rem;
   }
 
