@@ -1,5 +1,5 @@
 <template>
-  <header role="banner" class="app-header">
+  <header role="banner" class="app-header" :class="{ 'app-header--sticky' : menu.isSticky }">
     <nuxt-link :to="localePath('index')" class="app-header__identity">
       <img class="app-header__logo" src="/images/logo.svg" alt="" />
       <h1 class="app-header__title">Lean Web Kit</h1>
@@ -14,10 +14,12 @@
           <smart-link :item="item" class="app-header__menu-link" @clicked="closeMenu" />
         </li>
       </ul>
-      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="button app-header__button" @clicked="closeMenu" />
-      <language-selector :locales="$i18n.locales" />
     </nav>
-    
+
+    <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="button app-header__button" @clicked="closeMenu" />
+
+    <language-selector :locales="$i18n.locales" />
+
     <button class="app-header__menu-button" @click="toggleMenu" >
       <span v-if="menuIsOpen" class="a11y-sr-only">{{ $t('close_menu') }}</span>
       <span v-else class="a11y-sr-only">{{ $t('open_menu') }}</span>
@@ -64,10 +66,6 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 10;
   padding: 0 var(--spacing-default);
   width: 100%;
   height: var(--app-header-mobile-height);
@@ -75,15 +73,25 @@ export default {
   box-shadow: 0 2px 15px 0 rgba(214,214,214,.5);
 }
 
+.app-header--sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
 .app-header__menu {
   position: absolute;
   top: var(--app-header-mobile-height);
   left: 0;
-  display: none;
   width: 100%;
   background-color: var(--background-color);
   box-shadow: 0px 8px 10px rgba(214,214,214,.3);
   transition: all .2s ease-in-out;
+}
+
+.app-header__menu .app-header__menu-list {
+  display: none;
 }
 
 .app-header__menu--open {
@@ -152,6 +160,7 @@ export default {
 
 .app-header__menu-button {
   padding: 0;
+  background-color: transparent;
   width: 40px;
   height: 40px;
 }

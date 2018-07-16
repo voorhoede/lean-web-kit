@@ -31,24 +31,30 @@ export default {
 
 <style>
 .language-selector {
-  display: flex;
-  justify-content: center;
-  padding: 0;
+  display: none;
 }
 
-.language-selector__item {
-  margin-right: var(--spacing-half);
-  text-transform: uppercase;
-  list-style-type: none;
-}
+@media screen and (min-width: 640px) {
+  .language-selector {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
 
-.language-selector__item:not(:last-child) {
-  border-right: 1px solid var(--action-color);
-  padding-right: var(--spacing-half);
-}
+  .language-selector__item {
+    margin-right: var(--spacing-half);
+    text-transform: uppercase;
+    list-style-type: none;
+  }
 
-.language-selector__link {
-  font-size: var(--font-size-small);
+  .language-selector__item:not(:last-child) {
+    border-right: 1px solid var(--action-color);
+    padding-right: var(--spacing-half);
+  }
+
+  .language-selector__link {
+    font-size: var(--font-size-small);
+  }
 }
 </style>
 

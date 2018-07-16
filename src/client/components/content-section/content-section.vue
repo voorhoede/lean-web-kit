@@ -30,6 +30,15 @@ export default {
 
 <style>
 
+.content-section h2::before { 
+  display: block; 
+  content: " "; 
+  margin-top: -100px; 
+  height: 100px; 
+  visibility: hidden; 
+  pointer-events: none;
+}
+
 .content-section {
   margin: 0 auto 4rem;
   max-width: var(--max-width);
