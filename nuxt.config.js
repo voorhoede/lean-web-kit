@@ -3,13 +3,20 @@ const flattenDeep = require('lodash/flattenDeep')
 const appConfig = require('./src/client/static/data/app.json')
 const locales = require('./src/client/static/data/locales.json')
 const pages = require('./src/client/static/data/pages.json')
+const routes = flattenDeep([
+  '/',
+  Object.keys(pages).map(key => {
+    const slugI18n = pages[key]
+    return Object.keys(slugI18n).map(locale => `/${locale}/${slugI18n[locale]}/`)
+  })
+])
 
 /**
  * Use Netlify's URL variable:
  * @see https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
  */
 const { NODE_ENV, URL } = process.env
-const baseUrl = URL || ''
+const baseUrl = URL
 const defaultLocale = locales[0]
 const isProduction = (NODE_ENV === 'production')
 
@@ -18,13 +25,7 @@ module.exports = {
 
   generate: {
     dir: 'dist/client/',
-    routes: flattenDeep([
-      '/',
-      Object.keys(pages).map(key => {
-        const slugI18n = pages[key]
-        return Object.keys(slugI18n).map(locale => `/${locale}/${slugI18n[locale]}/`)
-      })
-    ])
+    routes
   },
 
   env: {
@@ -106,13 +107,10 @@ module.exports = {
     }],
     '@nuxtjs/sitemap'
   ],
-
   sitemap: {
-    routes () {
-      return Object.keys(pages).reduce((acc, key) => {
-        return acc.concat(Object.keys(pages[key]).map(lang => `${lang}/${pages[key][lang]}`))
-      }, [])
-    }
+    generate: true,
+    hostname: baseUrl,
+    routes
   },
 
   css: [
