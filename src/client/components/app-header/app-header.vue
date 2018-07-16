@@ -2,25 +2,24 @@
   <header role="banner" class="app-header" :class="{ 'app-header--sticky' : menu.isSticky }">
     <nuxt-link :to="localePath('index')" class="app-header__identity">
       <img class="app-header__logo" src="/images/logo.svg" alt="" />
-      <h1 class="app-header__title">Lean Web Kit</h1>
+      <h1 class="app-header__title">Lean Web Kit<br><small>a Voorhoede product</small></h1>
+      
     </nuxt-link>
     
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
     
-    <div class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }">
-      <nav class="app-header__list">
+      <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }">
         <h2 class="a11y-sr-only">{{ menu.title }}</h2>
         <ul class="app-header__menu-list">
           <li v-for="(item, index) in menuItems" :key="index" class="app-header__menu-item">
             <smart-link :item="item" class="app-header__menu-link" @clicked="closeMenu" />
           </li>
         </ul>
+
+        <language-selector :locales="$i18n.locales" class="app-header__language-selector"/>
       </nav>
 
-      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="button app-header__button" @clicked="closeMenu" />
-
-      <language-selector :locales="$i18n.locales" />
-    </div >
+    <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="button app-header__button" @clicked="closeMenu" />
 
     <button class="app-header__menu-button" @click="toggleMenu" >
       <span v-if="menuIsOpen" class="a11y-sr-only">{{ $t('close_menu') }}</span>
@@ -68,7 +67,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 var(--spacing-default);
+  padding: 0 var(--spacing-half);
   width: 100%;
   height: var(--app-header-mobile-height);
   background-color: var(--background-color);
@@ -83,10 +82,10 @@ export default {
 }
 
 .app-header__menu {
+  display: none;
   position: absolute;
   top: var(--app-header-mobile-height);
   left: 0;
-  display: none;
   width: 100%;
   background-color: var(--background-color);
   box-shadow: 0px 8px 10px rgba(214,214,214,.3);
@@ -97,7 +96,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: var(--spacing-default);
+  padding: var(--spacing-default) 0;
 }
 
 .app-header__menu-list {
@@ -151,6 +150,7 @@ export default {
 
 .app-header__button {
   margin-left: auto;
+  margin-right: var(--spacing-default);
 }
 
 .app-header__menu--open .app-header__button {
@@ -184,6 +184,10 @@ export default {
     box-shadow: none;
   }
 
+  .app-header__button {
+    margin-left: 0;
+  }
+
   .app-header__menu-list {
     display: flex;
     justify-content: flex-end;
@@ -198,12 +202,12 @@ export default {
     margin-right: 1.5rem;
   }
 
-  .app-header__button {
-    margin-right: 1.5rem;
-  }
-
   .app-header__menu-button {
     display: none;
+  }
+
+  .app-header__language-selector {
+    margin-right: var(--spacing-default);
   }
 }
 
