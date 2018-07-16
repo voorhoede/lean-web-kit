@@ -1,14 +1,13 @@
 <template>
-  <main>
-  </main>
+  <page-layout v-if="page" :page="page" />
 </template>
 
 <script>
-import { ContentSection, TableOfContents, PageHeader, SocialShare } from '../components/'
+import { PageLayout } from '../components/'
 import { getPageData, seoHead } from '../lib/'
 
 export default {
-  components: { ContentSection, TableOfContents, PageHeader, SocialShare },
+  components: { PageLayout },
   
   async asyncData ({ app, params, store }) {
     const { slug } = params
@@ -20,33 +19,5 @@ export default {
   head () {
     return seoHead(this.page.seo)   
   },
-
-  data () {
-    return {
-      url: '',
-    }
-  },
-
-  computed: {
-    shareText() { return this.page.seo.description },
-    shareTitle() { return this.page.seo.title },
-  },
-
-  mounted () {
-    this.url = window.location.href
-  },
-
-  methods: {
-    shared (platform) {
-      return this.$ga.social({
-        socialNetwork: platform,
-        socialAction: 'share',
-        socialTarget: this.url
-      })
-    }
-  }
 }
 </script>
-
-<style>
-</style>
