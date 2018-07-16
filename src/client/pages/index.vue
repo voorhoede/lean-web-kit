@@ -1,5 +1,5 @@
 <template>
-  <page-layout v-if="page" :page="page" />
+  <page-layout :page="page" />
 </template>
 
 <script>
@@ -11,6 +11,7 @@ export default {
   
   async asyncData ({ app, params, store }) {
     const page = await getPageData({ slug: 'home', locale: app.i18n.locale })
+    
     return { page }
   },
 

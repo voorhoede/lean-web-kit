@@ -7,7 +7,7 @@
         <table-of-contents :items="page.tocItems" />
       </div>
 
-      <div class="page-layout__content">
+      <div class="page-layout__sections">
         <content-section v-for="(section, index) in page.sections" :key="index" :section="section" :id="section.slug" />
       </div>
     </div>
@@ -29,27 +29,27 @@ export default {
 <style>
 @import '../app-core/index.css';
 
-.page__content {
+.page-layoug__sections{
   margin: 0 auto;
   padding: 0 var(--spacing-default);
   max-width: 920px;
 }
 
-.page__sidebar {
+.page-layout__sidebar {
   margin: 0 auto var(--spacing-double) auto;
   width: 100%;
   max-width: var(--max-width);
 }
 
 @media screen and (min-width: 880px) {
-  .page__content {
+  .page-layoug__sections{
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     padding: 0 var(--spacing-double);
   }
 
-  .page__sidebar {
+  .page-layout__sidebar {
     position: sticky;
     top: calc(var(--app-header-height) + var(--spacing-double));
     flex-grow: 1;
