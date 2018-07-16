@@ -1,2 +1,2 @@
 
-Sitemap: http://leanwebkit.voorhoede.nl/sitemap.xml
+Sitemap: https://leanwebkit.voorhoede.nl/sitemap.xml
