@@ -27,7 +27,7 @@
     "precommit": "npm run lint",
     "proxy": "ngrok http 5326",
     "start": "run-p dev:server start:dist",
-    "start:dist": "PORT=5326 node src/server/"
+    "start:dist": "PORT=5326 node lib/local-server/"
   },
   "dependencies": {
     "@nuxtjs/google-analytics": "^2.0.2",
