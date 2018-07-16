@@ -1,17 +1,17 @@
 <template>
-  <main class="page">
+  <div class="page-layout">
     <page-header :title="page.title" :subtitle="page.subtitle" :image="page.coverImage" />
 
-    <div class="page__content">
-      <div class="page__sidebar" v-if="page.hasToc && page.tocItems.length">
+    <div class="page-layout__body">
+      <div class="page-layout__sidebar" v-if="page.hasToc && page.tocItems.length">
         <table-of-contents :items="page.tocItems" />
       </div>
 
-      <div class="page__content__main-content">
+      <div class="page-layout__content">
         <content-section v-for="(section, index) in page.sections" :key="index" :section="section" :id="section.slug" />
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <script>

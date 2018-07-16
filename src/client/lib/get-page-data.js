@@ -6,8 +6,7 @@ export default function ({ locale, slug }) {
     return fetch(url).then(res => res.json())
   } else {
     // On server load from file system
-    let data = JSON.parse(require('fs').readFileSync(`src/client/static${url}`, 'utf8'));
+    const data = JSON.parse(require('fs').readFileSync(`src/client/static${url}`, 'utf8'));
     return Promise.resolve(data);
-    // return import(`~/static${url}`)
   }
 }

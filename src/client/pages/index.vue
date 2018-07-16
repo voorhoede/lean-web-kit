@@ -10,9 +10,7 @@ export default {
   components: { PageLayout },
   
   async asyncData ({ app, params, store }) {
-    const { slug } = params
-    const page = await getPageData({ slug, locale: app.i18n.locale })
-    store.commit('setSlugI18n', page.slugI18n)
+    const page = await getPageData({ slug: 'home', locale: app.i18n.locale })
     return { page }
   },
 
