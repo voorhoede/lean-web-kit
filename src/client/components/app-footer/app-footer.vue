@@ -47,7 +47,7 @@
           </ul>
         </nav>
         <section class="app-footer__contact">
-          <h2 class="app-footer__section-title">Contact</h2>
+          <h2 class="app-footer__section-title">{{ $t('contact') }}</h2>
           <div class="app-footer__section-body" v-html="appConfig.contact"/>
         </section>
       </div>
