@@ -32,7 +32,7 @@ export default {
 :root {
   --app-header-offset: 100px;
 }
-.content-section h2::before { 
+.content-section__title::before { 
   display: block; 
   content: " "; 
   margin-top: calc(-1 * var(--app-header-offset)); 

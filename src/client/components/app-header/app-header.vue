@@ -1,51 +1,74 @@
 <template>
-  <header role="banner" class="app-header" :class="{ 'app-header--sticky' : menu.isSticky }">
+  <header 
+    role="banner" 
+    class="app-header" 
+    :class="{ 'app-header--sticky' : menu.isSticky }"
+  >
     <nuxt-link :to="localePath('index')" class="app-header__identity">
       <img class="app-header__logo" src="/images/logo.svg" alt="" />
-      <h1 class="app-header__title">Lean Web Kit<br><small>a Voorhoede product</small></h1>
       
+      <h1 class="app-header__title">Lean Web Kit<br>
+        <span class="app-header__subtitle">a Voorhoede product</span>
+      </h1>
     </nuxt-link>
     
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
     
-      <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }">
-        <h2 class="a11y-sr-only">{{ menu.title }}</h2>
-        <ul class="app-header__menu-list">
-          <li v-for="(item, index) in menuItems" :key="index" class="app-header__menu-item">
-            <smart-link :item="item" class="app-header__menu-link" @clicked="closeMenu" />
-          </li>
-        </ul>
+    <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }">
+      <h2 class="a11y-sr-only">{{ menu.title }}</h2>
+      
+      <ul class="app-header__menu-list">
+        <li v-for="(item, index) in menuItems" :key="index" class="app-header__menu-item">
+          <smart-link 
+            class="app-header__menu-link"
+            :item="item"  
+            @click.native="closeMenu" />
+        </li>
+      </ul>
 
-        <language-selector :locales="$i18n.locales" class="app-header__language-selector"/>
-      </nav>
+      <language-selector :locales="$i18n.locales" class="app-header__language-selector"/>
+    </nav>
 
-    <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="button app-header__button" @clicked="closeMenu" />
+    <smart-link 
+      v-if="menu.callToAction"
+      class="button app-header__button" 
+      :item="menu.callToAction" 
+      @click.native="closeMenu" 
+    />
 
     <button class="app-header__menu-button" @click="toggleMenu" >
       <span v-if="menuIsOpen" class="a11y-sr-only">{{ $t('close_menu') }}</span>
       <span v-else class="a11y-sr-only">{{ $t('open_menu') }}</span>
+      
       <menu-icon :isOpen="menuIsOpen" />
     </button>
   </header>
 </template>
 
 <script>
-import LanguageSelector from '../language-selector'
+import LanguageSelector from '../language-selector' 
 import SmartLink from '../smart-link'
 import MenuIcon from '../menu-icon'
+
 export default {
   components: { LanguageSelector, SmartLink, MenuIcon },
-  props: ['contentId', 'menuI18n'],
+  props: {
+    contentId: { type: String, required: true },
+    menuI18n: { type: Object, required: true },
+  },
+  
   data () {
     return {
       menuIsOpen: false,
     }
   },
+
   computed: {
     locale() { return this.$i18n.locale },
     menu() { return this.menuI18n[this.locale] },
     menuItems() { return (this.menu.callToAction || this.$i18n.locales) ? this.menu.items.slice(0, 3) : this.menu.items.slice(0, 5)}
   },
+
   methods: {
     toggleMenu () {
       this.menuIsOpen = !this.menuIsOpen
@@ -116,6 +139,7 @@ export default {
   color: var(--text-color);
   text-transform: uppercase;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .app-header__menu-link:focus,
@@ -148,9 +172,15 @@ export default {
   font-weight: lighter;
 }
 
+.app-header__subtitle {
+  font-size: var(--font-size-small);
+  white-space: nowrap;
+}
+
 .app-header__button {
   margin-left: auto;
   margin-right: var(--spacing-default);
+  white-space: nowrap;
 }
 
 .app-header__menu--open .app-header__button {
