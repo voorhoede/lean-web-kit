@@ -6,6 +6,7 @@ const slugify = require('slugify')
 
 dotenv.config()
 
+const { URL } = process.env
 const staticDir = `src/client/static`
 const dataDir = `${staticDir}/data`
 let locales = []
@@ -70,7 +71,7 @@ function transformItem(item) {
 }
 
 function pageToJson (page, i18n) {
-  const { title, slug = '', hasToc } = page
+  const { title, hasToc } = page
 
   const coverImage = page.coverImage ? page.coverImage.toMap() : undefined
 
@@ -83,14 +84,16 @@ function pageToJson (page, i18n) {
       .map(transformItem)
   }))
 
-  const seo = page.seo.toMap()
+  const slug = page.slug ? `${page.slug}/` : ''
+  const url = `${URL}/${i18n.locale}/${slug}`
+  const seo = { ...page.seo.toMap(), url }
   const slugI18n = locales.reduce((out, locale) => {
     i18n.withLocale(locale, () => out[locale] = page.slug || '')
     return out
   }, {})
   const tocItems = sections.map(section => pick(section, ['title', 'slug']))
 
-  return { title, slug, slugI18n, seo, sections, hasToc, tocItems, coverImage }
+  return { title, slug, slugI18n, seo, sections, hasToc, tocItems, coverImage, url }
 }
 
 function formatLink (link) {

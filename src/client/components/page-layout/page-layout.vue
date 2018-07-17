@@ -3,22 +3,32 @@
     <page-header :title="page.title" :subtitle="page.subtitle" :image="page.coverImage" />
 
     <div class="page-layout__body">
-      <div class="page-layout__sidebar" v-if="page.hasToc && page.tocItems.length">
+      <div
+        v-if="page.hasToc && page.tocItems.length"
+        class="page-layout__sidebar"
+      >
         <table-of-contents :items="page.tocItems" />
       </div>
 
       <div class="page-layout__sections">
-        <content-section v-for="(section, index) in page.sections" :key="index" :section="section" :id="section.slug" />
+        <content-section 
+          v-for="(section, index) in page.sections" 
+          :key="index" 
+          :section="section" 
+          :id="section.slug"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { ContentSection, TableOfContents, PageHeader } from '../'
+import ContentSection from '../content-section'
+import PageHeader from '../page-header'
+import TableOfContents from '../table-of-contents'
 
 export default {
-  components: { ContentSection, TableOfContents, PageHeader },
+  components: { ContentSection, PageHeader, TableOfContents },
   
   props: {
     page: { type: Object, required: true }
@@ -29,7 +39,7 @@ export default {
 <style>
 @import '../app-core/index.css';
 
-.page-layoug__sections{
+.page-layout__body {
   margin: 0 auto;
   padding: 0 var(--spacing-default);
   max-width: 920px;
@@ -42,7 +52,7 @@ export default {
 }
 
 @media screen and (min-width: 880px) {
-  .page-layoug__sections{
+  .page-layout__body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;

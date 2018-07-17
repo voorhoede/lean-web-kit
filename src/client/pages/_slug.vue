@@ -1,7 +1,12 @@
 <template>
   <div>
     <page-layout :page="page"/>
-    <social-share :url="url" :title="shareTitle" :description="shareText" @shared='shared' />
+    
+    <social-share
+      :url="page.url" 
+      :title="page.seo.title" 
+      :description="page.seo.description"
+    />
   </div>
 </template>
 
@@ -22,30 +27,5 @@ export default {
   head () {
     return seoHead(this.page.seo)   
   },
-
-  methods: {
-    shared (platform) {
-      return this.$ga.social({
-        socialNetwork: platform,
-        socialAction: 'share',
-        socialTarget: this.url
-      })
-    }
-  },
-
-  computed: {
-    shareText() { return this.page.seo.description },
-    shareTitle() { return this.page.seo.title },
-  },
-
-  data () {
-    return {
-      url: '',
-    }
-  },
-
-  mounted () {
-    this.url = window.location.href
-  }
 }
 </script>
