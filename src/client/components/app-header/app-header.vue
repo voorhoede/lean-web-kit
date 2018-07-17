@@ -200,7 +200,7 @@ export default {
   height: 40px;
 }
 
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 790px) {
   .app-header {
     display: flex;
     justify-content: space-between;
