@@ -4,20 +4,33 @@
       <img class="app-header__logo" src="/images/logo.svg" alt="" />
       <h1 class="app-header__title">Lean Web Kit</h1>
     </nuxt-link>
-    
+
     <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
-    
+
     <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }">
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
       <ul class="app-header__menu-list">
-        <li v-for="(item, index) in menuItems" :key="index" class="app-header__menu-item">
-          <smart-link :item="item" class="app-header__menu-link" @clicked="closeMenu" />
+        <li
+          v-for="(item, index) in menuItems"
+          :key="index"
+          class="app-header__menu-item"
+        >
+          <smart-link
+            :item="item"
+            class="app-header__menu-link"
+            @clicked="closeMenu"
+          />
         </li>
       </ul>
-      <smart-link v-if="menu.callToAction" :item="menu.callToAction" class="button app-header__button" @clicked="closeMenu" />
+      <smart-link
+        v-if="menu.callToAction"
+        class="button button--primary app-header__button"
+        :item="menu.callToAction"
+        @clicked="closeMenu"
+      />
       <language-selector :locales="$i18n.locales" />
     </nav>
-    
+
     <button class="app-header__menu-button" @click="toggleMenu" >
       <span v-if="menuIsOpen" class="a11y-sr-only">{{ $t('close_menu') }}</span>
       <span v-else class="a11y-sr-only">{{ $t('open_menu') }}</span>
@@ -185,7 +198,7 @@ export default {
   .app-header__menu-item {
     margin-bottom: 0;
   }
-  
+
   .app-header__menu-item:not(:last-child) {
     margin-right: 1.5rem;
   }

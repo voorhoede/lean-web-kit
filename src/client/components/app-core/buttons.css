@@ -1,18 +1,25 @@
 .button {
   padding: 0 var(--spacing-default);
   font-size: var(--font-size-default);
-  color: var(--background-color);
+  color: var(--action-color);
   text-transform: uppercase;
   line-height: 40px;
   height: 40px;
-  background-color: var(--action-color);
+  background-color: var(--background-color);
   box-shadow: 0 1px 5px #ccc;
   border: none;
   border-radius: 3px;
 }
 
+.button--primary {
+  color: var(--background-color);
+  background-color: var(--action-color);
+}
+
 .button:hover,
 .button:focus {
   cursor: pointer;
-  opacity: .9;
+  opacity: .8;
+  text-decoration: none;
+  border: none;
 }
