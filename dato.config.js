@@ -18,7 +18,6 @@ module.exports = (dato, root, i18n) => {
   fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects), 'utf8')
 
   root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
-  root.createDataFile(`${dataDir}/contact.json`, 'json', contactToJson(dato.contact))
   root.createDataFile(`${dataDir}/social.json`, 'json', contactToJson(dato.social))
   root.createDataFile(`${dataDir}/locales.json`, 'json', locales)
   root.createDataFile(`${dataDir}/menu.json`, 'json', menuToJson(dato, i18n))
@@ -34,7 +33,7 @@ module.exports = (dato, root, i18n) => {
 }
 
 function appSettingsToJson(app) {
-  return pick(app, ['title', 'googleAnalyticsTrackingId'])
+  return pick(app, ['title', 'contact', 'googleAnalyticsTrackingId'])
 }
 
 /**
