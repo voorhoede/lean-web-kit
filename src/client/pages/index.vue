@@ -9,7 +9,7 @@ import { getPageData, seoHead } from '../lib/'
 export default {
   components: { PageLayout },
   
-  async asyncData ({ app, params, store }) {
+  async asyncData ({ app }) {
     const page = await getPageData({ slug: 'home', locale: app.i18n.locale })
     
     return { page }

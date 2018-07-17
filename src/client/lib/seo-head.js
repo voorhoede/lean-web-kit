@@ -17,7 +17,7 @@ export default function seoHead ({ title, description, image, url }) {
     title,
     link: [
       url && { rel: 'canonical', href: url },
-    ].filter(Boolean),
+    ].filter(Boolean), // only pass valid <link> objects to template
     meta: [
       { hid: 'description', name: 'description', content: description },
       { hid: 'og:title', name: 'og:title', content: title },
