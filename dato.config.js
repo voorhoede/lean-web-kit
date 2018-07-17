@@ -32,7 +32,7 @@ module.exports = (dato, root, i18n) => {
 }
 
 function appSettingsToJson(app) {
-  return pick(app, ['title', 'googleAnalyticsTrackingId'])
+  return pick(app, ['title', 'googleAnalyticsTrackingId', 'crispWebsiteId', 'hotjarId'])
 }
 
 /**
