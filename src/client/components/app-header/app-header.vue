@@ -26,12 +26,19 @@
         </li>
       </ul>
 
+      <smart-link 
+        v-if="menu.callToAction"
+        class="button app-header__button--desktop" 
+        :item="menu.callToAction" 
+        @click.native="closeMenu" 
+      />
+
       <language-selector :locales="$i18n.locales" class="app-header__language-selector"/>
     </nav>
 
     <smart-link 
       v-if="menu.callToAction"
-      class="button app-header__button" 
+      class="button app-header__button--mobile" 
       :item="menu.callToAction" 
       @click.native="closeMenu" 
     />
@@ -139,7 +146,6 @@ export default {
   color: var(--text-color);
   text-transform: uppercase;
   text-decoration: none;
-  white-space: nowrap;
 }
 
 .app-header__menu-link:focus,
@@ -177,14 +183,14 @@ export default {
   white-space: nowrap;
 }
 
-.app-header__button {
+.app-header__button--desktop {
+  display: none;
+}
+
+.app-header__button--mobile {
   margin-left: auto;
   margin-right: var(--spacing-default);
   white-space: nowrap;
-}
-
-.app-header__menu--open .app-header__button {
-  margin: 0 0 1.5rem 0;
 }
 
 .app-header__menu-button {
@@ -214,8 +220,15 @@ export default {
     box-shadow: none;
   }
 
-  .app-header__button {
+  .app-header__button--mobile {
+    display: none;
+  }
+
+  .app-header__button--desktop {
+    display: inline-block;
     margin-left: 0;
+    margin-right: var(--spacing-default);
+    white-space: nowrap;
   }
 
   .app-header__menu-list {
