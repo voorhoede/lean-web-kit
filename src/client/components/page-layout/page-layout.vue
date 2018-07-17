@@ -15,10 +15,12 @@
 </template>
 
 <script>
-import { ContentSection, TableOfContents, PageHeader } from '../'
+import ContentSection from '../content-section'
+import PageHeader from '../page-header'
+import TableOfContents from '../table-of-contents'
 
 export default {
-  components: { ContentSection, TableOfContents, PageHeader },
+  components: { ContentSection, PageHeader, TableOfContents },
   
   props: {
     page: { type: Object, required: true }
@@ -29,7 +31,7 @@ export default {
 <style>
 @import '../app-core/index.css';
 
-.page-layoug__sections{
+.page-layout__body {
   margin: 0 auto;
   padding: 0 var(--spacing-default);
   max-width: 920px;
@@ -42,7 +44,7 @@ export default {
 }
 
 @media screen and (min-width: 880px) {
-  .page-layoug__sections{
+  .page-layout__body{
     display: flex;
     justify-content: space-between;
     align-items: flex-start;

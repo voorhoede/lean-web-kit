@@ -30,6 +30,7 @@
 import LanguageSelector from '../language-selector'
 import SmartLink from '../smart-link'
 import MenuIcon from '../menu-icon'
+
 export default {
   components: { LanguageSelector, SmartLink, MenuIcon },
   props: ['contentId', 'menuI18n'],
