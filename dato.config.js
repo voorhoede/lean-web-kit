@@ -84,14 +84,14 @@ function pageToJson (page, i18n) {
       .map(transformItem)
   }))
 
-  const seo = page.seo.toMap()
+  const slug = page.slug ? `${page.slug}/` : ''
+  const url = `${URL}/${i18n.locale}/${slug}`
+  const seo = { ...page.seo.toMap(), url }
   const slugI18n = locales.reduce((out, locale) => {
     i18n.withLocale(locale, () => out[locale] = page.slug || '')
     return out
   }, {})
   const tocItems = sections.map(section => pick(section, ['title', 'slug']))
-  const slug = `${page.slug}/`
-  const url = `${URL}/${i18n.locale}/${slug}`
 
   return { title, slug, slugI18n, seo, sections, hasToc, tocItems, coverImage, url }
 }
