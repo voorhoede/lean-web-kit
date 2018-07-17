@@ -8,10 +8,12 @@ dotenv.config()
 
 const staticDir = `src/client/static`
 const dataDir = `${staticDir}/data`
+let defaultLocale
 let locales = []
 
 module.exports = (dato, root, i18n) => {
   locales = i18n.availableLocales
+  defaultLocale = locales[0]
 
   fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects), 'utf8')
 
@@ -46,9 +48,9 @@ function redirectsToText (redirects) {
 }
 
 function pageSlugMap (dato, i18n) {
-  i18n.locale = 'en'
+  i18n.locale = defaultLocale
   return dato.pages.reduce((list, page) => {
-    i18n.locale = 'en'
+    i18n.locale = defaultLocale
     list[page.slug] = locales.reduce((out, locale) => {
       i18n.locale = locale
       out[locale] = page.slug
@@ -122,7 +124,7 @@ function menuToJson (dato, i18n) {
     menu[locale] = {
       title,
       isSticky,
-      callToAction: formatLink(callToAction),
+      callToAction: callToAction && formatLink(callToAction),
       items: links.map(link => formatLink(link)),
     }
     return menu
