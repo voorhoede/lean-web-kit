@@ -26,7 +26,7 @@ export default {
   },
   mounted () {
     if (this.image) {
-      let img = new Image()
+      const img = new Image()
       img.src = this.image.url
 
       img.onload = this.loadEnhancedImage
