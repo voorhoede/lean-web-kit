@@ -28,7 +28,7 @@
 
       <smart-link 
         v-if="menu.callToAction"
-        class="button app-header__button--desktop" 
+        class="button app-header__button app-header__button--desktop" 
         :item="menu.callToAction" 
         @click.native="closeMenu" 
       />
@@ -38,7 +38,7 @@
 
     <smart-link 
       v-if="menu.callToAction"
-      class="button app-header__button--mobile" 
+      class="button app-header__button app-header__button--mobile" 
       :item="menu.callToAction" 
       @click.native="closeMenu" 
     />
@@ -183,14 +183,17 @@ export default {
   white-space: nowrap;
 }
 
+.app-header__button {
+  margin-right: var(--spacing-default);
+  white-space: nowrap;
+}
+
 .app-header__button--desktop {
   display: none;
 }
 
 .app-header__button--mobile {
   margin-left: auto;
-  margin-right: var(--spacing-default);
-  white-space: nowrap;
 }
 
 .app-header__menu-button {
@@ -227,8 +230,6 @@ export default {
   .app-header__button--desktop {
     display: inline-block;
     margin-left: 0;
-    margin-right: var(--spacing-default);
-    white-space: nowrap;
   }
 
   .app-header__menu-list {
