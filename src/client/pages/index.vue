@@ -1,15 +1,22 @@
 <template>
-  <main>
-    <h1>Lean Web Kit</h1>
-    <p>...</p>
-  </main>
+  <page-layout :page="page" />
 </template>
 
 <script>
+import { PageLayout } from '../components/'
+import { getPageData, seoHead } from '../lib/'
 
 export default {
+  components: { PageLayout },
+  
+  async asyncData ({ app }) {
+    const page = await getPageData({ slug: 'home', locale: app.i18n.locale })
+    
+    return { page }
+  },
+
+  head () {
+    return seoHead(this.page.seo)   
+  },
 }
 </script>
-
-<style>
-</style>
