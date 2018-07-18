@@ -1,14 +1,17 @@
 <template>
   <div class="lazy-chat">
-    <button v-if="!prompt && !loaded"
-      class="button lazy-chat__open"
-      :class="{
-        'lazy-chat__open--pending': pending,
-        'lazy-chat__open--prompt': prompt,
-      }"
-      @click="requestChat"
+    <!-- Load third-party script conditionally -->
+    <script async
+      v-if="isAccepted"
+      :src="provider.script"
+      @load="onLoaded"
+    />
+    <button v-if="chatButtonIsShown"
+      class="button button--primary lazy-chat__open-button"
+      :class="{ 'button--pending': (isAccepted && !isLoaded) }"
+      @click="isRequested = true"
     >
-      <span class="a11y-sr-only">{{ $t('open_chat') }}</span>
+      {{ $t('chat') }}
     </button>
   <opt-in
     v-if="promptIsShown"
@@ -23,31 +26,34 @@
 </template>
 
 <script>
+import * as provider from './crisp.js'
 import OptIn from '../opt-in'
 
 export default {
   components: { OptIn },
   data () {
     return {
-      prompt: false,
-      pending: false,
-      loaded: false
+      isRequested: false, // user clicks chat button
+      isAccepted: false, // user accepts T&C
+      isLoaded: false, // script is loaded
+      provider,
     }
   },
   methods: {
-    declineChat () {
-      this.prompt = false
-    },
-    requestChat () {
-      this.prompt = true
-    },
     loadChat () {
-      // set pending
-      this.prompt = false
-      this.pending = true
-      const crisp = import('./crisp.js')
-        .then(() => this.loaded = true)
-        .catch(() => this.pending = false)
+      this.isAccepted = true
+      this.provider.onAccepted()
+    },
+    onLoaded () {
+      this.isLoaded = true
+      this.provider.onLoaded()
+    }
+  },
+  computed: {
+    chatButtonIsShown () {
+      return !this.isRequested || (this.isAccepted && !this.isLoaded)
+
+    },
     promptIsShown () {
       return (this.isRequested && !this.isAccepted)
     }
@@ -60,24 +66,11 @@ export default {
 
 .lazy-chat {
   position: fixed;
-  bottom: .875rem;
-  right: .875rem;
+  bottom: 1rem;
+  right: 1rem;
 }
-.lazy-chat__open {
-  width: 3.375rem;
-  height: 3.375rem;
-  border-radius: 3.375rem;
-  background-image: url('/images/chat.svg');
-  background-size: 57.5%;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-color: var(--action-color);
-}
-.lazy-chat__open--pending {
-  animation: lazy-chat--loading 2s linear infinite;
-}
-@keyframes lazy-chat--loading {
-    0% { transform: rotate(0deg) }
-  100% { transform: rotate(360deg) }
+
+.lazy-chat__prompt {
+  box-shadow: var(--shadow-wide-grey);
 }
 </style>

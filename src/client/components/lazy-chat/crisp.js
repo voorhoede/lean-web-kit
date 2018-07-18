@@ -1,10 +1,27 @@
 import { crispWebsiteId } from '../../static/data/app.json'
 
-window.CRISP_WEBSITE_ID = crispWebsiteId
-window.$crisp = []
-$crisp.push(["do", "chat:open"])
+export const script = "https://client.crisp.chat/l.js"
 
-const crisp = document.createElement("script")
-crisp.src = "https://client.crisp.chat/l.js"
-crisp.async = 1
-document.getElementsByTagName("head")[0].appendChild(crisp)
+
+/**
+ * Hooks to prepare for loading of script
+ *
+ */
+export function onAccepted () {
+  window.CRISP_WEBSITE_ID = crispWebsiteId
+  window.$crisp = []
+  $crisp.push(["do", "chat:open"])
+}
+
+
+/**
+ * Hooks to execute after script has been loaded
+ *
+ */
+export function onLoaded () {}
+
+export default {
+  onAccepted,
+  onLoaded,
+  script,
+}
