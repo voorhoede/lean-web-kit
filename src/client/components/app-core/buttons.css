@@ -6,7 +6,7 @@
   line-height: 40px;
   height: 40px;
   background-color: var(--background-color);
-  box-shadow: 0 1px 5px #ccc;
+  box-shadow: var(--shadow-small-grey);
   border: none;
   border-radius: 3px;
 }
@@ -16,10 +16,30 @@
   background-color: var(--action-color);
 }
 
+.button--pending::before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.5em;
+  height: 1.5em;
+  margin-top: -.25em;
+  margin-left: -.25em;
+  animation: spinner 2s linear infinite;
+  background-image: url('/images/spinner.png');
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 .button:hover,
 .button:focus {
   cursor: pointer;
   opacity: .8;
   text-decoration: none;
   border: none;
+}
+
+@keyframes spinner {
+  0% { transform: rotate(0deg) }
+100% { transform: rotate(360deg) }
 }
