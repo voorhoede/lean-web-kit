@@ -84,7 +84,7 @@ function pageToJson (page, i18n) {
       .map(transformItem)
   }))
 
-  const slug = page.slug ? `${page.slug}/` : ''
+  const slug = page.slug ? `${page.slug}/` : '' // makes sure there's always a trailing slash ending each route so we don't get different versions of same page
   const url = `${URL}/${i18n.locale}/${slug}`
   const seo = { ...page.seo.toMap(), url }
   const slugI18n = locales.reduce((out, locale) => {
