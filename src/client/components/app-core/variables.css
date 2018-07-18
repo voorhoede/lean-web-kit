@@ -23,4 +23,11 @@
   --spacing-default: 1rem;
   --spacing-double: 2rem;
   --spacing-half: .5rem;
+
+  /* layers */
+
+  --layer--raised: 1;
+  --layer--sticky: 5;
+  --layer--overlay: 10;
+  --layer--popup: 15
 }

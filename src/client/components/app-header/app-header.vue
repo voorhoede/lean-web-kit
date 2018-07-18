@@ -108,7 +108,7 @@ export default {
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: var(--layer--overlay);
 }
 
 .app-header__menu {
