@@ -55,10 +55,10 @@ export default {
       if (!this.isPlaying) return ''
       switch (this.video.provider) {
         case 'vimeo':
-          return `https://player.vimeo.com/video/${this.video.providerUid}?autoplay=1`
+          return `https://player.vimeo.com/video/${this.video.providerUid}?autoplay=1&muted=${this.video.autoPlay ? 1 : 0}`
           break;
         case 'youtube':
-          return `https://www.youtube.com/embed/${this.video.providerUid}?autoplay=1`
+          return `https://www.youtube.com/embed/${this.video.providerUid}?autoplay=1&mute=${this.video.autoPlay ? 1 : 0}`
           break;
         default:
           console.error(`unsupported video provider: ${this.video.provider}`);
@@ -68,7 +68,7 @@ export default {
   },
   data () {
     return {
-      isPlaying: false
+      isPlaying: this.video.autoPlay,
     }
   },
   methods: {
