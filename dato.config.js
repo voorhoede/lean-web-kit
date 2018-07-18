@@ -9,10 +9,12 @@ dotenv.config()
 const { URL } = process.env
 const staticDir = `src/client/static`
 const dataDir = `${staticDir}/data`
+let defaultLocale
 let locales = []
 
 module.exports = (dato, root, i18n) => {
   locales = i18n.availableLocales
+  defaultLocale = locales[0]
 
   fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects), 'utf8')
 
@@ -49,9 +51,9 @@ function redirectsToText (redirects) {
 }
 
 function pageSlugMap (dato, i18n) {
-  i18n.locale = 'en'
+  i18n.locale = defaultLocale
   return dato.pages.reduce((list, page) => {
-    i18n.locale = 'en'
+    i18n.locale = defaultLocale
     list[page.slug] = locales.reduce((out, locale) => {
       i18n.locale = locale
       out[locale] = page.slug
@@ -84,7 +86,7 @@ function pageToJson (page, i18n) {
       .map(transformItem)
   }))
 
-  const slug = page.slug ? `${page.slug}/` : ''
+  const slug = page.slug ? `${page.slug}/` : '' // makes sure there's always a trailing slash ending each route so we don't get different versions of same page
   const url = `${URL}/${i18n.locale}/${slug}`
   const seo = { ...page.seo.toMap(), url }
   const slugI18n = locales.reduce((out, locale) => {
@@ -120,7 +122,7 @@ function menuToJson (dato, i18n) {
     menu[locale] = {
       title,
       isSticky,
-      callToAction: formatLink(callToAction),
+      callToAction: callToAction && formatLink(callToAction),
       items: links.map(link => formatLink(link)),
     }
     return menu
