@@ -1,11 +1,11 @@
 <template>
   <div class="social-share">
-    <button class="social-share__button" @click="showOptions">
+    <a class="social-share__button" @click.prevent="showOptions" href="#share" role="button">
       <span class="a11y-sr-only">{{ $t('show_sharing_options') }}</span>
       <img class="social-share__icon" src="/images/share.svg">
-    </button>
+    </a>
 
-    <div class="social-share__links">
+    <div class="social-share__links" id="share">
       <a :href="`https://twitter.com/home?status=${encodedUrl}`"
          :class="{ 'visible' : optionsAreVisible }" 
          class="social-share__link twitter"
@@ -205,7 +205,10 @@ export default {
 }
 
 .social-share__button {
-  position: absolute; 
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 0; 
   left: 0; 
   z-index: 1;
@@ -279,12 +282,18 @@ export default {
   border-radius: 50%; 
 }
 
+/* apply shared styles to all links */
+
+#share:target .social-share__link,
 .visible {
   opacity: 1;
   -webkit-transition: all .5s cubic-bezier(0,1.33,.44,.98);
           transition: all .5s cubic-bezier(0,1.33,.44,.98);
 }
 
+/* add styles that are specific for each link delay and translateY */
+
+#share:target .social-share__link:nth-child(1),
 .visible:nth-child(1) {
   -webkit-transition-delay: .5s;
           transition-delay: .5s;
@@ -292,6 +301,7 @@ export default {
           transform: translateY(55px) scale(1);
 }
 
+#share:target .social-share__link:nth-child(2),
 .visible:nth-child(2) {
   -webkit-transition-delay: .4s;
           transition-delay: .4s;
@@ -299,6 +309,7 @@ export default {
           transform: translateY(100px) scale(1);
 }
 
+#share:target .social-share__link:nth-child(3),
 .visible:nth-child(3) {
   -webkit-transition-delay: .3s;
           transition-delay: .3s;
@@ -306,6 +317,7 @@ export default {
           transform: translateY(145px) scale(1);
 }
 
+#share:target .social-share__link:nth-child(4),
 .visible:nth-child(4) {
   -webkit-transition-delay: .2s;
           transition-delay: .2s;
@@ -313,6 +325,7 @@ export default {
           transform: translateY(190px) scale(1);
 }
 
+#share:target .social-share__link:nth-child(5),
 .visible:nth-child(5) {
   -webkit-transition-delay: .1s;
           transition-delay: .1s;
@@ -320,6 +333,7 @@ export default {
           transform: translateY(235px) scale(1); 
 }
 
+#share:target .social-share__link:nth-child(6),
 .visible:nth-child(6) {
   -webkit-transform: translateY(280px) scale(1); 
           transform: translateY(280px) scale(1); 
