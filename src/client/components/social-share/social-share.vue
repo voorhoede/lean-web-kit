@@ -1,7 +1,7 @@
 <template>
   <div class="social-share">
     <a class="social-share__button" @click.prevent="showOptions" href="#share" role="button">
-      <span class="a11y-sr-only">{{ $t('show_sharing_options') }}</span>
+      <span class="a11y-sr-only">{{ !optionsAreVisible ? $t('show_sharing_options') : $t('hide_sharing_options') }}</span>
       <img class="social-share__icon" src="/images/share.svg">
     </a>
 
@@ -338,4 +338,9 @@ export default {
   -webkit-transform: translateY(280px) scale(1); 
           transform: translateY(280px) scale(1); 
 }
+
+#share:target .copy-to-clipboard {
+  display: none;
+}
+
 </style>
