@@ -2,15 +2,38 @@ import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
 import readme from './readme.md'
 import SocialShare from './'
+import VueI18n from 'vue-i18n'
 
-storiesOf('Share Button', module)
+const i18n = () => {
+  return new VueI18n({
+    locale: 'en',
+    messages: {
+      en: {
+        show_sharing_options: 'Show sharing options',
+        hide_sharing_options: 'Hide sharing options',
+        share_on_facebook: 'Share on Facebook',
+        share_on_twitter: 'Share on twitter',
+        share_on_linkedin: 'Share on linkedin',
+        share_on_whatsapp: 'Share on whatsapp',
+        share_via_email: 'Share via email',
+        copy_to_clipboard: 'Copy to clipboard',
+        link_copied_to_clipboard: 'Link copied to clipboard',
+      }
+    },
+  })
+}
+
+storiesOf('Social Share', module)
   .addDecorator(withReadme(readme))
   .add('Default', () => ({
     components: { SocialShare },
-    template: `<social-share :url="url"/>`,
+    template: `<div><social-share :url="url" :title="title" :description="description" /></div>`,
     data () {
       return {
-        url: 'https://leanwebkit.voorhoede.nl/'
+        url: 'https://leanwebkit.voorhoede.nl/',
+        title: 'Lean Web Kit',
+        description: 'A product by De Voorhoede',
       }
-    }
+    },
+    i18n: i18n()
   }))

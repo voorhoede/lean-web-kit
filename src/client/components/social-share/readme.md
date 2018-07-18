@@ -19,4 +19,4 @@
 |:-----------:|:--------:|:----------:|
 | url         |  string  |   true     |
 | title       |  string  |   true     |
-| description |  string  |   true     |
+| description |  string  |   false    |
