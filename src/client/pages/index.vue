@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <main>
     <h1>Lean Web Kit</h1>
     <p>...</p>
-  </div>
+  </main>
 </template>
 
 <script>
+
 export default {
-  components: {}
 }
 </script>
 
