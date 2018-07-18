@@ -21,7 +21,7 @@
           allow="autoplay">
         </iframe>
         <a :href="video.url" v-if="!isPlaying" class="responsive-video__button" @click.prevent="play">
-          <span class="a11y-sr-only">Play</span>
+          <span class="a11y-sr-only">{{ $t('play_video') }}</span>
           <img class="responsive-video__icon" src="/images/play.svg" />
         </a>
       </fixed-ratio>
