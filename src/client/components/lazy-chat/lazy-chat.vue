@@ -10,27 +10,23 @@
     >
       <span class="a11y-sr-only">{{ $t('open_chat') }}</span>
     </button>
-    <div
-      v-if="prompt && !pending"
-      role="dialog"
-      class="lazy-chat__prompt"
-      :aria-label="$t('chat')"
-      aria-describedby="lazy-chat__prompt-text"
-    >
-      <p id="lazy-chat__prompt-text" v-html="$t('prompt_terms_conditions')"></p>
-      <button class="button button--primary" @click="loadChat">
-        {{ $t('agree') }}
-      </button>
-      <button class="button" @click="declineChat">
-        {{ $t('decline') }}
-      </button>
-    </div>
+  <opt-in
+    v-if="promptIsShown"
+    class="lazy-chat__prompt"
+    name="terms_conditions"
+    :title="$t('chat')"
+    :body="$t('prompt_terms_conditions')"
+    @accept="loadChat"
+    @decline="isRequested = false"
+  />
   </div>
 </template>
 
 <script>
+import OptIn from '../opt-in'
 
 export default {
+  components: { OptIn },
   data () {
     return {
       prompt: false,
@@ -52,6 +48,8 @@ export default {
       const crisp = import('./crisp.js')
         .then(() => this.loaded = true)
         .catch(() => this.pending = false)
+    promptIsShown () {
+      return (this.isRequested && !this.isAccepted)
     }
   }
 }
