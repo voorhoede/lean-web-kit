@@ -66,6 +66,11 @@ function transformItem(item) {
     $('img').remove()
     item.body = $('body').html()
   }
+  else if (item.type === 'video') {
+    if (item.video && item.title) {
+      item.video.title = item.title
+    }
+  }
   return item
 }
 

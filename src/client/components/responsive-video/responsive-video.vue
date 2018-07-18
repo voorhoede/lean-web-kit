@@ -3,30 +3,33 @@
     <figure>
       <fixed-ratio class="responsive-video__canvas" :width="video.width" :height="video.height">
         <lazy-load>
-          <img
-            class="responsive-video__image"
-            v-if="!isPlaying"
-            alt=""
-            :src="video.provider === 'youtube' ? video.thumbnailUrl.replace('/hqdefault.jpg', '/mqdefault.jpg') : video.thumbnailUrl"
-          />
+          <div
+            class="responsive-video__background"
+            :style="{ backgroundImage: `url(${thumbnailImage})` }"
+          >
+          </div>
         </lazy-load>
         <iframe
           v-if="isPlaying"
+          class="responsive-video__i-frame"
           :src="videoSource"
-          style="width:100%; height:100%;"
           frameborder="0"
           webkitallowfullscreen
           mozallowfullscreen
           allowfullscreen
           allow="autoplay">
         </iframe>
-        <a :href="video.url" v-if="!isPlaying" class="responsive-video__button" @click.prevent="play">
+        <a
+          v-if="!isPlaying"
+          class="responsive-video__button"
+          :href="video.url"
+          @click.prevent="play">
           <span class="a11y-sr-only">{{ $t('play_video') }}</span>
           <img class="responsive-video__icon" src="/images/play.svg" />
         </a>
       </fixed-ratio>
       <figcaption v-if="video.title">
-        <a :href="video.url" target="_blank" rel="noopener">
+        <a target="_blank" rel="noopener" :href="video.url" >
           {{ video.title }}
         </a>
       </figcaption>
@@ -36,13 +39,18 @@
 
 <script>
 
-import FixedRatio from '../fixed-ratio'
-import LazyLoad from '../lazy-load'
+import FixedRatio from '../fixed-ratio/fixed-ratio'
+import LazyLoad from '../lazy-load/lazy-load'
 
 export default {
   props: ['video'],
   components: { FixedRatio, LazyLoad },
   computed: {
+    thumbnailImage() {
+      return this.video.provider === 'youtube'
+        ? this.video.thumbnailUrl.replace('/hqdefault.jpg', '/maxresdefault.jpg')
+        : this.video.thumbnailUrl
+    },
     videoSource() {
       if (!this.isPlaying) return ''
       switch (this.video.provider) {
@@ -78,6 +86,8 @@ export default {
 </script>
 
 <style>
+@import '~/assets/colors.css';
+
 .responsive-video {
   position: relative;
 }
@@ -86,9 +96,18 @@ export default {
   background-color: var(--neutral-color);
 }
 
-.responsive-video__image {
+.responsive-video__background {
+  position: absolute;
   height: 100%;
   width: 100%;
+  background-size: cover;
+  background-position: center center;
+}
+
+.responsive-video__i-frame {
+  width:100%;
+  height:100%;
+  position:relative;
 }
 
 .responsive-video__button {
