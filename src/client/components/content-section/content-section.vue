@@ -29,6 +29,17 @@ export default {
 </script>
 
 <style>
+:root {
+  --app-header-offset: 100px;
+}
+.content-section__title::before { 
+  display: block; 
+  content: " "; 
+  margin-top: calc(-1 * var(--app-header-offset)); 
+  height: var(--app-header-offset); 
+  visibility: hidden; 
+  pointer-events: none;
+}
 
 .content-section {
   margin: 0 auto 4rem;
