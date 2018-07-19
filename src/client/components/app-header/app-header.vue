@@ -1,12 +1,12 @@
 <template>
-  <header 
-    role="banner" 
-    class="app-header" 
+  <header
+    role="banner"
+    class="app-header"
     :class="{ 'app-header--sticky' : menu.isSticky }"
   >
     <nuxt-link :to="localePath('index')" class="app-header__identity">
       <img class="app-header__logo" src="/images/logo.svg" alt="" />
-      
+
       <h1 class="app-header__title">Lean Web Kit<br>
         <span class="app-header__subtitle">a Voorhoede product</span>
       </h1>
@@ -16,7 +16,7 @@
 
     <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }">
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
-      
+
       <ul class="app-header__menu-list">
         <li
           v-for="(item, index) in menuItems"
@@ -33,24 +33,24 @@
 
       <smart-link
         v-if="menu.callToAction"
-        class="button app-header__button app-header__button--desktop" 
+        class="button button--primary app-header__button app-header__button--desktop"
         :item="menu.callToAction"
       />
 
       <language-selector :locales="$i18n.locales" class="app-header__language-selector"/>
     </nav>
 
-    <smart-link 
+    <smart-link
       v-if="menu.callToAction"
-      class="button app-header__button app-header__button--mobile" 
-      :item="menu.callToAction" 
-      @click.native="closeMenu" 
+      class="button button--primary app-header__button app-header__button--mobile"
+      :item="menu.callToAction"
+      @click.native="closeMenu"
     />
 
     <button class="app-header__menu-button" @click="toggleMenu" >
       <span v-if="menuIsOpen" class="a11y-sr-only">{{ $t('close_menu') }}</span>
       <span v-else class="a11y-sr-only">{{ $t('open_menu') }}</span>
-      
+
       <menu-icon :isOpen="menuIsOpen" />
     </button>
   </header>
@@ -67,7 +67,7 @@ export default {
     contentId: { type: String, required: true },
     menuI18n: { type: Object, required: true },
   },
-  
+
   data () {
     return {
       menuIsOpen: false,
