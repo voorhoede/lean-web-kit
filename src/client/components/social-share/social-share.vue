@@ -12,7 +12,7 @@
          target="_blank"
          rel="noopener"
          @click="handleClick('Twitter')">
-         <span class="a11y-sr-only">{{ $t('share_on_twitter') }}</span>
+         <span class="a11y-sr-only">{{ $t('share_on_platform', { platform: 'Twitter'} ) }}</span>
         <img class="social-share__icon" src="/images/twitter-logo.svg">
       </a>
       
@@ -22,7 +22,7 @@
          target="_blank"
          rel="noopener"
          @click="handleClick('Facebook')">
-         <span class="a11y-sr-only">{{ $t('share_on_facebook') }}</span>
+         <span class="a11y-sr-only">{{ $t('share_on_platform', { platform: 'Facebook'} ) }}</span>
          <img class="social-share__icon" src="/images/facebook-logo.svg">
       </a>
 
@@ -32,7 +32,7 @@
          target="_blank"
          rel="noopener"
          @click="handleClick('Linkedin')">
-         <span class="a11y-sr-only">{{ $t('share_on_linkedin') }}</span>
+         <span class="a11y-sr-only">{{ $t('share_on_platform', { platform: 'Linkedin'} ) }}</span>
          <img class="social-share__icon" src="/images/linkedin-logo.svg">
       </a>
 
@@ -43,7 +43,7 @@
          target="_blank"
          rel="noopener"
          @click="handleClick('WhatsApp')">
-         <span class="a11y-sr-only">{{ $t('share_on_whatsapp') }}</span>
+         <span class="a11y-sr-only">{{ $t('share_on_platform', { platform: 'WhatsApp'} ) }}</span>
          <img class="social-share__icon" src="/images/whatsapp-logo.svg">
       </a>
 
@@ -53,7 +53,7 @@
          target="_blank"
          rel="noopener"
          @click="handleClick('Mail')">
-         <span class="a11y-sr-only">{{ $t('share_via_email') }}</span>
+         <span class="a11y-sr-only">{{ $t('share_on_platform', { platform: 'Email'} ) }}</span>
          <img class="social-share__icon" src="/images/mail.svg">
       </a>
       
@@ -74,10 +74,7 @@
 </template>
 
 <script>
-import TwitterLogo from '../../static/images/twitter-logo.svg'
-
 export default {
-  components: { TwitterLogo },
   props: {
     url: { type: String, required: true },
     title: { type: String, required: true },
