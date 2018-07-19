@@ -57,10 +57,10 @@ export default {
   components: { FixedRatio, LazyLoad },
   computed: {
     useOptimalImage() {
-      const sizeRegex = /\d+\.\w+$/
-      const videoArray = this.video.thumbnailUrl.replace(sizeRegex, `${this.width}.jpg`)
+      // finds image size and replaces it with device width
+      const sizeRegex = /\d+\.\w+$/ 
       
-      return videoArray
+      return this.video.thumbnailUrl.replace(sizeRegex, `${this.width}.jpg`)
     },
     thumbnailImage() {
       return this.video.provider === 'youtube'
@@ -102,9 +102,8 @@ export default {
    mounted() {
     const pixelRatio = window.devicePixelRatio || 1
     const cssWidth = this.$el.getBoundingClientRect().width
-    const width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
-    this.width = Math.min(width, this.video.width)
-
+    this.width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
+    
     if (this.video.provider === 'vimeo') {
     console.log(this.video.thumbnailUrl, this.thumbnailImage, this.width)
     }
