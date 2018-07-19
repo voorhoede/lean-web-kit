@@ -66,8 +66,8 @@ export default {
 
 .lazy-chat {
   position: fixed;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: var(--spacing-default);
+  right: var(--spacing-default);
   z-index: var(--layer--overlay);
 }
 
