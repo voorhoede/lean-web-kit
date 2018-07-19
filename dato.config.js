@@ -73,7 +73,7 @@ function transformItem(item) {
 }
 
 function pageToJson (page, i18n) {
-  const { title, hasToc, sharingButton } = page
+  const { title, hasToc, hasShareButton } = page
 
   const coverImage = page.coverImage ? page.coverImage.toMap() : undefined
 
@@ -95,7 +95,7 @@ function pageToJson (page, i18n) {
   }, {})
   const tocItems = sections.map(section => pick(section, ['title', 'slug']))
 
-  return { title, slug, slugI18n, seo, sections, hasToc, tocItems, coverImage, url, sharingButton }
+  return { title, slug, slugI18n, seo, sections, hasToc, tocItems, coverImage, url, hasShareButton }
 }
 
 function formatLink (link) {

@@ -3,7 +3,7 @@
     <page-layout :page="page"/>
     
     <social-share
-      v-if="page.sharingButton"
+      v-if="page.hasShareButton"
       :url="page.url" 
       :title="page.seo.title" 
       :description="page.seo.description"
