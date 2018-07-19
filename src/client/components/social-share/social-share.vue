@@ -13,7 +13,7 @@
          rel="noopener"
          :title="$t('share_on_platform', { platform: 'Twitter'} )"
          @click="handleClick('Twitter')">
-        <img class="social-share__icon" src="/images/twitter-logo.svg">
+        <img class="social-share__icon" src="/images/twitter-icon.svg">
       </a>
       
       <a :href="`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`"
@@ -23,7 +23,7 @@
          rel="noopener"
          :title="$t('share_on_platform', { platform: 'Facebook'} )"
          @click="handleClick('Facebook')">
-         <img class="social-share__icon" src="/images/facebook-logo.svg">
+         <img class="social-share__icon" src="/images/facebook-icon.svg">
       </a>
 
       <a :href="`https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${title}&summary=${encodedDescription}`"
@@ -33,7 +33,7 @@
          rel="noopener"
          :title="$t('share_on_platform', { platform: 'Linkedin'} )"
          @click="handleClick('Linkedin')">
-         <img class="social-share__icon" src="/images/linkedin-logo.svg">
+         <img class="social-share__icon" src="/images/linkedin-icon.svg">
       </a>
 
       <a :href="`whatsapp://send?text=${encodedUrl}`"
@@ -44,7 +44,7 @@
          rel="noopener"
          :title="$t('share_on_platform', { platform: 'WhatsApp'} )"
          @click="handleClick('WhatsApp')">
-         <img class="social-share__icon" src="/images/whatsapp-logo.svg">
+         <img class="social-share__icon" src="/images/whatsapp-icon.svg">
       </a>
 
       <a :href="`mailto:?&subject=${title}&body=${encodedUrl}`"
