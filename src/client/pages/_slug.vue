@@ -7,7 +7,7 @@
         <table-of-contents :items="page.tocItems" />
       </div>
 
-      <div class="page__content__sections">
+      <div class="page__content-sections">
         <content-section v-for="(section, index) in page.sections" :key="index" :section="section" :id="section.slug"/>
       </div>
     </div>
@@ -27,7 +27,7 @@ import { getPageData, seoHead } from '../lib/'
 
 export default {
   components: { ContentSection, TableOfContents, PageHeader, SocialShare },
-  
+
   async asyncData ({ app, params, store }) {
     const { slug } = params
     const page = await getPageData({ slug, locale: app.i18n.locale })
@@ -36,7 +36,7 @@ export default {
   },
 
   head () {
-    return seoHead(this.page.seo)   
+    return seoHead(this.page.seo)
   },
 
   data () {
@@ -81,7 +81,7 @@ export default {
   max-width: var(--max-width);
 }
 
-.page__content__sections {
+.page__content-sections {
   margin: 0 auto;
 }
 
