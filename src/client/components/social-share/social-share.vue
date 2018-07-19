@@ -13,62 +13,12 @@
         :class="{ 'social-share__link--visible' : optionsAreVisible }"
         target="_blank"
         rel="noopener"
-        :title="$t( 'share_on_platform', { platform: platform.name })"
+        :title="platform.name === 'Email' ? 
+                $t( 'share_via_email' ) : 
+                $t( 'share_on_platform', { platform: platform.name })"
         @click="handleClick(platform.name)"
       >
-        <img class="social-share__icon" :src="platform.icon">
-      </a>
-      
-      <!-- :href="`https://twitter.com/intent/tweet?text=${title} ${encodedDescription} ${encodedUrl}`"
-         class="social-share__link twitter"
-         :class="{ 'social-share__link--visible' : optionsAreVisible }" 
-         target="_blank"
-         rel="noopener"
-         :title="$t('share_on_platform', { platform: 'Twitter'} )"
-         @click="handleClick('Twitter')">
-        <img class="social-share__icon" src="/images/twitter-icon.svg">
-      </a> -->
-      
-      <!-- <a 
-        :href="`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`"
-        :class="{ 'social-share__link--visible' : optionsAreVisible }" 
-        class="social-share__link facebook"
-        target="_blank"
-         rel="noopener"
-         :title="$t('share_on_platform', { platform: 'Facebook'} )"
-         @click="handleClick('Facebook')">
-         <img class="social-share__icon" src="/images/facebook-icon.svg">
-      </a>
-
-      <a :href="`https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${title}&summary=${encodedDescription}`"
-         :class="{ 'social-share__link--visible' : optionsAreVisible }" 
-         class="social-share__link linkedin"
-         target="_blank"
-         rel="noopener"
-         :title="$t('share_on_platform', { platform: 'Linkedin'} )"
-         @click="handleClick('Linkedin')">
-         <img class="social-share__icon" src="/images/linkedin-icon.svg">
-      </a>
-
-      <a :href="`whatsapp://send?text=${encodedUrl}`"
-         data-action="share/whatsapp/share"
-         :class="{ 'social-share__link--visible' : optionsAreVisible }"
-         class="social-share__link whatsapp"
-         target="_blank"
-         rel="noopener"
-         :title="$t('share_on_platform', { platform: 'WhatsApp'} )"
-         @click="handleClick('WhatsApp')">
-         <img class="social-share__icon" src="/images/whatsapp-icon.svg">
-      </a>
-
-      <a :href="`mailto:?&subject=${title}&body=${encodedUrl}`"
-         :class="{ 'social-share__link--visible' : optionsAreVisible }" 
-         class="social-share__link mail"
-         target="_blank"
-         rel="noopener"
-         :title="$t('share_via_email')"
-         @click="handleClick('Mail')">
-         <img class="social-share__icon" src="/images/mail.svg">
+        <img class="social-share__icon" :src="`/images/${platform.icon}`">
       </a>
       
       <button
@@ -78,7 +28,7 @@
         :title="$t('copy_to_clipboard')"
         @click="copyToClipboard">
         <img class="social-share__icon" src="/images/copy-to-clipboard.svg">
-      </button> -->
+      </button>
     </div>
 
     <div :class="{ 'social-share__snackbar--visible' : snackbarIsVisible }" class="social-share__snackbar">
@@ -102,7 +52,7 @@ export default {
       optionsAreVisible: false,
       snackbarIsVisible: false,
       copyToClipboardIsVisible: true,
-      platforms
+      platforms,
     }
   },
 
@@ -210,11 +160,6 @@ export default {
 
 .social-share__icon {
   width: 20px;
-  height: 20px;
-}
-
-.facebook .social-share__icon {
-  width: auto;
   height: 20px;
 }
 
