@@ -1,69 +1,62 @@
 <template>
-    <figure class="responsive-image">
-      <fixed-ratio :content="image">
-        <picture class="responsive-image__picture">
-          <!--[if IE 9]><video style="display: none;"><![endif]-->
-          <source type="image/webp" media="(min-width: 360px)" :srcset="imageUrl(imageSource, { fm: 'webp' })">
-          <source type="image/webp" :srcset="imageUrl(imageSource, { fm: 'webp', width: 360 })">
-          <source media="(min-width: 360px)" :srcset="imageUrl(imageSource)">
-          <source :srcset="imageUrl(imageSource, { width: 360 })">
-          <!--[if IE 9]></video><![endif]-->
-          <img class="responsive-image__img" :alt="image.alt" :srcset="imageUrl(imageSource)" />
-          <noscript>
-            <img class="responsive-image__fallback" :src="image.url" :alt="image.alt" />
-          </noscript>
-        </picture>
+  <figure class="responsive-image">
+    <div class="responsive-image__sizer" :style="`max-width:${image.width}px;`">
+      <fixed-ratio class="responsive-image__canvas" :width="image.width" :height="image.height">
+        <lazy-load>
+          <picture class="responsive-image__picture" v-if="width">
+            <!--[if IE 9]><video style="display: none;"><![endif]-->
+            <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
+            <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
+            <!--[if IE 9]></video><![endif]-->
+            <img class="responsive-image__img" :alt="image.alt" :srcset="imageUrl({ w: width })" />
+          </picture>
+        </lazy-load>
+        <no-script>
+          <picture class="responsive-image__picture">
+            <img class="responsive-image__img" :alt="image.alt" :src="imageUrl({ w: 500 })" />
+          </picture>
+        </no-script>
       </fixed-ratio>
-      <figcaption class="responsive-image__caption" v-if="image.title">{{ image.title }}</figcaption>
-    </figure>
+    </div>
+    <figcaption class="responsive-image__caption" v-if="image.title">
+      {{ image.title }}
+    </figcaption>
+  </figure>
 </template>
 
 <script>
-
 import FixedRatio from '../fixed-ratio'
+import LazyLoad from '../lazy-load'
+import NoScript from '../no-script'
 import imageUrl from '../../lib/image-url'
 
 export default {
-  components: { FixedRatio },
-  props: ['image'],
-  data() {
-    return {
-      observer: null,
-      setSource: false
+  components: { FixedRatio, LazyLoad, NoScript },
+  props: {
+    image: {
+      type: Object,
+      required: true,
+    },
+    widthStep: {
+      type: Number,
+      default: 100,
     }
   },
-  computed: {
-    imageSource() {
-      return this.setSource ? this.image.url : ''
+  data() {
+    return {
+      width: undefined,
     }
   },
   mounted() {
-    const config = {
-      root: undefined,
-      rootMargin: '0px 0px 0px 0px',
-      threshold: 0
-    };
-
-    if ('IntersectionObserver' in window) {
-      this.observer = new IntersectionObserver(this.onIntersection, config)
-      this.observer.observe(this.$el)
-    } else {
-      this.setSource = true
-    }
-  },
-  unmounted() {
-    observer.unobserve(this.$el)
+    const pixelRatio = window.devicePixelRatio || 1
+    const cssWidth = this.$el.getBoundingClientRect().width
+    const width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
+    this.width = Math.min(width, this.image.width)
   },
   methods: {
-    imageUrl,
-    onIntersection(entries, observer) {
-      entries.forEach(entry => {
-        if (entry.intersectionRatio > 0) {
-          this.setSource = true
-          observer.unobserve(entry.target)
-        }
-      })
-    }
+    imageUrl(options) {
+      return imageUrl(this.image.url, options)
+    },
   }
 }
 </script>
@@ -71,6 +64,15 @@ export default {
 <style scoped>
 .responsive-image {
   margin-bottom: var(--spacing-double);
+}
+
+.responsive-image__sizer {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.responsive-image__canvas {
+  background-color: var(--neutral-color);
 }
 
 .responsive-image__img {
@@ -95,12 +97,6 @@ export default {
   top: 50%;
   width: 100%;
   text-align: center;
-}
-
-.responsive-image__fallback {
-  position: relative;
-  width: 100%;
-  z-index: 1;
 }
 
 .responsive-image__caption {

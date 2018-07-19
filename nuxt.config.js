@@ -3,13 +3,20 @@ const flattenDeep = require('lodash/flattenDeep')
 const appConfig = require('./src/client/static/data/app.json')
 const locales = require('./src/client/static/data/locales.json')
 const pages = require('./src/client/static/data/pages.json')
+const routes = flattenDeep([
+  '/',
+  Object.keys(pages).map(key => {
+    const slugI18n = pages[key]
+    return Object.keys(slugI18n).map(locale => `/${locale}/${slugI18n[locale]}/`)
+  })
+])
 
 /**
  * Use Netlify's URL variable:
  * @see https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
  */
 const { NODE_ENV, URL } = process.env
-const baseUrl = URL || ''
+const baseUrl = URL
 const defaultLocale = locales[0]
 const isProduction = (NODE_ENV === 'production')
 
@@ -18,13 +25,7 @@ module.exports = {
 
   generate: {
     dir: 'dist/client/',
-    routes: flattenDeep([
-      '/',
-      Object.keys(pages).map(key => {
-        const slugI18n = pages[key]
-        return Object.keys(slugI18n).map(locale => `/${locale}/${slugI18n[locale]}`)
-      })
-    ])
+    routes
   },
 
   env: {
@@ -60,7 +61,7 @@ module.exports = {
   },
 
   router: {
-    middleware: ['enforce-trailing-slash', 'meta-canonical'],
+    middleware: ['enforce-trailing-slash'],
   },
 
   modules: [
@@ -104,8 +105,13 @@ module.exports = {
         fallbackLocale: defaultLocale,
       }
     }],
+    '@nuxtjs/sitemap'
   ],
-
+  sitemap: {
+    generate: true,
+    hostname: baseUrl,
+    routes
+  },
 
   css: [
     'normalize.css'
@@ -122,6 +128,11 @@ module.exports = {
     ** Run ESLint on save
     */
     extend (config, { isDev, isClient }) {
+      // remove SVG from URL loader, so vue-svg-loader can be used for SVGs instead
+      // based on https://github.com/nuxt/nuxt.js/issues/1332#issuecomment-321694185
+      const urlLoader = config.module.rules.find((rule) => rule.loader === 'url-loader')
+      urlLoader.test = /\.(png|jpe?g|gif)$/
+
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -130,6 +141,15 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+
+      config.module.rules.push({
+        test: /\.svg$/,
+        loader: 'vue-svg-loader'
+      });
     }
-  }
+  },
+
+  plugins: [
+    { src: `~plugins/vimeo-player`, ssr: false },
+  ],
 }

@@ -1,7 +1,7 @@
 <template>
-  <section :id="section.slug">
+  <section class="content-section" :id="section.slug">
     <a :href="`#${section.slug}`">
-      <h2>{{ section.title }}</h2>
+      <h2 class="content-section__title">{{ section.title }}</h2>
     </a>
     <template v-for="(item, index) in section.items">
       <rich-text v-if="item.type === 'text'"
@@ -27,3 +27,29 @@ export default {
   props: ['section'],
 }
 </script>
+
+<style>
+:root {
+  --app-header-offset: 100px;
+}
+.content-section__title::before { 
+  display: block; 
+  content: " "; 
+  margin-top: calc(-1 * var(--app-header-offset)); 
+  height: var(--app-header-offset); 
+  visibility: hidden; 
+  pointer-events: none;
+}
+
+.content-section {
+  margin: 0 auto 4rem;
+  max-width: var(--max-width);
+}
+
+.content-section__title {
+  margin-bottom: var(--spacing-double);
+  color: var(--text-color);
+  font-size: var(--font-size-extra-large);
+}
+
+</style>
