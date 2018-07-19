@@ -1,7 +1,7 @@
 <template>
   <div class="lazy-chat">
     <!-- Load third-party script conditionally -->
-    <script async type="text/javascript"
+    <script async type="application/javascript"
       v-if="isAccepted"
       :src="provider.script"
       @load="onLoaded"
