@@ -8,7 +8,7 @@ storiesOf('Responsive video', module)
   .addDecorator(withReadme(readme))
   .add('Vimeo default', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="video" />',
+    template: '<responsive-video :video="video" :autoplay="video.autoplay" :loop="video.loop" :mute="video.autoplay" />',
     data() {
       return {
         video: {
@@ -20,6 +20,7 @@ storiesOf('Responsive video', module)
           "providerUid": "265601385",
           "thumbnailUrl": "https://i.vimeocdn.com/video/695812178_640.jpg",
           "autoplay": false,
+          "loop": false,
         }
       }
     },
@@ -29,7 +30,7 @@ storiesOf('Responsive video', module)
   }))
   .add('Vimeo with autoplay', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="video" />',
+    template: '<responsive-video :video="video" :autoplay="video.autoplay" :loop="video.loop" :mute="video.autoplay" />',
     data() {
       return {
         video: {
@@ -41,6 +42,29 @@ storiesOf('Responsive video', module)
           "providerUid": "265601385",
           "thumbnailUrl": "https://i.vimeocdn.com/video/695812178_640.jpg",
           "autoplay": true,
+          "loop": false,
+        }
+      }
+    },
+    i18n: new VueI18n({
+      locale: 'en',
+    })
+  }))
+  .add('Vimeo with loop and autoplay', () => ({
+    components: { ResponsiveVideo },
+    template: '<responsive-video :video="video" :autoplay="video.autoplay" :loop="video.loop" :mute="video.autoplay" />',
+    data() {
+      return {
+        video: {
+          "url": "https://vimeo.com/265601385",
+          "title": "A New Campaign - PickUp10",
+          "width": 640,
+          "height": 360,
+          "provider": "vimeo",
+          "providerUid": "265601385",
+          "thumbnailUrl": "https://i.vimeocdn.com/video/695812178_640.jpg",
+          "autoplay": true,
+          "loop": true,
         }
       }
     },
@@ -50,7 +74,7 @@ storiesOf('Responsive video', module)
   }))
   .add('YouTube default', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="video" />',
+    template: '<responsive-video :video="video" :autoplay="video.autoplay" :loop="video.loop" :mute="video.autoplay" />',
     data() {
       return {
         video: {
@@ -61,7 +85,8 @@ storiesOf('Responsive video', module)
           "provider": "youtube",
           "providerUid": "ZPIIT6siIaE",
           "thumbnailUrl": "https://i.ytimg.com/vi/ZPIIT6siIaE/hqdefault.jpg",
-          "autoplay": false
+          "autoplay": false,
+          "loop": false,
         }
       }
     },
@@ -71,7 +96,7 @@ storiesOf('Responsive video', module)
   }))
   .add('YouTube with autoplay', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="video" />',
+    template: '<responsive-video :video="video" :autoplay="video.autoplay" :loop="video.loop" :mute="video.autoplay" />',
     data() {
       return {
         video: {
@@ -82,7 +107,31 @@ storiesOf('Responsive video', module)
           "provider": "youtube",
           "providerUid": "ZPIIT6siIaE",
           "thumbnailUrl": "https://i.ytimg.com/vi/ZPIIT6siIaE/hqdefault.jpg",
-          "autoplay": true
+          "autoplay": true,
+          "loop": false,
+        }
+      }
+    },
+    i18n: new VueI18n({
+      locale: 'en',
+    })
+  }))
+  .add('Youtube with loop and autoplay', () => ({
+    components: { ResponsiveVideo },
+    template: '<responsive-video :video="video" :autoplay="video.autoplay" :loop="video.loop" :mute="video.autoplay" />',
+    data() {
+      return {
+        video: {
+          "url": "https://www.youtube.com/embed/B7bqAsxee4I",
+          "title": "Short funny video",
+          "width": 480,
+          "height": 270,
+          "provider": "youtube",
+          "providerUid": "B7bqAsxee4I",
+          "thumbnailUrl": "https://i.ytimg.com/vi/B7bqAsxee4I/hqdefault.jpg",
+          "autoplay": true,
+          "mute": true,
+          "loop": true,
         }
       }
     },

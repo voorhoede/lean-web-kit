@@ -5,14 +5,14 @@
         <lazy-load>
           <div
             class="responsive-video__background"
-            :style="{ backgroundImage: `url(${thumbnailImage})` }"
+            :style="{ backgroundImage: `url(${imageUrl})` }"
           >
           </div>
         </lazy-load>
         <iframe
           v-if="isPlaying"
           class="responsive-video__i-frame"
-          :src="videoSource"
+          :src="videoUrl"
           frameborder="0"
           webkitallowfullscreen
           mozallowfullscreen
@@ -38,10 +38,11 @@
 </template>
 
 <script>
-
 import FixedRatio from '../fixed-ratio/fixed-ratio'
 import LazyLoad from '../lazy-load/lazy-load'
 import imageUrl from '../../lib/image-url'
+
+const binaryBoolean = value => (value) ? 1 : 0
 
 export default {
   props: {
@@ -49,42 +50,62 @@ export default {
       type: Object,
       required: true,
     },
-    widthStep: {
-      type: Number,
-      default: 100,
-    }
+    autoplay: {
+      type: Boolean,
+      required: true,
+    },
+    loop: {
+      type: Boolean,
+      required: true,
+    },
+    mute: {
+      type: Boolean,
+      required: true,
+    },
   },
   components: { FixedRatio, LazyLoad },
   computed: {
-    useOptimalImage() {
-      // finds image size and replaces it with device width
-      const sizeRegex = /\d+\.\w+$/ 
-      
-      return this.video.thumbnailUrl.replace(sizeRegex, `${this.width}.jpg`)
-    },
-    thumbnailImage() {
-      return this.video.provider === 'youtube'
-        ? this.video.thumbnailUrl.replace('/hqdefault.jpg', '/maxresdefault.jpg')
-        : this.useOptimalImage
-    },
-    videoSource() {
-      if (!this.isPlaying) return ''
+    imageUrl() {
       switch (this.video.provider) {
         case 'vimeo':
-          return `https://player.vimeo.com/video/${this.video.providerUid}?autoplay=1&muted=${this.video.autoplay ? 1 : 0}`
+          const sizeRegex = /\d+\.\w+$/ 
+          return this.video.thumbnailUrl.replace(sizeRegex, `${this.width}.jpg`)
           break;
         case 'youtube':
-          return `https://www.youtube.com/embed/${this.video.providerUid}?autoplay=1&mute=${this.video.autoplay ? 1 : 0}`
+          let preset = '/maxresdefault.jpg'
+          if (this.width < 320) {
+            preset = '/mqdefault.jpg'
+          } else if (this.width < 480) {
+            preset = '/hqdefault.jpg'
+          }
+
+          return this.video.thumbnailUrl.replace('/hqdefault.jpg', preset)
           break;
         default:
-          console.error(`unsupported video provider: ${this.video.provider}`);
+          console.error(`unsupported video provider for cover image: ${this.video.provider}`);
+          return ''
+      }
+    },
+    videoUrl() {
+      if (!this.isPlaying) return ''
+      const { autoplay, loop, mute = autoplay } = this
+      const { provider, providerUid } = this.video
+      switch (provider) {
+        case 'vimeo':
+          return `https://player.vimeo.com/video/${providerUid}?autoplay=1&muted=${binaryBoolean(mute)}&loop=${binaryBoolean(loop)}`
+          break;
+        case 'youtube':
+          return `https://www.youtube.com/embed/${providerUid}?autoplay=1&mute=${binaryBoolean(mute)}&loop=${binaryBoolean(loop)}&playlist=${providerUid}`
+          break;
+        default:
+          console.error(`unsupported video provider: ${provider}`);
           return ''
       }
     }
   },
   data () {
     return {
-      isPlaying: this.video.autoplay,
+      isPlaying: this.autoplay,
       width: undefined,
     }
   },
@@ -102,7 +123,7 @@ export default {
    mounted() {
     const pixelRatio = window.devicePixelRatio || 1
     const cssWidth = this.$el.getBoundingClientRect().width
-    this.width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
+    this.width = cssWidth * pixelRatio
   },
 }
 </script>
