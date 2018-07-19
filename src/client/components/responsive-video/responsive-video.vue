@@ -103,10 +103,6 @@ export default {
     const pixelRatio = window.devicePixelRatio || 1
     const cssWidth = this.$el.getBoundingClientRect().width
     this.width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
-    
-    if (this.video.provider === 'vimeo') {
-    console.log(this.video.thumbnailUrl, this.thumbnailImage, this.width)
-    }
   },
 }
 </script>
