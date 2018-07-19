@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import * as provider from './crisp.js'
+import * as provider from './providers/crisp'
 import OptIn from '../opt-in'
 
 export default {
