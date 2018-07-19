@@ -6,20 +6,34 @@
     </a>
 
     <div class="social-share__links" id="share">
-      <a :href="`https://twitter.com/intent/tweet?text=${title} ${encodedDescription} ${encodedUrl}`"
-         :class="{ 'visible' : optionsAreVisible }" 
+      <a
+        v-for="platform in platforms" :key="platform.name"
+        :href="platform.shareUrl({encodedDescription, encodedUrl, title})"
+        class="social-share__link"
+        :class="{ 'social-share__link--visible' : optionsAreVisible }"
+        target="_blank"
+        rel="noopener"
+        :title="$t( 'share_on_platform', { platform: platform.name })"
+        @click="handleClick(platform.name)"
+      >
+        <img class="social-share__icon" :src="platform.icon">
+      </a>
+      
+      <!-- :href="`https://twitter.com/intent/tweet?text=${title} ${encodedDescription} ${encodedUrl}`"
          class="social-share__link twitter"
+         :class="{ 'social-share__link--visible' : optionsAreVisible }" 
          target="_blank"
          rel="noopener"
          :title="$t('share_on_platform', { platform: 'Twitter'} )"
          @click="handleClick('Twitter')">
         <img class="social-share__icon" src="/images/twitter-icon.svg">
-      </a>
+      </a> -->
       
-      <a :href="`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`"
-         :class="{ 'visible' : optionsAreVisible }" 
-         class="social-share__link facebook"
-         target="_blank"
+      <!-- <a 
+        :href="`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`"
+        :class="{ 'social-share__link--visible' : optionsAreVisible }" 
+        class="social-share__link facebook"
+        target="_blank"
          rel="noopener"
          :title="$t('share_on_platform', { platform: 'Facebook'} )"
          @click="handleClick('Facebook')">
@@ -27,7 +41,7 @@
       </a>
 
       <a :href="`https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${title}&summary=${encodedDescription}`"
-         :class="{ 'visible' : optionsAreVisible }" 
+         :class="{ 'social-share__link--visible' : optionsAreVisible }" 
          class="social-share__link linkedin"
          target="_blank"
          rel="noopener"
@@ -38,7 +52,7 @@
 
       <a :href="`whatsapp://send?text=${encodedUrl}`"
          data-action="share/whatsapp/share"
-         :class="{ 'visible' : optionsAreVisible }"
+         :class="{ 'social-share__link--visible' : optionsAreVisible }"
          class="social-share__link whatsapp"
          target="_blank"
          rel="noopener"
@@ -48,7 +62,7 @@
       </a>
 
       <a :href="`mailto:?&subject=${title}&body=${encodedUrl}`"
-         :class="{ 'visible' : optionsAreVisible }" 
+         :class="{ 'social-share__link--visible' : optionsAreVisible }" 
          class="social-share__link mail"
          target="_blank"
          rel="noopener"
@@ -59,12 +73,12 @@
       
       <button
         v-if="copyToClipboardIsVisible"
-        :class="{ 'visible' : optionsAreVisible }" 
+        :class="{ 'social-share__link--visible' : optionsAreVisible }" 
         class="social-share__link copy-to-clipboard"
         :title="$t('copy_to_clipboard')"
         @click="copyToClipboard">
         <img class="social-share__icon" src="/images/copy-to-clipboard.svg">
-      </button>
+      </button> -->
     </div>
 
     <div :class="{ 'social-share__snackbar--visible' : snackbarIsVisible }" class="social-share__snackbar">
@@ -74,6 +88,8 @@
 </template>
 
 <script>
+import platforms from './platforms'
+
 export default {
   props: {
     url: { type: String, required: true },
@@ -86,6 +102,7 @@ export default {
       optionsAreVisible: false,
       snackbarIsVisible: false,
       copyToClipboardIsVisible: true,
+      platforms
     }
   },
 
@@ -282,7 +299,7 @@ export default {
 /* apply shared styles to all links */
 
 #share:target .social-share__link,
-.visible {
+.social-share__link--visible {
   opacity: 1;
   -webkit-transition: all .5s cubic-bezier(0,1.33,.44,.98);
           transition: all .5s cubic-bezier(0,1.33,.44,.98);
@@ -291,7 +308,7 @@ export default {
 /* add styles that are specific for each link delay and translateY */
 
 #share:target .social-share__link:nth-child(1),
-.visible:nth-child(1) {
+.social-share__link--visible:nth-child(1) {
   -webkit-transition-delay: .5s;
           transition-delay: .5s;
   -webkit-transform: translateY(55px) scale(1);
@@ -299,7 +316,7 @@ export default {
 }
 
 #share:target .social-share__link:nth-child(2),
-.visible:nth-child(2) {
+.social-share__link--visible:nth-child(2) {
   -webkit-transition-delay: .4s;
           transition-delay: .4s;
   -webkit-transform: translateY(100px) scale(1);
@@ -307,7 +324,7 @@ export default {
 }
 
 #share:target .social-share__link:nth-child(3),
-.visible:nth-child(3) {
+.social-share__link--visible:nth-child(3) {
   -webkit-transition-delay: .3s;
           transition-delay: .3s;
   -webkit-transform: translateY(145px) scale(1);
@@ -315,7 +332,7 @@ export default {
 }
 
 #share:target .social-share__link:nth-child(4),
-.visible:nth-child(4) {
+.social-share__link--visible:nth-child(4) {
   -webkit-transition-delay: .2s;
           transition-delay: .2s;
   -webkit-transform: translateY(190px) scale(1);
@@ -323,7 +340,7 @@ export default {
 }
 
 #share:target .social-share__link:nth-child(5),
-.visible:nth-child(5) {
+.social-share__link--visible:nth-child(5) {
   -webkit-transition-delay: .1s;
           transition-delay: .1s;
   -webkit-transform: translateY(235px) scale(1); 
@@ -331,7 +348,7 @@ export default {
 }
 
 #share:target .social-share__link:nth-child(6),
-.visible:nth-child(6) {
+.social-share__link--visible:nth-child(6) {
   -webkit-transform: translateY(280px) scale(1); 
           transform: translateY(280px) scale(1); 
 }
