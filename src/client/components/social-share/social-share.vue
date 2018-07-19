@@ -197,6 +197,7 @@ export default {
   position: relative; 
 }
 
+.social-share__button:after,
 .social-share__link:after {
   -webkit-transition: opacity .25s cubic-bezier(.15,.2,.1,1);
           transition: opacity .25s cubic-bezier(.15,.2,.1,1);
@@ -206,20 +207,33 @@ export default {
   position: absolute;
   top: 0; 
   left: 0;
-  width: 100%; 
-  height: 100%;
   background-color:var(--background-color); 
   border-radius: 50%;
+}
+
+.social-share__button:after {
+  width: 46px; 
+  height: 46px;
+}
+
+.social-share__link:after {
+  width: 36px; 
+  height: 36px;
 }
 
 .social-share__link:focus {
   outline: none;
 }
 
+.social-share__link:hover {
+  border-bottom: 0;
+}
+
+.social-share__button:hover:after,
 .social-share__link:hover:after,
 .social-share__link:focus:after,
 .social-share__link:active:after {
-  opacity: .5;
+  opacity: .6;
 }
 
 .social-share__link {
