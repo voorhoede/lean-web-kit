@@ -28,17 +28,17 @@
 import { isSupported as localStorageSupported } from '../../lib/local-storage.js'
 
 export default {
+  props: {
+    name: String,
+    title: String,
+    body: String,
+  },
   data () {
     let isAccepted = (localStorageSupported())
       ? localStorage.getItem(this.name)
       : false
 
     return { isAccepted }
-  },
-  props: {
-    name: String,
-    title: String,
-    body: String,
   },
   created () {
     // Emit accept event if already accepted by user

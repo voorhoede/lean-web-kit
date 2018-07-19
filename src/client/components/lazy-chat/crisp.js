@@ -1,6 +1,6 @@
 import { crispWebsiteId } from '../../static/data/app.json'
 
-export const script = "https://client.crisp.chat/l.js"
+export const script = 'https://client.crisp.chat/l.js'
 
 
 /**
@@ -10,7 +10,7 @@ export const script = "https://client.crisp.chat/l.js"
 export function onAccepted () {
   window.CRISP_WEBSITE_ID = crispWebsiteId
   window.$crisp = []
-  $crisp.push(["do", "chat:open"])
+  $crisp.push(['do', 'chat:open'])
 }
 
 
