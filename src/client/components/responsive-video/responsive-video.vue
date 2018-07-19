@@ -41,15 +41,32 @@
 
 import FixedRatio from '../fixed-ratio/fixed-ratio'
 import LazyLoad from '../lazy-load/lazy-load'
+import imageUrl from '../../lib/image-url'
 
 export default {
-  props: ['video'],
+  props: {
+    video: {
+      type: Object,
+      required: true,
+    },
+    widthStep: {
+      type: Number,
+      default: 100,
+    }
+  },
   components: { FixedRatio, LazyLoad },
   computed: {
+    useOptimalImage() {
+      const videoArray = this.video.thumbnailUrl.split('_')
+      videoArray.pop()
+      videoArray.push(`${this.width}.jpg`)
+      
+      return videoArray.join('_')
+    },
     thumbnailImage() {
       return this.video.provider === 'youtube'
         ? this.video.thumbnailUrl.replace('/hqdefault.jpg', '/maxresdefault.jpg')
-        : this.video.thumbnailUrl
+        : this.useOptimalImage
     },
     videoSource() {
       if (!this.isPlaying) return ''
@@ -69,6 +86,7 @@ export default {
   data () {
     return {
       isPlaying: this.video.autoplay,
+      width: undefined,
     }
   },
   methods: {
@@ -80,6 +98,16 @@ export default {
         eventValue: 1
       })
       this.isPlaying = true
+    },
+  },
+   mounted() {
+    const pixelRatio = window.devicePixelRatio || 1
+    const cssWidth = this.$el.getBoundingClientRect().width
+    const width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
+    this.width = Math.min(width, this.video.width)
+
+    if (this.video.provider === 'vimeo') {
+    console.log(this.video.thumbnailUrl, this.thumbnailImage, this.width)
     }
   },
 }
