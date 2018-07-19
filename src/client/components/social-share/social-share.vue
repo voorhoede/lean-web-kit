@@ -197,7 +197,7 @@ export default {
   position: fixed; 
   right: var(--spacing-default);
   top: calc(var(--app-header-mobile-height) + var(--spacing-default));
-  z-index: 1;
+  z-index: var(--layer--raised);
   height: 40px;
   width: 40px;
 }
@@ -225,7 +225,7 @@ export default {
   align-items: center;
   top: 0; 
   left: 0; 
-  z-index: 1;
+  z-index: var(--layer--raised);
   padding: 0;
   background-color: var(--action-color);
   height: 46px; 

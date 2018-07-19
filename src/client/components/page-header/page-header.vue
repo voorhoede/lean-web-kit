@@ -112,6 +112,6 @@ export default {
 .page-header--with-cover-image .page-header__title,
 .page-header--with-cover-image .page-header__subtitle {
   color: var(--background-color);
-  z-index: 1;
+  z-index: var(--layer--raised);
 }
 </style>
