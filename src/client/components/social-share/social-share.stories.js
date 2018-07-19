@@ -11,11 +11,7 @@ const i18n = () => {
       en: {
         show_sharing_options: 'Show sharing options',
         hide_sharing_options: 'Hide sharing options',
-        share_on_facebook: 'Share on Facebook',
-        share_on_twitter: 'Share on twitter',
-        share_on_linkedin: 'Share on linkedin',
-        share_on_whatsapp: 'Share on whatsapp',
-        share_via_email: 'Share via email',
+        share_on_platform: 'Share on',
         copy_to_clipboard: 'Copy to clipboard',
         link_copied_to_clipboard: 'Link copied to clipboard',
       }

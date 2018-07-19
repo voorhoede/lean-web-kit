@@ -6,13 +6,13 @@
     </a>
 
     <div class="social-share__links" id="share">
-      <a :href="`https://twitter.com/home?status=${encodedUrl}`"
+      <a :href="`https://twitter.com/intent/tweet?text=${title} ${encodedDescription} ${encodedUrl}`"
          :class="{ 'visible' : optionsAreVisible }" 
          class="social-share__link twitter"
          target="_blank"
          rel="noopener"
+         :title="$t('share_on_platform', { platform: 'Twitter'} )"
          @click="handleClick('Twitter')">
-         <span class="a11y-sr-only">{{ $t('share_on_platform', { platform: 'Twitter'} ) }}</span>
         <img class="social-share__icon" src="/images/twitter-logo.svg">
       </a>
       
@@ -21,8 +21,8 @@
          class="social-share__link facebook"
          target="_blank"
          rel="noopener"
+         :title="$t('share_on_platform', { platform: 'Facebook'} )"
          @click="handleClick('Facebook')">
-         <span class="a11y-sr-only">{{ $t('share_on_platform', { platform: 'Facebook'} ) }}</span>
          <img class="social-share__icon" src="/images/facebook-logo.svg">
       </a>
 
@@ -31,19 +31,19 @@
          class="social-share__link linkedin"
          target="_blank"
          rel="noopener"
+         :title="$t('share_on_platform', { platform: 'Linkedin'} )"
          @click="handleClick('Linkedin')">
-         <span class="a11y-sr-only">{{ $t('share_on_platform', { platform: 'Linkedin'} ) }}</span>
          <img class="social-share__icon" src="/images/linkedin-logo.svg">
       </a>
 
       <a :href="`whatsapp://send?text=${encodedUrl}`"
          data-action="share/whatsapp/share"
-         :class="{ 'visible' : optionsAreVisible }" 
+         :class="{ 'visible' : optionsAreVisible }"
          class="social-share__link whatsapp"
          target="_blank"
          rel="noopener"
+         :title="$t('share_on_platform', { platform: 'WhatsApp'} )"
          @click="handleClick('WhatsApp')">
-         <span class="a11y-sr-only">{{ $t('share_on_platform', { platform: 'WhatsApp'} ) }}</span>
          <img class="social-share__icon" src="/images/whatsapp-logo.svg">
       </a>
 
@@ -52,8 +52,8 @@
          class="social-share__link mail"
          target="_blank"
          rel="noopener"
+         :title="$t('share_via_email')"
          @click="handleClick('Mail')">
-         <span class="a11y-sr-only">{{ $t('share_on_platform', { platform: 'Email'} ) }}</span>
          <img class="social-share__icon" src="/images/mail.svg">
       </a>
       
@@ -61,8 +61,8 @@
         v-if="copyToClipboardIsVisible"
         :class="{ 'visible' : optionsAreVisible }" 
         class="social-share__link copy-to-clipboard"
+        :title="$t('copy_to_clipboard')"
         @click="copyToClipboard">
-        <span class="a11y-sr-only">{{ $t('copy_to_clipboard') }}</span>
         <img class="social-share__icon" src="/images/copy-to-clipboard.svg">
       </button>
     </div>
@@ -257,7 +257,7 @@ export default {
 .social-share__link:hover:after,
 .social-share__link:focus:after,
 .social-share__link:active:after {
-  opacity: .3;
+  opacity: .5;
 }
 
 .social-share__link {
@@ -336,8 +336,9 @@ export default {
           transform: translateY(280px) scale(1); 
 }
 
+/* Copy to clipboard is not shown if JS is not enabled */
+
 #share:target .copy-to-clipboard {
   display: none;
 }
-
 </style>
