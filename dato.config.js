@@ -6,6 +6,7 @@ const slugify = require('slugify')
 
 dotenv.config()
 
+const { URL } = process.env
 const staticDir = `src/client/static`
 const dataDir = `${staticDir}/data`
 let defaultLocale
@@ -25,6 +26,8 @@ module.exports = (dato, root, i18n) => {
 
   locales.forEach(locale => {
     i18n.locale = locale
+    root.createDataFile(`${dataDir}/${locale}/pages/home.json`, 'json', pageToJson(dato.home, i18n))
+
     dato.pages.forEach(page => {
       root.createDataFile(`${dataDir}/${locale}/pages/${page.slug}.json`, 'json', pageToJson(page, i18n))
     })
@@ -69,7 +72,10 @@ function transformItem(item) {
 }
 
 function pageToJson (page, i18n) {
-  const { title, slug, hasToc } = page
+  const { title, hasToc } = page
+
+  const coverImage = page.coverImage ? page.coverImage.toMap() : undefined
+
   const sections = page.sections.map(({ title, items }) => ({
     title,
     slug: slugify(title, { lower: true }),
@@ -78,25 +84,17 @@ function pageToJson (page, i18n) {
       .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
       .map(transformItem)
   }))
-  const image = page.coverImage
-  let coverImage = null
 
-  if (image !== null) {
-    coverImage = {
-      src: image.imgixHost + image.upload.path,
-      width: image.upload.width,
-      height: image.upload.height,
-    }
-  }
-
-  const seo = page.seo.toMap()
+  const slug = page.slug ? `${page.slug}/` : '' // makes sure there's always a trailing slash ending each route so we don't get different versions of same page
+  const url = `${URL}/${i18n.locale}/${slug}`
+  const seo = { ...page.seo.toMap(), url }
   const slugI18n = locales.reduce((out, locale) => {
-    i18n.withLocale(locale, () => out[locale] = page.slug)
+    i18n.withLocale(locale, () => out[locale] = page.slug || '')
     return out
   }, {})
   const tocItems = sections.map(section => pick(section, ['title', 'slug']))
 
-  return { title, slug, slugI18n, seo, sections, hasToc, tocItems, coverImage }
+  return { title, slug, slugI18n, seo, sections, hasToc, tocItems, coverImage, url }
 }
 
 function formatLink (link) {
