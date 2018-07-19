@@ -123,26 +123,6 @@ export default {
 <style>
 @import '../app-core/index.css';
 
-.social-share__snackbar {
-  position: absolute;
-  bottom: -275px;
-  left: -215px;
-  padding: var(--spacing-half);
-  background-color: var(--text-color);
-  text-align: center;
-  color: var(--background-color);
-  font-size: var(--font-size-small);
-  width: 200px;
-  opacity: 0;
-  border-radius: 30px;
-  -webkit-transition: all .5s ease-in-out;
-          transition: all .5s ease-in-out;
-}
-
-.social-share__snackbar--visible {
-  opacity: 1;
-}
-
 .social-share {
   position: fixed; 
   right: var(--spacing-default);
@@ -158,25 +138,20 @@ export default {
   }
 }
 
-.social-share__icon {
-  width: 20px;
-  height: 20px;
-}
-
 .social-share__button {
   position: absolute;
+  top: 0; 
+  left: 0; 
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 0; 
-  left: 0; 
   z-index: var(--layer--raised);
   padding: 0;
-  background-color: var(--action-color);
   height: 46px; 
   width: 46px;
-  border: none;
   border-radius: 50%;
+  border: none;
+  background-color: var(--action-color);
   outline: none;
   -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
   -webkit-transition: all .3s ease-in-out;
@@ -189,26 +164,20 @@ export default {
   transform: scale(1.2);
 }
 
-.social-share__button:active {
-  opacity: .8;
-}
-
-.social-share__links {
-  position: relative; 
-}
+/* add white layer on buttons for hover effect */
 
 .social-share__button:after,
 .social-share__link:after {
-  -webkit-transition: opacity .25s cubic-bezier(.15,.2,.1,1);
-          transition: opacity .25s cubic-bezier(.15,.2,.1,1);
   opacity: 0; 
-  content: ''; 
-  display: block;
   position: absolute;
   top: 0; 
   left: 0;
+  display: block;
+  content: ''; 
   background-color:var(--background-color); 
   border-radius: 50%;
+  -webkit-transition: opacity .25s cubic-bezier(.15,.2,.1,1);
+          transition: opacity .25s cubic-bezier(.15,.2,.1,1);
 }
 
 .social-share__button:after {
@@ -221,6 +190,36 @@ export default {
   height: 36px;
 }
 
+.social-share__button:hover:after,
+.social-share__button:focus:after,
+.social-share__link:hover:after,
+.social-share__link:focus:after {
+  opacity: .6;
+}
+
+.social-share__links {
+  position: relative; 
+}
+
+.social-share__link {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px; 
+  width: 36px;
+  border-radius: 50%;
+  background-color: var(--action-color);
+  box-shadow: 0px 4px 10px rgba(0,0,0,.2); 
+  -webkit-transform: translateY(0px) scale(0);
+          transform: translateY(0px) scale(0);
+  -webkit-transition: all .5s ease;
+          transition: all .5s ease;
+}
+
 .social-share__link:focus {
   outline: none;
 }
@@ -229,30 +228,28 @@ export default {
   border-bottom: 0;
 }
 
-.social-share__button:hover:after,
-.social-share__link:hover:after,
-.social-share__link:focus:after,
-.social-share__link:active:after {
-  opacity: .6;
+.social-share__icon {
+  width: 20px;
 }
 
-.social-share__link {
-  -webkit-transform: translateY(0px) scale(0);
-          transform: translateY(0px) scale(0);
-  -webkit-transition: all .5s ease;
-          transition: all .5s ease;
+.social-share__snackbar {
   opacity: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: absolute;
-  top: 0;
-  left: 5px;
-  height: 36px; 
-  width: 36px;
-  background-color: var(--action-color);
-  box-shadow: 0px 4px 10px rgba(0,0,0,.2); 
-  border-radius: 50%; 
+  bottom: -280px;
+  left: -215px;
+  padding: var(--spacing-half);
+  width: 200px;
+  border-radius: 30px;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--background-color);
+  background-color: var(--text-color);
+  -webkit-transition: all .5s ease-in-out;
+          transition: all .5s ease-in-out;
+}
+
+.social-share__snackbar--visible {
+  opacity: 1;
 }
 
 /* apply shared styles to all links */
@@ -270,46 +267,46 @@ export default {
 .social-share__link--visible:nth-child(1) {
   -webkit-transition-delay: .5s;
           transition-delay: .5s;
-  -webkit-transform: translateY(55px) scale(1);
-          transform: translateY(55px) scale(1);
+  -webkit-transform: translateY(60px) scale(1);
+          transform: translateY(60px) scale(1);
 }
 
 #share:target .social-share__link:nth-child(2),
 .social-share__link--visible:nth-child(2) {
   -webkit-transition-delay: .4s;
           transition-delay: .4s;
-  -webkit-transform: translateY(100px) scale(1);
-          transform: translateY(100px) scale(1);
+  -webkit-transform: translateY(105px) scale(1);
+          transform: translateY(105px) scale(1);
 }
 
 #share:target .social-share__link:nth-child(3),
 .social-share__link--visible:nth-child(3) {
   -webkit-transition-delay: .3s;
           transition-delay: .3s;
-  -webkit-transform: translateY(145px) scale(1);
-          transform: translateY(145px) scale(1);
+  -webkit-transform: translateY(150px) scale(1);
+          transform: translateY(150px) scale(1);
 }
 
 #share:target .social-share__link:nth-child(4),
 .social-share__link--visible:nth-child(4) {
   -webkit-transition-delay: .2s;
           transition-delay: .2s;
-  -webkit-transform: translateY(190px) scale(1);
-          transform: translateY(190px) scale(1);
+  -webkit-transform: translateY(195px) scale(1);
+          transform: translateY(195px) scale(1);
 }
 
 #share:target .social-share__link:nth-child(5),
 .social-share__link--visible:nth-child(5) {
   -webkit-transition-delay: .1s;
           transition-delay: .1s;
-  -webkit-transform: translateY(235px) scale(1); 
-          transform: translateY(235px) scale(1); 
+  -webkit-transform: translateY(240px) scale(1); 
+          transform: translateY(240px) scale(1); 
 }
 
 #share:target .social-share__link:nth-child(6),
 .social-share__link--visible:nth-child(6) {
-  -webkit-transform: translateY(280px) scale(1); 
-          transform: translateY(280px) scale(1); 
+  -webkit-transform: translateY(285px) scale(1); 
+          transform: translateY(285px) scale(1); 
 }
 
 /* Copy to clipboard is not shown if JS is not enabled */
