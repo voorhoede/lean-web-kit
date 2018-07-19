@@ -57,11 +57,10 @@ export default {
   components: { FixedRatio, LazyLoad },
   computed: {
     useOptimalImage() {
-      const videoArray = this.video.thumbnailUrl.split('_')
-      videoArray.pop()
-      videoArray.push(`${this.width}.jpg`)
+      const sizeRegex = /\d+\.\w+$/
+      const videoArray = this.video.thumbnailUrl.replace(sizeRegex, `${this.width}.jpg`)
       
-      return videoArray.join('_')
+      return videoArray
     },
     thumbnailImage() {
       return this.video.provider === 'youtube'
