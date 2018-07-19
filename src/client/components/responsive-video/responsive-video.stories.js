@@ -19,7 +19,7 @@ storiesOf('Responsive video', module)
           "provider": "vimeo",
           "providerUid": "265601385",
           "thumbnailUrl": "https://i.vimeocdn.com/video/695812178_640.jpg",
-          "autoPlay": false,
+          "autoplay": false,
         }
       }
     },
@@ -40,7 +40,7 @@ storiesOf('Responsive video', module)
           "provider": "vimeo",
           "providerUid": "265601385",
           "thumbnailUrl": "https://i.vimeocdn.com/video/695812178_640.jpg",
-          "autoPlay": true,
+          "autoplay": true,
         }
       }
     },
@@ -61,7 +61,7 @@ storiesOf('Responsive video', module)
           "provider": "youtube",
           "providerUid": "ZPIIT6siIaE",
           "thumbnailUrl": "https://i.ytimg.com/vi/ZPIIT6siIaE/hqdefault.jpg",
-          "autoPlay": false
+          "autoplay": false
         }
       }
     },
@@ -82,7 +82,7 @@ storiesOf('Responsive video', module)
           "provider": "youtube",
           "providerUid": "ZPIIT6siIaE",
           "thumbnailUrl": "https://i.ytimg.com/vi/ZPIIT6siIaE/hqdefault.jpg",
-          "autoPlay": true
+          "autoplay": true
         }
       }
     },
