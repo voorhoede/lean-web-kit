@@ -14,5 +14,5 @@
 .button:hover,
 .button:focus {
   cursor: pointer;
-  opacity: .9;
+  opacity: .6;
 }
