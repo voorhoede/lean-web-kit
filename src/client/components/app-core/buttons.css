@@ -34,7 +34,7 @@
 .button:hover,
 .button:focus {
   cursor: pointer;
-  opacity: .8;
+  opacity: .6;
   text-decoration: none;
   border: none;
 }
