@@ -68,6 +68,7 @@ export default {
   position: fixed;
   bottom: 1rem;
   right: 1rem;
+  z-index: var(--layer--overlay);
 }
 
 .lazy-chat__prompt {
