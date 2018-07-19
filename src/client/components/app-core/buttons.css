@@ -24,7 +24,7 @@
   height: 1.5em;
   margin-top: -.25em;
   margin-left: -.25em;
-  animation: spinner 2s linear infinite;
+  animation: button__spinner 2s linear infinite;
   background-image: url('/images/spinner.png');
   background-size: contain;
   background-position: center center;
@@ -39,7 +39,7 @@
   border: none;
 }
 
-@keyframes spinner {
+@keyframes button__spinner {
   0% { transform: rotate(0deg) }
 100% { transform: rotate(360deg) }
 }

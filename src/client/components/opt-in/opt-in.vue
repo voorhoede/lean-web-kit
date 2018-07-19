@@ -25,14 +25,14 @@
 </template>
 
 <script>
+import { isSupported as localStorageSupported } from '../../lib/local-storage.js'
+
 export default {
   data () {
-    let isAccepted = 0
-    try {
-      isAccepted = localStorage.getItem(this.name)
-    } catch (e) {
-      isAccepted = 0
-    }
+    let isAccepted = (localStorageSupported())
+      ? localStorage.getItem(this.name)
+      : false
+
     return { isAccepted }
   },
   props: {
@@ -48,8 +48,8 @@ export default {
   },
   methods: {
     onAccept () {
-      if ('localStorage' in window) {
-        localStorage.setItem(this.name, 1)
+      if (localStorageSupported()) {
+        localStorage.setItem(this.name, true)
       }
       this.$emit('accept')
     },
