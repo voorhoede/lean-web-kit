@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { isSupported as localStorageSupported } from '../../lib/local-storage.js'
+import { isSupported as localStorageSupported } from '../../lib/local-storage'
 
 export default {
   props: {
@@ -34,7 +34,7 @@ export default {
     body: String,
   },
   data () {
-    let isAccepted = (localStorageSupported())
+    const isAccepted = (localStorageSupported)
       ? localStorage.getItem(this.name)
       : false
 
@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     onAccept () {
-      if (localStorageSupported()) {
+      if (localStorageSupported) {
         localStorage.setItem(this.name, true)
       }
       this.$emit('accept')

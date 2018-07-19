@@ -1,5 +1,5 @@
-export function isSupported () {
-  if (!'localStorage' in window) {
+export const isSupported = (() => {
+  if (process.server || !'localStorage' in window) {
     return false
   }
   try {
@@ -16,7 +16,7 @@ export function isSupported () {
   catch (exception) {
     return false
   }
-}
+})()
 
 export default {
   isSupported
