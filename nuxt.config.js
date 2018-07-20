@@ -148,8 +148,4 @@ module.exports = {
       });
     }
   },
-
-  plugins: [
-    { src: `~plugins/vimeo-player`, ssr: false },
-  ],
 }
