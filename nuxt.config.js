@@ -150,6 +150,7 @@ module.exports = {
   },
 
   plugins: [
-    { src: `~plugins/crisp`, ssr: false}
+    { src: `~plugins/crisp`, ssr: false },
+    { src: `~plugins/vimeo`, ssr: false }
   ],
 }
