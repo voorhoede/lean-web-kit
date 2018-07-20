@@ -9,6 +9,7 @@
 - Supports share to WhatsApp
 - Supports share via e-mail
 - Supports copy to clipboard (this feature doesn't work on iPhone/iPad, so the button is not shown on these devices.)
+- Also works without JS
 
 - Tracks social interactions using Google Analytics
 
@@ -18,4 +19,4 @@
 |:-----------:|:--------:|:----------:|
 | url         |  string  |   true     |
 | title       |  string  |   true     |
-| description |  string  |   true     |
+| description |  string  |   false    |

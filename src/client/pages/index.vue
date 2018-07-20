@@ -1,13 +1,22 @@
 <template>
-  <page-layout :page="page" />
+  <div>
+    <page-layout :page="page" />
+
+    <social-share
+      v-if="page.hasShareButton"
+      :url="page.url" 
+      :title="page.seo.title" 
+      :description="page.seo.description"
+    />
+  </div>
 </template>
 
 <script>
-import { PageLayout } from '../components/'
+import { PageLayout, SocialShare } from '../components/'
 import { getPageData, seoHead } from '../lib/'
 
 export default {
-  components: { PageLayout },
+  components: { PageLayout, SocialShare },
   
   async asyncData ({ app }) {
     const page = await getPageData({ slug: 'home', locale: app.i18n.locale })
