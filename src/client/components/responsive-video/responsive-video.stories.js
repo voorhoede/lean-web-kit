@@ -8,7 +8,7 @@ storiesOf('Responsive video', module)
   .addDecorator(withReadme(readme))
   .add('Vimeo default', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="video" :autoplay="video.autoplay" :loop="video.loop" :mute="video.autoplay" />',
+    template: '<responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />',
     data() {
       return {
         item: {
@@ -33,7 +33,7 @@ storiesOf('Responsive video', module)
   }))
   .add('Vimeo with autoplay', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="video" :autoplay="video.autoplay" :loop="video.loop" :mute="video.autoplay" />',
+    template: '<responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />',
     data() {
       return {
         item: {
@@ -58,10 +58,10 @@ storiesOf('Responsive video', module)
   }))
   .add('Vimeo with loop and autoplay', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="video" :autoplay="video.autoplay" :loop="video.loop" :mute="video.autoplay" />',
+    template: '<responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />',
     data() {
       return {
-        items: {
+        item: {
           "autoplay": true,
           "mute": true,
           "loop": true,
@@ -83,10 +83,10 @@ storiesOf('Responsive video', module)
   }))
   .add('YouTube default', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="video" :autoplay="video.autoplay" :loop="video.loop" :mute="video.autoplay" />',
+    template: '<responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />',
     data() {
       return {
-        items: {
+        item: {
           "autoplay": false,
           "mute": false,
           "loop": false,
@@ -108,10 +108,10 @@ storiesOf('Responsive video', module)
   }))
   .add('YouTube with autoplay', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="video" :autoplay="video.autoplay" :loop="video.loop" :mute="video.autoplay" />',
+    template: '<responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />',
     data() {
       return {
-        items: {
+        item: {
           "autoplay": true,
           "mute": true,
           "loop": false,
@@ -133,20 +133,22 @@ storiesOf('Responsive video', module)
   }))
   .add('Youtube with loop and autoplay', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="video" :autoplay="video.autoplay" :loop="video.loop" :mute="video.autoplay" />',
+    template: '<responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />',
     data() {
       return {
-        "autoplay": true,
-        "mute": true,
-        "loop": true,
-        "video": {
-          "url": "https://www.youtube.com/embed/B7bqAsxee4I",
-          "title": "Short funny video",
-          "width": 480,
-          "height": 270,
-          "provider": "youtube",
-          "providerUid": "B7bqAsxee4I",
-          "thumbnailUrl": "https://i.ytimg.com/vi/B7bqAsxee4I/hqdefault.jpg",
+        item: {
+          "autoplay": true,
+          "mute": true,
+          "loop": true,
+          "video": {
+            "url": "https://www.youtube.com/watch?v=B7bqAsxee4I",
+            "title": "Short funny video",
+            "width": 480,
+            "height": 270,
+            "provider": "youtube",
+            "providerUid": "B7bqAsxee4I",
+            "thumbnailUrl": "https://i.ytimg.com/vi/B7bqAsxee4I/hqdefault.jpg",
+          }
         }
       }
     },
