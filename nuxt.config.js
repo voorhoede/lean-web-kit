@@ -148,8 +148,4 @@ module.exports = {
       });
     }
   },
-
-  plugins: [
-    { src: `~plugins/crisp`, ssr: false },
-  ],
 }
