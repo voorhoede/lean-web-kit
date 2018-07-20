@@ -6,13 +6,19 @@
     <template v-for="(item, index) in section.items">
       <rich-text v-if="item.type === 'text'"
         :key="index"
-        :text="item.body" />
+        :text="item.body"
+      />
       <responsive-image v-if="item.type === 'image'"
         :key="index"
-        :image="item.image" />
+        :image="item.image" 
+      />
       <responsive-video v-if="item.type === 'video'"
         :key="index"
-        :video="item.video" />
+        :video="item.video"
+        :autoplay="item.autoplay"
+        :loop="item.loop"
+        :mute="item.mute"
+      />
     </template>
   </section>
 </template>
@@ -29,6 +35,17 @@ export default {
 </script>
 
 <style>
+:root {
+  --app-header-offset: 100px;
+}
+.content-section__title::before { 
+  display: block; 
+  content: " "; 
+  margin-top: calc(-1 * var(--app-header-offset)); 
+  height: var(--app-header-offset); 
+  visibility: hidden; 
+  pointer-events: none;
+}
 
 .content-section {
   margin: 0 auto 4rem;

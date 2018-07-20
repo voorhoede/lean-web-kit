@@ -61,7 +61,7 @@ module.exports = {
   },
 
   router: {
-    middleware: ['enforce-trailing-slash', 'meta-canonical'],
+    middleware: ['enforce-trailing-slash'],
   },
 
   modules: [
@@ -148,9 +148,4 @@ module.exports = {
       });
     }
   },
-
-  plugins: [
-    { src: `~plugins/vimeo-player`, ssr: false },
-    { src: `~plugins/crisp`, ssr: false}
-  ],
 }
