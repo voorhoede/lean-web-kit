@@ -24,7 +24,12 @@ import RichText from '../rich-text'
 
 export default {
   components: { ResponsiveImage, ResponsiveVideo, RichText },
-  props: ['section'],
+  props: {
+    section: {
+      type: Object,
+      required: true,
+    }
+  },
 }
 </script>
 
