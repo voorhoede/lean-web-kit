@@ -30,3 +30,8 @@
 .headings > * {
   margin-bottom: var(--spacing-default);
 }
+
+.buttons-demo button {
+  display: block;
+  margin: 1.5rem 0 2rem 0;
+}
