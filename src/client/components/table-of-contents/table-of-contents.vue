@@ -17,7 +17,12 @@
 
 <script>
 export default {
-  props: ['items'],
+  props: {
+    items: {
+      type: Array,
+      required: true,
+    }
+  },
   data () {
     return {
       activeItem: this.items[0].slug,
@@ -47,10 +52,10 @@ export default {
     },
 
     isBelowScroll (el) {
-      const { top, height } = el.getBoundingClientRect()
+      const { top } = el.getBoundingClientRect()
       const sectionInViewOffset = 200
 
-      return top < sectionInViewOffset && ((top + height) > 0)
+      return top < sectionInViewOffset
     },
 
     toggleTableOfContents () {

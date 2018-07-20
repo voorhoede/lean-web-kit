@@ -1,5 +1,6 @@
 <template>
-  <section class="content-section" :id="section.slug">
+  <section class="content-section">
+    <a :id="section.slug" class="content-section__scroll-anchor"></a>
     <a :href="`#${section.slug}`">
       <h2 class="content-section__title">{{ section.title }}</h2>
     </a>
@@ -37,9 +38,8 @@ export default {
 :root {
   --app-header-offset: 100px;
 }
-.content-section__title::before { 
-  display: block; 
-  content: " "; 
+.content-section__scroll-anchor { 
+  display: block;
   margin-top: calc(-1 * var(--app-header-offset)); 
   height: var(--app-header-offset); 
   visibility: hidden; 
