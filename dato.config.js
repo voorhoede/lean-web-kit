@@ -36,7 +36,7 @@ module.exports = (dato, root, i18n) => {
 }
 
 function appSettingsToJson(app) {
-  return pick(app, ['title', 'contact', 'googleAnalyticsTrackingId'])
+  return pick(app, ['title', 'contact', 'googleAnalyticsTrackingId', 'crispWebsiteId', 'hotjarId'])
 }
 
 /**
@@ -77,7 +77,7 @@ function transformItem(item) {
 }
 
 function pageToJson (page, i18n) {
-  const { title, hasToc } = page
+  const { title, hasToc, hasShareButton } = page
 
   const coverImage = page.coverImage ? page.coverImage.toMap() : undefined
 
@@ -99,7 +99,7 @@ function pageToJson (page, i18n) {
   }, {})
   const tocItems = sections.map(section => pick(section, ['title', 'slug']))
 
-  return { title, slug, slugI18n, seo, sections, hasToc, tocItems, coverImage, url }
+  return { title, slug, slugI18n, seo, sections, hasToc, tocItems, coverImage, url, hasShareButton }
 }
 
 function formatLink (link) {
