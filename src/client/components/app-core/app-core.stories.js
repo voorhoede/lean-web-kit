@@ -107,3 +107,17 @@ storiesOf('App core', module)
       </div>
     `,
   }))
+  .add('Buttons', () => ({
+    template: `
+      <div class="buttons-demo">
+        <demo title="Buttons" inset>
+          <code>class="button"</code>
+          <button class="button">Default</button>
+          <code>class="button button--primary"</code>
+          <button class="button button--primary">Primary</button>
+          <code>class="button button--primary button--pending"</code>
+          <button class="button button--primary button--pending">Pending</button>
+        </demo>
+      </div>
+    `,
+  }))
