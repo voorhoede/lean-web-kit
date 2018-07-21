@@ -66,7 +66,12 @@ module.exports = {
 
   modules: [
     '@nuxtjs/proxy',
-    ['@nuxtjs/google-analytics', { // https://github.com/nuxt-community/analytics-module
+    /**
+     * Add Google Analytics module,
+     * but only if `appConfig.googleAnalyticsTrackingId` is set.
+     * @see https://github.com/nuxt-community/analytics-module
+     */
+    appConfig.googleAnalyticsTrackingId && ['@nuxtjs/google-analytics', {
       id: appConfig.googleAnalyticsTrackingId,
       /**
        * Debug while in development mode
@@ -106,7 +111,8 @@ module.exports = {
       }
     }],
     '@nuxtjs/sitemap'
-  ],
+  ].filter(Boolean),
+
   sitemap: {
     generate: true,
     hostname: baseUrl,
