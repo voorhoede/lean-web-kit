@@ -27,7 +27,7 @@
     "precommit": "npm run lint",
     "proxy": "ngrok http 5326",
     "start": "run-p dev:server start:dist",
-    "start:dist": "http-server './dist/client/' -c-1 -o -p 5326 --proxy 'http://localhost:9000/'"
+    "start:dist": "PORT=5326 node lib/local-server/"
   },
   "dependencies": {
     "@nuxtjs/google-analytics": "^2.0.2",
@@ -48,12 +48,15 @@
     "@storybook/vue": "^3.4.7",
     "ajv": "^6.5.1",
     "babel-eslint": "^8.2.1",
+    "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-vue": "^4.0.0",
-    "http-server": "^0.11.1",
+    "express": "^4.16.3",
+    "express-http-proxy": "^1.2.0",
+    "get-port": "^3.2.0",
     "lodash": "^4.17.10",
     "lorem-ipsum": "^1.0.5",
     "netlify-lambda": "^0.4.0",
@@ -67,6 +70,7 @@
     "storybook-readme": "^3.3.0",
     "voorhoede-datocms-client": "0.5.2",
     "vue-analytics": "^5.12.2",
+    "vue-loader": "^14.2.1",
     "vue-svg-loader": "0.5.0"
   }
 }
