@@ -68,7 +68,7 @@ export default {
     imageUrl() {
       switch (this.video.provider) {
         case 'vimeo':
-          const sizeRegex = /\d+\.\w+$/ 
+          const sizeRegex = /\d+\.\w+$/
           return this.video.thumbnailUrl.replace(sizeRegex, `${this.width}.jpg`)
           break;
         case 'youtube':
@@ -129,7 +129,7 @@ export default {
 </script>
 
 <style>
-@import '~/assets/colors.css';
+@import '../app-core/variables.css';
 
 .responsive-video {
   position: relative;

@@ -3,6 +3,7 @@
  */
 module.exports = {
   postcss: [
+    require('postcss-import')(),
     require('postcss-custom-properties')(),
   ],
   /*
