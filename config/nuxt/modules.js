@@ -7,6 +7,6 @@ const nuxtI18n = require('./modules/nuxt-i18n')
 module.exports = [
   '@nuxtjs/proxy',
   '@nuxtjs/sitemap',
-  ['@nuxtjs/google-analytics', googleAnalytics],
-  ['nuxt-i18n', nuxtI18n],
+  googleAnalytics,
+  nuxtI18n,
 ]
