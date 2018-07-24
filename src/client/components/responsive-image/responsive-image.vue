@@ -8,7 +8,7 @@
             <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
             <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
             <!--[if IE 9]></video><![endif]-->
-            <img class="responsive-image__img" :alt="image.alt" :srcset="imageUrl({ w: width })" />
+            <img class="responsive-image__img" :alt="image.alt" :src="imageUrl({ w: width })" />
           </picture>
         </lazy-load>
         <no-script>
@@ -61,7 +61,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+@import '../app-core/variables.css';
+
 .responsive-image {
   margin-bottom: var(--spacing-double);
 }
