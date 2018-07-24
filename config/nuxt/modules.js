@@ -10,4 +10,5 @@ module.exports = [
   '@nuxtjs/sitemap',
   googleAnalytics,
   nuxtI18n,
+  nuxtPwa,
 ]
