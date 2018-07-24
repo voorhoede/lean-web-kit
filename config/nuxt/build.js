@@ -2,6 +2,7 @@
  * @see https://nuxtjs.org/api/configuration-build
  */
 module.exports = {
+  vendor: ['babel-polyfill'],
   postcss: [
     require('postcss-import')(),
     require('postcss-custom-properties')(),
