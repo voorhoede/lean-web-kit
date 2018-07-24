@@ -1,4 +1,5 @@
-const { appConfig } = require('../lib/data')
+const { appConfig, locales } = require('../lib/data')
+const defaultLocale = locales[0]
 
 /**
  * @see https://pwa.nuxtjs.org/
@@ -9,7 +10,7 @@ module.exports = [
     manifest: {
       name: appConfig.title,
       short_name: appConfig.title,
-      start_url: '/?standalone=true',
+      start_url: `/${defaultLocale}/?standalone=true`,
       display: 'standalone',
       background_color: '#ffffff', // see components/app-core/variables.css
       theme_color: '#6a9ce4' // see components/app-core/variables.css
