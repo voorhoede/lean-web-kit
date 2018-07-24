@@ -5,15 +5,16 @@
       <nuxt/>
     </main>
     <app-footer />
+    <lazy-chat />
   </div>
 </template>
 
 <script>
 import menuI18n from '../static/data/menu.json'
-import { AppFooter, AppHeader } from '../components/'
+import { AppFooter, AppHeader, LazyChat } from '../components/'
 
 export default {
-  components: { AppFooter, AppHeader },
+  components: { AppFooter, AppHeader, LazyChat },
   data() {
     return {
       contentId: 'content',
@@ -25,4 +26,5 @@ export default {
 
 <style>
 @import '../components/app-core/index.css';
+
 </style>
