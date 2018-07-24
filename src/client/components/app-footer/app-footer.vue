@@ -94,6 +94,8 @@ export default {
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 .app-footer {
   padding: var(--spacing-double) var(--spacing-default) var(--spacing-default);
   background-color: var(--neutral-color);

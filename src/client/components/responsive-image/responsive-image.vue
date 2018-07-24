@@ -61,7 +61,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+@import '../app-core/variables.css';
+
 .responsive-image {
   margin-bottom: var(--spacing-double);
 }
