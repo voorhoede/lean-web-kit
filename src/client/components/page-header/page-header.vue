@@ -1,6 +1,6 @@
 <template>
-  <header v-if="image" 
-          class="page-header page-header--with-cover-image" 
+  <header v-if="image"
+          class="page-header page-header--with-cover-image"
           :class="{ 'image-enhanced' : imageLoaded }"
           :style="`background-image:url('${ imageLoaded ? image.url : smallImageSrc }');`"
   >
@@ -41,6 +41,8 @@ export default {
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 .page-header {
   width: 100%;
   margin-bottom: 4rem;

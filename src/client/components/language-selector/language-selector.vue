@@ -30,6 +30,8 @@ export default {
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 .language-selector {
   display: flex;
   justify-content: center;
