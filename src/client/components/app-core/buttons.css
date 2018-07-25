@@ -1,3 +1,5 @@
+@import './variables.css';
+
 .button {
   padding: 0 var(--spacing-default);
   font-size: var(--font-size-default);

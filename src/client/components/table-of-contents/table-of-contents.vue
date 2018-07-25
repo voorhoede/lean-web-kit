@@ -29,7 +29,7 @@ export default {
       tableOfContentsIsOpen: false,
     }
   },
-  
+
   mounted () {
     window.addEventListener('scroll', this.updateActiveItem, { passive: true })
   },
@@ -66,6 +66,8 @@ export default {
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 .table-of-contents {
   display: block;
   position: relative;

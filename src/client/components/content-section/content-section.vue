@@ -11,7 +11,7 @@
       />
       <responsive-image v-if="item.type === 'image'"
         :key="index"
-        :image="item.image" 
+        :image="item.image"
       />
       <responsive-video v-if="item.type === 'video'"
         :key="index"
@@ -41,14 +41,16 @@ export default {
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 :root {
   --app-header-offset: 100px;
 }
-.content-section__scroll-anchor { 
+.content-section__scroll-anchor {
   display: block;
-  margin-top: calc(-1 * var(--app-header-offset)); 
-  height: var(--app-header-offset); 
-  visibility: hidden; 
+  margin-top: calc(-1 * var(--app-header-offset));
+  height: var(--app-header-offset);
+  visibility: hidden;
   pointer-events: none;
 }
 

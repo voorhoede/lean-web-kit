@@ -3,7 +3,7 @@
     <div class="app-footer__container">
       <div>
         <nuxt-link :to="localePath('index') + '/'" class="app-footer__identity">
-          <img class="app-footer__logo" src="/images/logo.svg" alt="" />
+          <img class="app-footer__logo" src="/images/logo.svg" alt="" width="32" height="40" />
           <h1 class="app-footer__title">{{ appConfig.title }}</h1>
         </nuxt-link>
         <div class="app-footer__social">
@@ -94,6 +94,8 @@ export default {
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 .app-footer {
   padding: var(--spacing-double) var(--spacing-default) var(--spacing-default);
   background-color: var(--neutral-color);
