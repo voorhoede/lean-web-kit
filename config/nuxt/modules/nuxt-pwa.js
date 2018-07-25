@@ -6,7 +6,7 @@ const defaultLocale = locales[0]
  */
 module.exports = [
   '@nuxtjs/pwa',
-  { // https://pwa.nuxtjs.org
+  {
     manifest: {
       name: appConfig.title,
       short_name: appConfig.title,
