@@ -33,8 +33,11 @@ export default {
     }
   },
   mounted () {
-    // As soon as lazy-tracking is mounted, it should prompt
-    this.isRequested = true
+    if ('doNotTrack' in navigator && navigator.doNotTrack === "1") {
+      this.isRequested = false
+    } else {
+      this.isRequested = true
+    }
   },
   destroyed () {
     this.onDestroyed()
