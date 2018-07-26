@@ -26,7 +26,7 @@ export default {
   components: { OptIn },
   data () {
     return {
-      isRequested: false, // user clicks chat button
+      isRequested: false,
       isAccepted: false, // user accepts T&C
       isLoaded: false, // script is loaded
       provider,
