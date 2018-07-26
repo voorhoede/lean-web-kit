@@ -14,9 +14,9 @@ a.link--outbound::after {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  width: .625em;
-  height: .625em;
+  width: .75em;
+  height: .75em;
   display: inline-block;
-  margin: .0625em .3125em;
+  margin: .025em .125em;
   vertical-align: baseline;
 }
