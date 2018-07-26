@@ -4,11 +4,11 @@ Lazy tracking adds a button to the page to trigger a third-party tracking script
 
 ### Supported tracking scripts
 
-Currently only [hotjar](https://hotjar.com) is supported. Take a look at the separate module, it ought to be easy to write a similar module for other providers.
+Currently only [Hotjar](https://hotjar.com) is supported. Take a look at the separate module, it ought to be easy to write a similar module for other providers.
 
 ### Supressing recording of sensitive data
 
-In the `hotjar.js` provider the data attribute to obfuscate sensitive data is defined. For more info, take a look at the [hotjar documentation of this functionality](https://help.hotjar.com/hc/en-us/articles/115012439167-Suppressing-Text-in-Recordings)
+In the `hotjar.js` provider the data attribute to obfuscate sensitive data is defined. For more info, take a look at the [Hotjar documentation of this functionality](https://help.hotjar.com/hc/en-us/articles/115012439167-Suppressing-Text-in-Recordings)
 
 ### Lifecycle
 
