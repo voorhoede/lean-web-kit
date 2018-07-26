@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style>
-@import '../app-core/index.css';
+@import '../app-core/variables.css';
 
 .lazy-chat {
   position: fixed;

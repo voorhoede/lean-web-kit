@@ -1,5 +1,6 @@
 <template>
-  <section class="content-section" :id="section.slug">
+  <section class="content-section">
+    <a :id="section.slug" class="content-section__scroll-anchor"></a>
     <a :href="`#${section.slug}`">
       <h2 class="content-section__title">{{ section.title }}</h2>
     </a>
@@ -10,7 +11,7 @@
       />
       <responsive-image v-if="item.type === 'image'"
         :key="index"
-        :image="item.image" 
+        :image="item.image"
       />
       <responsive-video v-if="item.type === 'video'"
         :key="index"
@@ -30,20 +31,26 @@ import RichText from '../rich-text'
 
 export default {
   components: { ResponsiveImage, ResponsiveVideo, RichText },
-  props: ['section'],
+  props: {
+    section: {
+      type: Object,
+      required: true,
+    }
+  },
 }
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 :root {
   --app-header-offset: 100px;
 }
-.content-section__title::before { 
-  display: block; 
-  content: " "; 
-  margin-top: calc(-1 * var(--app-header-offset)); 
-  height: var(--app-header-offset); 
-  visibility: hidden; 
+.content-section__scroll-anchor {
+  display: block;
+  margin-top: calc(-1 * var(--app-header-offset));
+  height: var(--app-header-offset);
+  visibility: hidden;
   pointer-events: none;
 }
 

@@ -15,7 +15,6 @@
           v-for="(section, index) in page.sections" 
           :key="index" 
           :section="section" 
-          :id="section.slug"
         />
       </div>
     </div>
