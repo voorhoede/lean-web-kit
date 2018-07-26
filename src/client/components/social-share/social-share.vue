@@ -13,17 +13,17 @@
         :class="{ 'social-share__link--visible' : optionsAreVisible }"
         target="_blank"
         rel="noopener"
-        :title="platform.name === 'Email' ? 
-                $t( 'share_via_email' ) : 
+        :title="platform.name === 'Email' ?
+                $t( 'share_via_email' ) :
                 $t( 'share_on_platform', { platform: platform.name })"
         @click="handleClick(platform.name)"
       >
         <img class="social-share__icon" :src="`/images/${platform.icon}`">
       </a>
-      
+
       <button
         v-if="copyToClipboardIsVisible"
-        :class="{ 'social-share__link--visible' : optionsAreVisible }" 
+        :class="{ 'social-share__link--visible' : optionsAreVisible }"
         class="social-share__link copy-to-clipboard"
         :title="$t('copy_to_clipboard')"
         @click="copyToClipboard">
@@ -46,7 +46,7 @@ export default {
     title: { type: String, required: true },
     description: { type: String, required: false }
   },
-  
+
   data () {
     return {
       optionsAreVisible: false,
@@ -96,7 +96,7 @@ export default {
 
     handleClick (platform) {
       this.shared(platform)
-      
+
       this.hideSharingButtons()
     },
 
@@ -104,11 +104,11 @@ export default {
       const el = document.createElement('textarea')
       el.value = this.url
       document.body.appendChild(el)
-      
+
       el.select()
       document.execCommand('copy')
       document.body.removeChild(el)
-      
+
       this.showSnackbar()
     },
   },
@@ -121,10 +121,10 @@ export default {
 </script>
 
 <style>
-@import '../app-core/index.css';
+@import '../app-core/variables.css';
 
 .social-share {
-  position: fixed; 
+  position: fixed;
   right: var(--spacing-default);
   top: calc(var(--app-header-mobile-height) + var(--spacing-default));
   z-index: var(--layer--raised);
@@ -140,20 +140,20 @@ export default {
 
 .social-share__button {
   position: absolute;
-  top: 0; 
-  left: 0; 
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: var(--layer--raised);
   padding: 0;
-  height: 46px; 
+  height: 46px;
   width: 46px;
   border-radius: 50%;
   border: none;
   background-color: var(--action-color);
   outline: none;
-  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
   -webkit-transition: all .3s ease-in-out;
           transition: all .3s ease-in-out;
 }
@@ -168,25 +168,25 @@ export default {
 
 .social-share__button:after,
 .social-share__link:after {
-  opacity: 0; 
+  opacity: 0;
   position: absolute;
-  top: 0; 
+  top: 0;
   left: 0;
   display: block;
-  content: ''; 
-  background-color:var(--background-color); 
+  content: '';
+  background-color:var(--background-color);
   border-radius: 50%;
   -webkit-transition: opacity .25s cubic-bezier(.15,.2,.1,1);
           transition: opacity .25s cubic-bezier(.15,.2,.1,1);
 }
 
 .social-share__button:after {
-  width: 46px; 
+  width: 46px;
   height: 46px;
 }
 
 .social-share__link:after {
-  width: 36px; 
+  width: 36px;
   height: 36px;
 }
 
@@ -198,7 +198,7 @@ export default {
 }
 
 .social-share__links {
-  position: relative; 
+  position: relative;
 }
 
 .social-share__link {
@@ -209,11 +209,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 36px; 
+  height: 36px;
   width: 36px;
   border-radius: 50%;
   background-color: var(--action-color);
-  box-shadow: 0px 4px 10px rgba(0,0,0,.2); 
+  box-shadow: 0px 4px 10px rgba(0,0,0,.2);
   -webkit-transform: translateY(0px) scale(0);
           transform: translateY(0px) scale(0);
   -webkit-transition: all .5s ease;
@@ -299,14 +299,14 @@ export default {
 .social-share__link--visible:nth-child(5) {
   -webkit-transition-delay: .1s;
           transition-delay: .1s;
-  -webkit-transform: translateY(240px) scale(1); 
-          transform: translateY(240px) scale(1); 
+  -webkit-transform: translateY(240px) scale(1);
+          transform: translateY(240px) scale(1);
 }
 
 #share:target .social-share__link:nth-child(6),
 .social-share__link--visible:nth-child(6) {
-  -webkit-transform: translateY(285px) scale(1); 
-          transform: translateY(285px) scale(1); 
+  -webkit-transform: translateY(285px) scale(1);
+          transform: translateY(285px) scale(1);
 }
 
 /* Copy to clipboard is not shown if JS is not enabled */

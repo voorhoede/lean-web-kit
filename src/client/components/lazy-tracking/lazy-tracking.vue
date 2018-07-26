@@ -1,59 +1,61 @@
 <template>
-  <div class="lazy-chat">
+  <div class="lazy-tracking">
     <!-- Load third-party script conditionally -->
     <script async type="application/javascript"
       v-if="isAccepted"
       :src="provider.script"
       @load="onLoaded"
     />
-    <button v-if="chatButtonIsShown"
-      class="button button--primary lazy-chat__open-button"
-      :class="{ 'button--pending': (isAccepted && !isLoaded) }"
-      @click="isRequested = true"
-    >
-      {{ $t('chat') }}
-    </button>
-  <opt-in
-    v-if="promptIsShown"
-    class="lazy-chat__prompt"
-    name="terms_conditions"
-    :title="$t('chat')"
-    :body="$t('prompt_terms_conditions')"
-    @accept="loadChat"
-    @decline="isRequested = false"
-  />
+    <opt-in
+      v-if="promptIsShown"
+      class="lazy-tracking__prompt"
+      name="terms_conditions"
+      :title="$t('tracking')"
+      :body="$t('prompt_terms_conditions')"
+      @accept="loadTracking"
+      @decline="isRequested = false"
+    />
   </div>
 </template>
 
 <script>
-import * as provider from './providers/crisp'
+import * as provider from './providers/hotjar'
 import OptIn from '../opt-in'
 
 export default {
   components: { OptIn },
   data () {
     return {
-      isRequested: false, // user clicks chat button
+      isRequested: false,
       isAccepted: false, // user accepts T&C
       isLoaded: false, // script is loaded
       provider,
     }
   },
+  mounted () {
+    if ('doNotTrack' in navigator && navigator.doNotTrack === "1") {
+      this.isRequested = false
+    } else {
+      this.isRequested = true
+    }
+  },
+  destroyed () {
+    this.onDestroyed()
+  },
   methods: {
-    loadChat () {
+    loadTracking () {
       this.isAccepted = true
       this.provider.onAccepted()
     },
     onLoaded () {
       this.isLoaded = true
       this.provider.onLoaded()
+    },
+    onDestroyed () {
+      this.provider.onDestroyed()
     }
   },
   computed: {
-    chatButtonIsShown () {
-      return !this.isRequested || (this.isAccepted && !this.isLoaded)
-
-    },
     promptIsShown () {
       return (this.isRequested && !this.isAccepted)
     }
@@ -64,14 +66,12 @@ export default {
 <style>
 @import '../app-core/variables.css';
 
-.lazy-chat {
-  position: fixed;
+.lazy-tracking__prompt {
+  position: fixed; /* prompt is only visible element of component */
   bottom: var(--spacing-default);
+  left: var(--spacing-default);
   right: var(--spacing-default);
-  z-index: var(--layer--overlay);
-}
-
-.lazy-chat__prompt {
   box-shadow: var(--shadow-wide-grey);
+  z-index: var(--layer--popup);
 }
 </style>

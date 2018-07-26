@@ -4,7 +4,7 @@ const defaultLocale = locales[0]
 /**
  * @see https://nuxt-community.github.io/nuxt-i18n/
  */
-module.exports =[
+module.exports = [
   'nuxt-i18n',
   {
     defaultLocale,

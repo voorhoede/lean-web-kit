@@ -9,6 +9,8 @@ export default {
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 .rich-text {
   width: 100%;
   max-width: var(--max-width);
