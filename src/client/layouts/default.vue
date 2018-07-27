@@ -25,7 +25,11 @@ export default {
     trackOutboundLink (event) {
       const target = event.target
       if (
-        target.hasAttribute('data-outbound')
+        // Target is a link
+        target.tag = 'a'
+        // Target is outbound by checking data-attribute set by `dato.config.js` and in `smart-link` component
+        && target.hasAttribute('data-outbound')
+        // Google Analytics is loaded
         && ('ga' in window)
         && (typeof window.ga === 'function')
       ) {
