@@ -9,15 +9,19 @@ a:hover {
 }
 
 a[data-outbound]::after {
-  content: '';
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 16 16'%3E%3Cpath fill='%236a9ce4' d='M14 16V5l-1 1v9H1V3h9l1-1H0v14z'/%3E%3Cpath fill='%236a9ce4' d='M16 0h-5l1.8 1.8L6 8.6 7.4 10l6.8-6.8L16 5z'/%3E%3C/svg%3E");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: .75em;
-  height: .75em;
+  content: '↗';
   display: inline-block;
-  margin: 0;
-  margin-left: 4px;
-  vertical-align: baseline;
+  vertical-align: text-bottom;
+  font-size: .625em;
+  line-height: .75em; /* arrow offset top */
+  padding-left: .0625em; /* arrow offset left */
+  width: 1em;
+  height: 1em;
+  border: .125em solid currentColor;
+  border-right-color: transparent;
+  border-top-color:  transparent;
+  margin-bottom: .325em; /* bottom align shift */
+  margin-left: .25em;
+  opacity: .5;
+  border-radius: .25em;
 }
