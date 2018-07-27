@@ -1,8 +1,8 @@
 <template>
-  <header v-if="image" 
-          class="page-header page-header--with-cover-image" 
+  <header v-if="image"
+          class="page-header page-header--with-cover-image"
           :class="{ 'image-enhanced' : imageLoaded }"
-          :style="`background-image:url('${imageLoaded ? image.src : smallImageSrc }');`"
+          :style="`background-image:url('${ imageLoaded ? image.url : smallImageSrc }');`"
   >
     <h1 class="page-header__title">{{ title }}</h1>
     <p class="page-header__subtitle" v-if="subtitle">{{ subtitle }}</p>
@@ -22,12 +22,12 @@ export default {
     }
   },
   computed: {
-    smallImageSrc() { return this.image ? this.image.src + '?w=15' : null }
+    smallImageSrc() { return this.image ? this.image.url + '?w=15' : null }
   },
   mounted () {
     if (this.image) {
-      let img = new Image()
-      img.src = this.image.src
+      const img = new Image()
+      img.src = this.image.url
 
       img.onload = this.loadEnhancedImage
     }
@@ -41,6 +41,8 @@ export default {
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 .page-header {
   width: 100%;
   margin-bottom: 4rem;
@@ -112,6 +114,6 @@ export default {
 .page-header--with-cover-image .page-header__title,
 .page-header--with-cover-image .page-header__subtitle {
   color: var(--background-color);
-  z-index: 1;
+  z-index: var(--layer--raised);
 }
 </style>

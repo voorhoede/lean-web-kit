@@ -6,24 +6,28 @@ const slugify = require('slugify')
 
 dotenv.config()
 
+const { URL } = process.env
 const staticDir = `src/client/static`
 const dataDir = `${staticDir}/data`
+let defaultLocale
 let locales = []
 
 module.exports = (dato, root, i18n) => {
   locales = i18n.availableLocales
+  defaultLocale = locales[0]
 
   fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects), 'utf8')
 
   root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
-  root.createDataFile(`${dataDir}/contact.json`, 'json', contactToJson(dato.contact))
-  root.createDataFile(`${dataDir}/social.json`, 'json', contactToJson(dato.social))
+  root.createDataFile(`${dataDir}/social.json`, 'json', dato.social.toMap())
   root.createDataFile(`${dataDir}/locales.json`, 'json', locales)
   root.createDataFile(`${dataDir}/menu.json`, 'json', menuToJson(dato, i18n))
   root.createDataFile(`${dataDir}/pages.json`, 'json', pageSlugMap(dato, i18n))
 
   locales.forEach(locale => {
     i18n.locale = locale
+    root.createDataFile(`${dataDir}/${locale}/pages/home.json`, 'json', pageToJson(dato.home, i18n))
+
     dato.pages.forEach(page => {
       root.createDataFile(`${dataDir}/${locale}/pages/${page.slug}.json`, 'json', pageToJson(page, i18n))
     })
@@ -32,7 +36,7 @@ module.exports = (dato, root, i18n) => {
 }
 
 function appSettingsToJson(app) {
-  return pick(app, ['title', 'googleAnalyticsTrackingId'])
+  return pick(app, ['title', 'contact', 'googleAnalyticsTrackingId', 'crispWebsiteId', 'hotjarId'])
 }
 
 /**
@@ -46,9 +50,9 @@ function redirectsToText (redirects) {
 }
 
 function pageSlugMap (dato, i18n) {
-  i18n.locale = 'en'
+  i18n.locale = defaultLocale
   return dato.pages.reduce((list, page) => {
-    i18n.locale = 'en'
+    i18n.locale = defaultLocale
     list[page.slug] = locales.reduce((out, locale) => {
       i18n.locale = locale
       out[locale] = page.slug
@@ -64,11 +68,19 @@ function transformItem(item) {
     $('img').remove()
     item.body = $('body').html()
   }
+  else if (item.type === 'video') {
+    if (item.video && item.title) {
+      item.video.title = item.title
+    }
+  }
   return item
 }
 
 function pageToJson (page, i18n) {
-  const { title, slug, hasToc } = page
+  const { title, hasToc, hasShareButton, hasHotjar } = page
+
+  const coverImage = page.coverImage ? page.coverImage.toMap() : undefined
+
   const sections = page.sections.map(({ title, items }) => ({
     title,
     slug: slugify(title, { lower: true }),
@@ -77,25 +89,17 @@ function pageToJson (page, i18n) {
       .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
       .map(transformItem)
   }))
-  const image = page.coverImage
-  let coverImage = null
 
-  if (image !== null) {
-    coverImage = {
-      src: image.imgixHost + image.upload.path,
-      width: image.upload.width,
-      height: image.upload.height,
-    }
-  }
-
-  const seo = page.seo.toMap()
+  const slug = page.slug ? `${page.slug}/` : '' // makes sure there's always a trailing slash ending each route so we don't get different versions of same page
+  const url = `${URL}/${i18n.locale}/${slug}`
+  const seo = { ...page.seo.toMap(), url }
   const slugI18n = locales.reduce((out, locale) => {
-    i18n.withLocale(locale, () => out[locale] = page.slug)
+    i18n.withLocale(locale, () => out[locale] = page.slug || '')
     return out
   }, {})
   const tocItems = sections.map(section => pick(section, ['title', 'slug']))
 
-  return { title, slug, slugI18n, seo, sections, hasToc, tocItems, coverImage }
+  return { title, slug, slugI18n, seo, sections, hasToc, tocItems, coverImage, url, hasShareButton, hasHotjar }
 }
 
 function formatLink (link) {
@@ -122,7 +126,7 @@ function menuToJson (dato, i18n) {
     menu[locale] = {
       title,
       isSticky,
-      callToAction: formatLink(callToAction),
+      callToAction: callToAction && formatLink(callToAction),
       items: links.map(link => formatLink(link)),
     }
     return menu
@@ -134,8 +138,4 @@ function translationsToJson (translations) {
     out[item.key] = item.value
     return out
   }, {})
-}
-
-function contactToJson (page) {
-  return [page.toMap()].pop()
 }

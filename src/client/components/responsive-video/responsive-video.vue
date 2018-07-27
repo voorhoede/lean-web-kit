@@ -3,30 +3,33 @@
     <figure>
       <fixed-ratio class="responsive-video__canvas" :width="video.width" :height="video.height">
         <lazy-load>
-          <img
-            class="responsive-video__image"
-            v-if="!isPlaying"
-            alt=""
-            :src="video.provider === 'youtube' ? video.thumbnailUrl.replace('/hqdefault.jpg', '/mqdefault.jpg') : video.thumbnailUrl"
-          />
+          <div
+            class="responsive-video__background"
+            :style="{ backgroundImage: `url(${imageUrl})` }"
+          >
+          </div>
         </lazy-load>
         <iframe
           v-if="isPlaying"
-          :src="videoSource"
-          style="width:100%; height:100%;"
+          class="responsive-video__i-frame"
+          :src="videoUrl"
           frameborder="0"
           webkitallowfullscreen
           mozallowfullscreen
           allowfullscreen
           allow="autoplay">
         </iframe>
-        <a :href="video.url" v-if="!isPlaying" class="responsive-video__button" @click.prevent="play">
-          <span class="a11y-sr-only">Play</span>
+        <a
+          v-if="!isPlaying"
+          class="responsive-video__button"
+          :href="video.url"
+          @click.prevent="play">
+          <span class="a11y-sr-only">{{ $t('play_video') }}</span>
           <img class="responsive-video__icon" src="/images/play.svg" />
         </a>
       </fixed-ratio>
       <figcaption v-if="video.title">
-        <a :href="video.url" target="_blank" rel="noopener">
+        <a target="_blank" rel="noopener" :href="video.url" >
           {{ video.title }}
         </a>
       </figcaption>
@@ -35,32 +38,75 @@
 </template>
 
 <script>
+import FixedRatio from '../fixed-ratio/fixed-ratio'
+import LazyLoad from '../lazy-load/lazy-load'
+import imageUrl from '../../lib/image-url'
 
-import FixedRatio from '../fixed-ratio'
-import LazyLoad from '../lazy-load'
+const binaryBoolean = value => (value) ? 1 : 0
 
 export default {
-  props: ['video'],
+  props: {
+    video: {
+      type: Object,
+      required: true,
+    },
+    autoplay: {
+      type: Boolean,
+      required: true,
+    },
+    loop: {
+      type: Boolean,
+      required: true,
+    },
+    mute: {
+      type: Boolean,
+      required: true,
+    },
+  },
   components: { FixedRatio, LazyLoad },
   computed: {
-    videoSource() {
-      if (!this.isPlaying) return ''
+    imageUrl() {
       switch (this.video.provider) {
         case 'vimeo':
-          return `https://player.vimeo.com/video/${this.video.providerUid}?autoplay=1`
+          const sizeRegex = /\d+\.\w+$/
+          return this.video.thumbnailUrl.replace(sizeRegex, `${this.width}.jpg`)
           break;
         case 'youtube':
-          return `https://www.youtube.com/embed/${this.video.providerUid}?autoplay=1`
+          let preset = '/maxresdefault.jpg'
+          if (this.width < 320) {
+            preset = '/mqdefault.jpg'
+          } else if (this.width < 480) {
+            preset = '/hqdefault.jpg'
+          }
+
+          return this.video.thumbnailUrl.replace('/hqdefault.jpg', preset)
           break;
         default:
-          console.error(`unsupported video provider: ${this.video.provider}`);
+          console.error(`unsupported video provider for cover image: ${this.video.provider}`);
+          return ''
+      }
+    },
+    videoUrl() {
+      if (!this.isPlaying) return ''
+      const { autoplay, loop, mute = autoplay } = this
+      const { provider, providerUid } = this.video
+      switch (provider) {
+        case 'vimeo':
+          return `https://player.vimeo.com/video/${providerUid}?autoplay=1&muted=${binaryBoolean(mute)}&loop=${binaryBoolean(loop)}`
+          break;
+        case 'youtube':
+          return `https://www.youtube.com/embed/${providerUid}?autoplay=1&mute=${binaryBoolean(mute)}&loop=${binaryBoolean(loop)}&playlist=${providerUid}`
+          break;
+        default:
+          console.error(`unsupported video provider: ${provider}`);
           return ''
       }
     }
   },
   data () {
     return {
-      isPlaying: false
+      isPlaying: this.autoplay,
+      width: undefined,
     }
   },
   methods: {
@@ -72,12 +118,19 @@ export default {
         eventValue: 1
       })
       this.isPlaying = true
-    }
+    },
+  },
+   mounted() {
+    const pixelRatio = window.devicePixelRatio || 1
+    const cssWidth = this.$el.getBoundingClientRect().width
+    this.width = cssWidth * pixelRatio
   },
 }
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 .responsive-video {
   position: relative;
 }
@@ -86,9 +139,18 @@ export default {
   background-color: var(--neutral-color);
 }
 
-.responsive-video__image {
+.responsive-video__background {
+  position: absolute;
   height: 100%;
   width: 100%;
+  background-size: cover;
+  background-position: center center;
+}
+
+.responsive-video__i-frame {
+  width:100%;
+  height:100%;
+  position:relative;
 }
 
 .responsive-video__button {

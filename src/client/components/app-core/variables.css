@@ -1,17 +1,20 @@
 :root {
+
   --app-header-height: 80px;
   --app-header-mobile-height: 55px;
   --max-width: 600px;
 
 /* colors */
-
   --action-color: #6a9ce4;
   --neutral-color: #f5f5f5;
   --background-color: #fff;
   --text-color: #4c4c4c;
 
- /* fonts */
+/* shadows */
+  --shadow-small-grey: 0 1px 5px #ccc;
+  --shadow-wide-grey: 0 2px 10px #ccc;
 
+ /* fonts */
  --font-size-small: .75rem;
  --font-size-default: 1rem;
  --font-size-medium: 1.125rem;
@@ -19,8 +22,13 @@
  --font-size-extra-large: 1.6875rem;
 
   /* spacing */
-
   --spacing-default: 1rem;
   --spacing-double: 2rem;
   --spacing-half: .5rem;
+
+  /* layers */
+  --layer--raised: 1;
+  --layer--sticky: 5;
+  --layer--overlay: 10;
+  --layer--popup: 15;
 }
