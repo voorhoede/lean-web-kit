@@ -67,6 +67,7 @@ export default {
   margin-top: calc(1em - var(--suffix-size));
   opacity: var(--suffix-opacity);
   font-size: var(--suffix-size);
+
 }
 .language-selector__list {
   display: flex;
@@ -80,7 +81,6 @@ export default {
   list-style-type: none;
   border-right: 1px solid var(--action-color);
   padding-right: var(--spacing-half);
-
 }
 .language-selector__item:last-child {
   border-right: none;
@@ -93,6 +93,7 @@ export default {
 @media screen and (min-width: 640px) {
   .language-selector--dropdown {
     align-self: flex-start;
+    position: relative;
   }
   .language-selector--dropdown .language-selector__open {
     display: inline-block;
@@ -110,6 +111,7 @@ export default {
   .language-selector--dropdown:hover .language-selector__list,
   .language-selector--dropdown:active .language-selector__list {
     display: block;
+    position: absolute;
   }
   .language-selector:hover .language-selector--dropdown {
     display: flex;
