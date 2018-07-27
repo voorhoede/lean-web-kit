@@ -17,6 +17,7 @@ a[data-outbound]::after {
   width: .75em;
   height: .75em;
   display: inline-block;
-  margin: .025em .125em;
+  margin: 0;
+  margin-left: 4px;
   vertical-align: baseline;
 }
