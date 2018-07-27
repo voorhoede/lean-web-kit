@@ -121,3 +121,13 @@ storiesOf('App core', module)
       </div>
     `,
   }))
+  .add('Links', () => ({
+    template: `
+      <div class="links-demo">
+        <demo title="Links" inset>
+          <p><a href="#bla">Default</a></p>
+          <p><a href="https://voorhoede.nl/" target="_blank" rel="noopener" data-outbound>Outbound</a></p>
+        </demo>
+      </div>
+    `,
+  }))
