@@ -1,41 +1,24 @@
 <template>
-  <div @click="trackOutboundLink">
+  <track-outbound-links>
     <app-header :contentId="contentId" :menuI18n="menuI18n" />
     <main :id="contentId">
       <nuxt/>
     </main>
     <app-footer />
     <lazy-chat />
-  </div>
+  </track-outbound-links>
 </template>
 
 <script>
 import menuI18n from '../static/data/menu.json'
-import { AppFooter, AppHeader, LazyChat } from '../components/'
+import { AppFooter, AppHeader, LazyChat, TrackOutboundLinks } from '../components/'
 
 export default {
-  components: { AppFooter, AppHeader, LazyChat },
+  components: { AppFooter, AppHeader, LazyChat, TrackOutboundLinks },
   data() {
     return {
       contentId: 'content',
       menuI18n,
-    }
-  },
-  methods: {
-    trackOutboundLink (event) {
-      const target = event.target
-      if (
-        // Target is a link
-        target.tag = 'a'
-        // Target is outbound by checking data-attribute set by `dato.config.js` and in `smart-link` component
-        && target.hasAttribute('data-outbound')
-        // Google Analytics is loaded
-        && ('ga' in window)
-        && (typeof window.ga === 'function')
-      ) {
-        console.log(target.href)
-        window.ga('send', 'event', 'outbound', 'click', target.href, { 'transport': 'beacon' })
-      }
     }
   }
 }
