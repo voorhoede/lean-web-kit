@@ -68,11 +68,12 @@ function transformItem(item) {
     const $ = cheerio.load(item.body)
     $('img').remove()
     $('a').each((i, a) => {
-      if (outboundLinkRegExp.test($(a).attr('href'))) {
-        $(a).attr('data-outbound', 'true').attr('target', '_blank')
+      const $a = $(a)
+      if (outboundLinkRegExp.test($a.attr('href'))) {
+        $a.attr('data-outbound', 'true').attr('target', '_blank')
       }
-      if ($(a).attr('target') === '_blank') {
-        $(a).attr('rel', 'noopener')
+      if ($a.attr('target') === '_blank') {
+        $a.attr('rel', 'noopener')
       }
     })
 
