@@ -60,6 +60,14 @@ export default {
   display: none;
   padding: var(--spacing-half)
 }
+.language-selector__open::after {
+  content: '▼';
+  display: inline-block;
+  vertical-align: text-top;
+  margin-top: calc(1em - var(--suffix-size));
+  opacity: var(--suffix-opacity);
+  font-size: var(--suffix-size);
+}
 .language-selector__list {
   display: flex;
   justify-content: center;
