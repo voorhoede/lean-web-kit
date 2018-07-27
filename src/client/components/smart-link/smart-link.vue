@@ -2,7 +2,7 @@
   <nuxt-link v-if="item.type === 'page'" :to="localePath({ name: 'slug', params: { slug: item.slug } })" >
     {{ item.title }}
   </nuxt-link>
-  <a v-else :href="item.url" class="link--outbound" target="_blank" rel="noopener">
+  <a v-else :href="item.url" data-outbound="true" target="_blank" rel="noopener">
     {{ item.title }}
   </a>
 </template>
