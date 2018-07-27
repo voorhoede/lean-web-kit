@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="trackOutboundLink">
     <app-header :contentId="contentId" :menuI18n="menuI18n" />
     <main :id="contentId">
       <nuxt/>
@@ -21,6 +21,19 @@ export default {
       menuI18n,
     }
   },
+  methods: {
+    trackOutboundLink (event) {
+      const target = event.target
+      if (
+        target.hasAttribute('data-outbound')
+        && ('ga' in window)
+        && (typeof window.ga === 'function')
+      ) {
+        console.log(target.href)
+        window.ga('send', 'event', 'outbound', 'click', target.href, { 'transport': 'beacon' })
+      }
+    }
+  }
 }
 </script>
 
