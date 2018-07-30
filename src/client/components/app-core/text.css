@@ -1,17 +1,7 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: le-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: var(--font-size-default);
   color: var(--text-color);
-}
-
-a {
-  color: var(--action-color);
-  text-decoration: none;
-}
-
-a:focus,
-a:hover {
-  border-bottom: 1px solid var(--action-color);
 }
 
 p:not(:last-child) {

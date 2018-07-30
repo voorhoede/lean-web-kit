@@ -1,26 +1,26 @@
 <template>
-  <div>
+  <track-outbound-links>
     <app-header :contentId="contentId" :menuI18n="menuI18n" />
     <main :id="contentId">
       <nuxt/>
     </main>
     <app-footer />
     <lazy-chat />
-  </div>
+  </track-outbound-links>
 </template>
 
 <script>
 import menuI18n from '../static/data/menu.json'
-import { AppFooter, AppHeader, LazyChat } from '../components/'
+import { AppFooter, AppHeader, LazyChat, TrackOutboundLinks } from '../components/'
 
 export default {
-  components: { AppFooter, AppHeader, LazyChat },
+  components: { AppFooter, AppHeader, LazyChat, TrackOutboundLinks },
   data() {
     return {
       contentId: 'content',
       menuI18n,
     }
-  },
+  }
 }
 </script>
 

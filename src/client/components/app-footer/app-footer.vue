@@ -37,12 +37,12 @@
         <nav class="app-footer__nav">
           <h2 class="a11y-sr-only">{{ menu.title }}</h2>
           <ul class="flat-list">
-            <li class="app-footer__nav-item" v-for="item in menu.items" :key="item.slug">
-              <nuxt-link :to="localePath({ name: 'slug', params: { slug: item.slug } })"
-                class="app-footer__nav-link"
-              >
+            <li class="app-footer__nav-item"
+              v-for="(item, index) in menu.items" :key="index"
+            >
+              <smart-link class="app-footer__nav-link" :item="item">
                 {{ item.title }}
-              </nuxt-link>
+              </smart-link>
             </li>
           </ul>
         </nav>
@@ -62,6 +62,9 @@
 import appConfig from '../../static/data/app.json'
 import social from '../../static/data/social.json'
 import menuI18n from '../../static/data/menu.json'
+
+import SmartLink from '../smart-link'
+
 import FacebookIcon from '../../static/images/facebook.svg'
 import TwitterIcon from '../../static/images/twitter.svg'
 import GooglePlusIcon from '../../static/images/googleplus.svg'
@@ -71,7 +74,7 @@ import YoutubeIcon from '../../static/images/youtube.svg'
 
 export default {
   props: ['contentId'],
-  components: { FacebookIcon, TwitterIcon, GooglePlusIcon, InstagramIcon, LinkedinIcon, YoutubeIcon },
+  components: { SmartLink, FacebookIcon, TwitterIcon, GooglePlusIcon, InstagramIcon, LinkedinIcon, YoutubeIcon },
   data () {
     return { appConfig, menuI18n, social }
   },

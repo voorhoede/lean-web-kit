@@ -1,0 +1,31 @@
+a {
+  color: var(--action-color);
+  text-decoration: none;
+}
+
+a:focus,
+a:hover {
+  border-bottom: 1px solid var(--action-color);
+}
+
+/* Styling for this breaks on IE11, so skip it with @supports */
+@supports (content: '') {
+  a[data-outbound]::after {
+    content: '↗';
+    speak: none; /* don't try to pronounce an arrow */
+    display: inline-block;
+    vertical-align: text-bottom;
+    font-size: .625em;
+    line-height: .75em; /* arrow offset top */
+    padding-left: .0625em; /* arrow offset left */
+    width: 1em;
+    height: 1em;
+    border: .125em solid currentColor;
+    border-right-color: transparent;
+    border-top-color:  transparent;
+    margin-bottom: .325em; /* bottom align shift */
+    margin-left: .25em;
+    opacity: .5;
+    border-radius: .25em;
+  }
+}
