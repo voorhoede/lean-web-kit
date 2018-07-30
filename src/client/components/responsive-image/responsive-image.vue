@@ -104,5 +104,7 @@ export default {
 .responsive-image__caption {
   margin-top: var(--spacing-half);
   text-align: center;
+  color: var(--text-light-color);
+  font-style: italic;
 }
 </style>

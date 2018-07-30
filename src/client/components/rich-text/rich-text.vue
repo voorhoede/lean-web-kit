@@ -17,11 +17,6 @@ export default {
   margin: 0 auto var(--spacing-double);
 }
 
-.rich-text p {
-  margin-bottom: .8rem;
-  line-height: 1.3;
-}
-
 .rich-text td {
   padding: var(--spacing-half);
 }
@@ -30,6 +25,11 @@ export default {
   position: relative;
   margin: var(--spacing-double) 0;
   padding: 1.3rem 0;
+}
+
+.rich-text ul,
+.rich-text ol {
+  margin-bottom: var(--spacing-default);
 }
 
 .rich-text blockquote:before {

@@ -1,9 +1,12 @@
+@import './variables.css';
+
 body {
   font-family: le-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: var(--font-size-default);
   color: var(--text-color);
+  line-height: 1.5;
 }
 
-p:not(:last-child) {
-  margin-bottom: var(--spacing-normal);
+p {
+  margin-bottom: var(--spacing-default);
 }
