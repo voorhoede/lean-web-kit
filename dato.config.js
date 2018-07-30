@@ -63,9 +63,20 @@ function pageSlugMap (dato, i18n) {
 }
 
 function transformItem(item) {
+  const outboundLinkRegExp = new RegExp(`^https?:\/\/(?:(?!${URL.replace('.', '\.')}).)+$`)
   if (item.type === 'text') {
     const $ = cheerio.load(item.body)
     $('img').remove()
+    $('a').each((i, a) => {
+      const $a = $(a)
+      if (outboundLinkRegExp.test($a.attr('href'))) {
+        $a.attr('data-outbound', 'true').attr('target', '_blank')
+      }
+      if ($a.attr('target') === '_blank') {
+        $a.attr('rel', 'noopener')
+      }
+    })
+
     item.body = $('body').html()
   }
   else if (item.type === 'video') {
