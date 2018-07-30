@@ -4,7 +4,7 @@
     class="app-header"
     :class="{ 'app-header--sticky' : menu.isSticky }"
   >
-    <nuxt-link :to="localePath('index')" class="app-header__identity">
+    <nuxt-link :to="localeUrl('index')" class="app-header__identity">
       <img class="app-header__logo" src="/images/logo.svg" alt="" width="32" height="40" />
 
       <h1 class="app-header__title">Lean Web Kit<br>

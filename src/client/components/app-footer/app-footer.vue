@@ -2,7 +2,7 @@
   <footer role="contentinfo" class="app-footer">
     <div class="app-footer__container">
       <div>
-        <nuxt-link :to="localePath('index') + '/'" class="app-footer__identity">
+        <nuxt-link :to="localeUrl('index')" class="app-footer__identity">
           <img class="app-footer__logo" src="/images/logo.svg" alt="" width="32" height="40" />
           <h1 class="app-footer__title">{{ appConfig.title }}</h1>
         </nuxt-link>

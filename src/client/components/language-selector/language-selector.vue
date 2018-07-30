@@ -23,8 +23,7 @@
         class="language-selector__link"
         rel="alternate"
         :hreflang="locale.code"
-        :to="localePath({ name: 'slug', params: { slug: slugI18n[locale.code] } }, locale.code)"
-      >
+        :to="localeUrl({ name: 'slug', params: { slug: slugI18n[locale.code] } }, locale.code)">
         {{ locale.name }}
       </nuxt-link>
       <nuxt-link
@@ -32,8 +31,7 @@
         class="language-selector__link"
         rel="alternate"
         :hreflang="locale.code"
-        :to="switchLocalePath(locale.code)"
-      >
+        :to="switchLocaleUrl(locale.code)">
         {{ locale.name }}
       </nuxt-link>
     </li>
