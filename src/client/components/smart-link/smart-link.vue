@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link v-if="item.type === 'page'" :to="pageUrl" >
+  <nuxt-link v-if="item.type === 'page'" :to="localeUrl({ name: 'slug', params: { slug: item.slug } })" >
     {{ item.title }}
   </nuxt-link>
   <a v-else :href="item.url" data-outbound="true" target="_blank" rel="noopener">
@@ -24,12 +24,5 @@ export default {
       }
     }
   },
-  computed: {
-    pageUrl() {
-      const { item, localePath } = this
-      const url =localePath({ name: 'slug', params: { slug: item.slug } })
-      return url.endsWith('/') ? url : `${url}/`
-    }
-  }
 }
 </script>
