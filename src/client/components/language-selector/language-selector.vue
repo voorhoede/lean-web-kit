@@ -92,7 +92,7 @@ export default {
 .language-selector__list {
   display: flex;
   justify-content: center;
-  padding: var(--spacing-half)
+  padding: var(--spacing-half);
 }
 
 .language-selector__item {
