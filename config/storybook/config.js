@@ -11,12 +11,12 @@ setOptions({
   url: '#',
   showLeftPanel: true,
   showDownPanel: true,
-  downPanelInRight: true
+  downPanelInRight: true,
 })
 
 Vue.use(VueAnalytics, {
   debug: { enabled: true, sendHitTask: false },
-  id: 'UA-MOCK-X'
+  id: 'UA-MOCK-X',
 })
 Vue.use(VueI18n)
 Vue.use(Vuex)
@@ -59,7 +59,7 @@ Vue.component('Demo', {
         <slot>Demo</slot>
       </div>
     </section>
-  `
+  `,
 })
 
 /**
@@ -68,7 +68,7 @@ Vue.component('Demo', {
  */
 Vue.component('NuxtLink', {
   props: ['to'],
-  template: '<a :href="to"><slot>RouterLink</slot></a>'
+  template: '<a :href="to"><slot>RouterLink</slot></a>',
 })
 
 function importAll(r) {
