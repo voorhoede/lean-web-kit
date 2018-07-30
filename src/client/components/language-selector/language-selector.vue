@@ -7,12 +7,18 @@
   <a
     v-if="hasMoreThanTwoLocales"
     class="language-selector__open language-selector__item"
-    href="#language">
+    href="#language"
+    @click.prevent="toggleList"
+  >
     {{ currentLocale }}
   </a>
-  <ul class="language-selector__list">
+  <ul
+    class="language-selector__list"
+    :class="{'language-selector__list--open': isOpen}"
+  >
     <li class="language-selector__item" v-for="locale in locales" :key="locale.code">
-      <nuxt-link v-if="isSlugRoute"
+      <nuxt-link
+        v-if="isSlugRoute"
         class="language-selector__link"
         rel="alternate"
         :hreflang="locale.code"
@@ -20,7 +26,8 @@
       >
         {{ locale.name }}
       </nuxt-link>
-      <nuxt-link v-else
+      <nuxt-link
+        v-else
         class="language-selector__link"
         rel="alternate"
         :hreflang="locale.code"
@@ -39,13 +46,19 @@ export default {
   data() {
     return {
       currentLocale: this.$i18n.locale,
+      isOpen: false
     }
   },
   computed: {
-    hasMoreThanTwoLocales() { return this.locales.length > 2 },
-    isSlugRoute() { return this.$route.name === `slug${this.$i18n.routesNameSeparator}${this.$i18n.locale}` },
-    slugI18n() { return this.$store.state.slugI18n },
+    hasMoreThanTwoLocales () { return this.locales.length > 2 },
+    isSlugRoute () { return this.$route.name === `slug${this.$i18n.routesNameSeparator}${this.$i18n.locale}` },
+    slugI18n () { return this.$store.state.slugI18n },
   },
+  methods: {
+    toggleList () {
+      this.isOpen = !this.isOpen
+    }
+  }
 }
 </script>
 
@@ -103,29 +116,26 @@ export default {
   }
   .language-selector--dropdown .language-selector__list {
     display: none;
+    position: absolute;
     background-color: var(--background-color);
     box-shadow: 1px 2px 8px #ddd;
     align-self: baseline;
     padding: 0;
   }
-  .language-selector--dropdown:hover .language-selector__list,
-  .language-selector--dropdown:active .language-selector__list {
+  .language-selector--dropdown:target .language-selector__list,
+  .language-selector--dropdown .language-selector__list--open {
     display: block;
-    position: absolute;
-  }
-  .language-selector:hover .language-selector--dropdown {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
   .language-selector--dropdown .language-selector__item {
     margin: 0;
     border-right: 0;
     padding-right: 0;
   }
-  .language-selector--dropdown .language-selector__link:hover {
+  .language-selector--dropdown .language-selector__link:hover,
+  .language-selector--dropdown .language-selector__link:focus {
     background-color: var(--action-color);
     color: var(--background-color);
+    text-decoration: none;
   }
   .language-selector--dropdown .language-selector__link {
     text-align: center;
