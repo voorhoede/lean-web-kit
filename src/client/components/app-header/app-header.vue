@@ -84,7 +84,6 @@ export default {
     toggleMenu () {
       this.menuIsOpen = !this.menuIsOpen
     },
-
     closeMenu () {
       if (this.menuIsOpen) {
         this.menuIsOpen = false
