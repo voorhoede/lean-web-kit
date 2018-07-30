@@ -2,10 +2,11 @@
 <div
   id="language"
   class="language-selector"
-  :class="{'language-selector--dropdown': hasMoreThanTwoLocales}"
+  :class="{'language-selector--dropdown': useDropdown}"
 >
   <a
-    v-if="hasMoreThanTwoLocales"
+    v-if="useDropdown"
+    :aria-label="$t('select_language')"
     class="language-selector__open language-selector__item"
     href="#language"
     @click.prevent="toggleList"
@@ -18,7 +19,7 @@
   >
     <li class="language-selector__item" v-for="locale in locales" :key="locale.code">
       <nuxt-link
-        v-if="isSlugRoute"
+        v-if="isSlugRoute && shouldIncludeLocale(locale.code)"
         class="language-selector__link"
         rel="alternate"
         :hreflang="locale.code"
@@ -27,7 +28,7 @@
         {{ locale.name }}
       </nuxt-link>
       <nuxt-link
-        v-else
+        v-else-if="shouldIncludeLocale(locale.code)"
         class="language-selector__link"
         rel="alternate"
         :hreflang="locale.code"
@@ -45,19 +46,25 @@ export default {
   props: ['locales'],
   data() {
     return {
-      currentLocale: this.$i18n.locale,
+      currentLocale: 'en',
       isOpen: false
     }
   },
   computed: {
-    hasMoreThanTwoLocales () { return this.locales.length > 2 },
-    isSlugRoute () { return this.$route.name === `slug${this.$i18n.routesNameSeparator}${this.$i18n.locale}` },
+    useDropdown () { return this.locales.length > 2 },
+    isSlugRoute () { return this.$route.name === `slug${this.$i18n.routesNameSeparator}${this.currentLocale}` },
     slugI18n () { return this.$store.state.slugI18n },
+
   },
   methods: {
     toggleList () {
       this.isOpen = !this.isOpen
-    }
+    },
+    shouldIncludeLocale (locale) {
+      // Exclude current locale from dropdown
+      return (this.useDropdown && locale !== this.currentLocale)
+        || !this.useDropdown // Always show in normal list
+    },
   }
 }
 </script>
