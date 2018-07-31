@@ -7,6 +7,25 @@ import SmartLinks from './'
 storiesOf('Smart Links', module)
   .addDecorator(withReadme(readme))
   .add('One link', () => ({
+      components: {
+          SmartLinks
+      },
+      data: () => ({
+          items: [
+              {
+                  "type": "page",
+                  "title": "Configure headers",
+                  "slug": "configure-response-headers",
+                  "theme": "default",
+              },
+          ],
+      }),
+      template: '<smart-links :items="items" />',
+      i18n: new VueI18n({
+          locale: 'en'
+      })
+  }))
+  .add('Multiple links', () => ({
     components: {
       SmartLinks
     },
@@ -16,13 +35,13 @@ storiesOf('Smart Links', module)
           "type": "page",
           "title": "Configure headers",
           "slug": "configure-response-headers",
-          "theme": "default",
+          "theme": "primary",
         },
         {
           "type": "page",
           "title": "Edit your footer",
           "slug": "edit-your-footer",
-          "theme": "primary",
+          "theme": "default",
         },
       ],
     }),
