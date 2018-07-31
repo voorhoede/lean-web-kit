@@ -31,11 +31,6 @@
   margin-bottom: var(--spacing-default);
 }
 
-.button {
-  display: block;
-  margin: 1.5rem 0 2rem 0;
-}
-
 .links-demo p {
   margin-bottom: .5rem;
 }

@@ -20,6 +20,9 @@
         :loop="item.loop"
         :mute="item.mute"
       />
+      <smart-links v-if="item.links"
+       :key="index"
+       :items="item.links" />
     </template>
   </section>
 </template>
@@ -28,9 +31,10 @@
 import ResponsiveImage from '../responsive-image'
 import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
+import SmartLinks from '../smart-links'
 
 export default {
-  components: { ResponsiveImage, ResponsiveVideo, RichText },
+  components: { ResponsiveImage, ResponsiveVideo, RichText, SmartLinks, },
   props: {
     section: {
       type: Object,
