@@ -11,11 +11,6 @@ figure {
   margin: 0 auto;
 }
 
-figcaption {
-  margin-top: var(--spacing-half);
-  text-align: center;
-}
-
 img {
   max-width: 100%;
   height: auto;

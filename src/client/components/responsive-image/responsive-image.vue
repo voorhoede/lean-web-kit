@@ -18,7 +18,7 @@
         </no-script>
       </fixed-ratio>
     </div>
-    <figcaption class="responsive-image__caption" v-if="image.title">
+    <figcaption v-if="image.title">
       {{ image.title }}
     </figcaption>
   </figure>
@@ -99,12 +99,5 @@ export default {
   top: 50%;
   width: 100%;
   text-align: center;
-}
-
-.responsive-image__caption {
-  margin-top: var(--spacing-half);
-  text-align: center;
-  color: var(--text-light-color);
-  font-style: italic;
 }
 </style>

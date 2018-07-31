@@ -3,12 +3,29 @@ import { withKnobs, text } from '@storybook/addon-knobs'
 import { withReadme } from 'storybook-readme'
 import readme from './readme.md'
 import RichText from './'
+import ContentSection from '../content-section'
+import alwaysSecureJson from '../../static/data/en/pages/always-secure.json'
+
+console.log(alwaysSecureJson)
 
 storiesOf('Rich text', module)
   .addDecorator(withReadme(readme))
   .addDecorator(withKnobs)
-  .add('Default', () => ({
-      components: { RichText },
+  .add('Example page', () => ({
+    data: () => ({
+      page: alwaysSecureJson,
+    }),
+    components: { ContentSection, RichText, },
+    template: `<div>
+    <content-section
+          v-for="(section, index) in page.sections"
+          :key="index"
+          :section="section"
+        />
+      </div>`
+  }))
+  .add('Separate elements', () => ({
+      components: { RichText, },
       template: `
         <div>
           <demo title="Multi paragraph" inset>
@@ -76,4 +93,3 @@ storiesOf('Rich text', module)
         }
       },
   }))
- 

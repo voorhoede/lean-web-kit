@@ -10,3 +10,10 @@ body {
 p {
   margin-bottom: var(--spacing-default);
 }
+
+figcaption {
+  margin-top: var(--spacing-half);
+  text-align: center;
+  color: var(--text-light-color);
+  font-style: italic;
+}
