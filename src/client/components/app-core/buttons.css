@@ -1,16 +1,19 @@
 @import './variables.css';
 
 .button {
-  padding: 0 var(--spacing-default);
+  display: inline-block;
+  padding-top: .7rem;
+  padding-bottom: .7rem;
+  padding-left: var(--spacing-default);
+  padding-right: var(--spacing-default);
   font-size: var(--font-size-default);
   color: var(--action-color);
   text-transform: uppercase;
-  line-height: 40px;
-  height: 40px;
+  letter-spacing: 1px;
   background-color: var(--background-color);
   box-shadow: var(--shadow-small-grey);
   border: none;
-  border-radius: 3px;
+  border-radius: var(--border-radius);
 }
 
 .button--primary {
