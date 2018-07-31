@@ -3,26 +3,20 @@ import { withKnobs, text } from '@storybook/addon-knobs'
 import { withReadme } from 'storybook-readme'
 import readme from './readme.md'
 import RichText from './'
-import ContentSection from '../content-section'
-import alwaysSecureJson from '../../static/data/en/pages/always-secure.json'
-
-console.log(alwaysSecureJson)
 
 storiesOf('Rich text', module)
   .addDecorator(withReadme(readme))
   .addDecorator(withKnobs)
   .add('Example page', () => ({
     data: () => ({
-      page: alwaysSecureJson,
+        "title": "A+ security rating",
+        "body": "<p>Your website is always served over a secure connection, called HTTPS.</p>\n<p><a href=\"https://www.netlify.com/docs/ssl/\" data-outbound=\"true\" target=\"_blank\" rel=\"noopener\">HTTPS brings a lot of advantages</a>:</p>\n<ul>\n<li><strong>HTTP/2</strong> - Boost your sites&#x2019; performance &#x2014; HTTP/2 requires HTTPS.</li>\n<li><strong>SEO</strong> - Google search results prioritize sites with HTTPS enabled.</li>\n<li><strong>Analytics</strong> - HTTPS-enabled sites will not send referral data to sites without HTTPS enabled.</li>\n<li><strong>Content Integrity</strong> - Without SSL, free Wi-Fi services can inject ads into your pages.</li>\n<li><strong>Security</strong> - If you have a login on a Single Page App or accept form submissions, HTTPS is essential for your users&#x2019; security and privacy.</li>\n</ul>\n<p>Your site is hosted on Netlify which automatically provides you with an HTTPS certificate from Let&#x2019;s Encrypt. This grants you an <a href=\"https://www.ssllabs.com/ssltest/analyze.html?d=leanwebkit.voorhoede.nl\" data-outbound=\"true\" target=\"_blank\" rel=\"noopener\">A+ rating for your HTTPS (SSL) connection</a>:</p>",
     }),
-    components: { ContentSection, RichText, },
-    template: `<div>
-    <content-section
-          v-for="(section, index) in page.sections"
-          :key="index"
-          :section="section"
-        />
-      </div>`
+    components: { RichText, },
+    template: `<div style="max-width: 600px; margin-left: auto; margin-right: auto;">
+      <h2>{{ title }}</h2>
+      <rich-text :text="body" />
+    </div>`
   }))
   .add('Separate elements', () => ({
       components: { RichText, },
