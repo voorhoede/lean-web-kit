@@ -226,7 +226,7 @@ export default {
     box-shadow: none;
   }
 
-  .app-header__button--mobile {
+  .app-header .app-header__button--mobile {
     display: none;
   }
 
