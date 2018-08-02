@@ -2,8 +2,8 @@
 
 .button {
   display: inline-block;
-  padding-top: .7rem;
-  padding-bottom: .7rem;
+  padding-top: var(--spacing-half);
+  padding-bottom: var(--spacing-half);
   padding-left: var(--spacing-default);
   padding-right: var(--spacing-default);
   font-size: var(--font-size-default);
