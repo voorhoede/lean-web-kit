@@ -13,7 +13,7 @@
   background-color: var(--background-color);
   box-shadow: var(--shadow-small-grey);
   border: none;
-  border-radius: var(--border-radius);
+  border-radius: 3px;
 }
 
 .button--primary {

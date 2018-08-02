@@ -5,6 +5,9 @@
       <h2 class="content-section__title">{{ section.title }}</h2>
     </a>
     <template v-for="(item, index) in section.items">
+      <button-group v-if="item.links"
+       :key="index"
+       :items="item.links" />
       <rich-text v-if="item.type === 'text'"
         :key="index"
         :text="item.body"
@@ -20,21 +23,18 @@
         :loop="item.loop"
         :mute="item.mute"
       />
-      <smart-links v-if="item.links"
-       :key="index"
-       :items="item.links" />
     </template>
   </section>
 </template>
 
 <script>
+import ButtonGroup from '../button-group'
 import ResponsiveImage from '../responsive-image'
 import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
-import SmartLinks from '../smart-links'
 
 export default {
-  components: { ResponsiveImage, ResponsiveVideo, RichText, SmartLinks, },
+  components: { ButtonGroup, ResponsiveImage, ResponsiveVideo, RichText, },
   props: {
     section: {
       type: Object,
