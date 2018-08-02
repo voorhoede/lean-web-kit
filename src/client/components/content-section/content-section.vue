@@ -5,6 +5,9 @@
       <h2 class="content-section__title">{{ section.title }}</h2>
     </a>
     <template v-for="(item, index) in section.items">
+      <link-list v-if="item.type === 'link_list'"
+      :key="index"
+      :links="item.links" />
       <rich-text v-if="item.type === 'text'"
         :key="index"
         :text="item.body"
@@ -25,12 +28,13 @@
 </template>
 
 <script>
+import LinkList from '../link-list'
 import ResponsiveImage from '../responsive-image'
 import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
 
 export default {
-  components: { ResponsiveImage, ResponsiveVideo, RichText },
+  components: { LinkList, ResponsiveImage, ResponsiveVideo, RichText },
   props: {
     section: {
       type: Object,
