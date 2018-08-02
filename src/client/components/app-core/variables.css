@@ -9,6 +9,7 @@
   --neutral-color: #f5f5f5;
   --background-color: #fff;
   --text-color: #4c4c4c;
+  --text-light-color: #adadad;
 
 /* suffixes */
   --suffix-opacity: .5;
@@ -18,7 +19,7 @@
   --shadow-small-grey: 0 1px 5px #ccc;
   --shadow-wide-grey: 0 2px 10px #ccc;
 
- /* fonts */
+/* fonts */
  --font-size-small: .75rem;
  --font-size-default: 1rem;
  --font-size-medium: 1.125rem;
