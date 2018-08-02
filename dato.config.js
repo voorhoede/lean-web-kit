@@ -63,9 +63,12 @@ function pageSlugMap (dato, i18n) {
 }
 
 function transformItem(item) {
-  const outboundLinkRegExp = new RegExp(`^https?:\/\/(?:(?!${URL.replace('.', '\.')}).)+$`)
-  if (item.type === 'text') {
+  if (item.type === 'link_list') {
+    item.links = item.links.map(formatLink)
+  }
+  else if (item.type === 'text') {
     const $ = cheerio.load(item.body)
+    const outboundLinkRegExp = new RegExp(`^https?:\/\/(?:(?!${URL.replace('.', '\.')}).)+$`)
     $('img').remove()
     $('a').each((i, a) => {
       const $a = $(a)
