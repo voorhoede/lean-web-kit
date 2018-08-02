@@ -55,12 +55,14 @@ export default {
 }
 
 .content-section {
-  margin: 0 auto 4rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem;
   max-width: var(--max-width);
 }
 
 .content-section__title {
-  margin-bottom: var(--spacing-double);
+  margin-bottom: 1.5rem;
   color: var(--text-color);
   font-size: var(--font-size-extra-large);
 }
