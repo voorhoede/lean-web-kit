@@ -17,3 +17,17 @@ figcaption {
   color: var(--text-light-color);
   font-style: italic;
 }
+
+code,
+pre {
+  background-color: var(--neutral-color);
+  border-radius: var(--border-radius-small);
+}
+code {
+  padding: 3px;
+}
+pre {
+  margin-bottom: var(--spacing-default);
+  padding: var(--spacing-default);
+  white-space: pre-wrap;
+}

@@ -3,7 +3,9 @@
  * @see https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
  */
 const baseUrl = process.env.URL
+const NODE_ENV = process.env.NODE_ENV
 
 module.exports = {
-  baseUrl
+  baseUrl,
+  NODE_ENV
 }

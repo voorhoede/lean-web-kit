@@ -36,4 +36,6 @@
   --layer--sticky: 5;
   --layer--overlay: 10;
   --layer--popup: 15;
+
+  --border-radius-small: 3px;
 }

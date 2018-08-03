@@ -36,13 +36,6 @@ export default {
   margin-bottom: 0.375rem;
 }
 
-.rich-text pre {
-  margin-bottom: var(--spacing-default);
-  padding: 1rem;
-  white-space: pre-wrap;
-  background-color: var(--text-light-color);
-}
-
 .rich-text blockquote:before {
   content: open-quote;
   position: absolute;
