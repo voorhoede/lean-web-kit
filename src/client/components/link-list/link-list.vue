@@ -30,3 +30,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.link-list__link--active {
+  font-weight: bold;
+}
+</style>
+
