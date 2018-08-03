@@ -9,7 +9,7 @@
   font-size: var(--font-size-default);
   color: var(--action-color);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1px; /* use letter spacing when capitals are used for readability */
   background-color: var(--background-color);
   box-shadow: var(--shadow-small-grey);
   border: none;
