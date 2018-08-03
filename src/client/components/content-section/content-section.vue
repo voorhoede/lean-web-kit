@@ -5,7 +5,7 @@
       <h2 class="content-section__title">{{ section.title }}</h2>
     </a>
     <template v-for="(item, index) in section.items">
-      <button-group v-if="item.links"
+      <button-group v-if="item.type === 'button_group'"
        :key="index"
        :items="item.links" />
       <rich-text v-if="item.type === 'text'"

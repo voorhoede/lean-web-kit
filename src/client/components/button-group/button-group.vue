@@ -1,6 +1,6 @@
 <template>
-  <ul class="button-group inline-list">
-    <li class="button-group__item" v-for="item in items" :key="item.slug">
+  <ul class="inline-list">
+    <li v-for="item in items" :key="item.slug">
       <smart-link
         :item="item"
         :class="{

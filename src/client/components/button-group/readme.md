@@ -1,9 +1,9 @@
-# Smart Links
+# Button group
 
-Adds one or more links (`<smart-link>`) that are styled as buttons.
+Adds one or more links (`<button-group>`) that are styled as buttons.
 
 ## Usage
 
 ```
-<smart-links :items="items" />
+<button-group :items="items" />
 ```

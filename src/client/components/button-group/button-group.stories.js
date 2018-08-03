@@ -6,7 +6,7 @@ import ButtonGroup from './'
 
 storiesOf('Button group', module)
   .addDecorator(withReadme(readme))
-  .add('One link', () => ({
+  .add('Single button', () => ({
       components: {
           ButtonGroup
       },
@@ -25,7 +25,7 @@ storiesOf('Button group', module)
           locale: 'en'
       })
   }))
-  .add('Multiple links', () => ({
+  .add('Multiple buttons', () => ({
     components: {
       ButtonGroup
     },
