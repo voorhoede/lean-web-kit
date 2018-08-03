@@ -40,12 +40,13 @@
       <language-selector :locales="$i18n.locales" class="app-header__language-selector"/>
     </nav>
 
-    <smart-link
+    <span class="app-header__button-on-mobile">
+      <smart-link
       v-if="menu.callToAction"
-      class="button button--primary app-header__button app-header__button--mobile"
+      class="button button--primary app-header__button"
       :item="menu.callToAction"
-      @click.native="closeMenu"
-    />
+      @click.native="closeMenu" />
+    </span>
 
     <button class="app-header__menu-button" @click="toggleMenu" >
       <span v-if="menuIsOpen" class="a11y-sr-only">{{ $t('close_menu') }}</span>
@@ -195,7 +196,7 @@ export default {
   display: none;
 }
 
-.app-header__button--mobile {
+.app-header__button-on-mobile {
   margin-left: auto;
 }
 
@@ -226,7 +227,7 @@ export default {
     box-shadow: none;
   }
 
-  .app-header__button--mobile {
+  .app-header__button-on-mobile {
     display: none;
   }
 
