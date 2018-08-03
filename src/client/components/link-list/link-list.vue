@@ -1,7 +1,9 @@
 <template>
-    <list-tag :ordered="ordered">
-      <li v-for="link in links" :key="link.slug">
-        <smart-link :item="link">{{ link.title }}</smart-link>
+    <list-tag
+      :ordered="ordered"
+      class="link-list">
+      <li v-for="(link, index) in links" :key="index">
+        <smart-link :item="link" active-class="link-list__link--active">{{ link.title }}</smart-link>
       </li>
     </list-tag>
 </template>

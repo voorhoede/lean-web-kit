@@ -3,9 +3,7 @@ import { withReadme } from 'storybook-readme'
 import readme from './readme.md'
 import LinkList from './'
 
-const unordered = {
-  "ordered": false,
-  "links": [
+const links = [
     {
       "type": "page",
       "title": "Guides",
@@ -21,11 +19,7 @@ const unordered = {
       "title": "Start Now",
       "slug": "getting-started"
           }
-  ],
-  "type": "link_list",
-}
-
-const ordered = Object.assign({}, unordered, { "ordered": true })
+  ]
 
 storiesOf('Link list', module)
   .addDecorator(withReadme(readme))
@@ -33,15 +27,15 @@ storiesOf('Link list', module)
     components: { LinkList },
     template: `
       <link-list
-        :links="item.links"
-        :ordered="item.ordered" />`,
-    data: () => ({ item: unordered }),
+        :links="links"
+        :ordered="false" />`,
+    data: () => ({ links }),
   }))
   .add('Ordered list', () => ({
     components: { LinkList },
     template: `
       <link-list
-        :links="item.links"
-        :ordered="item.ordered" />`,
-    data: () => ({ item: ordered }),
+        :links="links"
+        :ordered="true" />`,
+    data: () => ({ links }),
   }))

@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import LinkList from '../link-list'
 import ButtonGroup from '../button-group'
+import LinkList from '../link-list'
 import ResponsiveImage from '../responsive-image'
 import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'

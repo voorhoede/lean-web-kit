@@ -1,9 +1,9 @@
 <template>
-  <ol v-if="ordered" class="link-list">
+  <ol v-if="ordered">
     <slot />
   </ol>
 
-  <ul v-else class="link-list">
+  <ul v-else>
     <slot />
   </ul>
 </template>
