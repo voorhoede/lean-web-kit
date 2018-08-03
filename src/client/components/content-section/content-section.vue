@@ -8,8 +8,7 @@
       <link-list v-if="item.type === 'link_list'"
       :key="index"
       :links="item.links"
-      :showTitle="item.showTitle"
-      :title="item.title" />
+      :ordered="item.ordered" />
       <rich-text v-if="item.type === 'text'"
         :key="index"
         :text="item.body"

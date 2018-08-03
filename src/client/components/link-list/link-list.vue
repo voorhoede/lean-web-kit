@@ -1,19 +1,18 @@
 <template>
-  <div>
-    <h2 v-if="showTitle">{{ title }}</h2>
-    <ul class="link-list">
+    <list-tag :ordered="ordered">
       <li v-for="link in links" :key="link.slug">
         <smart-link :item="link">{{ link.title }}</smart-link>
       </li>
-    </ul>
-  </div>
+    </list-tag>
 </template>
 
 <script>
+import ListTag from '../list-tag'
 import SmartLink from '../smart-link'
 
 export default {
   components: {
+    ListTag,
     SmartLink,
   },
   props: {
@@ -21,15 +20,10 @@ export default {
       type: Array,
       required: true,
     },
-    showTitle: {
+    ordered: {
       type: Boolean,
       required: false,
       default: false,
-    },
-    title: {
-      type: String,
-      required: false,
-      default: '',
     }
   }
 }
