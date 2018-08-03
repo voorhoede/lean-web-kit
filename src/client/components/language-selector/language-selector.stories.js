@@ -1,19 +1,9 @@
 import VueI18n from 'vue-i18n'
+import Vuex from 'vuex'
 import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
 import readme from './readme.md'
 import LanguageSelector from './'
-
-export const i18n = () => {
-  return new VueI18n({
-    locale: 'en',
-    messages: {
-      en: {
-        skip_to_content: 'Skip to content',
-      }
-    },
-  })
-}
 
 export const mockLocales = (locales) => {
   return locales.map(locale => ({
@@ -44,5 +34,13 @@ storiesOf('Language selector', module)
           moreThanTwoLocales: mockLocales(['en', 'nl', 'pt', 'fr', 'it'])
         }
       },
-      i18n: i18n()
+      i18n: new VueI18n({
+        locale: 'en',
+        messages: {
+          en: {
+            select_language: 'Select language',
+          }
+        },
+      }),
+      store: new Vuex.Store(),
   }))

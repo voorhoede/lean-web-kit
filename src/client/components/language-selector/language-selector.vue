@@ -17,24 +17,22 @@
     class="language-selector__list"
     :class="{'language-selector__list--open': isOpen}"
   >
-    <li class="language-selector__item" v-for="locale in locales" :key="locale.code">
-      <nuxt-link
-        v-if="isSlugRoute && shouldIncludeLocale(locale.code)"
-        class="language-selector__link"
-        rel="alternate"
-        :hreflang="locale.code"
-        :to="localeUrl({ name: 'slug', params: { slug: slugI18n[locale.code] } }, locale.code)">
-        {{ locale.name }}
-      </nuxt-link>
-      <nuxt-link
-        v-else-if="shouldIncludeLocale(locale.code)"
-        class="language-selector__link"
-        rel="alternate"
-        :hreflang="locale.code"
-        :to="switchLocaleUrl(locale.code)">
-        {{ locale.name }}
-      </nuxt-link>
-    </li>
+    <template v-for="locale in locales">
+      <li
+        v-if="shouldIncludeLocale(locale.code)"
+        :key="locale.code"
+        class="language-selector__item"
+      >
+        <nuxt-link
+          class="language-selector__link"
+          rel="alternate"
+          :hreflang="locale.code"
+          :to="pageUrl(locale.code)"
+        >
+          {{ locale.name }}
+        </nuxt-link>
+      </li>
+    </template>
   </ul>
 </div>
 </template>
@@ -44,24 +42,31 @@ export default {
   props: ['locales'],
   data() {
     return {
-      currentLocale: 'en',
-      isOpen: false
+      isOpen: false,
     }
   },
   computed: {
+    currentLocale () { return this.$i18n.locale },
     useDropdown () { return this.locales.length > 2 },
-    isSlugRoute () { return this.$route.name === `slug${this.$i18n.routesNameSeparator}${this.currentLocale}` },
+    isSlugRoute () { return this.$route.name === this.slugRouteName },
     slugI18n () { return this.$store.state.slugI18n },
-
+    slugRouteName () { return `slug${this.$i18n.routesNameSeparator}${this.currentLocale}` },
   },
   methods: {
-    toggleList () {
-      this.isOpen = !this.isOpen
+    pageUrl (locale) {
+      const { isSlugRoute, localeUrl, slugI18n, switchLocaleUrl } = this
+      if (isSlugRoute) {
+        return localeUrl({ name: 'slug', params: { slug: slugI18n[locale] } }, locale)
+      } else {
+        return switchLocaleUrl(locale)
+      }
     },
     shouldIncludeLocale (locale) {
       // Exclude current locale from dropdown
-      return (this.useDropdown && locale !== this.currentLocale)
-        || !this.useDropdown // Always show in normal list
+      return (!this.useDropdown || locale !== this.currentLocale)
+    },
+    toggleList () {
+      this.isOpen = !this.isOpen
     },
   }
 }
@@ -76,7 +81,7 @@ export default {
 }
 .language-selector__open {
   display: none;
-  padding: var(--spacing-half)
+  padding: var(--spacing-half);
 }
 .language-selector__open::after {
   content: '▼';
