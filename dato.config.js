@@ -63,9 +63,12 @@ function pageSlugMap (dato, i18n) {
 }
 
 function transformItem(item) {
-  const outboundLinkRegExp = new RegExp(`^https?:\/\/(?:(?!${URL.replace('.', '\.')}).)+$`)
-  if (item.type === 'text') {
+  if (item.type === 'button_group') {
+    item.links = item.links.map(formatLink)
+  }
+  else if (item.type === 'text') {
     const $ = cheerio.load(item.body)
+    const outboundLinkRegExp = new RegExp(`^https?:\/\/(?:(?!${URL.replace('.', '\.')}).)+$`)
     $('img').remove()
     $('a').each((i, a) => {
       const $a = $(a)
@@ -114,18 +117,20 @@ function pageToJson (page, i18n) {
 }
 
 function formatLink (link) {
-  const { page, title, url } = link
+  const { page, theme, title, url } = link
   if (page) {
     return {
       type: 'page',
       title: title || page.title,
       slug: page.slug,
+      theme,
     }
   } else {
     return {
       type: 'url',
       title,
       url,
+      theme,
     }
   }
 }
