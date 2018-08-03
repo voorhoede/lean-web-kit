@@ -21,13 +21,13 @@ figcaption {
 code,
 pre {
   background-color: var(--neutral-color);
-  border-radius: 3px;
+  border-radius: var(--border-radius-small);
 }
 code {
   padding: 3px;
 }
 pre {
   margin-bottom: var(--spacing-default);
-  padding: 1rem;
+  padding: var(--spacing-default);
   white-space: pre-wrap;
 }
