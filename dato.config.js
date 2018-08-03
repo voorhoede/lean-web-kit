@@ -63,7 +63,7 @@ function pageSlugMap (dato, i18n) {
 }
 
 function transformItem(item) {
-  if (item.type === 'button_group') {
+  if (item.type === 'link_list' || item.type === 'button_group') {
     item.links = item.links.map(formatLink)
   }
   else if (item.type === 'text') {
