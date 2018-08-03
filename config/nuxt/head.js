@@ -11,7 +11,8 @@ module.exports = {
     { 'http-equiv': 'Accept-CH', content: 'DPR, Width, Viewport-Width, Save-Data' },
   ],
   link: [
-    { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+    // all other app icons are generated and added by the @nuxt/pwa module
     { rel: 'dns-prefetch', href: 'https://www.datocms-assets.com/' },
-  ]
+  ],
 }
