@@ -7,4 +7,4 @@ Uses the [Intersection observer API](https://developer.mozilla.org/en-US/docs/We
 | Name       |   Type   |  Required  |
 |:----------:|:--------:|:----------:|
 | rootMargin |  string  |   false    |
-| treshold   |  number  |   false    |
+| threshold   |  number  |   false    |

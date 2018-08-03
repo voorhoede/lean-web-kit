@@ -63,7 +63,7 @@ function pageSlugMap (dato, i18n) {
 }
 
 function transformItem(item) {
-  if (item.type === 'link_list') {
+  if (item.type === 'link_list' || item.type === 'button_group') {
     item.links = item.links.map(formatLink)
   }
   else if (item.type === 'text') {
@@ -117,18 +117,20 @@ function pageToJson (page, i18n) {
 }
 
 function formatLink (link) {
-  const { page, title, url } = link
+  const { page, theme, title, url } = link
   if (page) {
     return {
       type: 'page',
       title: title || page.title,
       slug: page.slug,
+      theme,
     }
   } else {
     return {
       type: 'url',
       title,
       url,
+      theme,
     }
   }
 }

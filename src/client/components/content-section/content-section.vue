@@ -9,6 +9,9 @@
       :key="index"
       :links="item.links"
       :ordered="item.ordered" />
+      <button-group v-if="item.type === 'button_group'"
+       :key="index"
+       :items="item.links" />
       <rich-text v-if="item.type === 'text'"
         :key="index"
         :text="item.body"
@@ -30,12 +33,13 @@
 
 <script>
 import LinkList from '../link-list'
+import ButtonGroup from '../button-group'
 import ResponsiveImage from '../responsive-image'
 import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
 
 export default {
-  components: { LinkList, ResponsiveImage, ResponsiveVideo, RichText },
+  components: { ButtonGroup, LinkList, ResponsiveImage, ResponsiveVideo, RichText, },
   props: {
     section: {
       type: Object,
