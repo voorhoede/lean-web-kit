@@ -7,7 +7,9 @@
     <template v-for="(item, index) in section.items">
       <link-list v-if="item.type === 'link_list'"
       :key="index"
-      :links="item.links" />
+      :links="item.links"
+      :showTitle="item.showTitle"
+      :title="item.title" />
       <rich-text v-if="item.type === 'text'"
         :key="index"
         :text="item.body"
