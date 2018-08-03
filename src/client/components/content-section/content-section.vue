@@ -5,6 +5,10 @@
       <h2 class="content-section__title">{{ section.title }}</h2>
     </a>
     <template v-for="(item, index) in section.items">
+      <link-list v-if="item.type === 'link_list'"
+      :key="index"
+      :links="item.links"
+      :ordered="item.ordered" />
       <button-group v-if="item.type === 'button_group'"
        :key="index"
        :items="item.links" />
@@ -29,12 +33,13 @@
 
 <script>
 import ButtonGroup from '../button-group'
+import LinkList from '../link-list'
 import ResponsiveImage from '../responsive-image'
 import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
 
 export default {
-  components: { ButtonGroup, ResponsiveImage, ResponsiveVideo, RichText, },
+  components: { ButtonGroup, LinkList, ResponsiveImage, ResponsiveVideo, RichText, },
   props: {
     section: {
       type: Object,
