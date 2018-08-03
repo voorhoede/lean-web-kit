@@ -2,7 +2,7 @@
   <div>
     <h2 v-if="showTitle">{{ title }}</h2>
     <ul class="link-list">
-      <li v-for="link in links" :key="link.id">
+      <li v-for="link in links" :key="link.slug">
         <smart-link :item="link">{{ link.title }}</smart-link>
       </li>
     </ul>
