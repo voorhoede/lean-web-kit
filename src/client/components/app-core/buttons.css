@@ -1,12 +1,15 @@
 @import './variables.css';
 
 .button {
-  padding: 0 var(--spacing-default);
+  display: inline-block;
+  padding-top: var(--spacing-half);
+  padding-bottom: var(--spacing-half);
+  padding-left: var(--spacing-default);
+  padding-right: var(--spacing-default);
   font-size: var(--font-size-default);
   color: var(--action-color);
   text-transform: uppercase;
-  line-height: 40px;
-  height: 40px;
+  letter-spacing: 1px; /* use letter spacing when capitals are used for readability */
   background-color: var(--background-color);
   box-shadow: var(--shadow-small-grey);
   border: none;
