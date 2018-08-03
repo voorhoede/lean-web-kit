@@ -1,12 +1,11 @@
 <template>
 <div>
-<h2>Link list!!!</h2>
-<ul>
-  <li v-for="link in links" :key="link.id">
-    {{ link }}
-    <smart-link :item="link">{{ link.title }}</smart-link>
-  </li>
-</ul>
+  <h2 v-if="showTitle">{{ title }}</h2>
+  <ul>
+    <li v-for="link in links" :key="link.id">
+      <smart-link :item="link">{{ link.title }}</smart-link>
+    </li>
+  </ul>
 </div>
 </template>
 
@@ -21,6 +20,16 @@ export default {
     links: {
       type: Array,
       required: true,
+    },
+    showTitle: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    title: {
+      type: String,
+      required: false,
+      default: '',
     }
   }
 }
