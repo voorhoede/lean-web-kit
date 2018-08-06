@@ -14,7 +14,7 @@ export default {
 .rich-text {
   width: 100%;
   max-width: var(--max-width);
-  margin: 0 auto var(--spacing-double);
+  margin-bottom: var(--spacing-double);
 }
 
 .rich-text td {

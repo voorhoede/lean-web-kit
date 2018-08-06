@@ -5,13 +5,17 @@
       <h2 class="content-section__title">{{ section.title }}</h2>
     </a>
     <template v-for="(item, index) in section.items">
+      <button-group v-if="item.type === 'button_group'"
+       :key="index"
+       :items="item.links" />
+      <email-form v-if="item.type === 'form'"
+        :key="index"
+        :form="item.form"
+      />
       <link-list v-if="item.type === 'link_list'"
       :key="index"
       :links="item.links"
       :ordered="item.ordered" />
-      <button-group v-if="item.type === 'button_group'"
-       :key="index"
-       :items="item.links" />
       <rich-text v-if="item.type === 'text'"
         :key="index"
         :text="item.body"
@@ -33,13 +37,14 @@
 
 <script>
 import ButtonGroup from '../button-group'
+import EmailForm from '../email-form'
 import LinkList from '../link-list'
 import ResponsiveImage from '../responsive-image'
 import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
 
 export default {
-  components: { ButtonGroup, LinkList, ResponsiveImage, ResponsiveVideo, RichText, },
+  components: { ButtonGroup, EmailForm, LinkList, ResponsiveImage, ResponsiveVideo, RichText, },
   props: {
     section: {
       type: Object,
