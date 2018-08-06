@@ -9,7 +9,7 @@
     <button v-if="chatButtonIsShown"
       class="button button--primary lazy-chat__open-button"
       :class="{ 'button--pending': (isAccepted && !isLoaded) }"
-      @click="isRequested = true"
+      @click="handleClick"
     >
       {{ $t('chat') }}
     </button>
@@ -47,6 +47,16 @@ export default {
     onLoaded () {
       this.isLoaded = true
       this.provider.onLoaded()
+    },
+    handleClick () {
+      this.isRequested = true
+      this.track()
+    },
+    track () {
+      this.$ga.event({
+        eventCategory: 'chat',
+        eventAction: 'firstClick',
+      })
     }
   },
   computed: {
