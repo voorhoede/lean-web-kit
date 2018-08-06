@@ -11,7 +11,7 @@
       :class="{ 'button--pending': (isAccepted && !isLoaded) }"
       @click="isRequested = true"
     >
-      {{ $t('chat') }}
+      <span class="a11y-sr-only">{{ $t('chat') }}</span>
     </button>
   <opt-in
     v-if="promptIsShown"
