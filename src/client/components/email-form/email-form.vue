@@ -76,6 +76,10 @@ export default {
   margin-bottom: var(--spacing-default);
 }
 
+.email-form__alert:target {
+  display: block;
+}
+
 .email-form__alert p:last-child {
   margin-bottom: 0;
 }
@@ -86,9 +90,5 @@ export default {
 
 .email-form__body > *:last-child {
   margin-bottom: 0;
-}
-
-.email-form__alert:target {
-  display: block;
 }
 </style>
