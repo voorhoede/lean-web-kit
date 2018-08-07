@@ -10,7 +10,7 @@
     <input type="text" name="_gotcha" style="display:none" />
 
     <h2 class="email-form__title">{{ form.title }}</h2>
-    <rich-text :id="messageId" :text="form.confirmationMessage" class="notification" />
+    <rich-text :id="messageId" :text="form.confirmationMessage" class="alert alert--success email-form__alert" />
     <rich-text v-if="form.body" :text="form.body" class="email-form__body" />
 
     <label v-if="form.labelEmail" class="email-form__label">{{ form.labelEmail }}</label>
@@ -58,6 +58,10 @@ export default {
 <style>
 @import '../app-core/index.css';
 
+.email-form__title {
+  margin-bottom: 1rem;
+}
+
 .email-form__label {
   display: block;
   margin-bottom: var(--spacing-half);
@@ -65,5 +69,26 @@ export default {
 
 .email-form__submit {
   margin-left: var(--spacing-half);
+}
+
+.email-form__alert {
+  display: none;
+  margin-bottom: var(--spacing-default);
+}
+
+.email-form__alert p:last-child {
+  margin-bottom: 0;
+}
+
+.email-form__body {
+  margin-bottom: var(--spacing-default);
+}
+
+.email-form__body > *:last-child {
+  margin-bottom: 0;
+}
+
+.email-form__alert:target {
+  display: block;
 }
 </style>
