@@ -11,13 +11,14 @@
     <div class="opt-in__buttons">
       <button
         class="button button--primary"
-        @click="onAccept">
+        @click="onAccept"
+        v-test:optInAccept>
         {{ $t('agree') }}
       </button>
       <button
         class="button"
         @click="onDecline"
-      >
+        v-test:optInDecline>
         {{ $t('decline') }}
       </button>
     </div>
@@ -25,43 +26,43 @@
 </template>
 
 <script>
-import { isSupported as localStorageSupported } from '../../lib/local-storage'
+  import { isSupported as localStorageSupported } from '../../lib/local-storage'
 
-export default {
-  props: {
-    name: String,
-    title: String,
-    body: String,
-  },
-  data () {
-    const isAccepted = (localStorageSupported)
-      ? localStorage.getItem(this.name)
-      : false
-
-    return { isAccepted }
-  },
-  created () {
-    // Emit accept event if already accepted by user
-    if (this.isAccepted) {
-      this.$emit('accept')
-    }
-  },
-  methods: {
-    onAccept () {
-      if (localStorageSupported) {
-        localStorage.setItem(this.name, true)
-      }
-      this.$emit('accept')
+  export default {
+    props: {
+      name: String,
+      title: String,
+      body: String,
     },
-    onDecline () {
-      this.$emit('decline')
+    data () {
+      const isAccepted = (localStorageSupported)
+        ? localStorage.getItem(this.name)
+        : false
+
+      return { isAccepted }
+    },
+    created () {
+      // Emit accept event if already accepted by user
+      if (this.isAccepted) {
+        this.$emit('accept')
+      }
+    },
+    methods: {
+      onAccept () {
+        if (localStorageSupported) {
+          localStorage.setItem(this.name, true)
+        }
+        this.$emit('accept')
+      },
+      onDecline () {
+        this.$emit('decline')
+      }
     }
   }
-}
 </script>
 
 <style>
-@import '../app-core/variables.css';
+  @import '../app-core/variables.css';
 
   .opt-in {
     background-color: var(--background-color);

@@ -11,7 +11,7 @@
 
 <script>
 import menuI18n from '../static/data/menu.json'
-import { AppFooter, AppHeader, LazyChat, TrackOutboundLinks } from '../components/'
+import { AppFooter, AppHeader, LazyChat, TrackOutboundLinks } from '../components'
 
 export default {
   components: { AppFooter, AppHeader, LazyChat, TrackOutboundLinks },

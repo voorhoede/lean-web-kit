@@ -4,4 +4,5 @@
 module.exports = [
   { src: '~/plugins/install-prompt', ssr: false },
   { src: '~/plugins/locale-urls' },
+  { src: '~/plugins/directives' },
 ]
