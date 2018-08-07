@@ -4,5 +4,5 @@
 }
 
 .alert--success {
-  background-color: var(--action-color);
+  background-color: var(--success-color);
 }
