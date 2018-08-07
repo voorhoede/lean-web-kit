@@ -4,6 +4,7 @@
     :action="`https://formspree.io/${ emailAddress }`"
     class="email-form"
     method="POST">
+    {{ nextUrl }}
     <input type="hidden" name="_next" :value="nextUrl" />
     <input type="hidden" name="_subject" :value="form.title" />
     <input type="hidden" name="_language" :value="$i18n.locale" />
@@ -48,7 +49,7 @@ export default {
       if (this.form.confirmationPage) {
         return this.localeUrl({ name: 'slug', params: { slug: this.form.confirmationPage.slug } })
       } else {
-        return `${this.pageUrl}#${this.messageId}`
+        return this.pageUrl.indexOf('#') !== -1 ? this.pageUrl : `${this.pageUrl}#${this.messageId}`
       }
     }
   }
