@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     messageId() {
-      return `form-${this.form.id}-success`
+      return `form-success-${this.form.id}`
     },
     nextUrl() {
       if (this.form.confirmationPage) {
