@@ -24,9 +24,7 @@ import { emailAddress} from '../../static/data/app.json'
 import RichText from '../rich-text'
 
 export default {
-  components: {
-    RichText,
-  },
+  components: { RichText },
   props: {
     form: {
       type: Object,
