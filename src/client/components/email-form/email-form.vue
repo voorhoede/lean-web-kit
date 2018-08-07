@@ -38,7 +38,8 @@ export default {
     }
   },
   mounted: function () {
-    this.pageUrl = window.location.href.slice(0, window.location.href.indexOf('#'))
+    const checkHashInUrl = window.location.href.split('#')
+    this.pageUrl = checkHashInUrl.length === 1 ? window.location.href : checkHashInUrl[1]
   },
   computed: {
     messageId() {
