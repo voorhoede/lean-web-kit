@@ -66,6 +66,12 @@ function transformItem(item) {
   if (item.type === 'link_list' || item.type === 'button_group') {
     item.links = item.links.map(formatLink)
   }
+  else if (item.type === 'form') {
+    item.form = Object.assign({}, item.form, {
+      type: item.form.itemType,
+    })
+    delete item.form.itemType
+  }
   else if (item.type === 'text') {
     const $ = cheerio.load(item.body)
     const outboundLinkRegExp = new RegExp(`^https?:\/\/(?:(?!${URL.replace('.', '\.')}).)+$`)

@@ -4,7 +4,6 @@
     :action="`https://formspree.io/${ emailAddress }`"
     class="email-form"
     method="POST">
-    {{ nextUrl }}
     <input type="hidden" name="_next" :value="nextUrl" />
     <input type="hidden" name="_subject" :value="form.title" />
     <input type="hidden" name="_language" :value="$i18n.locale" />
@@ -34,12 +33,14 @@ export default {
       required: true,
     },
   },
-  data: () => ({
-    emailAddress,
-    pageUrl: ''
-  }),
+  data () {
+    return {
+      emailAddress,
+      pageUrl: ''
+    }
+  },
   mounted: function () {
-    this.pageUrl = window.location.href
+    this.pageUrl = window.location.href.slice(0, window.location.href.indexOf('#'))
   },
   computed: {
     messageId() {
@@ -49,7 +50,7 @@ export default {
       if (this.form.confirmationPage) {
         return this.localeUrl({ name: 'slug', params: { slug: this.form.confirmationPage.slug } })
       } else {
-        return this.pageUrl.indexOf('#') !== -1 ? this.pageUrl : `${this.pageUrl}#${this.messageId}`
+        return `${this.pageUrl}#${this.messageId}`
       }
     }
   }
@@ -63,13 +64,14 @@ export default {
   margin-bottom: 1rem;
 }
 
+.email-form__email {
+  margin-right: var(--spacing-half);
+  margin-bottom: var(--spacing-default);
+}
+
 .email-form__label {
   display: block;
   margin-bottom: var(--spacing-half);
-}
-
-.email-form__submit {
-  margin-left: var(--spacing-half);
 }
 
 .email-form__alert {

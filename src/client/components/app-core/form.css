@@ -24,22 +24,10 @@ label {
   color: var(--text-light-color);
 }
 
-:focus::-webkit-input-placeholder {
-  color: var(--action-color);
-}
-
 ::-moz-placeholder {
   color: var(--text-light-color);
 }
 
-:focus::-moz-placeholder {
-  color: var(--action-color);
-}
-
 :-ms-input-placeholder {
   color: var(--text-light-color);
-}
-
-:focus:-ms-input-placeholder {
-  color: var(--action-color);
 }

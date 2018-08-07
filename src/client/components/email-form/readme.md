@@ -14,3 +14,4 @@ A simple form to collect email addresses.
 * Sends an `email` to the required email address configured in the CMS under `App`.
 * Only `shows` the form is the required email address is configured in the CMS under `App`.
 * Uses the `title` of the form as the email `subject`.
+* Uses [Formspree](https://formspree.io/) for form handling. Several attributs are used for extra features: `_next`, `_subject`, `_language` and `_gotcha`.
