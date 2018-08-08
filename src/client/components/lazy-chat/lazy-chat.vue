@@ -99,36 +99,14 @@ export default {
 }
 
 .loading:before {
-  content: '';
-  display: inline-block;
   animation: button__spinner 2s linear infinite;
   background-image: url('/images/spinner.png');
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
   margin-bottom: 0 !important;
 }
 
 @keyframes button__spinner {
   0% { transform: rotate(0deg) }
   100% { transform: rotate(360deg) }
-}
-
-
-@keyframes bounce {
-  0%, 90%, 100%{
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
-    transform: translateY(0);
-  }
-
-  40%{
-    -webkit-transform: translateY(-10px);
-    -ms-transform: translateY(-10px);
-    -o-transform: translateY(-10px);
-    transform: translateY(-10px);
-  }
 }
 
 #crisp-chatbox[data-last-operator-face="false"] span[data-is-ongoing="false"] {
