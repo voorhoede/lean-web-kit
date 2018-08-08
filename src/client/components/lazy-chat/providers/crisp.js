@@ -10,6 +10,8 @@ export function onAccepted () {
   window.CRISP_WEBSITE_ID = crispWebsiteId
   window.$crisp = []
   $crisp.push(['do', 'chat:open'])
+  $crisp.push(['on', 'chat:opened', onOpened])
+  $crisp.push(['on', 'chat:closed', onClosed])
 }
 
 /**
@@ -17,6 +19,14 @@ export function onAccepted () {
  *
  */
 export function onLoaded () {}
+
+function onOpened () {
+  ga('send', 'event', { eventCategory: 'chat', eventAction: 'click', eventLabel: 'opened' })
+}
+
+function onClosed () {
+  ga('send', 'event', { eventCategory: 'chat', eventAction: 'click', eventLabel: 'closed' })
+}
 
 export default {
   onAccepted,
