@@ -39,7 +39,7 @@
 
 .button:hover,
 .button:focus {
-  background-color: #95b3e8;
+  background-color: var(--focus-color);
   cursor: pointer;
   text-decoration: none;
 }

@@ -8,7 +8,7 @@
       <button-group v-if="item.type === 'button_group'"
        :key="index"
        :items="item.links" />
-      <email-form v-if="item.type === 'form'"
+      <email-form v-if="item.form && item.form.type === 'email_form'"
         :key="index"
         :form="item.form"
       />

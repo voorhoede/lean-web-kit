@@ -1,14 +1,7 @@
-label {
-  cursor: pointer;
-}
-
 [type="text"],
 [type="email"],
 [type="password"] {
-  padding-top: var(--spacing-half);
-  padding-bottom: var(--spacing-half);
-  padding-left: var(--spacing-default);
-  padding-right: var(--spacing-default);
+  padding: var(--spacing-half) var(--spacing-default);;
   border-radius: var(--border-radius-small);
   border: 1px solid var(--text-color);
 }
@@ -24,22 +17,10 @@ label {
   color: var(--text-light-color);
 }
 
-:focus::-webkit-input-placeholder {
-  color: var(--action-color);
-}
-
 ::-moz-placeholder {
   color: var(--text-light-color);
 }
 
-:focus::-moz-placeholder {
-  color: var(--action-color);
-}
-
 :-ms-input-placeholder {
   color: var(--text-light-color);
-}
-
-:focus:-ms-input-placeholder {
-  color: var(--action-color);
 }

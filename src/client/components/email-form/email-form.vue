@@ -4,7 +4,6 @@
     :action="`https://formspree.io/${ emailAddress }`"
     class="email-form"
     method="POST">
-    {{ nextUrl }}
     <input type="hidden" name="_next" :value="nextUrl" />
     <input type="hidden" name="_subject" :value="form.title" />
     <input type="hidden" name="_language" :value="$i18n.locale" />
@@ -14,7 +13,7 @@
     <rich-text :id="messageId" :text="form.confirmationMessage" class="alert alert--success email-form__alert" />
     <rich-text v-if="form.body" :text="form.body" class="email-form__body" />
 
-    <label v-if="form.labelEmail" class="email-form__label">{{ form.labelEmail }}</label>
+    <label v-if="form.labelEmail" class="email-form__label-email">{{ form.labelEmail }}</label>
     <input class="email-form__email form-input" type="email" name="email" placeholder="email@example.com" required>
     <button class="email-form__submit button button--primary" type="submit">{{ form.labelSubmitButton }}</button>
   </form>
@@ -25,21 +24,22 @@ import { emailAddress} from '../../static/data/app.json'
 import RichText from '../rich-text'
 
 export default {
-  components: {
-    RichText,
-  },
+  components: { RichText },
   props: {
     form: {
       type: Object,
       required: true,
     },
   },
-  data: () => ({
-    emailAddress,
-    pageUrl: ''
-  }),
+  data () {
+    return {
+      emailAddress,
+      pageUrl: ''
+    }
+  },
   mounted: function () {
-    this.pageUrl = window.location.href
+    const checkHashInUrl = window.location.href.split('#')
+    this.pageUrl = checkHashInUrl.length === 1 ? window.location.href : checkHashInUrl[1]
   },
   computed: {
     messageId() {
@@ -49,7 +49,7 @@ export default {
       if (this.form.confirmationPage) {
         return this.localeUrl({ name: 'slug', params: { slug: this.form.confirmationPage.slug } })
       } else {
-        return this.pageUrl.indexOf('#') !== -1 ? this.pageUrl : `${this.pageUrl}#${this.messageId}`
+        return `${this.pageUrl}#${this.messageId}`
       }
     }
   }
@@ -63,13 +63,15 @@ export default {
   margin-bottom: 1rem;
 }
 
-.email-form__label {
-  display: block;
-  margin-bottom: var(--spacing-half);
+.email-form__email {
+  margin-right: var(--spacing-half);
+  margin-bottom: var(--spacing-default);
 }
 
-.email-form__submit {
-  margin-left: var(--spacing-half);
+.email-form__label-email {
+  display: block;
+  margin-bottom: var(--spacing-half);
+  cursor: pointer;
 }
 
 .email-form__alert {
