@@ -4,11 +4,10 @@
     <script async type="application/javascript"
       v-if="isAccepted"
       :src="provider.script"
-      @load="onLoaded"
     />
     <button v-if="chatButtonIsShown"
       class="button button--primary lazy-chat__open-button"
-      :class="{ 'loading': (isAccepted && !isLoaded) }"
+      :class="{ 'lazy-chat__open-button--pending': (isAccepted && !isLoaded) }"
       @click="isRequested = true"
     >
       <span class="a11y-sr-only">{{ $t('chat') }}</span>
@@ -43,11 +42,11 @@ export default {
     loadChat () {
       this.isAccepted = true
       this.provider.onAccepted()
+
+      this.provider.listenToOpener(() => {
+        this.isLoaded = true
+      })
     },
-    onLoaded () {
-      this.provider.onLoaded()
-      this.isLoaded = true
-    }
   },
   computed: {
     chatButtonIsShown () {
@@ -63,6 +62,7 @@ export default {
 
 <style>
 @import '../app-core/variables.css';
+@import '../app-core/buttons.css';
 
 .lazy-chat {
   position: fixed;
@@ -92,21 +92,16 @@ export default {
   margin-bottom: -6px;
   width: 32px;
   height: 26px;
-  background-image: url("/images/chat-bubble.svg");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 369.982 369.982'%3E%3Cpath d='M314.821 47.893c-34.797-28.139-80.904-43.636-129.83-43.636S89.958 19.754 55.161 47.894C19.59 76.661 0 115.142 0 156.249c0 41.108 19.59 79.591 55.161 108.356 34.797 28.141 80.904 43.639 129.83 43.639 4.981 0 10-.166 14.995-.496l31.509 51.959a12.513 12.513 0 0 0 10.399 6.018c.097.002.191.002.29.002 4.155 0 8.051-2.068 10.376-5.529l66.711-99.326c32.727-28.33 50.711-65.371 50.711-104.621 0-41.11-19.589-79.591-55.161-108.358zm-13.917 195.78l-58.183 86.332-25.372-41.838a12.5 12.5 0 0 0-11.948-5.956 203.335 203.335 0 0 1-20.412 1.029c-88.22 0-159.991-56.97-159.991-126.994 0-70.023 71.771-126.992 159.991-126.992 88.22 0 159.991 56.969 159.991 126.992.002 32.639-15.652 63.686-44.076 87.427z' fill='%23FFF'/%3E%3C/svg%3E");
   background-position: center !important;
   background-size: contain !important;
   background-repeat: no-repeat !important;
 }
 
-.loading:before {
-  animation: button__spinner 2s linear infinite;
-  background-image: url('/images/spinner.png');
+.lazy-chat__open-button--pending:before {
+  animation: button__spinner 2s linear infinite; /* uses animation defined on buttons.css */
+  background-image: url('data:image/png;base64,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');
   margin-bottom: 0 !important;
-}
-
-@keyframes button__spinner {
-  0% { transform: rotate(0deg) }
-  100% { transform: rotate(360deg) }
 }
 
 #crisp-chatbox[data-last-operator-face="false"] span[data-is-ongoing="false"] {

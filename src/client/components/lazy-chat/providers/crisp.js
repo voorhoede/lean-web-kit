@@ -6,20 +6,18 @@ export const script = 'https://client.crisp.chat/l.js'
  * Hooks to prepare for loading of script
  *
  */
-export function onAccepted () {
+export function onAccepted (cb) {
   window.CRISP_WEBSITE_ID = crispWebsiteId
   window.$crisp = []
   $crisp.push(['do', 'chat:open'])
 }
 
-/**
- * Hooks to execute after script has been loaded
- *
- */
-export function onLoaded () {}
+export function listenToOpener (cb) {
+  $crisp.push(['on', 'session:loaded', cb])
+}
 
 export default {
   onAccepted,
-  onLoaded,
+  listenToOpener,
   script,
 }
