@@ -1,6 +1,7 @@
 [type="text"],
 [type="email"],
-[type="password"] {
+[type="password"],
+textarea {
   padding: var(--spacing-half) var(--spacing-default);;
   border-radius: var(--border-radius-small);
   border: 1px solid var(--text-color);
