@@ -1,1 +1,1 @@
-export { default } from './content-section'
+export { default } from './contact-form'
