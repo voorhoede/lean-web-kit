@@ -12,13 +12,26 @@
   letter-spacing: 1px; /* use letter spacing when capitals are used for readability */
   background-color: var(--background-color);
   box-shadow: var(--shadow-small-grey);
-  border: none;
+  border: 1px solid transparent; /* https://twitter.com/AmeliasBrain/status/1026521723888226304 and to match the height of the input fields with the buttons. */
   border-radius: 3px;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--focus-color);
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .button--primary {
   color: var(--background-color);
   background-color: var(--action-color);
+  border: 1px solid var(--action-color);
+}
+
+.button--primary:hover,
+.button--primary:focus {
+  border-color: var(--focus-color);
 }
 
 .button--pending::before {
@@ -34,14 +47,6 @@
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
-}
-
-.button:hover,
-.button:focus {
-  cursor: pointer;
-  opacity: .6;
-  text-decoration: none;
-  border: none;
 }
 
 @keyframes button__spinner {

@@ -1,0 +1,8 @@
+.alert {
+  padding: .75rem 1.25rem;
+  border-radius: var(--border-radius-small);
+}
+
+.alert--success {
+  background-color: var(--success-color);
+}
