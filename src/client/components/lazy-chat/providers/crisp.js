@@ -22,9 +22,19 @@ export function onSessionLoaded (cb) {
  */
 export function onLoaded () {}
 
+export function onChatOpened (cb) {
+  $crisp.push(['on', 'chat:opened', cb])
+}
+
+export function onChatClosed (cb) {
+  $crisp.push(['on', 'chat:closed', cb])
+}
+
 export default {
   onAccepted,
-  onLoaded,
   onSessionLoaded,
+  onLoaded,
+  onChatOpened,
+  onChatClosed,
   script,
 }

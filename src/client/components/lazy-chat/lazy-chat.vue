@@ -4,11 +4,13 @@
     <script async type="application/javascript"
       v-if="isAccepted"
       :src="provider.script"
+      @load="onLoaded"
     />
     <button v-if="chatButtonIsShown"
       class="button button--primary lazy-chat__open-button"
+      @click="handleClick"
+      type="button"
       :class="{ 'lazy-chat__open-button--pending': (isAccepted && !isLoaded) }"
-      @click="isRequested = true"
     >
       <span class="a11y-sr-only">{{ $t('chat') }}</span>
     </button>
@@ -19,7 +21,7 @@
     :title="$t('chat')"
     :body="$t('prompt_terms_conditions')"
     @accept="loadChat"
-    @decline="isRequested = false"
+    @decline="onDeclined"
   />
   </div>
 </template>
@@ -42,11 +44,31 @@ export default {
     loadChat () {
       this.isAccepted = true
       this.provider.onAccepted()
-
       this.provider.onSessionLoaded(() => {
         this.isLoaded = true
       })
+      this.track('Accepted Opt In')
+      this.provider.onChatOpened(() => this.track('Opened chat'))
+      this.provider.onChatClosed(() => this.track('Closed chat'))
     },
+    onDeclined () {
+      this.isAccepted = false
+      this.track('Declined opt-in')
+    },
+    onLoaded () {
+      this.provider.onLoaded()
+    },
+    handleClick () {
+      this.isRequested = true
+      this.track('Started chat')
+    },
+    track (eventLabel) {
+      this.$ga.event({
+        eventCategory: 'chat',
+        eventAction: 'click',
+        eventLabel
+      })
+    }
   },
   computed: {
     chatButtonIsShown () {
