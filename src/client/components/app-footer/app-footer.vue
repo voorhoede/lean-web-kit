@@ -1,4 +1,4 @@
-<template>
+  <template>
   <footer role="contentinfo" class="app-footer">
     <div class="app-footer__container">
       <div>
@@ -6,32 +6,15 @@
           <img class="app-footer__logo" src="/images/logo.svg" alt="" width="32" height="40" />
           <h1 class="app-footer__title">{{ appConfig.title }}</h1>
         </nuxt-link>
-        <div class="app-footer__social">
-          <a class="app-footer__social-link" v-if="social.facebook" :href="social.facebook" @click="track(social.facebook)">
-            <facebook-icon />
-            <span class="a11y-sr-only">Facebook</span>
-          </a>
-          <a class="app-footer__social-link" v-if="social.twitter" :href="social.twitter" @click="track(social.twitter)">
-            <twitter-icon />
-            <span class="a11y-sr-only">Twitter</span>
-          </a>
-          <a class="app-footer__social-link" v-if="social.googlePlus" :href="social.googlePlus" @click="track(social.googlePlus)">
-            <google-plus-icon />
-            <span class="a11y-sr-only">Google Plus</span>
-          </a>
-          <a class="app-footer__social-link" v-if="social.instagram" :href="social.instagram" @click="track(social.instagram)">
-            <instagram-icon />
-            <span class="a11y-sr-only">Instagram</span>
-          </a>
-          <a class="app-footer__social-link" v-if="social.youtube" :href="social.youtube" @click="track(social.youtube)">
-            <youtube-icon />
-            <span class="a11y-sr-only">YouTube</span>
-          </a>
-          <a class="app-footer__social-link" v-if="social.linkedin" :href="social.linkedin" @click="track(social.linkedin)">
-            <linkedin-icon />
-            <span class="a11y-sr-only">LinkedIn</span>
-          </a>
-        </div>
+
+      <div class="app-footer__social">
+        <social-link
+          v-for="link in socialLinks"
+          :key="link.id"
+          :link="link"
+          class="app-footer__social-link" />
+      </div>
+
       </div>
       <div class="app-footer__content">
         <nav class="app-footer__nav">
@@ -60,10 +43,10 @@
 
 <script>
 import appConfig from '../../static/data/app.json'
-import social from '../../static/data/social.json'
 import menuI18n from '../../static/data/menu.json'
 
 import SmartLink from '../smart-link'
+import SocialLink from '../social-link'
 
 import FacebookIcon from '../../static/images/facebook.svg'
 import TwitterIcon from '../../static/images/twitter.svg'
@@ -74,9 +57,9 @@ import YoutubeIcon from '../../static/images/youtube.svg'
 
 export default {
   props: ['contentId'],
-  components: { SmartLink, FacebookIcon, TwitterIcon, GooglePlusIcon, InstagramIcon, LinkedinIcon, YoutubeIcon },
+  components: { FacebookIcon, GooglePlusIcon, InstagramIcon, LinkedinIcon, TwitterIcon, SmartLink, SocialLink, YoutubeIcon, },
   data () {
-    return { appConfig, menuI18n, social }
+    return { appConfig, menuI18n, socialLinks: appConfig.socialLinks }
   },
   computed: {
     locale() { return this.$i18n.locale },
