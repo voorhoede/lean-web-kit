@@ -55,7 +55,8 @@ export default {
     },
     onDecline () {
       this.$emit('decline')
-    }
+    },
+    
   }
 }
 </script>
