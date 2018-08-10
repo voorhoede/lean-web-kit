@@ -43,7 +43,7 @@ export default {
       this.isAccepted = true
       this.provider.onAccepted()
 
-      this.provider.listenToOpener(() => {
+      this.provider.onSessionLoaded(() => {
         this.isLoaded = true
       })
     },
@@ -62,7 +62,7 @@ export default {
 
 <style>
 @import '../app-core/variables.css';
-@import '../app-core/crisp-css-override.css';
+@import './providers/crisp.css';
 
 .lazy-chat {
   position: fixed;
