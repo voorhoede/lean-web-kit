@@ -8,11 +8,11 @@
     />
     <button v-if="chatButtonIsShown"
       class="button button--primary lazy-chat__open-button"
-      :class="{ 'button--pending': (isAccepted && !isLoaded) }"
       @click="handleClick"
       type="button"
+      :class="{ 'lazy-chat__open-button--pending': (isAccepted && !isLoaded) }"
     >
-      {{ $t('chat') }}
+      <span class="a11y-sr-only">{{ $t('chat') }}</span>
     </button>
   <opt-in
     v-if="promptIsShown"
@@ -21,7 +21,7 @@
     :title="$t('chat')"
     :body="$t('prompt_terms_conditions')"
     @accept="loadChat"
-    @decline="() => track('Declined opt-in')"
+    @decline="onDeclined"
   />
   </div>
 </template>
@@ -44,13 +44,19 @@ export default {
     loadChat () {
       this.isAccepted = true
       this.provider.onAccepted()
+      this.provider.onSessionLoaded(() => {
+        this.isLoaded = true
+      })
       this.track('Accepted Opt In')
-    },
-    onLoaded () {
-      this.isLoaded = true
-      this.provider.onLoaded()
       this.provider.onChatOpened(() => this.track('Opened chat'))
       this.provider.onChatClosed(() => this.track('Closed chat'))
+    },
+    onDeclined () {
+      this.isAccepted = false
+      this.track('Declined opt-in')
+    },
+    onLoaded () {
+      this.provider.onLoaded()
     },
     handleClick () {
       this.isRequested = true
@@ -72,12 +78,13 @@ export default {
     promptIsShown () {
       return (this.isRequested && !this.isAccepted)
     }
-  }
+  },
 }
 </script>
 
 <style>
 @import '../app-core/variables.css';
+@import './providers/crisp.css';
 
 .lazy-chat {
   position: fixed;
