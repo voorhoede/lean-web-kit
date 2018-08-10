@@ -16,10 +16,22 @@
   border-radius: 3px;
 }
 
+.button:hover,
+.button:focus {
+  background-color: var(--focus-color);
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .button--primary {
   color: var(--background-color);
   background-color: var(--action-color);
   border: 1px solid var(--action-color);
+}
+
+.button--primary:hover,
+.button--primary:focus {
+  border-color: var(--focus-color);
 }
 
 .button--pending::before {
@@ -35,13 +47,6 @@
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
-}
-
-.button:hover,
-.button:focus {
-  background-color: var(--focus-color);
-  cursor: pointer;
-  text-decoration: none;
 }
 
 @keyframes button__spinner {
