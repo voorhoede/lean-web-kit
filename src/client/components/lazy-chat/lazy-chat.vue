@@ -21,7 +21,7 @@
     :title="$t('chat')"
     :body="$t('prompt_terms_conditions')"
     @accept="loadChat"
-    @decline="isRequested = false"
+    @decline="() => track('Declined opt-in')"
   />
   </div>
 </template>
@@ -44,6 +44,7 @@ export default {
     loadChat () {
       this.isAccepted = true
       this.provider.onAccepted()
+      this.track('Accepted Opt In')
     },
     onLoaded () {
       this.isLoaded = true

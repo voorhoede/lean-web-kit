@@ -52,19 +52,11 @@ export default {
         localStorage.setItem(this.name, true)
       }
       this.$emit('accept')
-      this.track('accepted')
     },
     onDecline () {
       this.$emit('decline')
-      this.track('declined')
     },
-    track (eventLabel) {
-      this.$ga.event({
-        eventCategory: 'chat',
-        eventAction: 'opt-in',
-        eventLabel
-      })
-    }
+    
   }
 }
 </script>
