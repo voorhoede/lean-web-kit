@@ -4,14 +4,13 @@
     <script async type="application/javascript"
       v-if="isAccepted"
       :src="provider.script"
-      @load="onLoaded"
     />
     <button v-if="chatButtonIsShown"
       class="button button--primary lazy-chat__open-button"
-      :class="{ 'button--pending': (isAccepted && !isLoaded) }"
+      :class="{ 'lazy-chat__open-button--pending': (isAccepted && !isLoaded) }"
       @click="isRequested = true"
     >
-      {{ $t('chat') }}
+      <span class="a11y-sr-only">{{ $t('chat') }}</span>
     </button>
   <opt-in
     v-if="promptIsShown"
@@ -43,11 +42,11 @@ export default {
     loadChat () {
       this.isAccepted = true
       this.provider.onAccepted()
+
+      this.provider.onSessionLoaded(() => {
+        this.isLoaded = true
+      })
     },
-    onLoaded () {
-      this.isLoaded = true
-      this.provider.onLoaded()
-    }
   },
   computed: {
     chatButtonIsShown () {
@@ -57,12 +56,13 @@ export default {
     promptIsShown () {
       return (this.isRequested && !this.isAccepted)
     }
-  }
+  },
 }
 </script>
 
 <style>
 @import '../app-core/variables.css';
+@import './providers/crisp.css';
 
 .lazy-chat {
   position: fixed;
