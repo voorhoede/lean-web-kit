@@ -19,7 +19,7 @@ storiesOf('Contact form', module)
         "labelName": text("label name", "Your name"),
         "labelEmail": text("label email", "Your email"),
         "labelMessage": text("label message", "Your message"),
-        "labelSubmitButton": text("label submit button", "Contact us"),
+        "labelSubmitButton": text("label submit button", "Send message"),
       },
     }),
     i18n: new VueI18n({ locale: 'en' }),

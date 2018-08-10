@@ -1,10 +1,10 @@
 <template>
   <form
-    v-if="emailAddress"
-    :action="`https://formspree.io/${ emailAddress }`"
+    v-if="ownerEmail"
+    :action="`https://formspree.io/${ ownerEmail }`"
     class="contact-form"
     method="POST">
-    <input type="hidden" name="_cc" :value="email" />
+    <input type="hidden" name="_cc" :value="userEmail" />
     <input type="hidden" name="_next" :value="nextUrl" />
     <input type="hidden" name="_subject" :value="form.title" />
     <input type="hidden" name="_language" :value="$i18n.locale" />
@@ -15,21 +15,21 @@
 
     <rich-text :id="messageId" :text="form.confirmationMessage" class="alert alert--success contact-form__alert" />
 
-    <label class="contact-form__label" :for="`name-${labelId}`">{{ form.labelName }}</label>
-    <input class="contact-form__name" type="text" placeholder="Your name" :id="`name-${labelId}`" :name="`name-${labelId}`" required>
+    <label class="contact-form__label" :for="`${formId}-message`">{{ form.labelMessage }}</label>
+    <textarea class="contact-form__field" placeholder="Your message..." :id="`${formId}-message`" name="message" required></textarea>
 
-    <label class="contact-form__label" :for="`email-${labelId}`">{{ form.labelEmail }}</label>
-    <input class="contact-form__email" type="text" v-model="email" placeholder="example@email.com" :id="`email-${labelId}`" :name="`email-${labelId}`" required>
+    <label class="contact-form__label" :for="`${formId}-name`">{{ form.labelName }}</label>
+    <input class="contact-form__field" type="text" placeholder="Your name" :id="`${formId}-name`" name="name" required>
 
-    <label class="contact-form__label" :for="`message-${labelId}`">{{ form.labelMessage }}</label>
-    <textarea class="contact-form__message" placeholder="Your message..." :id="`message-${labelId}`" :name="`message-${labelId}`" required></textarea>
+    <label class="contact-form__label" :for="`${formId}-email`">{{ form.labelEmail }}</label>
+    <input class="contact-form__field" type="text" v-model="userEmail" placeholder="example@email.com" :id="`${formId}-email`" name="email" required>
 
     <button class="contact-form__submit button button--primary" type="submit">{{ form.labelSubmitButton }}</button>
   </form>
 </template>
 
 <script>
-import { emailAddress} from '../../static/data/app.json'
+import { emailAddress as ownerEmail} from '../../static/data/app.json'
 import RichText from '../rich-text'
 
 export default {
@@ -38,32 +38,27 @@ export default {
     form: {
       type: Object,
       required: true,
-      validator: function(value) {
-        if (value.title && value.labelSubmitButton && value.id) {
-          return true
-        } else {
-          return false
-        }
+      validator: function({ title, labelSubmitButton, id}) {
+        return (title && labelSubmitButton && id)
       }
     },
   },
   data() {
     return {
-      emailAddress,
+      ownerEmail,
       pageUrl: '',
-      email: '',
+      userEmail: '',
     }
   },
   mounted: function () {
-    const checkHashInUrl = window.location.href.split('#')
-    this.pageUrl = checkHashInUrl.length === 1 ? window.location.href : checkHashInUrl[1]
+    this.pageUrl = window.location.href.split('#')[0]
   },
   computed: {
-    labelId() {
-      return this.form.id
+    formId() {
+      return `form-${this.form.id}`
     },
     messageId() {
-      return `form-success-${this.form.id}`
+      return `${this.formId}-success`
     },
     nextUrl() {
       if (this.form.confirmationPage) {
@@ -88,9 +83,7 @@ export default {
   cursor: pointer;
 }
 
-.contact-form__name,
-.contact-form__email,
-.contact-form__message {
+.contact-form__field {
   width: 100%;
   margin-bottom: var(--spacing-double);
 }
@@ -105,9 +98,7 @@ export default {
 }
 
 @media (min-width: 600px) {
-  .contact-form__name,
-  .contact-form__email,
-  .contact-form__message {
+  .contact-form__field {
     width: 25rem;
   }
 }
