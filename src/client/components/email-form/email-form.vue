@@ -38,12 +38,11 @@ export default {
     }
   },
   mounted: function () {
-    const checkHashInUrl = window.location.href.split('#')
-    this.pageUrl = checkHashInUrl.length === 1 ? window.location.href : checkHashInUrl[1]
+    this.pageUrl = window.location.href.split('#')[0]
   },
   computed: {
     messageId() {
-      return `form-success-${this.form.id}`
+      return `form-${this.form.id}-success`
     },
     nextUrl() {
       if (this.form.confirmationPage) {
