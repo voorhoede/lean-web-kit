@@ -11,7 +11,8 @@
         <social-link
           v-for="link in socialLinks"
           :key="link.id"
-          :link="link"
+          :platform="link.platform"
+          :url="link.url"
           class="app-footer__social-link" />
       </div>
 

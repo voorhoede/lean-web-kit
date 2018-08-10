@@ -31,10 +31,14 @@ export default {
     return { appConfig }
   },
   props: {
-    link: {
-      type: Object,
+    platform: {
+      type: String,
       required: true,
-    }
+    },
+    url: {
+      type: String,
+      required: true,
+    },
   }
 }
 </script>
