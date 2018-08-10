@@ -14,7 +14,7 @@ storiesOf('Contact form', module)
     data: () => ({
       "form": {
         "id": "356659",
-        "body": "Ut aliquid scire se gaudeant? Bonum incolumis acies: misera caecitas. Qui igitur convenit ab alia voluptate dicere naturam proficisci, in alia summum bonum ponere? Num quid tale Democritus? Videmusne ut pueri ne verberibus quidem a contemplandis rebus perquirendisque deterreantur? Negare non possum. ",
+        "body": "Send us en email and we will reply within 24 hours.",
         "title": "Contact us",
         "labelName": text("label name", "Your name"),
         "labelEmail": text("label email", "Your email"),
