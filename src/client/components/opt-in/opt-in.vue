@@ -58,11 +58,11 @@ export default {
       this.$emit('decline')
       this.track('declined')
     },
-    track (label) {
+    track (eventLabel) {
       this.$ga.event({
         eventCategory: 'chat',
         eventAction: 'opt-in',
-        eventLabel: label
+        eventLabel
       })
     }
   }

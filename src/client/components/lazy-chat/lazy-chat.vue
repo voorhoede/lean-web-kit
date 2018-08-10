@@ -10,6 +10,7 @@
       class="button button--primary lazy-chat__open-button"
       :class="{ 'button--pending': (isAccepted && !isLoaded) }"
       @click="handleClick"
+      type="button"
     >
       {{ $t('chat') }}
     </button>
@@ -47,15 +48,18 @@ export default {
     onLoaded () {
       this.isLoaded = true
       this.provider.onLoaded()
+      this.provider.onChatOpened(() => this.track('Opened chat'))
+      this.provider.onChatClosed(() => this.track('Closed chat'))
     },
     handleClick () {
       this.isRequested = true
-      this.track()
+      this.track('Started chat')
     },
-    track () {
+    track (eventLabel) {
       this.$ga.event({
         eventCategory: 'chat',
-        eventAction: 'firstClick',
+        eventAction: 'click',
+        eventLabel
       })
     }
   },
