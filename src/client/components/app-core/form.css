@@ -9,7 +9,8 @@ textarea {
 
 [type="text"]:focus,
 [type="email"]:focus,
-[type="password"]:focus {
+[type="password"]:focus,
+textarea:focus {
   border-color: var(--focus-color);
   outline: none;
 }

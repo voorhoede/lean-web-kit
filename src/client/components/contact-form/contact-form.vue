@@ -15,13 +15,13 @@
 
     <rich-text :id="messageId" :text="form.confirmationMessage" class="alert alert--success contact-form__alert" />
 
-    <label class="contact-form__label-name" :for="`name-${labelId}`">{{ form.labelName }}</label>
+    <label class="contact-form__label" :for="`name-${labelId}`">{{ form.labelName }}</label>
     <input class="contact-form__name" type="text" placeholder="Your name" :id="`name-${labelId}`" :name="`name-${labelId}`" required>
 
-    <label class="contact-form__label-email" :for="`email-${labelId}`">{{ form.labelEmail }}</label>
+    <label class="contact-form__label" :for="`email-${labelId}`">{{ form.labelEmail }}</label>
     <input class="contact-form__email" type="text" v-model="email" placeholder="example@email.com" :id="`email-${labelId}`" :name="`email-${labelId}`" required>
 
-    <label class="contact-form__label-message" :for="`message-${labelId}`">{{ form.labelMessage }}</label>
+    <label class="contact-form__label" :for="`message-${labelId}`">{{ form.labelMessage }}</label>
     <textarea class="contact-form__message" placeholder="Your message..." :id="`message-${labelId}`" :name="`message-${labelId}`" required></textarea>
 
     <button class="contact-form__submit button button--primary" type="submit">{{ form.labelSubmitButton }}</button>
@@ -83,9 +83,7 @@ export default {
   display: block;
 }
 
-.contact-form__label-name,
-.contact-form__label-email,
-.contact-form__label-message {
+.contact-form__label {
   margin-bottom: var(--spacing-half);
   cursor: pointer;
 }
