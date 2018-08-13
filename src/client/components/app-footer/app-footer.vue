@@ -11,10 +11,11 @@
         <li
           v-for="link in appConfig.socialLinks"
           :key="link.id"
-          class="app-footer__social-link">
+          class="app-footer__social-item">
           <social-link
           :platform="link.platform"
-          :url="link.url" />
+          :url="link.url"
+          class="app-footer__social-link" />
         </li>
       </ul>
 
@@ -119,9 +120,13 @@ export default {
   list-style: none;
 }
 
-.app-footer__social-link {
+.app-footer__social-item {
   display: inline-block;
-  margin: 0 var(--spacing-half);
+}
+
+.app-footer__social-link {
+  margin-left: var(--spacing-half);
+  margin-right: var(--spacing-half);
 }
 
 .app-footer__social-link:hover,
