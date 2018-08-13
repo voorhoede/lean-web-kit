@@ -52,7 +52,9 @@ export default {
       this.provider.onChatClosed(() => this.track('Closed chat'))
     },
     onDeclined () {
+      this.isRequested = false
       this.isAccepted = false
+      console.log(this.promptIsShown)
       this.track('Declined opt-in')
     },
     onLoaded () {
