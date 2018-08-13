@@ -7,14 +7,14 @@
           <h1 class="app-footer__title">{{ appConfig.title }}</h1>
         </nuxt-link>
 
-      <div class="app-footer__social">
-        <social-link
-          v-for="link in appConfig.socialLinks"
-          :key="link.id"
+      <ul class="app-footer__social">
+        <li v-for="link in appConfig.socialLinks" :key="link.id">
+          <social-link
           :platform="link.platform"
           :url="link.url"
           class="app-footer__social-link" />
-      </div>
+        </li>
+      </ul>
 
       </div>
       <div class="app-footer__content">
@@ -114,9 +114,11 @@ export default {
 .app-footer__social {
   margin-bottom: var(--spacing-double);
   text-align: center;
+  list-style: none;
 }
 
 .app-footer__social-link {
+  display: inline-block;
   margin: 0 var(--spacing-half);
 }
 
