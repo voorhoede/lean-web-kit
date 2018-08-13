@@ -16,13 +16,13 @@
     <rich-text :id="messageId" :text="form.confirmationMessage" class="alert alert--success contact-form__alert" />
 
     <label class="contact-form__label" :for="`${formId}-message`">{{ form.labelMessage }}</label>
-    <textarea class="contact-form__field" placeholder="Your message..." :id="`${formId}-message`" name="message" required></textarea>
+    <textarea class="contact-form__field form-control" placeholder="Your message..." :id="`${formId}-message`" name="message" required></textarea>
 
     <label class="contact-form__label" :for="`${formId}-name`">{{ form.labelName }}</label>
-    <input class="contact-form__field" :id="`${formId}-name`" type="text" placeholder="Your name" name="name">
+    <input class="contact-form__field form-control" :id="`${formId}-name`" type="text" placeholder="Your name" name="name">
 
     <label class="contact-form__label" :for="`${formId}-email`">{{ form.labelEmail }}</label>
-    <input class="contact-form__field" :id="`${formId}-email`" type="email" v-model="userEmail" placeholder="example@email.com" name="email" required>
+    <input class="contact-form__field form-control" :id="`${formId}-email`" type="email" v-model="userEmail" placeholder="example@email.com" name="email" required>
 
     <button class="contact-form__submit button button--primary" type="submit">{{ form.labelSubmitButton }}</button>
   </form>
