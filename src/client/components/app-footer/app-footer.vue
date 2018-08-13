@@ -8,11 +8,13 @@
         </nuxt-link>
 
       <ul class="app-footer__social">
-        <li v-for="link in appConfig.socialLinks" :key="link.id">
+        <li
+          v-for="link in appConfig.socialLinks"
+          :key="link.id"
+          class="app-footer__social-link">
           <social-link
           :platform="link.platform"
-          :url="link.url"
-          class="app-footer__social-link" />
+          :url="link.url" />
         </li>
       </ul>
 
