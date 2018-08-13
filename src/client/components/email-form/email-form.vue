@@ -13,8 +13,8 @@
     <rich-text :id="messageId" :text="form.confirmationMessage" class="alert alert--success email-form__alert" />
     <rich-text v-if="form.body" :text="form.body" class="email-form__body" />
 
-    <label v-if="form.labelEmail" class="email-form__label-email">{{ form.labelEmail }}</label>
-    <input class="email-form__email form-input" type="email" name="email" placeholder="email@example.com" required>
+    <label v-if="form.labelEmail" :for="`${formId}-email`" class="email-form__label">{{ form.labelEmail }}</label>
+    <input :id="`${formId}-email`" class="email-form__email form-control" type="email" name="email" placeholder="email@example.com" required>
     <button class="email-form__submit button button--primary" type="submit">{{ form.labelSubmitButton }}</button>
   </form>
 </template>
@@ -41,6 +41,9 @@ export default {
     this.pageUrl = window.location.href.split('#')[0]
   },
   computed: {
+    formId() {
+      return `form-${this.form.id}`
+    },
     messageId() {
       return `form-${this.form.id}-success`
     },
@@ -67,7 +70,7 @@ export default {
   margin-bottom: var(--spacing-default);
 }
 
-.email-form__label-email {
+.email-form__label {
   display: block;
   margin-bottom: var(--spacing-half);
   cursor: pointer;
