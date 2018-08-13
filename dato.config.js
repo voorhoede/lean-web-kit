@@ -36,7 +36,7 @@ module.exports = (dato, root, i18n) => {
 }
 
 function appSettingsToJson(app) {
-  return pick(app, ['title', 'contact', 'googleAnalyticsTrackingId', 'crispWebsiteId', 'hotjarId'])
+  return pick(app, ['title', 'contact', 'googleAnalyticsTrackingId', 'crispWebsiteId', 'hotjarId', 'emailAddress'])
 }
 
 /**
@@ -65,6 +65,12 @@ function pageSlugMap (dato, i18n) {
 function transformItem(item) {
   if (item.type === 'link_list' || item.type === 'button_group') {
     item.links = item.links.map(formatLink)
+  }
+  else if (item.type === 'form') {
+    item.form = Object.assign({}, item.form, {
+      type: item.form.itemType,
+    })
+    delete item.form.itemType
   }
   else if (item.type === 'text') {
     const $ = cheerio.load(item.body)

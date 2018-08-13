@@ -54,7 +54,6 @@ export default {
     onDeclined () {
       this.isRequested = false
       this.isAccepted = false
-      console.log(this.promptIsShown)
       this.track('Declined opt-in')
     },
     onLoaded () {
