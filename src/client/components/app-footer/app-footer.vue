@@ -9,7 +9,7 @@
 
       <div class="app-footer__social">
         <social-link
-          v-for="link in socialLinks"
+          v-for="link in appConfig.socialLinks"
           :key="link.id"
           :platform="link.platform"
           :url="link.url"
@@ -49,34 +49,17 @@ import menuI18n from '../../static/data/menu.json'
 import SmartLink from '../smart-link'
 import SocialLink from '../social-link'
 
-import FacebookIcon from '../../static/images/facebook.svg'
-import TwitterIcon from '../../static/images/twitter.svg'
-import GooglePlusIcon from '../../static/images/googleplus.svg'
-import InstagramIcon from '../../static/images/instagram.svg'
-import LinkedinIcon from '../../static/images/linkedin.svg'
-import YoutubeIcon from '../../static/images/youtube.svg'
-
 export default {
   props: ['contentId'],
-  components: { FacebookIcon, GooglePlusIcon, InstagramIcon, LinkedinIcon, TwitterIcon, SmartLink, SocialLink, YoutubeIcon, },
+  components: { SmartLink, SocialLink, },
   data () {
-    return { appConfig, menuI18n, socialLinks: appConfig.socialLinks }
+    return { appConfig, menuI18n, }
   },
   computed: {
     locale() { return this.$i18n.locale },
     menu() { return this.menuI18n[this.locale] },
     year() { return new Date().getFullYear() },
   },
-  methods: {
-    track(url) {
-      this.$ga.event({
-        eventCategory: 'outbound',
-        eventAction: 'click',
-        eventLabel: url,
-        eventValue: 1
-      })
-    }
-  }
 }
 </script>
 

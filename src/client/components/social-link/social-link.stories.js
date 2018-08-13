@@ -9,18 +9,16 @@ storiesOf('Social link', module)
   .addDecorator(withKnobs)
   .add('Twitter social link', () => ({
     data: () => ({
-      link: {
         "url": "https://twitter.com/devoorhoede",
         "platform": "Twitter"
-      },
     }),
     components: { SocialLink, },
-    template: `<social-link :link="link" />
+    template: `<social-link :platform="platform" :url="url" />
     </div>`
   }))
   .add('Multiple social links', () => ({
     data: () => ({
-      socialLinks: [
+      links: [
         {
           "url": "https://www.facebook.com/DeVoorhoede/",
           "platform": "Facebook"
@@ -46,8 +44,9 @@ storiesOf('Social link', module)
     components: { SocialLink, },
     template: `<div>
         <social-link
-          v-for="link in socialLinks"
+          v-for="link in links"
           :key="link.id"
-          :link="link" />
+          :platform="link.platform"
+          :url="link.url" />
       </div>`
   }))
