@@ -8,7 +8,7 @@
     <input type="hidden" name="_next" :value="nextUrl" />
     <input type="hidden" name="_subject" :value="form.title" />
     <input type="hidden" name="_language" :value="$i18n.locale" />
-    <input type="text" name="_gotcha" style="display:none" />
+    <input type="hidden" name="_gotcha" style="display:none" />
 
     <h2 class="email-form__title">{{ form.title }}</h2>
     <rich-text v-if="form.body" :text="form.body" class="contact-form__body" />
@@ -22,7 +22,7 @@
     <input class="contact-form__field" :id="`${formId}-name`" type="text" placeholder="Your name" name="name">
 
     <label class="contact-form__label" :for="`${formId}-email`">{{ form.labelEmail }}</label>
-    <input class="contact-form__field" :id="`${formId}-email`" type="text" v-model="userEmail" placeholder="example@email.com" name="email" required>
+    <input class="contact-form__field" :id="`${formId}-email`" type="email" v-model="userEmail" placeholder="example@email.com" name="email" required>
 
     <button class="contact-form__submit button button--primary" type="submit">{{ form.labelSubmitButton }}</button>
   </form>
