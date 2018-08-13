@@ -19,10 +19,10 @@
     <textarea class="contact-form__field" placeholder="Your message..." :id="`${formId}-message`" name="message" required></textarea>
 
     <label class="contact-form__label" :for="`${formId}-name`">{{ form.labelName }}</label>
-    <input class="contact-form__field" type="text" placeholder="Your name" :id="`${formId}-name`" name="name" required>
+    <input class="contact-form__field" :id="`${formId}-name`" type="text" placeholder="Your name" name="name">
 
     <label class="contact-form__label" :for="`${formId}-email`">{{ form.labelEmail }}</label>
-    <input class="contact-form__field" type="text" v-model="userEmail" placeholder="example@email.com" :id="`${formId}-email`" name="email" required>
+    <input class="contact-form__field" :id="`${formId}-email`" type="text" v-model="userEmail" placeholder="example@email.com" name="email" required>
 
     <button class="contact-form__submit button button--primary" type="submit">{{ form.labelSubmitButton }}</button>
   </form>
