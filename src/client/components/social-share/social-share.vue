@@ -211,6 +211,7 @@ export default {
 }
 
 .social-share__link:focus {
+  background-color: var(--focus-color);
   outline: none;
 }
 
@@ -246,7 +247,7 @@ export default {
 #share:target .social-share__link,
 .social-share__link--visible {
   opacity: 1;
-  transition: all .5s cubic-bezier(0,1.33,.44,.98);
+  transition: transform .5s cubic-bezier(0,1.33,.44,.98);
 }
 
 /* add styles that are specific for each link delay and translateY */
