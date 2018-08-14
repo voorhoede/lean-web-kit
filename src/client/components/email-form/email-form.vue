@@ -69,7 +69,6 @@ export default {
 
 .email-form__control {
   margin-right: var(--spacing-half);
-  margin-bottom: var(--spacing-default);
 }
 
 .email-form__label {
