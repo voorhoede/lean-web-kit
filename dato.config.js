@@ -36,7 +36,7 @@ module.exports = (dato, root, i18n) => {
 }
 
 function appSettingsToJson(app) {
-  const socialLinks = app.socialLinks.toMap().map(item => pick(item, ['platform', 'url']))
+  const socialLinks = app.socialLinks.toMap().map(item => pick(item, ['id', 'platform', 'url']))
   return { socialLinks, ...pick(app, ['title', 'contact', 'googleAnalyticsTrackingId', 'crispWebsiteId', 'hotjarId', 'emailAddress'])}
 }
 
