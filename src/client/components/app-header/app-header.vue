@@ -156,7 +156,7 @@ export default {
 .app-header__menu-link:hover {
   cursor: pointer;
   outline: none;
-  border-bottom: 3px solid var(--action-color);
+  border-bottom: 3px solid var(--focus-color);
 }
 
 .app-header__identity {

@@ -129,7 +129,7 @@ export default {
 .table-of-contents__link:hover,
 .table-of-contents__link:focus {
   border-bottom: 0;
-  background-color: var(--action-color);
+  background-color: var(--focus-color);
   color: var(--background-color);
 }
 
@@ -149,7 +149,7 @@ export default {
     padding-bottom: var(--spacing-default);
     padding-left: 0;
     color: var(--text-color);
-    background: linear-gradient(to right, var(--action-color), var(--action-color));
+    background: linear-gradient(to right, var(--focus-color), var(--focus-color));
     background-size: 0% 3px;
     background-position: bottom left;
     background-repeat: no-repeat;
@@ -161,7 +161,7 @@ export default {
   .active {
     border: none;
     outline: none;
-    color: var(--action-color);
+    color: var(--focus-color);
     background-color: transparent;
     background-size: 50% 3px;
   }
