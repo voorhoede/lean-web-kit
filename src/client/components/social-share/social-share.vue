@@ -154,14 +154,14 @@ export default {
   background-color: var(--action-color);
   outline: none;
   -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
-  -webkit-transition: all .3s ease-in-out;
-          transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
 .social-share__button:hover,
 .social-share__button:focus {
   box-shadow: 1px 5px 15px rgba(0,0,0,.2);
   transform: scale(1.2);
+  background-color: var(--focus-color);
 }
 
 /* add white layer on buttons for hover effect */
@@ -176,8 +176,7 @@ export default {
   content: '';
   background-color:var(--background-color);
   border-radius: 50%;
-  -webkit-transition: opacity .25s cubic-bezier(.15,.2,.1,1);
-          transition: opacity .25s cubic-bezier(.15,.2,.1,1);
+  transition: opacity .25s cubic-bezier(.15,.2,.1,1);
 }
 
 .social-share__button:after {
@@ -188,13 +187,6 @@ export default {
 .social-share__link:after {
   width: 36px;
   height: 36px;
-}
-
-.social-share__button:hover:after,
-.social-share__button:focus:after,
-.social-share__link:hover:after,
-.social-share__link:focus:after {
-  opacity: .6;
 }
 
 .social-share__links {
@@ -214,13 +206,12 @@ export default {
   border-radius: 50%;
   background-color: var(--action-color);
   box-shadow: 0px 4px 10px rgba(0,0,0,.2);
-  -webkit-transform: translateY(0px) scale(0);
-          transform: translateY(0px) scale(0);
-  -webkit-transition: all .5s ease;
-          transition: all .5s ease;
+  transform: translateY(0px) scale(0);
+  transition: all .5s ease;
 }
 
 .social-share__link:focus {
+  background-color: var(--focus-color);
   outline: none;
 }
 
@@ -244,8 +235,7 @@ export default {
   text-align: center;
   color: var(--background-color);
   background-color: var(--text-color);
-  -webkit-transition: all .5s ease-in-out;
-          transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
 }
 
 .social-share__snackbar--visible {
@@ -257,56 +247,44 @@ export default {
 #share:target .social-share__link,
 .social-share__link--visible {
   opacity: 1;
-  -webkit-transition: all .5s cubic-bezier(0,1.33,.44,.98);
-          transition: all .5s cubic-bezier(0,1.33,.44,.98);
+  transition: transform .5s cubic-bezier(0,1.33,.44,.98);
 }
 
 /* add styles that are specific for each link delay and translateY */
 
 #share:target .social-share__link:nth-child(1),
 .social-share__link--visible:nth-child(1) {
-  -webkit-transition-delay: .5s;
-          transition-delay: .5s;
-  -webkit-transform: translateY(60px) scale(1);
-          transform: translateY(60px) scale(1);
+  transition-delay: .5s;
+  transform: translateY(60px) scale(1);
 }
 
 #share:target .social-share__link:nth-child(2),
 .social-share__link--visible:nth-child(2) {
-  -webkit-transition-delay: .4s;
-          transition-delay: .4s;
-  -webkit-transform: translateY(105px) scale(1);
-          transform: translateY(105px) scale(1);
+  transition-delay: .4s;
+  transform: translateY(105px) scale(1);
 }
 
 #share:target .social-share__link:nth-child(3),
 .social-share__link--visible:nth-child(3) {
-  -webkit-transition-delay: .3s;
-          transition-delay: .3s;
-  -webkit-transform: translateY(150px) scale(1);
-          transform: translateY(150px) scale(1);
+  transition-delay: .3s;
+  transform: translateY(150px) scale(1);
 }
 
 #share:target .social-share__link:nth-child(4),
 .social-share__link--visible:nth-child(4) {
-  -webkit-transition-delay: .2s;
-          transition-delay: .2s;
-  -webkit-transform: translateY(195px) scale(1);
-          transform: translateY(195px) scale(1);
+  transition-delay: .2s;
+  transform: translateY(195px) scale(1);
 }
 
 #share:target .social-share__link:nth-child(5),
 .social-share__link--visible:nth-child(5) {
-  -webkit-transition-delay: .1s;
-          transition-delay: .1s;
-  -webkit-transform: translateY(240px) scale(1);
-          transform: translateY(240px) scale(1);
+  transition-delay: .1s;
+  transform: translateY(240px) scale(1);
 }
 
 #share:target .social-share__link:nth-child(6),
 .social-share__link--visible:nth-child(6) {
-  -webkit-transform: translateY(285px) scale(1);
-          transform: translateY(285px) scale(1);
+  transform: translateY(285px) scale(1);
 }
 
 /* Copy to clipboard is not shown if JS is not enabled */
