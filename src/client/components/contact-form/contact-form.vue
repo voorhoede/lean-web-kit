@@ -15,14 +15,20 @@
 
     <rich-text :id="messageId" :text="form.confirmationMessage" class="alert alert--success contact-form__alert" />
 
-    <label class="contact-form__label" :for="`${formId}-message`">{{ form.labelMessage }}</label>
-    <textarea class="contact-form__field form-control" placeholder="Your message..." :id="`${formId}-message`" name="message" required></textarea>
+    <div class="contact-form__field form-field">
+      <label class="contact-form__label form-label" :for="`${formId}-message`">{{ form.labelMessage }}</label>
+      <textarea class="contact-form__control form-control" placeholder="Your message..." :id="`${formId}-message`" name="message" required></textarea>
+    </div>
 
-    <label class="contact-form__label" :for="`${formId}-name`">{{ form.labelName }}</label>
-    <input class="contact-form__field form-control" :id="`${formId}-name`" type="text" placeholder="Your name" name="name">
+    <div class="contact-form__field form-field">
+      <label class="contact-form__label form-label" :for="`${formId}-name`">{{ form.labelName }}</label>
+      <input class="contact-form__control form-control" :id="`${formId}-name`" type="text" placeholder="Your name" name="name">
+    </div>
 
-    <label class="contact-form__label" :for="`${formId}-email`">{{ form.labelEmail }}</label>
-    <input class="contact-form__field form-control" :id="`${formId}-email`" type="email" v-model="userEmail" placeholder="example@email.com" name="email" required>
+    <div class="contact-form__field form-field">
+      <label class="contact-form__label form-label" :for="`${formId}-email`">{{ form.labelEmail }}</label>
+      <input class="contact-form__control form-control" :id="`${formId}-email`" type="email" v-model="userEmail" placeholder="example@email.com" name="email" required>
+    </div>
 
     <button class="contact-form__submit button button--primary" type="submit">{{ form.labelSubmitButton }}</button>
   </form>
@@ -74,18 +80,13 @@ export default {
 <style>
 @import '../app-core/index.css';
 
-.contact-form > * {
-  display: block;
-}
-
 .contact-form__label {
-  margin-bottom: var(--spacing-half);
   cursor: pointer;
 }
 
-.contact-form__field {
+.contact-form__control {
+  display: block;
   width: 100%;
-  margin-bottom: var(--spacing-double);
 }
 
 .contact-form__alert {
@@ -98,7 +99,7 @@ export default {
 }
 
 @media (min-width: 600px) {
-  .contact-form__field {
+  .contact-form__control {
     width: 25rem;
   }
 }
