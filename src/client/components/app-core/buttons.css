@@ -18,8 +18,7 @@
 
 .button:hover,
 .button:focus {
-  background-color: var(--focus-color);
-  color: var(--background-color);
+  color: var(--focus-color);
   cursor: pointer;
   text-decoration: none;
 }

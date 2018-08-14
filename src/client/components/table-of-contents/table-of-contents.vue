@@ -7,7 +7,8 @@
     </button>
     <ol class="table-of-contents__list">
       <li class="table-of-contents__item" v-for="(item, index) in items" :key="index">
-        <a :href="`#${item.slug}`" class="table-of-contents__link" :class="{ 'active' : (item.slug === activeItem) }">
+        <a :href="`#${item.slug}`" class="table-of-contents__link"
+        :class="{ 'table-of-contents__link--active' : (item.slug === activeItem) }">
           {{ item.title }}
         </a>
       </li>
@@ -149,7 +150,7 @@ export default {
     padding-bottom: var(--spacing-default);
     padding-left: 0;
     color: var(--text-color);
-    background: linear-gradient(to right, var(--focus-color), var(--focus-color));
+    background: linear-gradient(to right, currentColor, currentColor);
     background-size: 0% 3px;
     background-position: bottom left;
     background-repeat: no-repeat;
@@ -158,12 +159,19 @@ export default {
 
   .table-of-contents__link:hover,
   .table-of-contents__link:focus,
-  .active {
+  .table-of-contents__link--active {
     border: none;
     outline: none;
-    color: var(--focus-color);
     background-color: transparent;
     background-size: 50% 3px;
+  }
+   .table-of-contents__link--active {
+    color: var(--action-color);
+  }
+
+  .table-of-contents__link:hover,
+  .table-of-contents__link:focus {
+    color: var(--focus-color);
   }
 
   .table-of-contents__item:first-child .table-of-contents__link {

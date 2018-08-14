@@ -156,6 +156,7 @@ export default {
 .app-header__menu-link:hover {
   cursor: pointer;
   outline: none;
+  color: var(--text-color);
   border-bottom: 3px solid var(--focus-color);
 }
 

@@ -189,13 +189,6 @@ export default {
   height: 36px;
 }
 
-.social-share__button:hover:after,
-.social-share__button:focus:after,
-.social-share__link:hover:after,
-.social-share__link:focus:after {
-  opacity: .6;
-}
-
 .social-share__links {
   position: relative;
 }
