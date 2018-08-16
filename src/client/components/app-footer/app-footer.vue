@@ -53,8 +53,8 @@ import SmartLink from '../smart-link'
 import SocialLink from '../social-link'
 
 export default {
+  components: { SmartLink, SocialLink },
   props: ['contentId'],
-  components: { SmartLink, SocialLink, },
   data () {
     return { appConfig, menuI18n, }
   },
@@ -136,7 +136,7 @@ export default {
 
 .app-footer__social-link:hover path,
 .app-footer__social-link:focus path {
-  fill: var(--action-color);
+  fill: var(--focus-color);
   transition: all 250ms ease;
 }
 
