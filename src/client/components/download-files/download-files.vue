@@ -6,7 +6,7 @@
       class="download-files__item">
       <a
         :href="item.file.url"
-        :download="`${item.slug}.${item.file.format}`"
+        :download="`${item.title}.${item.file.format}`"
         class="download-files__link">{{ item.title }}</a>
     </li>
   </ul>
@@ -18,10 +18,10 @@ export default {
     files: {
       type: Array,
       required: true,
-      validator: function(data) {
-        const obj = data[0]
-        return obj.title && obj.file && obj.file.url && obj.file.format && obj.slug && obj.id
-      },
+      validator: function(files) {
+        const requiredProps = ['title', 'file', 'id']
+        return files.every(file => requiredProps.every(prop => file.hasOwnProperty(prop)))
+      }
     },
   },
 }
@@ -35,15 +35,14 @@ export default {
   width: 1em;
   height: 1em;
   margin-left: .25em;
-  padding-left: .0625em; /* arrow offset left */
   vertical-align: middle;
-  font-size: .625em;
-  line-height: .75em; /* arrow offset top */
+  text-align: center;
+  font-size: .65em;
+  line-height: .6em; /* arrow offset top */
   border-bottom: .125em solid currentColor;
 }
 
 .download-files__link:hover::after {
-  content: '↓';
   border-bottom: none;
 }
 </style>
