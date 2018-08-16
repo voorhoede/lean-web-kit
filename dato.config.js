@@ -19,7 +19,6 @@ module.exports = (dato, root, i18n) => {
   fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects), 'utf8')
 
   root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
-  root.createDataFile(`${dataDir}/social.json`, 'json', dato.social.toMap())
   root.createDataFile(`${dataDir}/locales.json`, 'json', locales)
   root.createDataFile(`${dataDir}/menu.json`, 'json', menuToJson(dato, i18n))
   root.createDataFile(`${dataDir}/pages.json`, 'json', pageSlugMap(dato, i18n))
@@ -37,7 +36,7 @@ module.exports = (dato, root, i18n) => {
 
 function appSettingsToJson(app) {
   const socialLinks = app.socialLinks.toMap().map(item => pick(item, ['id', 'platform', 'url']))
-  return { socialLinks, ...pick(app, ['title', 'contact', 'googleAnalyticsTrackingId', 'crispWebsiteId', 'hotjarId', 'emailAddress'])}
+  return { socialLinks, ...pick(app, ['title', 'contact', 'googleAnalyticsTrackingId', 'crispWebsiteId', 'hotjarId', 'emailAddress', 'experimentId'])}
 }
 
 /**
@@ -104,7 +103,7 @@ function pageToJson (page, i18n) {
 
   const sections = page.sections.map(({ title, items }) => ({
     title,
-    slug: slugify(title, { lower: true }),
+    slug: title && slugify(title, { lower: true }),
     items: items.toMap()
       .map(item => ({ ...item, type: item.itemType }))
       .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
