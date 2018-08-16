@@ -15,21 +15,27 @@
 
     <rich-text :id="messageId" :text="form.confirmationMessage" class="alert alert--success contact-form__alert" />
 
-    <label class="contact-form__label" :for="`${formId}-message`">{{ form.labelMessage }}</label>
-    <textarea class="contact-form__field" placeholder="Your message..." :id="`${formId}-message`" name="message" required></textarea>
+    <div class="form-field">
+      <label class="contact-form__label form-label" :for="`${formId}-message`">{{ form.labelMessage }}</label>
+      <textarea class="contact-form__control form-control" placeholder="Your message..." :id="`${formId}-message`" name="message" required></textarea>
+    </div>
 
-    <label class="contact-form__label" :for="`${formId}-name`">{{ form.labelName }}</label>
-    <input class="contact-form__field" type="text" placeholder="Your name" :id="`${formId}-name`" name="name" required>
+    <div class="form-field">
+      <label class="contact-form__label form-label" :for="`${formId}-name`">{{ form.labelName }}</label>
+      <input class="contact-form__control form-control" :id="`${formId}-name`" type="text" placeholder="Your name" name="name">
+    </div>
 
-    <label class="contact-form__label" :for="`${formId}-email`">{{ form.labelEmail }}</label>
-    <input class="contact-form__field" type="text" v-model="userEmail" placeholder="example@email.com" :id="`${formId}-email`" name="email" required>
+    <div class="form-field">
+      <label class="contact-form__label form-label" :for="`${formId}-email`">{{ form.labelEmail }}</label>
+      <input class="contact-form__control form-control" :id="`${formId}-email`" type="email" v-model="userEmail" placeholder="example@email.com" name="email" required>
+    </div>
 
     <button class="contact-form__submit button button--primary" type="submit">{{ form.labelSubmitButton }}</button>
   </form>
 </template>
 
 <script>
-import { emailAddress as ownerEmail} from '../../static/data/app.json'
+import { emailAddress as ownerEmail } from '../../static/data/app.json'
 import RichText from '../rich-text'
 
 export default {
@@ -54,12 +60,8 @@ export default {
     this.pageUrl = window.location.href.split('#')[0]
   },
   computed: {
-    formId() {
-      return `form-${this.form.id}`
-    },
-    messageId() {
-      return `${this.formId}-success`
-    },
+    formId() { return `form-${this.form.id}` },
+    messageId() { return `${this.formId}-success` },
     nextUrl() {
       if (this.form.confirmationPage) {
         return this.localeUrl({ name: 'slug', params: { slug: this.form.confirmationPage.slug } })
@@ -74,18 +76,13 @@ export default {
 <style>
 @import '../app-core/index.css';
 
-.contact-form > * {
-  display: block;
-}
-
 .contact-form__label {
-  margin-bottom: var(--spacing-half);
   cursor: pointer;
 }
 
-.contact-form__field {
+.contact-form__control {
+  display: block;
   width: 100%;
-  margin-bottom: var(--spacing-double);
 }
 
 .contact-form__alert {
@@ -98,9 +95,8 @@ export default {
 }
 
 @media (min-width: 600px) {
-  .contact-form__field {
+  .contact-form__control {
     width: 25rem;
   }
 }
-
 </style>

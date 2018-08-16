@@ -5,7 +5,8 @@ a {
 
 a:focus,
 a:hover {
-  border-bottom: 1px solid var(--action-color);
+  color: var(--focus-color);
+  border-bottom: 1px solid var(--focus-color);
 }
 
 /* Styling for this breaks on IE11, so skip it with @supports */
