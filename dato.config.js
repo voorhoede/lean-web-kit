@@ -103,7 +103,7 @@ function pageToJson (page, i18n) {
 
   const sections = page.sections.map(({ title, items }) => ({
     title,
-    slug: slugify(title, { lower: true }),
+    slug: title && slugify(title, { lower: true }),
     items: items.toMap()
       .map(item => ({ ...item, type: item.itemType }))
       .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
