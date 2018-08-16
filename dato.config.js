@@ -101,7 +101,9 @@ function pageToJson (page, i18n) {
 
   const coverImage = page.coverImage ? page.coverImage.toMap() : undefined
 
-  const sections = page.sections.map(({ title, items }) => ({
+  const sections = page.sections
+  .filter(({ title, items }) => (typeof title === 'string' && items.length > 0))
+  .map(({ title, items }) => ({
     title,
     slug: title && slugify(title, { lower: true }),
     items: items.toMap()
