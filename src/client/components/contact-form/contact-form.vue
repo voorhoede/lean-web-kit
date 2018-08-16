@@ -8,7 +8,7 @@
     <input type="hidden" name="_next" :value="nextUrl" />
     <input type="hidden" name="_subject" :value="form.title" />
     <input type="hidden" name="_language" :value="$i18n.locale" />
-    <input type="hidden" name="_gotcha" style="display:none" />
+    <input type="text" name="_gotcha" style="display:none" />
 
     <h2 class="email-form__title">{{ form.title }}</h2>
     <rich-text v-if="form.body" :text="form.body" class="contact-form__body" />
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { emailAddress as ownerEmail} from '../../static/data/app.json'
+import { emailAddress as ownerEmail } from '../../static/data/app.json'
 import RichText from '../rich-text'
 
 export default {
@@ -60,12 +60,8 @@ export default {
     this.pageUrl = window.location.href.split('#')[0]
   },
   computed: {
-    formId() {
-      return `form-${this.form.id}`
-    },
-    messageId() {
-      return `${this.formId}-success`
-    },
+    formId() { return `form-${this.form.id}` },
+    messageId() { return `${this.formId}-success` },
     nextUrl() {
       if (this.form.confirmationPage) {
         return this.localeUrl({ name: 'slug', params: { slug: this.form.confirmationPage.slug } })
@@ -103,5 +99,4 @@ export default {
     width: 25rem;
   }
 }
-
 </style>
