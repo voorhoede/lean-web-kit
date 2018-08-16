@@ -1,4 +1,4 @@
-<template>
+  <template>
   <footer role="contentinfo" class="app-footer">
     <div class="app-footer__container">
       <div>
@@ -6,32 +6,19 @@
           <img class="app-footer__logo" src="/images/logo.svg" alt="" width="32" height="40" />
           <h1 class="app-footer__title">{{ appConfig.title }}</h1>
         </nuxt-link>
-        <div class="app-footer__social">
-          <a class="app-footer__social-link" v-if="social.facebook" :href="social.facebook" @click="track(social.facebook)">
-            <facebook-icon />
-            <span class="a11y-sr-only">Facebook</span>
-          </a>
-          <a class="app-footer__social-link" v-if="social.twitter" :href="social.twitter" @click="track(social.twitter)">
-            <twitter-icon />
-            <span class="a11y-sr-only">Twitter</span>
-          </a>
-          <a class="app-footer__social-link" v-if="social.googlePlus" :href="social.googlePlus" @click="track(social.googlePlus)">
-            <google-plus-icon />
-            <span class="a11y-sr-only">Google Plus</span>
-          </a>
-          <a class="app-footer__social-link" v-if="social.instagram" :href="social.instagram" @click="track(social.instagram)">
-            <instagram-icon />
-            <span class="a11y-sr-only">Instagram</span>
-          </a>
-          <a class="app-footer__social-link" v-if="social.youtube" :href="social.youtube" @click="track(social.youtube)">
-            <youtube-icon />
-            <span class="a11y-sr-only">YouTube</span>
-          </a>
-          <a class="app-footer__social-link" v-if="social.linkedin" :href="social.linkedin" @click="track(social.linkedin)">
-            <linkedin-icon />
-            <span class="a11y-sr-only">LinkedIn</span>
-          </a>
-        </div>
+
+      <ul class="app-footer__social">
+        <li
+          v-for="link in appConfig.socialLinks"
+          :key="link.id"
+          class="app-footer__social-item">
+          <social-link
+          :platform="link.platform"
+          :url="link.url"
+          class="app-footer__social-link" />
+        </li>
+      </ul>
+
       </div>
       <div class="app-footer__content">
         <nav class="app-footer__nav">
@@ -60,39 +47,22 @@
 
 <script>
 import appConfig from '../../static/data/app.json'
-import social from '../../static/data/social.json'
 import menuI18n from '../../static/data/menu.json'
 
 import SmartLink from '../smart-link'
-
-import FacebookIcon from '../../static/images/facebook.svg'
-import TwitterIcon from '../../static/images/twitter.svg'
-import GooglePlusIcon from '../../static/images/googleplus.svg'
-import InstagramIcon from '../../static/images/instagram.svg'
-import LinkedinIcon from '../../static/images/linkedin.svg'
-import YoutubeIcon from '../../static/images/youtube.svg'
+import SocialLink from '../social-link'
 
 export default {
+  components: { SmartLink, SocialLink },
   props: ['contentId'],
-  components: { SmartLink, FacebookIcon, TwitterIcon, GooglePlusIcon, InstagramIcon, LinkedinIcon, YoutubeIcon },
   data () {
-    return { appConfig, menuI18n, social }
+    return { appConfig, menuI18n, }
   },
   computed: {
     locale() { return this.$i18n.locale },
     menu() { return this.menuI18n[this.locale] },
     year() { return new Date().getFullYear() },
   },
-  methods: {
-    track(url) {
-      this.$ga.event({
-        eventCategory: 'outbound',
-        eventAction: 'click',
-        eventLabel: url,
-        eventValue: 1
-      })
-    }
-  }
 }
 </script>
 
@@ -147,10 +117,16 @@ export default {
 .app-footer__social {
   margin-bottom: var(--spacing-double);
   text-align: center;
+  list-style: none;
+}
+
+.app-footer__social-item {
+  display: inline-block;
 }
 
 .app-footer__social-link {
-  margin: 0 var(--spacing-half);
+  margin-left: var(--spacing-half);
+  margin-right: var(--spacing-half);
 }
 
 .app-footer__social-link:hover,
@@ -160,7 +136,7 @@ export default {
 
 .app-footer__social-link:hover path,
 .app-footer__social-link:focus path {
-  fill: var(--action-color);
+  fill: var(--focus-color);
   transition: all 250ms ease;
 }
 

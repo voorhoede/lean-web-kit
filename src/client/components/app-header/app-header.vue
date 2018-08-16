@@ -12,7 +12,7 @@
       </h1>
     </nuxt-link>
 
-    <a class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
+    <a tabindex="-1" class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
 
     <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }">
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
@@ -156,7 +156,8 @@ export default {
 .app-header__menu-link:hover {
   cursor: pointer;
   outline: none;
-  border-bottom: 3px solid var(--action-color);
+  color: var(--text-color);
+  border-bottom: 3px solid var(--focus-color);
 }
 
 .app-header__identity {

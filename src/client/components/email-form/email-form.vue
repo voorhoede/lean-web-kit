@@ -13,14 +13,16 @@
     <rich-text :id="messageId" :text="form.confirmationMessage" class="alert alert--success email-form__alert" />
     <rich-text v-if="form.body" :text="form.body" class="email-form__body" />
 
-    <label v-if="form.labelEmail" class="email-form__label-email">{{ form.labelEmail }}</label>
-    <input class="email-form__email form-input" type="email" name="email" placeholder="email@example.com" required>
-    <button class="email-form__submit button button--primary" type="submit">{{ form.labelSubmitButton }}</button>
+    <div class="form-field">
+      <label v-if="form.labelEmail" :for="`${formId}-email`" class="email-form__label form-label">{{ form.labelEmail }}</label>
+      <input :id="`${formId}-email`" class="email-form__control form-control" type="email" name="email" placeholder="email@example.com" required>
+      <button class="email-form__submit button button--primary" type="submit">{{ form.labelSubmitButton }}</button>
+    </div>
   </form>
 </template>
 
 <script>
-import { emailAddress} from '../../static/data/app.json'
+import { emailAddress } from '../../static/data/app.json'
 import RichText from '../rich-text'
 
 export default {
@@ -41,6 +43,9 @@ export default {
     this.pageUrl = window.location.href.split('#')[0]
   },
   computed: {
+    formId() {
+      return `form-${this.form.id}`
+    },
     messageId() {
       return `form-${this.form.id}-success`
     },
@@ -62,14 +67,12 @@ export default {
   margin-bottom: 1rem;
 }
 
-.email-form__email {
+.email-form__control {
   margin-right: var(--spacing-half);
   margin-bottom: var(--spacing-default);
 }
 
-.email-form__label-email {
-  display: block;
-  margin-bottom: var(--spacing-half);
+.email-form__label {
   cursor: pointer;
 }
 
