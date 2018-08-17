@@ -13,6 +13,10 @@
         v-if="item.form && item.form.type === 'contact_form'"
         :key="index"
         :form="item.form" />
+      <download-files
+        v-if="item.type === 'file_list'"
+        :key="index"
+        :files="item.files" />
       <email-form
         v-if="item.form && item.form.type === 'email_form'"
         :key="index"
@@ -48,6 +52,7 @@
 <script>
 import ButtonGroup from '../button-group'
 import ContactForm from '../contact-form'
+import DownloadFiles from '../download-files'
 import EmailForm from '../email-form'
 import LinkList from '../link-list'
 import ResponsiveImage from '../responsive-image'
@@ -55,7 +60,7 @@ import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
 
 export default {
-  components: { ButtonGroup, ContactForm, EmailForm, LinkList, ResponsiveImage, ResponsiveVideo, RichText, },
+  components: { ButtonGroup, ContactForm, DownloadFiles, EmailForm, LinkList, ResponsiveImage, ResponsiveVideo, RichText, },
   props: {
     section: {
       type: Object,
