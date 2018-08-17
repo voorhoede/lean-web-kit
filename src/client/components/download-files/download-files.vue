@@ -1,9 +1,6 @@
 <template>
   <ul class="download-files">
-    <li
-      v-for="item in files"
-      :key="item.id"
-      class="download-files__item">
+    <li v-for="item in files" :key="item.id">
       <a
         :href="item.file.url"
         :download="`${item.title}.${item.file.format}`"
