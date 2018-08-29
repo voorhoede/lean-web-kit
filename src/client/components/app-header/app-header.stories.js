@@ -4,8 +4,12 @@ import { withReadme } from 'storybook-readme'
 import readme from './readme.md'
 import AppHeader from './'
 import menuItems from './app-header.stories.json'
-import { mockLocales, i18n } from '../language-selector/language-selector.stories'
+import { mockLocales } from '../language-selector/language-selector.stories'
 import Vuex from 'vuex'
+
+const i18n = () => {
+  return new VueI18n({ locale: 'en' })
+}
 
 storiesOf('App header', module)
   .addDecorator(withReadme(readme))
@@ -17,9 +21,7 @@ storiesOf('App header', module)
         menu: menuItems.defaultMenu,
       }
     },
-    i18n: new VueI18n({
-      locale: 'en'
-    })
+    i18n: i18n()
   }))
   .add('With action button', () => ({
     components: { AppHeader },
@@ -29,9 +31,7 @@ storiesOf('App header', module)
         menu: menuItems.menuWithAction,
       }
     },
-    i18n: new VueI18n({
-      locale: 'en'
-    })
+    i18n: i18n()
   }))
   .add('With language selection dropdown', () => ({
     components: { AppHeader },
@@ -41,9 +41,7 @@ storiesOf('App header', module)
         menu: menuItems.defaultMenu,
       }
     },
-    i18n: new VueI18n({
-      locale: 'en'
-    }),
+    i18n: i18n(),
     created() {
       // mock locales required for language selector
       this.$i18n.locales = mockLocales(['en', 'nl', 'fr', 'pt'])
@@ -58,9 +56,7 @@ storiesOf('App header', module)
         menu: menuItems.menuWithAction,
       }
     },
-    i18n: new VueI18n({
-      locale: 'en'
-    }),
+    i18n: i18n(),
     created() {
       // mock locales required for language selector
       this.$i18n.locales = mockLocales(['en', 'nl'])
