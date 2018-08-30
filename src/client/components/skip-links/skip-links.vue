@@ -1,9 +1,9 @@
 <template>
   <ul class="skip-links">
-    <li><a class="skip-links__item" href="#maincontent">Skip to main content</a></li>
-    <li><a class="skip-links__item" href="#mainmenu">Skip to main menu</a></li>
-    <li><a class="skip-links__item" href="#chat">Skip to direct chat</a></li>
-    <li><a class="skip-links__item" href="#footer">Skip to content info</a></li>
+    <li><a class="skip-links__item" href="#maincontent">{{ $t('skip_to_main') }}</a></li>
+    <li><a class="skip-links__item" href="#mainmenu">{{ $t('skip_to_navigation') }}</a></li>
+    <li><a class="skip-links__item" href="#chat">{{ $t('skip_to_chat') }}</a></li>
+    <li><a class="skip-links__item" href="#footer">{{ $t('skip_to_footer') }}</a></li>
   </ul>
 </template>
 
