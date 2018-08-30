@@ -1,7 +1,7 @@
 <template>
   <track-outbound-links>
-    <app-header :contentId="contentId" :menuI18n="menuI18n" />
     <main :id="contentId">
+    <app-header :menuI18n="menuI18n" />
       <nuxt/>
     </main>
     <app-footer />
@@ -17,7 +17,6 @@ export default {
   components: { AppFooter, AppHeader, LazyChat, TrackOutboundLinks },
   data() {
     return {
-      contentId: 'content',
       menuI18n,
     }
   }

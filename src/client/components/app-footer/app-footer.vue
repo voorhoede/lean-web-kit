@@ -54,7 +54,6 @@ import SocialLink from '../social-link'
 
 export default {
   components: { SmartLink, SocialLink },
-  props: ['contentId'],
   data () {
     return { appConfig, menuI18n, }
   },

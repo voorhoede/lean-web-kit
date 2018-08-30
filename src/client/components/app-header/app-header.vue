@@ -12,8 +12,6 @@
       </h1>
     </nuxt-link>
 
-    <a tabindex="-1" class="a11y-sr-only" :href="`#${contentId}`">{{ $t('skip_to_content') }}</a>
-
     <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }">
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
 
@@ -65,7 +63,6 @@ import MenuIcon from '../menu-icon'
 export default {
   components: { LanguageSelector, SmartLink, MenuIcon },
   props: {
-    contentId: { type: String, required: true },
     menuI18n: { type: Object, required: true },
   },
 
