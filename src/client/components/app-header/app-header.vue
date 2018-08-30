@@ -12,7 +12,7 @@
       </h1>
     </nuxt-link>
 
-    <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }">
+    <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }" id="mainmenu">
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
 
       <ul class="app-header__menu-list">

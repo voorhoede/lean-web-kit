@@ -1,5 +1,5 @@
   <template>
-  <footer role="contentinfo" class="app-footer">
+  <footer role="contentinfo" class="app-footer" id="footer">
     <div class="app-footer__container">
       <div>
         <nuxt-link :to="localeUrl('index')" class="app-footer__identity">

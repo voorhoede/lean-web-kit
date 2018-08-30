@@ -1,5 +1,5 @@
 <template>
-  <div class="lazy-chat">
+  <div class="lazy-chat" id="chat">
     <!-- Load third-party script conditionally -->
     <script async type="application/javascript"
       v-if="isAccepted"
