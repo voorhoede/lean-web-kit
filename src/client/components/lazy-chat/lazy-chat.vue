@@ -38,6 +38,7 @@ export default {
       isRequested: false, // user clicks chat button
       isAccepted: false, // user accepts T&C
       isLoaded: false, // script is loaded
+      checkElementInterval: '',
       provider,
     }
   },
@@ -52,6 +53,10 @@ export default {
       this.provider.onChatOpened(() => this.track('Opened chat'))
       this.provider.onChatClosed(() => {
         this.track('Closed chat')
+        const chatButton = document.querySelector('.crisp-client > #crisp-chatbox > div > a[href="#!"]')
+        this.checkElementInterval = window.setInterval(() => {
+          this.focusElement(chatButton)
+        }, 500)
       })
     },
     onDeclined () {
@@ -60,7 +65,6 @@ export default {
       this.track('Declined opt-in')
       this.$nextTick(() =>  this.$refs.lazyChatButton.focus())
     },
-
     onLoaded () {
       this.provider.onLoaded()
     },
@@ -74,6 +78,16 @@ export default {
         eventAction: 'click',
         eventLabel
       })
+    },
+    isVisible(element) {
+      let style = window.getComputedStyle(element);
+      return (style.display !== 'none')
+    },
+    focusElement(element) {
+      if (this.isVisible(element)) {
+        element.focus()
+        window.clearInterval(this.checkElementInterval)
+      }
     }
   },
   computed: {
