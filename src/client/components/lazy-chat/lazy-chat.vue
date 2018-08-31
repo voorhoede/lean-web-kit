@@ -6,7 +6,7 @@
       :src="provider.script"
       @load="onLoaded"
     />
-    <button v-if="chatButtonIsShown"
+    <button v-show="chatButtonIsShown"
       class="button button--primary lazy-chat__open-button"
       @click="handleClick"
       type="button"
