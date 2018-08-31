@@ -7,6 +7,7 @@
       @load="onLoaded"
     />
     <button v-show="chatButtonIsShown"
+      ref="lazyChatButton"
       class="button button--primary lazy-chat__open-button"
       @click="handleClick"
       type="button"
@@ -49,13 +50,17 @@ export default {
       })
       this.track('Accepted Opt In')
       this.provider.onChatOpened(() => this.track('Opened chat'))
-      this.provider.onChatClosed(() => this.track('Closed chat'))
+      this.provider.onChatClosed(() => {
+        this.track('Closed chat')
+      })
     },
     onDeclined () {
       this.isRequested = false
       this.isAccepted = false
       this.track('Declined opt-in')
+      this.$nextTick(() =>  this.$refs.lazyChatButton.focus())
     },
+
     onLoaded () {
       this.provider.onLoaded()
     },
