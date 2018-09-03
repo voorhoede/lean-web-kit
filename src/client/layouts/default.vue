@@ -1,7 +1,7 @@
 <template>
   <track-outbound-links>
     <app-header :contentId="contentId" :menuI18n="menuI18n" />
-    <main :id="contentId">
+    <main :id="contentId" class="content">
       <nuxt/>
     </main>
     <app-footer />
@@ -27,4 +27,7 @@ export default {
 <style>
 @import '../components/app-core/index.css';
 
+.content {
+  background-color: grey;
+}
 </style>
