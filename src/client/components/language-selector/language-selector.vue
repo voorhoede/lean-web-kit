@@ -55,10 +55,16 @@ export default {
   methods: {
     pageUrl (locale) {
       const { isSlugRoute, localeUrl, slugI18n, switchLocaleUrl } = this
+      const hash = typeof window !== 'undefined' && window.location.hash
+
       if (isSlugRoute) {
-        return localeUrl({ name: 'slug', params: { slug: slugI18n[locale] } }, locale)
+        return hash
+          ? `${localeUrl({ name: 'slug', params: { slug: slugI18n[locale] } }, locale)}${window.location.hash}`
+          : localeUrl({ name: 'slug', params: { slug: slugI18n[locale] } }, locale)
       } else {
-        return switchLocaleUrl(locale)
+        return hash
+          ? `${switchLocaleUrl(locale)}${window.location.hash}`
+          : switchLocaleUrl(locale)
       }
     },
     shouldIncludeLocale (locale) {
