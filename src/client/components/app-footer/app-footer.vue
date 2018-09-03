@@ -1,5 +1,5 @@
   <template>
-  <footer role="contentinfo" class="app-footer">
+  <footer role="contentinfo" class="app-footer" id="footer">
     <div class="app-footer__container">
       <div>
         <nuxt-link :to="localeUrl('index')" class="app-footer__identity">
@@ -54,7 +54,6 @@ import SocialLink from '../social-link'
 
 export default {
   components: { SmartLink, SocialLink },
-  props: ['contentId'],
   data () {
     return { appConfig, menuI18n, }
   },
