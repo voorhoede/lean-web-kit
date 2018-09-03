@@ -12,11 +12,3 @@
 - Also works without JS
 
 - Tracks social interactions using Google Analytics
-
-### Props:
-
-| Name        |   Type   |  Required  |
-|:-----------:|:--------:|:----------:|
-| url         |  string  |   true     |
-| title       |  string  |   true     |
-| description |  string  |   false    |
