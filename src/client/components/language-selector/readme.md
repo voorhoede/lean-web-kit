@@ -1,5 +1,7 @@
 # Language selector
 
-- Is only visible if there are multiple locales available
-- Highlights current locale
-- Is a dropdown if there are more than 2 locales
+## Features
+
+- The language selector is only displayed if the website supports multiple languages.
+- The currently selected language is highlighted for a better user experience.
+- In case the website support more than two languages a dropdown replaces the default language selector.

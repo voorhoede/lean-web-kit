@@ -1,6 +1,6 @@
 # Rich Text
 
-### Features
+## Features
 
-- Supports Rich text in HTML format
-- Works with data from Dato CMS
+- Supports Rich Text in HTML format for advanced text manipulation.
+- Works with data from the DatoCMS system.
