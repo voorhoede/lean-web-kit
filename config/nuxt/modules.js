@@ -11,4 +11,4 @@ module.exports = [
   googleAnalytics,
   nuxtI18n,
   nuxtPwa,
-]
+].filter(Boolean)

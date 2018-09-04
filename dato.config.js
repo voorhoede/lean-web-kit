@@ -44,9 +44,10 @@ function appSettingsToJson(app) {
  * @see https://www.netlify.com/docs/redirects/
  */
 function redirectsToText (redirects) {
-  return redirects
+  const redirectToDefaultLocale = `/ /${defaultLocale}/ 301`
+  const redirectRulesFromCms = redirects
     .map(redirect => `${redirect.from} ${redirect.to} ${redirect.statusCode}`)
-    .join("\n")
+  return [redirectToDefaultLocale, ...redirectRulesFromCms].join("\n")
 }
 
 function pageSlugMap (dato, i18n) {
