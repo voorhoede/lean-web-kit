@@ -6,10 +6,11 @@
     aria-labelledby="opt-in__title"
     aria-describedby="opt-in__text"
   >
-    <h2 class="a11y-sr-only" >{{title}}</h2>
+    <h2 id="opt-in__title" class="a11y-sr-only" >{{ title }}</h2>
     <div id="opt-in__text" class="opt-in__text" v-html="body"></div>
     <div class="opt-in__buttons">
       <button
+        data-optin-agree
         class="button button--primary"
         @click="onAccept">
         {{ $t('agree') }}
@@ -46,6 +47,11 @@ export default {
       this.$emit('accept')
     }
   },
+  mounted () {
+    if (!this.isAccepted) {
+      this.$el.querySelector('[data-optin-agree]').focus()
+    }
+  },
   methods: {
     onAccept () {
       if (localStorageSupported) {
@@ -56,7 +62,7 @@ export default {
     onDecline () {
       this.$emit('decline')
     },
-    
+
   }
 }
 </script>
