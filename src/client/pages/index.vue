@@ -2,6 +2,8 @@
   <div>
     <page-layout :page="page" />
 
+    <nuxt-link to="/give-me-a-404">Give me a 404</nuxt-link>
+
     <social-share
       v-if="page.hasShareButton"
       :url="page.url"
