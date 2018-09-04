@@ -32,7 +32,7 @@ module.exports = appConfig.googleAnalyticsTrackingId &&
        */
       { field: 'expId', value: appConfig.experimentId },
       { field: 'expVar', value: process.env.BRANCH },
-    ],
+    ].filter(item => !!item.value),
     /**
      * Extend default tracking behaviour
      * @see https://matteogabriele.gitbooks.io/vue-analytics/content/docs/page-tracking.html#auto-track-with-custom-data
