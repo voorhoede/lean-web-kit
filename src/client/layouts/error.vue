@@ -1,13 +1,20 @@
 <template>
-  <main>
-      <h1 v-if="error.statusCode === 404">Page not found</h1>
-      <h1 v-else>An error occurred</h1>
-  </main>
+  <div>
+    <page-layout v-if="error.statusCode === 404" :page="notfound" />
+  </div>
 </template>
 
 <script>
+  import notfoundI18n from '../static/data/404.json'
+  import { PageLayout } from '../components/'
+
   export default {
+    components: { PageLayout },
     props: ['error'],
     layout: 'default',
+    computed: {
+      locale() { return this.$i18n.locale },
+      notfound() { return notfoundI18n[this.locale] },
+    },
   }
 </script>
