@@ -21,7 +21,7 @@ module.exports = (dato, root, i18n) => {
   root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
   root.createDataFile(`${dataDir}/locales.json`, 'json', locales)
   root.createDataFile(`${dataDir}/menu.json`, 'json', menuToJson(dato, i18n))
-  root.createDataFile(`${dataDir}/notfound.json`, 'json', notfoundToJson(dato, i18n))
+  root.createDataFile(`${dataDir}/404.json`, 'json', notfoundToJson(dato, i18n))
   root.createDataFile(`${dataDir}/pages.json`, 'json', pageSlugMap(dato, i18n))
 
   locales.forEach(locale => {
@@ -117,7 +117,7 @@ function pageToJson (page, i18n) {
 
   const slug = page.slug ? `${page.slug}/` : '' // makes sure there's always a trailing slash ending each route so we don't get different versions of same page
   const url = `${URL}/${i18n.locale}/${slug}`
-  const seo = { ...page.seo.toMap(), url }
+  const seo = page.seo && { ...page.seo.toMap(), url }
   const slugI18n = locales.reduce((out, locale) => {
     i18n.withLocale(locale, () => out[locale] = page.slug || '')
     return out
@@ -168,22 +168,9 @@ function translationsToJson (translations) {
 }
 
 function notfoundToJson(dato, i18n) {
-  return locales.reduce((notfound, locale) => {
-    const { title, sections } = dato['404Page']
-    const pageSections = sections
-      .filter(({ title, items }) => (typeof title === 'string' && items.length > 0))
-      .map(({ title, items }) => ({
-        title,
-        items: items.toMap()
-          .map(item => ({ ...item, type: item.itemType }))
-          .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
-          .map(transformItem)
-      }))
-
-      notfound[locale] = {
-      title,
-      sections: pageSections,
-    }
-    return notfound
+  return locales.reduce((out, locale) => {
+    i18n.locale = locale
+    out[locale] = pageToJson(dato['404Page'], i18n)
+    return out
   }, {})
 }
