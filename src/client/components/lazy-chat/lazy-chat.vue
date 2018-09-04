@@ -51,13 +51,7 @@ export default {
       })
       this.track('Accepted Opt In')
       this.provider.onChatOpened(() => this.track('Opened chat'))
-      this.provider.onChatClosed(() => {
-        this.track('Closed chat')
-        const chatButton = document.querySelector('.crisp-client > #crisp-chatbox > div > a[href="#!"]')
-        this.checkElementInterval = window.setInterval(() => {
-          this.focusElement(chatButton)
-        }, 500)
-      })
+      this.provider.onChatClosed(() => this.track('Closed chat'))
     },
     onDeclined () {
       this.isRequested = false
@@ -79,16 +73,6 @@ export default {
         eventLabel
       })
     },
-    isVisible(element) {
-      let style = window.getComputedStyle(element);
-      return (style.display !== 'none')
-    },
-    focusElement(element) {
-      if (this.isVisible(element)) {
-        element.focus()
-        window.clearInterval(this.checkElementInterval)
-      }
-    }
   },
   computed: {
     chatButtonIsShown () {
@@ -97,7 +81,7 @@ export default {
     },
     promptIsShown () {
       return (this.isRequested && !this.isAccepted)
-    }
+    },
   },
 }
 </script>
