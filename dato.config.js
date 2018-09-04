@@ -21,6 +21,7 @@ module.exports = (dato, root, i18n) => {
   root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
   root.createDataFile(`${dataDir}/locales.json`, 'json', locales)
   root.createDataFile(`${dataDir}/menu.json`, 'json', menuToJson(dato, i18n))
+  root.createDataFile(`${dataDir}/notfound.json`, 'json', notfoundToJson(dato, i18n))
   root.createDataFile(`${dataDir}/pages.json`, 'json', pageSlugMap(dato, i18n))
 
   locales.forEach(locale => {
@@ -163,5 +164,26 @@ function translationsToJson (translations) {
   return translations.reduce((out, item) => {
     out[item.key] = item.value
     return out
+  }, {})
+}
+
+function notfoundToJson(dato, i18n) {
+  return locales.reduce((notfound, locale) => {
+    const { title, sections } = dato['404Page']
+    const pageSections = sections
+      .filter(({ title, items }) => (typeof title === 'string' && items.length > 0))
+      .map(({ title, items }) => ({
+        title,
+        items: items.toMap()
+          .map(item => ({ ...item, type: item.itemType }))
+          .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
+          .map(transformItem)
+      }))
+
+      notfound[locale] = {
+      title,
+      sections: pageSections,
+    }
+    return notfound
   }, {})
 }
