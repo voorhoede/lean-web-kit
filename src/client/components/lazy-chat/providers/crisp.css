@@ -71,6 +71,6 @@
   background-color: var(--action-color) !important;
 }
 
-#crisp-chatbox > div > a:focus span:last-child{
+#crisp-chatbox > div > a:focus span:last-child {
  background-color: var(--focus-color) !important;
 }

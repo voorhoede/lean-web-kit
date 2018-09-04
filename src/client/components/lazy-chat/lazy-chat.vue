@@ -38,7 +38,6 @@ export default {
       isRequested: false, // user clicks chat button
       isAccepted: false, // user accepts T&C
       isLoaded: false, // script is loaded
-      checkElementInterval: '',
       provider,
     }
   },
