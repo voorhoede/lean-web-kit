@@ -14,4 +14,3 @@
 |:---------:|:--------:|:----------:|
 | appTitle  |  string  |    true    |
 | menuI18n  |  object  |    true    |
-| contentId |  string  |   false    |

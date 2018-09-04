@@ -1,12 +1,13 @@
 <template>
-  <div class="lazy-chat">
+  <div class="lazy-chat" id="chat">
     <!-- Load third-party script conditionally -->
     <script async type="application/javascript"
       v-if="isAccepted"
       :src="provider.script"
       @load="onLoaded"
     />
-    <button v-if="chatButtonIsShown"
+    <button v-show="chatButtonIsShown"
+      ref="lazyChatButton"
       class="button button--primary lazy-chat__open-button"
       @click="handleClick"
       type="button"
@@ -55,6 +56,7 @@ export default {
       this.isRequested = false
       this.isAccepted = false
       this.track('Declined opt-in')
+      this.$nextTick(() =>  this.$refs.lazyChatButton.focus())
     },
     onLoaded () {
       this.provider.onLoaded()
@@ -69,7 +71,7 @@ export default {
         eventAction: 'click',
         eventLabel
       })
-    }
+    },
   },
   computed: {
     chatButtonIsShown () {
@@ -78,7 +80,7 @@ export default {
     },
     promptIsShown () {
       return (this.isRequested && !this.isAccepted)
-    }
+    },
   },
 }
 </script>

@@ -17,3 +17,6 @@ src/client/static/data/
 src/client/static/_redirects
 src/client/static/sitemap.xml
 src/client/static/sw.js
+
+# os files
+.DS_Store
