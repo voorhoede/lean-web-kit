@@ -1,9 +1,10 @@
 <template>
   <figure class="responsive-image">
     <div class="responsive-image__sizer" :style="`max-width:${image.width}px;`">
-      <fixed-ratio class="responsive-image__canvas" :width="image.width" :height="image.height">
+      <img v-if="image.format === 'svg'" :src="imageUrl({})">
+      <fixed-ratio v-else class="responsive-image__canvas" :width="image.width" :height="image.height">
         <lazy-load>
-          <picture class="responsive-image__picture" v-if="width">
+          <picture class="responsive-image__picture" v-if="width || image.format === 'svg'">
             <!--[if IE 9]><video style="display: none;"><![endif]-->
             <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
             <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
