@@ -2,6 +2,7 @@ import VueI18n from 'vue-i18n'
 import Vuex from 'vuex'
 import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 import readme from './readme.md'
 import LanguageSelector from './'
 
@@ -15,9 +16,10 @@ export const mockLocales = (locales) => {
 
 storiesOf('Language selector', module)
   .addDecorator(withReadme(readme))
+  .addDecorator(withKnobs)
   .add('Default', () => ({
-      components: { LanguageSelector },
-      template: `
+    components: { LanguageSelector },
+    template: `
         <div>
           <demo title="With two locales" style="margin-bottom:3rem;">
             <language-selector :locales="twoLocales"/>
@@ -28,19 +30,26 @@ storiesOf('Language selector', module)
             Donec sed cursus elit, sed euismod magna. Nam at vulputate justo. Proin euismod ex et efficitur tincidunt. Curabitur nibh magna, tempor at facilisis a, faucibus pulvinar felis. Praesent dictum metus vitae dui commodo eleifend. Morbi ornare pharetra elementum. Nam id tellus augue. Aliquam mattis ligula quis quam molestie iaculis. Maecenas in sagittis purus, eget dignissim erat. Nullam sodales eget ligula ac tristique. Donec placerat enim a libero commodo convallis. Pellentesque iaculis turpis arcu, id feugiat diam tempus at.
           </demo>
         </div>`,
-      data() {
-        return {
-          twoLocales: mockLocales(['en', 'nl']),
-          moreThanTwoLocales: mockLocales(['en', 'nl', 'pt', 'fr', 'it'])
+    data() {
+      const moreThanTwoLocales = [
+        'en',
+        (boolean('NL', true) ? 'nl' : undefined),
+        (boolean('PT', true) ? 'pt' : undefined),
+        (boolean('FR', true) ? 'fr' : undefined),
+        (boolean('IT', true) ? 'it' : undefined)
+      ].filter(x => x !== undefined)
+      return {
+        twoLocales: mockLocales(['en', 'nl']),
+        moreThanTwoLocales: mockLocales(moreThanTwoLocales.length > 1 ? moreThanTwoLocales : [])
+      }
+    },
+    i18n: new VueI18n({
+      locale: 'en',
+      messages: {
+        en: {
+          select_language: 'Select language',
         }
       },
-      i18n: new VueI18n({
-        locale: 'en',
-        messages: {
-          en: {
-            select_language: 'Select language',
-          }
-        },
-      }),
-      store: new Vuex.Store(),
+    }),
+    store: new Vuex.Store(),
   }))
