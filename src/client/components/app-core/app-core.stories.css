@@ -34,3 +34,42 @@
 .links-demo p {
   margin-bottom: .5rem;
 }
+
+.icons-demo li {
+  display: flex;
+  margin-bottom: var(--spacing-default);
+}
+ .icons-demo p {
+  margin: 0;
+}
+ .icons-demo img {
+  margin-left: var(--spacing-default);
+}
+ .icons-demo .s-64 {
+  height: 64px;
+  width: 64px;
+}
+ .icons-demo .s-120 {
+  height: 120px;
+  width: 120px;
+}
+ .icons-demo .s-144 {
+  height: 144px;
+  width: 144px;
+}
+ .icons-demo .s-152 {
+  height: 152px;
+  width: 152px;
+}
+ .icons-demo .s-192 {
+  height: 192px;
+  width: 192px;
+}
+ .icons-demo .s-384 {
+  height: 384px;
+  width: 384px;
+}
+ .icons-demo .s-192 {
+  height: 192px;
+  width: 192px;
+}

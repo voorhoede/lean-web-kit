@@ -5,16 +5,26 @@ import readme from './readme.md'
 import './index.css'
 import './app-core.stories.css'
 
+const iconSizes = [
+  { size: 64, class: 's-64' },
+  { size: 120, class: 's-120' },
+  { size: 144, class: 's-144' },
+  { size: 152, class: 's-152' },
+  { size: 192, class: 's-192' },
+  { size: 384, class: 's-192' },
+  { size: 512, class: 's-192' }
+]
+
 storiesOf('App core', module)
   .addDecorator(withReadme(readme))
   .add('Colors', () => ({
-    data(){
+    data() {
       return {
         colors: [{ varName: 'action-color', color: '#6a9ce4' },
-                 { varName: 'neutral-color', color: '#f5f5f5' },
-                 { varName: 'dark-neutral-color', color: '#4c4c4c' },
-                 { varName: 'background-color', color: '#fff' },
-                 { varName: 'text-color', color: '#000' }],
+        { varName: 'neutral-color', color: '#f5f5f5' },
+        { varName: 'dark-neutral-color', color: '#4c4c4c' },
+        { varName: 'background-color', color: '#fff' },
+        { varName: 'text-color', color: '#000' }],
       }
     },
     template:
@@ -130,4 +140,34 @@ storiesOf('App core', module)
         </demo>
       </div>
     `,
+  }))
+  .add('App icons', () => ({
+    data() {
+      return {
+        iconSizes: [
+          { size: 64, class: 's-64' },
+          { size: 120, class: 's-120' },
+          { size: 144, class: 's-144' },
+          { size: 152, class: 's-152' },
+          { size: 192, class: 's-192' },
+          { size: 384, class: 's-192' },
+          { size: 512, class: 's-192' }
+        ]
+      }
+    },
+    template: `
+      <div class="icons-demo">
+        <demo title="App icons" inset>
+          <ul v-for="iconSize in this.iconSizes">
+            <li>
+              <div>
+                <p>{{iconSize.size}}x{{iconSize.size}}</p>
+                <p>image/png</p>
+              </div>
+              <img :class="iconSize.class" src="/images/logo.svg" :alt="'Icon ' + iconSize.size + 'x' + iconSize.size">
+            </li>
+          </ul>
+        </demo>
+      </div>
+    `
   }))
