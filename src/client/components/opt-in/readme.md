@@ -4,12 +4,8 @@ Opt-in shows a dialog to ask a user to accept certain conditions. When accepted,
 
 ## Resources
 
-* [How to make dialog accessible (video)](https://egghead.io/lessons/html-5-accessible-modal-dialogs)
+- [How to make dialog accessible (video)](https://egghead.io/lessons/html-5-accessible-modal-dialogs)
 
-### Props:
+## Features
 
-| Name      | Purpose          | Type   | Required |
-|:---------:|:----------------:|:------:|:--------:|
-| title     | ARIA label       | string | true     |
-| body      | Request of user  | string | true     |
-| name      | LocalStorage key | string | true     |
+- The user's preference is stored locally so that the website does not need to ask the same question every time the user visits. Great for user experience.

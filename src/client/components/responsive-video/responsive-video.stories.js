@@ -51,10 +51,7 @@ storiesOf('Responsive video', module)
           }
         }
       }
-    },
-    i18n: new VueI18n({
-      locale: 'en',
-    })
+    }
   }))
   .add('Vimeo with loop and autoplay', () => ({
     components: { ResponsiveVideo },
@@ -76,10 +73,7 @@ storiesOf('Responsive video', module)
           }
         }
       }
-    },
-    i18n: new VueI18n({
-      locale: 'en',
-    })
+    }
   }))
   .add('YouTube default', () => ({
     components: { ResponsiveVideo },
@@ -126,10 +120,7 @@ storiesOf('Responsive video', module)
           }
         }
       }
-    },
-    i18n: new VueI18n({
-      locale: 'en',
-    })
+    }
   }))
   .add('Youtube with loop and autoplay', () => ({
     components: { ResponsiveVideo },
@@ -151,8 +142,5 @@ storiesOf('Responsive video', module)
           }
         }
       }
-    },
-    i18n: new VueI18n({
-      locale: 'en',
-    })
+    }
   }))

@@ -4,6 +4,6 @@ Shows a list of files.
 
 ## Features
 
-* Shows a list of files added in the CMS.
-* Clicking a link will download the concerned file instead of navigating to it.
-* Each link will show a download icon.
+- Displays a list of downloadable files added in the DatoCMS system.
+- Clicking on a downloadable file will download the file instead of navigating to it.
+- Each downloadable file will display an icon showing users that the file can be downloaded.

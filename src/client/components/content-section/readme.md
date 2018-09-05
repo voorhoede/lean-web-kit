@@ -1,15 +1,10 @@
 # Content section
 
-### Props:
+## Features
 
-| Name      |   Type   |  Required  |
-|:---------:|:--------:|:----------:|
-| section   |  object  |    true    |
+- Permalinks are generated for each item based on the slugfield.
+- The content section can be easily customized using the DatoCMS system, there are three supported content types:  
 
-### Features
-
-- Uses slugified title as permalink to item
-- Uses content items from pages in Dato CMS and includes content type specific components:
-    - `rich text` for content items of type `text`
-    - `responsive image` for content items of type `image`
-    - `responsive video` for content items of type `video`
+  - The `rich text` component is used for content items of the type `text`.
+  - The `responsive image` component is used for content items of the type `image`.
+  - The `responsive video` component is used for content items of the type `video`.
