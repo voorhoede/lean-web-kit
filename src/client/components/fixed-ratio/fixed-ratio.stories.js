@@ -1,19 +1,22 @@
 import { storiesOf } from '@storybook/vue';
 import { withReadme } from 'storybook-readme';
+import { withKnobs, number } from '@storybook/addon-knobs';
 import readme from './readme.md';
 import FixedRatio from './';
 import './fixed-ratio.stories.css';
+
 storiesOf('Fixed ratio', module)
   .addDecorator(withReadme(readme))
+  .addDecorator(withKnobs)
   .add('Default', () => ({
     components: { FixedRatio },
     data() {
       return {
         images: [
           {
-            width: 16,
-            height: 9,
-            text: '16 x 9'
+            width: number('Width size', 16),
+            height: number('Height size', 9),
+            text: `${number('Width size', 16)} x ${number('Height size', 9)}`
           },
           {
             width: 4,

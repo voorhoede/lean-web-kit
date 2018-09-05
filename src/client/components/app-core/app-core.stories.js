@@ -1,9 +1,10 @@
-import { storiesOf } from '@storybook/vue'
-import { withReadme } from 'storybook-readme'
-import readme from './readme.md'
+import { storiesOf } from '@storybook/vue';
+import { withReadme } from 'storybook-readme';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import readme from './readme.md';
 
-import './index.css'
-import './app-core.stories.css'
+import './index.css';
+import './app-core.stories.css';
 
 const iconSizes = [
   { size: 64, class: 's-64' },
@@ -13,22 +14,24 @@ const iconSizes = [
   { size: 192, class: 's-192' },
   { size: 384, class: 's-192' },
   { size: 512, class: 's-192' }
-]
+];
 
 storiesOf('App core', module)
   .addDecorator(withReadme(readme))
+  .addDecorator(withKnobs)
   .add('Colors', () => ({
     data() {
       return {
-        colors: [{ varName: 'action-color', color: '#6a9ce4' },
-        { varName: 'neutral-color', color: '#f5f5f5' },
-        { varName: 'dark-neutral-color', color: '#4c4c4c' },
-        { varName: 'background-color', color: '#fff' },
-        { varName: 'text-color', color: '#000' }],
-      }
+        colors: [
+          { varName: 'action-color', color: '#6a9ce4' },
+          { varName: 'neutral-color', color: '#f5f5f5' },
+          { varName: 'dark-neutral-color', color: '#4c4c4c' },
+          { varName: 'background-color', color: '#fff' },
+          { varName: 'text-color', color: '#000' }
+        ]
+      };
     },
-    template:
-      `<div>
+    template: `<div>
         <demo title="Colors" inset>
           <div class="colors">
             <div v-for="color in this.colors" class="color">
@@ -37,7 +40,7 @@ storiesOf('App core', module)
             </div>
           </div>
         </demo>
-      </div>`,
+      </div>`
   }))
   .add('Text', () => ({
     template: `
@@ -50,12 +53,30 @@ storiesOf('App core', module)
         <demo title="Typography" inset>
           <div class="headings">
             <h2 class="subtitle">Headings</h2>
-            <h1>H1 She stared through the window at the stars.</h1>
-            <h2>H2 She stared through the window at the stars.</h2>
-            <h3>H3 She stared through the window at the stars.</h3>
-            <h4>H4 She stared through the window at the stars.</h4>
-            <h5>H5 She stared through the window at the stars.</h5>
-            <h6>H6 She stared through the window at the stars.</h6>
+            <h1>H1 ${text(
+              'Heading text',
+              'She stared through the window at the stars.'
+            )}</h1>
+            <h2>H2 ${text(
+              'Heading text',
+              'She stared through the window at the stars.'
+            )}</h2>
+            <h3>H3 ${text(
+              'Heading text',
+              'She stared through the window at the stars.'
+            )}</h3>
+            <h4>H4 ${text(
+              'Heading text',
+              'She stared through the window at the stars.'
+            )}</h4>
+            <h5>H5 ${text(
+              'Heading text',
+              'She stared through the window at the stars.'
+            )}</h5>
+            <h6>H6 ${text(
+              'Heading text',
+              'She stared through the window at the stars.'
+            )}</h6>
           </div>
           <div class="paragraphs">
             <h2 class="subtitle">Paragraphs</h2>
@@ -63,7 +84,7 @@ storiesOf('App core', module)
             <p>She stared through the window at the <a href="#starts">stars</a>.</p>
           </div>
         </demo>
-      </div>`,
+      </div>`
   }))
   .add('Lists', () => ({
     template: `
@@ -115,21 +136,37 @@ storiesOf('App core', module)
           </ul>
         </demo>
       </div>
-    `,
+    `
   }))
   .add('Buttons', () => ({
     template: `
       <div class="buttons-demo">
         <demo title="Buttons" inset>
-          <code>class="button"</code>
-          <button class="button">Default</button>
-          <code>class="button button--primary"</code>
-          <button class="button button--primary">Primary</button>
-          <code>class="button button--primary button--pending"</code>
-          <button class="button button--primary button--pending">Pending</button>
+          <div>
+            <code>class="button"</code>
+            <button class="button">Default</button>
+          </div>
+          <div>
+            <code>class="button button--primary"</code>
+            <button class="button button--primary">Primary</button>
+          </div>
+          <div>
+            <code>class="button button--primary button--pending"</code>
+            <button class="button button--primary button--pending">Pending</button>
+          </div>
+        </demo>
+        <demo title="Try it out!" inset>
+          <div>
+            <button class="button ${
+              boolean('isPrimary', false) ? 'button--primary ' : ''
+            }
+            ${boolean('isPending', false) ? 'button--pending ' : ''}">
+              ${text('Button text', 'Knobs ->')}
+            </button>
+          </div>
         </demo>
       </div>
-    `,
+    `
   }))
   .add('Links', () => ({
     template: `
@@ -139,7 +176,7 @@ storiesOf('App core', module)
           <p><a href="https://voorhoede.nl/" target="_blank" rel="noopener" data-outbound>Outbound</a></p>
         </demo>
       </div>
-    `,
+    `
   }))
   .add('App icons', () => ({
     data() {
@@ -153,7 +190,7 @@ storiesOf('App core', module)
           { size: 384, class: 's-192' },
           { size: 512, class: 's-192' }
         ]
-      }
+      };
     },
     template: `
       <div class="icons-demo">
@@ -170,4 +207,4 @@ storiesOf('App core', module)
         </demo>
       </div>
     `
-  }))
+  }));

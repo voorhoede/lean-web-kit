@@ -1,23 +1,25 @@
 import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import readme from './readme.md'
 import ResponsiveVideo from './'
 import VueI18n from 'vue-i18n'
 
 storiesOf('Responsive video', module)
   .addDecorator(withReadme(readme))
+  .addDecorator(withKnobs)
   .add('Vimeo default', () => ({
     components: { ResponsiveVideo },
     template: '<responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />',
     data() {
       return {
         item: {
-          "autoplay": false,
-          "mute": false,
-          "loop": false,
+          "autoplay": boolean('Autoplay', false),
+          "mute": boolean('Mute', false),
+          "loop": boolean('Loop', false),
           "video": {
             "url": "https://vimeo.com/265601385",
-            "title": "A New Campaign - PickUp10",
+            "title": text('Video title', '10 second holiday video'),
             "width": 640,
             "height": 360,
             "provider": "vimeo",
@@ -37,12 +39,12 @@ storiesOf('Responsive video', module)
     data() {
       return {
         item: {
-          "autoplay": true,
-          "mute": true,
-          "loop": false,
+          "autoplay": boolean('Autoplay', true),
+          "mute": boolean('Mute', true),
+          "loop": boolean('Loop', false),
           "video": {
             "url": "https://vimeo.com/265601385",
-            "title": "A New Campaign - PickUp10",
+            "title": text('Video title', '10 second holiday video'),
             "width": 640,
             "height": 360,
             "provider": "vimeo",
@@ -59,12 +61,12 @@ storiesOf('Responsive video', module)
     data() {
       return {
         item: {
-          "autoplay": true,
-          "mute": true,
-          "loop": true,
+          "autoplay": boolean('Autoplay', true),
+          "mute": boolean('Mute', true),
+          "loop": boolean('Loop', true),
           "video": {
-            "url": "https://vimeo.com/55491848",
-            "title": "10 second holiday video",
+            "url": "https://vimeo.com/265601385",
+            "title": text('Video title', '10 second holiday video'),
             "width": 640,
             "height": 360,
             "provider": "vimeo",
@@ -81,12 +83,12 @@ storiesOf('Responsive video', module)
     data() {
       return {
         item: {
-          "autoplay": false,
-          "mute": false,
-          "loop": false,
+          "autoplay": boolean('Autoplay', false),
+          "mute": boolean('Mute', false),
+          "loop": boolean('Loop', false),
           "video": {
             "url": "https://www.youtube.com/watch?v=ZPIIT6siIaE&list=PL8HcoiB7g3NlaU-UU1boptT4tkz3KOXT2",
-            "title": "Een surfer neemt het op tegen de plastic vervuiling",
+            "title": text('Video title', 'Een surfer neemt het op tegen de plastic vervuiling'),
             "width": 480,
             "height": 270,
             "provider": "youtube",
@@ -106,12 +108,12 @@ storiesOf('Responsive video', module)
     data() {
       return {
         item: {
-          "autoplay": true,
-          "mute": true,
-          "loop": false,
+          "autoplay": boolean('Autoplay', true),
+          "mute": boolean('Mute', true),
+          "loop": boolean('Loop', false),
           "video": {
             "url": "https://www.youtube.com/watch?v=ZPIIT6siIaE&list=PL8HcoiB7g3NlaU-UU1boptT4tkz3KOXT2",
-            "title": "Een surfer neemt het op tegen de plastic vervuiling",
+            "title": text('Video title', 'Een surfer neemt het op tegen de plastic vervuiling'),
             "width": 480,
             "height": 270,
             "provider": "youtube",
@@ -128,12 +130,12 @@ storiesOf('Responsive video', module)
     data() {
       return {
         item: {
-          "autoplay": true,
-          "mute": true,
-          "loop": true,
+          "autoplay": boolean('Autoplay', true),
+          "mute": boolean('Mute', true),
+          "loop": boolean('Loop', true),
           "video": {
             "url": "https://www.youtube.com/watch?v=B7bqAsxee4I",
-            "title": "Short funny video",
+            "title": text('Video title', 'Short funny video'),
             "width": 480,
             "height": 270,
             "provider": "youtube",
