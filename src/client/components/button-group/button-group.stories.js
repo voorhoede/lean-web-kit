@@ -10,7 +10,7 @@ storiesOf('Button group', module)
       ButtonGroup
     },
     data: () => ({
-      singleBtnItem: [
+      singleItem: [
         {
           "type": "page",
           "title": "Configure headers",
@@ -18,7 +18,7 @@ storiesOf('Button group', module)
           "theme": "button",
         },
       ],
-      multipleBtnItems: [
+      multipleItems: [
         {
           "type": "page",
           "title": "Configure headers",
@@ -36,10 +36,10 @@ storiesOf('Button group', module)
     template: `
       <div>
         <demo title="Single button" inset>
-          <button-group :items="singleBtnItem" />
+          <button-group :items="singleItem" />
         </demo>
         <demo title="Multiple buttons" inset>
-          <button-group :items="multipleBtnItems" />
+          <button-group :items="multipleItems" />
         </demo>
       </div>
       `

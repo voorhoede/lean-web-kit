@@ -2,21 +2,6 @@
 
 A simple contact form to send a message to the recipient and to the person's email who filled in the form.
 
-## Supported input fields
-
-- A required form `title`.
-- An optional form `description`.
-- An optional label for the `name` field.
-- A required `name` field.
-- An optional label for the `email address` field.
-- A required `email` field.
-- An optional label for the `message` field.
-- A required `message` field.
-- A required label for the `submit button`.
-- A required `submit button`.
-- An optional `confirmation page` that redirects users after a successfully submitted form.
-- An optional `confirmation message` that is displayed on the same page in case a `confirmation page` is not set.
-
 ## Features
 
 - Automatically sends an `email` to the configured email address and to the email address filled by the user in the `email` field.
