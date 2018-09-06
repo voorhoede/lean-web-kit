@@ -1,8 +1,8 @@
 <template>
   <figure class="responsive-image">
     <img v-if="isVector" :alt="image.alt" :src="image.url" class="responsive-image__img">
-    <div class="responsive-image__sizer" :style="`max-width:${image.width}px;`">
-      <fixed-ratio v-if="isBitmap" class="responsive-image__canvas" :width="image.width" :height="image.height">
+    <div v-if="isBitmap" class="responsive-image__sizer" :style="`max-width:${image.width}px;`">
+      <fixed-ratio class="responsive-image__canvas" :width="image.width" :height="image.height">
         <lazy-load>
           <picture class="responsive-image__picture" v-if="width">
             <!--[if IE 9]><video style="display: none;"><![endif]-->
