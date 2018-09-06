@@ -172,22 +172,24 @@ storiesOf('Responsive video', module)
       }
     }
   }))
-  .add('Portrait Video', () => ({
+  .add('Portrait video', () => ({
     components: { ResponsiveVideo },
     template: `
+    <demo title="Portrait video" style="margin-bottom:3rem;" inset knobs>
       <div class="portrait-video-demo">
         <responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />
       </div>
+    </demo>
     `,
     data() {
       return {
         item: {
           "autoplay": true,
-          "mute": true,
-          "loop": true,
+          "mute": boolean('Mute', true),
+          "loop": boolean('Loop', true),
           "video": {
             "url": "https://vimeo.com/285246241",
-            "title": "Native Share",
+            "title": text('Video title', 'Native Share'),
             "width": 680,
             "height": 1366,
             "provider": "vimeo",
