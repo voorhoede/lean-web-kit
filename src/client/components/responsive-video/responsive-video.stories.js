@@ -5,6 +5,8 @@ import readme from './readme.md'
 import ResponsiveVideo from './'
 import VueI18n from 'vue-i18n'
 
+import './responsive-video.stories.css'
+
 storiesOf('Responsive video', module)
   .addDecorator(withReadme(readme))
   .addDecorator(withKnobs)
@@ -165,6 +167,32 @@ storiesOf('Responsive video', module)
             "provider": "youtube",
             "providerUid": "B7bqAsxee4I",
             "thumbnailUrl": "https://i.ytimg.com/vi/B7bqAsxee4I/hqdefault.jpg",
+          }
+        }
+      }
+    }
+  }))
+  .add('Portrait Video', () => ({
+    components: { ResponsiveVideo },
+    template: `
+      <div class="portrait-video-demo">
+        <responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />
+      </div>
+    `,
+    data() {
+      return {
+        item: {
+          "autoplay": true,
+          "mute": true,
+          "loop": true,
+          "video": {
+            "url": "https://vimeo.com/285246241",
+            "title": "Native Share",
+            "width": 680,
+            "height": 1366,
+            "provider": "vimeo",
+            "providerUid": "285246241",
+            "thumbnailUrl": "https://i.vimeocdn.com/video/719878721_640.jpg",
           }
         }
       }
