@@ -6,16 +6,6 @@ import readme from './readme.md';
 import './index.css';
 import './app-core.stories.css';
 
-const iconSizes = [
-  { size: 64, class: 's-64' },
-  { size: 120, class: 's-120' },
-  { size: 144, class: 's-144' },
-  { size: 152, class: 's-152' },
-  { size: 192, class: 's-192' },
-  { size: 384, class: 's-192' },
-  { size: 512, class: 's-192' }
-];
-
 storiesOf('App core', module)
   .addDecorator(withReadme(readme))
   .addDecorator(withKnobs)
@@ -181,15 +171,7 @@ storiesOf('App core', module)
   .add('App icons', () => ({
     data() {
       return {
-        iconSizes: [
-          { size: 64, class: 's-64' },
-          { size: 120, class: 's-120' },
-          { size: 144, class: 's-144' },
-          { size: 152, class: 's-152' },
-          { size: 192, class: 's-192' },
-          { size: 384, class: 's-192' },
-          { size: 512, class: 's-192' }
-        ]
+        iconSizes: [ 64, 120, 144, 152, 192, 384, 512 ]
       };
     },
     template: `
@@ -198,10 +180,10 @@ storiesOf('App core', module)
           <ul v-for="iconSize in this.iconSizes">
             <li>
               <div>
-                <p>{{iconSize.size}}x{{iconSize.size}}</p>
+                <p>{{iconSize}}x{{iconSize}}</p>
                 <p>image/png</p>
               </div>
-              <img :class="iconSize.class" src="/images/logo.svg" :alt="'Icon ' + iconSize.size + 'x' + iconSize.size">
+              <img :style="'height:' + Math.min(192, iconSize) + 'px;width:' + Math.min(192, iconSize) + 'px;'" src="/images/logo.svg" :alt="'Icon ' + iconSize + 'x' + iconSize">
             </li>
           </ul>
         </demo>
