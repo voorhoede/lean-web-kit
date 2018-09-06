@@ -7,18 +7,14 @@ import SocialLink from './'
 storiesOf('Social link', module)
   .addDecorator(withReadme(readme))
   .addDecorator(withKnobs)
-  .add('Twitter social link', () => ({
+  .add('Default', () => ({
     data: () => ({
+      singleSocialLink:
+      {
         "url": "https://twitter.com/devoorhoede",
         "platform": "Twitter"
-    }),
-    components: { SocialLink, },
-    template: `<social-link :platform="platform" :url="url" />
-    </div>`
-  }))
-  .add('Multiple social links', () => ({
-    data: () => ({
-      links: [
+      },
+      multipleSocialLinks: [
         {
           "url": "https://www.facebook.com/DeVoorhoede/",
           "platform": "Facebook"
@@ -39,14 +35,21 @@ storiesOf('Social link', module)
           "url": "https://www.linkedin.com/company/de-voorhoede",
           "platform": "LinkedIn"
         }
-      ]
+      ],
     }),
     components: { SocialLink, },
-    template: `<div>
-        <social-link
-          v-for="link in links"
-          :key="link.id"
-          :platform="link.platform"
-          :url="link.url" />
-      </div>`
+    template: `
+      <div>
+        <demo title="Single social link" inset>
+          <social-link :platform="singleSocialLink.platform" :url="singleSocialLink.url" />
+        </demo>
+        <demo title="Multiple social links" inset>
+          <social-link
+            v-for="link in multipleSocialLinks"
+            :key="link.id"
+            :platform="link.platform"
+            :url="link.url" />
+        </demo>
+      </div>
+      `,
   }))

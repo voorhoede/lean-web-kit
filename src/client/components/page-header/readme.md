@@ -1,9 +1,6 @@
 # Page Header
 
-### Props:
+## Features
 
-| Name      |   Type   |  Required  |
-|:---------:|:--------:|:----------:|
-| title     |  string  |    true    |
-| subtitle  |  string  |   false    |
-| image     |  string  |   false    |
+- Supports an optional background image that covers the entire page header.
+- Supports an optional subtitle/description in case you need more text space.
