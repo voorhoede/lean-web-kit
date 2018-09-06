@@ -1,10 +1,10 @@
 <template>
   <figure class="responsive-image">
     <div class="responsive-image__sizer" :style="`max-width:${image.width}px;`">
-      <img v-if="image.format === 'svg'" :src="imageUrl({})">
+      <img v-if="isVector" :src="image.url">
       <fixed-ratio v-else class="responsive-image__canvas" :width="image.width" :height="image.height">
         <lazy-load>
-          <picture class="responsive-image__picture" v-if="width || image.format === 'svg'">
+          <picture class="responsive-image__picture" v-if="width">
             <!--[if IE 9]><video style="display: none;"><![endif]-->
             <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
             <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
@@ -56,6 +56,11 @@ export default {
     const cssWidth = this.$el.getBoundingClientRect().width
     const width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
     this.width = Math.min(width, this.image.width)
+  },
+  computed: {
+    isVector() {
+      return this.image.format === 'svg'
+    }
   },
   methods: {
     imageUrl(options) {
