@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <page-layout v-if="error.statusCode === 404" :page="notfound" />
-  </div>
+  <page-layout v-if="error.statusCode === 404" :page="page" />
 </template>
 
 <script>
-  import notfoundI18n from '../static/data/404.json'
+  import pageI18n from '../static/data/404.json'
   import { PageLayout } from '../components/'
 
   export default {
@@ -14,7 +12,7 @@
     layout: 'default',
     computed: {
       locale() { return this.$i18n.locale },
-      notfound() { return notfoundI18n[this.locale] },
+      page() { return pageI18n[this.locale] },
     },
   }
 </script>
