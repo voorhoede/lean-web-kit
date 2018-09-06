@@ -1,17 +1,15 @@
 <template>
   <div class="responsive-video">
     <figure>
-      <fixed-ratio class="responsive-video__canvas" :width="video.width" :height="video.height">
+      <fixed-ratio class="responsive-video__canvas" :width="canvasWidth" :height="canvasHeight">
         <lazy-load>
-          <div
-            class="responsive-video__background"
-            :style="{ backgroundImage: `url(${imageUrl})` }"
-          >
+          <div class="responsive-video__background">
+            <div class="responsive-video__cover" :style="{ backgroundImage: `url(${imageUrl})`, width: coverWidth }"></div>
           </div>
         </lazy-load>
         <iframe
           v-if="isPlaying"
-          class="responsive-video__i-frame"
+          class="responsive-video__iframe"
           :src="videoUrl"
           frameborder="0"
           webkitallowfullscreen
@@ -45,6 +43,7 @@ import imageUrl from '../../lib/image-url'
 const binaryBoolean = value => (value) ? 1 : 0
 
 export default {
+  components: { FixedRatio, LazyLoad },
   props: {
     video: {
       type: Object,
@@ -63,13 +62,29 @@ export default {
       required: true,
     },
   },
-  components: { FixedRatio, LazyLoad },
+  data () {
+    return {
+      isPlaying: this.autoplay,
+      maxRatio: 1.5,
+      width: undefined,
+    }
+  },
   computed: {
+    canvasHeight() { 
+      // prevent canvas from getting a higher ratio than 3:2 (1.5:1)
+      return Math.min(this.video.width * this.maxRatio, this.video.height)
+    },
+    canvasWidth() {
+      return this.video.width
+    },
+    coverWidth() {
+      return `${this.video.width * this.maxRatio / this.video.height * 100}%`
+    },
     imageUrl() {
       switch (this.video.provider) {
         case 'vimeo':
-          const sizeRegex = /\d+\.\w+$/
-          return this.video.thumbnailUrl.replace(sizeRegex, `${this.width}.jpg`)
+          const sizeRegex = /_\d+(x\d+)?\.\w+$/ // match _123.ext and _123x123.ext
+          return this.video.thumbnailUrl.replace(sizeRegex, `_${this.width}.jpg`)
           break;
         case 'youtube':
           let preset = '/maxresdefault.jpg'
@@ -103,12 +118,6 @@ export default {
       }
     }
   },
-  data () {
-    return {
-      isPlaying: this.autoplay,
-      width: undefined,
-    }
-  },
   methods: {
     play() {
       this.$ga.event({
@@ -135,19 +144,22 @@ export default {
   position: relative;
 }
 
-.responsive-video__canvas {
-  background-color: var(--neutral-color);
-}
-
 .responsive-video__background {
   position: absolute;
   height: 100%;
   width: 100%;
+}
+
+.responsive-video__cover {
+  height: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   background-size: cover;
   background-position: center center;
 }
 
-.responsive-video__i-frame {
+.responsive-video__iframe {
   width:100%;
   height:100%;
   position:relative;

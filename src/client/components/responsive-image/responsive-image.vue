@@ -1,6 +1,7 @@
 <template>
   <figure class="responsive-image">
-    <div class="responsive-image__sizer" :style="`max-width:${image.width}px;`">
+    <img v-if="isVector" :alt="image.alt" :src="image.url" class="responsive-image__img">
+    <div v-if="isBitmap" class="responsive-image__sizer" :style="`max-width:${image.width}px;`">
       <fixed-ratio class="responsive-image__canvas" :width="image.width" :height="image.height">
         <lazy-load>
           <picture class="responsive-image__picture" v-if="width">
@@ -8,7 +9,9 @@
             <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
             <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
             <!--[if IE 9]></video><![endif]-->
-            <img class="responsive-image__img" :alt="image.alt" :src="imageUrl({ w: width })" />
+            <transition name="fade">
+              <img class="responsive-image__img" v-show="isLoaded" :alt="image.alt" :src="imageUrl({ w: width })" @load="onLoad"/>
+            </transition>
           </picture>
         </lazy-load>
         <no-script>
@@ -45,6 +48,7 @@ export default {
   data() {
     return {
       width: undefined,
+      isLoaded: false,
     }
   },
   mounted() {
@@ -53,10 +57,21 @@ export default {
     const width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
     this.width = Math.min(width, this.image.width)
   },
+  computed: {
+    isVector() {
+      return this.image.format === 'svg'
+    },
+    isBitmap() {
+      return !this.isVector
+    },
+  },
   methods: {
     imageUrl(options) {
       return imageUrl(this.image.url, options)
     },
+    onLoad() {
+      this.isLoaded = true
+    }
   }
 }
 </script>

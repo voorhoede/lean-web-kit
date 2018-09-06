@@ -4,6 +4,8 @@ import readme from './readme.md'
 import ResponsiveVideo from './'
 import VueI18n from 'vue-i18n'
 
+import './responsive-video.stories.css'
+
 storiesOf('Responsive video', module)
   .addDecorator(withReadme(readme))
   .add('Vimeo default', () => ({
@@ -51,10 +53,7 @@ storiesOf('Responsive video', module)
           }
         }
       }
-    },
-    i18n: new VueI18n({
-      locale: 'en',
-    })
+    }
   }))
   .add('Vimeo with loop and autoplay', () => ({
     components: { ResponsiveVideo },
@@ -76,10 +75,7 @@ storiesOf('Responsive video', module)
           }
         }
       }
-    },
-    i18n: new VueI18n({
-      locale: 'en',
-    })
+    }
   }))
   .add('YouTube default', () => ({
     components: { ResponsiveVideo },
@@ -126,10 +122,7 @@ storiesOf('Responsive video', module)
           }
         }
       }
-    },
-    i18n: new VueI18n({
-      locale: 'en',
-    })
+    }
   }))
   .add('Youtube with loop and autoplay', () => ({
     components: { ResponsiveVideo },
@@ -151,8 +144,31 @@ storiesOf('Responsive video', module)
           }
         }
       }
-    },
-    i18n: new VueI18n({
-      locale: 'en',
-    })
+    }
+  }))
+  .add('Portrait Video', () => ({
+    components: { ResponsiveVideo },
+    template: `
+      <div class="portrait-video-demo">
+        <responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />
+      </div>
+    `,
+    data() {
+      return {
+        item: {
+          "autoplay": true,
+          "mute": true,
+          "loop": true,
+          "video": {
+            "url": "https://vimeo.com/285246241",
+            "title": "Native Share",
+            "width": 680,
+            "height": 1366,
+            "provider": "vimeo",
+            "providerUid": "285246241",
+            "thumbnailUrl": "https://i.vimeocdn.com/video/719878721_640.jpg",
+          }
+        }
+      }
+    }
   }))

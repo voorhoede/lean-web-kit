@@ -1,12 +1,8 @@
 # Table of contents
 
-- Lists all sections on a page
-- Links to each section
-- Has a scroll spy to indicate which section is currently visible on the user's screen
-- Is sticky, so it's always visible
+## Features
 
-### Props:
-
-| Name      |   Type   |  Required  |
-|:---------:|:--------:|:----------:|
-| items     |  array   |    true    |
+- Create a link for each section on a page.
+- Clicking on a link will scroll the page to the given section.
+- Has a build in scroll spy that highlights the current visible/active section.
+- The navigation is sticky and always visible.
