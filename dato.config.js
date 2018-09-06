@@ -46,10 +46,10 @@ function appSettingsToJson(app) {
  */
 function redirectsToText (redirects) {
   const redirectToDefaultLocale = `/ /${defaultLocale}/ 301`
-  const redirectToLocalized404s = locales.map(locale => `/${locale}/* /${locale}/404/ 404`).join('\n')
   const redirectRulesFromCms = redirects
     .map(redirect => `${redirect.from} ${redirect.to} ${redirect.statusCode}`)
-  return [redirectToDefaultLocale, ...redirectRulesFromCms, redirectToLocalized404s].join("\n")
+  const redirectRules404s = locales.map(locale => `/${locale}/* /${locale}/404/ 404`)
+  return [redirectToDefaultLocale, ...redirectRulesFromCms, ...redirectRules404s].join("\n")
 }
 
 function pageSlugMap (dato, i18n) {
