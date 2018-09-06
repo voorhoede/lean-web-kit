@@ -14,5 +14,10 @@
       locale() { return this.$i18n.locale },
       page() { return pageI18n[this.locale] },
     },
+    head() {
+      return {
+        title: this.page.title
+      }
+    }
   }
 </script>
