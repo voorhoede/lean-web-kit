@@ -56,7 +56,7 @@ storiesOf('Button group', module)
         <demo title="Multiple buttons" inset>
           <button-group :items="multipleItems" />
         </demo>
-        <demo title="Extreme example" inset>
+        <demo title="Extreme example" inset knobs>
           <button-group :items="extremeExample" />
         </demo>
       </div>

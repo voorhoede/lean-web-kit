@@ -42,6 +42,19 @@
  .icons-demo p {
   margin: 0;
 }
- .icons-demo img {
-  margin-left: var(--spacing-default);
+
+.icons-demo ul {
+  padding: 0;
+}
+
+.icons-demo img {
+  margin-top: var(--spacing-default);
+}
+
+.icons-demo figure {
+  margin: 0;
+}
+
+.icons-demo figcaption {
+  text-align: left;
 }

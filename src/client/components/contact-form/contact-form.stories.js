@@ -10,12 +10,15 @@ storiesOf('Contact form', module)
   .addDecorator(withKnobs)
   .add('Default', () => ({
     components: { ContactForm },
-    template: '<contact-form :form="form" />',
+    template: `
+    <demo title="Contact form" style="margin-bottom:3rem;" inset knobs>
+      <contact-form :form="form" />
+    </demo>`,
     data: () => ({
       form: {
         id: '356659',
         body: 'Send us en email and we will reply within 24 hours.',
-        title: 'Contact us',
+        title: 'Contact Us',
         labelName: text('Name label', 'Your name'),
         labelEmail: text('Email label', 'Your email'),
         labelMessage: text('Message label', 'Your message'),

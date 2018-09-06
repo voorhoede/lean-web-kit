@@ -11,7 +11,11 @@ storiesOf('Content section', module)
   .addDecorator(withKnobs)
   .add('With text', () => ({
     components: { ContentSection },
-    template: '<div><content-section v-for="(section, index) in sections" :key="index" :section="section" /></div>',
+    template: `
+    <demo title="Content Section" style="margin-bottom:3rem;" inset knobs>
+      <div><content-section v-for="(section, index) in sections" :key="index" :section="section" /></div>
+    </demo>
+    `,
     data() {
       return {
         "sections": [
@@ -31,7 +35,11 @@ storiesOf('Content section', module)
   }))
   .add('With text and image', () => ({
     components: { ContentSection },
-    template: '<div><content-section v-for="(section, index) in sections" :key="index" :section="section" /></div>',
+    template: `
+    <demo title="Content Section" style="margin-bottom:3rem;" inset knobs>
+      <div><content-section v-for="(section, index) in sections" :key="index" :section="section" /></div>
+    </demo>
+    `,
     data() {
       return {
         "sections": [
@@ -43,7 +51,7 @@ storiesOf('Content section', module)
                 "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
                 "type": "text"
               },
-              boolean('Show image', true) ? {
+              {
                 "image": {
                   "format": "jpeg",
                   "size": 29514,
@@ -51,10 +59,10 @@ storiesOf('Content section', module)
                   "height": 360,
                   "title": text('Image title', 'landscape'),
                   "alt": "Mountain landscape with a cloudy sky",
-                  "url": text('Image URL', 'https://www.datocms-assets.com/6068/1529671983-random-image-square.jpeg')
+                  "url": "https://www.datocms-assets.com/6068/1529671983-random-image-square.jpeg"
                 },
                 "type": "image"
-              } : {}
+              }
             ]
           }
         ]
@@ -63,7 +71,11 @@ storiesOf('Content section', module)
   }))
   .add('With text and video', () => ({
     components: { ContentSection },
-    template: '<div><content-section v-for="(section, index) in sections" :key="index" :section="section" /></div>',
+    template: `
+    <demo title="Content Section" style="margin-bottom:3rem;" inset knobs>
+      <div><content-section v-for="(section, index) in sections" :key="index" :section="section" /></div>
+    </demo>
+    `,
     data() {
       return {
         "sections": [

@@ -32,7 +32,10 @@ storiesOf('App core', module)
         </demo>
       </div>`
   }))
-  .add('Text', () => ({
+  .add('Text', () => {
+    const headingText = text('Heading text', 'She stared through the window at the stars.')
+
+    return {
     template: `
       <div>
         <demo title="Fonts" inset>
@@ -40,42 +43,25 @@ storiesOf('App core', module)
           <p style="font-weight:normal;">Font weight: normal</p>
           <p style="font-weight:bold;">Font weight: bold</p>
         </demo>
-        <demo title="Typography" inset>
+        <demo title="Typography" inset knobs>
           <div class="headings">
             <h2 class="subtitle">Headings</h2>
-            <h1>H1 ${text(
-              'Heading text',
-              'She stared through the window at the stars.'
-            )}</h1>
-            <h2>H2 ${text(
-              'Heading text',
-              'She stared through the window at the stars.'
-            )}</h2>
-            <h3>H3 ${text(
-              'Heading text',
-              'She stared through the window at the stars.'
-            )}</h3>
-            <h4>H4 ${text(
-              'Heading text',
-              'She stared through the window at the stars.'
-            )}</h4>
-            <h5>H5 ${text(
-              'Heading text',
-              'She stared through the window at the stars.'
-            )}</h5>
-            <h6>H6 ${text(
-              'Heading text',
-              'She stared through the window at the stars.'
-            )}</h6>
+            <h1>H1 ${headingText}</h1>
+            <h2>H2 ${headingText}</h2>
+            <h3>H3 ${headingText}</h3>
+            <h4>H4 ${headingText}</h4>
+            <h5>H5 ${headingText}</h5>
+            <h6>H6 ${headingText}</h6>
           </div>
           <div class="paragraphs">
             <h2 class="subtitle">Paragraphs</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vel quam elementum pulvinar etiam non quam lacus suspendisse. Eu tincidunt tortor aliquam nulla.</p>
-            <p>She stared through the window at the <a href="#starts">stars</a>.</p>
+            <p>She stared through the window at the <a href="#stars">stars</a>.</p>
           </div>
         </demo>
       </div>`
-  }))
+    }
+  })
   .add('Lists', () => ({
     template: `
       <div>
@@ -131,27 +117,20 @@ storiesOf('App core', module)
   .add('Buttons', () => ({
     template: `
       <div class="buttons-demo">
-        <demo title="Buttons" inset>
-          <div>
-            <code>class="button"</code>
-            <button class="button">Default</button>
-          </div>
-          <div>
-            <code>class="button button--primary"</code>
-            <button class="button button--primary">Primary</button>
-          </div>
-          <div>
-            <code>class="button button--primary button--pending"</code>
-            <button class="button button--primary button--pending">Pending</button>
-          </div>
+        <demo title="Default" inset>
+          <button class="button">Default</button>
         </demo>
-        <demo title="Try it out!" inset>
+        <demo title="Primary" inset>
+          <button class="button button--primary">Primary</button>
+          <button class="button button--primary button--pending">Pending</button>
+        </demo>
+        <demo title="Try it out!" inset knobs>
           <div>
             <button class="button ${
               boolean('isPrimary', false) ? 'button--primary ' : ''
             }
-            ${boolean('isPending', false) ? 'button--pending ' : ''}">
-              ${text('Button text', 'Knobs ->')}
+            ${boolean('isPending', false) ? 'button--primary button--pending ' : ''}">
+              ${text('Button text', 'Edit me')}
             </button>
           </div>
         </demo>
@@ -172,18 +151,23 @@ storiesOf('App core', module)
     data() {
       return {
         iconSizes: [ 64, 120, 144, 152, 192, 384, 512 ]
-      };
+      }
     },
     template: `
       <div class="icons-demo">
         <demo title="App icons" inset>
-          <ul v-for="iconSize in this.iconSizes">
-            <li>
-              <div>
-                <p>{{iconSize}}x{{iconSize}}</p>
-                <p>image/png</p>
-              </div>
-              <img :style="'height:' + Math.min(192, iconSize) + 'px;width:' + Math.min(192, iconSize) + 'px;'" src="/images/logo.svg" :alt="'Icon ' + iconSize + 'x' + iconSize">
+          <ul>
+            <li v-for="iconSize in this.iconSizes">
+              <figure>
+                <figcaption>
+                  <p>{{iconSize}}x{{iconSize}}</p>
+                  <p>image/png</p>
+                </figcaption>
+                <img 
+                  :style="'height:' + Math.min(192, iconSize) + 'px;width:' + Math.min(192, iconSize) + 'px;'" 
+                  src="/images/logo.svg" :alt="'Icon ' + iconSize + 'x' + iconSize"
+                >
+              </figure>
             </li>
           </ul>
         </demo>

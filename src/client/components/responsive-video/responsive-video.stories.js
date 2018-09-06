@@ -10,7 +10,11 @@ storiesOf('Responsive video', module)
   .addDecorator(withKnobs)
   .add('Vimeo default', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />',
+    template: `
+    <demo title="Vimeo default" style="margin-bottom:3rem;" inset knobs>
+      <responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />
+    </demo>
+    `,
     data() {
       return {
         item: {
@@ -35,7 +39,11 @@ storiesOf('Responsive video', module)
   }))
   .add('Vimeo with autoplay', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />',
+    template: `
+    <demo title="Vimeo with autoplay" style="margin-bottom:3rem;" inset knobs>
+      <responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />
+    </demo>
+    `,
     data() {
       return {
         item: {
@@ -57,7 +65,11 @@ storiesOf('Responsive video', module)
   }))
   .add('Vimeo with loop and autoplay', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />',
+    template: `
+    <demo title="Vimeo with loop and autoplay" style="margin-bottom:3rem;" inset knobs>
+      <responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />
+    </demo>
+    `,
     data() {
       return {
         item: {
@@ -79,7 +91,11 @@ storiesOf('Responsive video', module)
   }))
   .add('YouTube default', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />',
+    template: `
+    <demo title="YouTube default" style="margin-bottom:3rem;" inset knobs>
+      <responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />
+    </demo>
+    `,
     data() {
       return {
         item: {
@@ -104,7 +120,11 @@ storiesOf('Responsive video', module)
   }))
   .add('YouTube with autoplay', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />',
+    template: `
+    <demo title="YouTube with autoplay" style="margin-bottom:3rem;" inset knobs>
+      <responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />
+    </demo>
+    `,
     data() {
       return {
         item: {
@@ -126,7 +146,11 @@ storiesOf('Responsive video', module)
   }))
   .add('Youtube with loop and autoplay', () => ({
     components: { ResponsiveVideo },
-    template: '<responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />',
+    template: `
+    <demo title="Youtube with loop and autoplay" style="margin-bottom:3rem;" inset knobs>
+      <responsive-video :video="item.video" :autoplay="item.autoplay" :loop="item.loop" :mute="item.autoplay" />
+    </demo>
+    `,
     data() {
       return {
         item: {
