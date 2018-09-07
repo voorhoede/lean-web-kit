@@ -1,11 +1,13 @@
 import Vue from 'vue'
-import { hotjarId } from '../static/data/app.json'
+import { googleAnalyticsTrackingId} from '../static/data/app.json'
 
 Vue.mixin({
   created() {
-    this.$ga = {
-      event () {},
-      social() {},
+    if (!googleAnalyticsTrackingId) {
+      this.$ga = {
+        event() { },
+        social() { },
+      }
     }
   }
 })
