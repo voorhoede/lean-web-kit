@@ -127,9 +127,9 @@ storiesOf('App core', module)
         <demo title="Try it out!" inset knobs>
           <div>
             <button class="button ${
-              boolean('isPrimary', false) ? 'button--primary ' : ''
+              boolean('Primary button', false) ? 'button--primary ' : ''
             }
-            ${boolean('isPending', false) ? 'button--primary button--pending ' : ''}">
+            ${boolean('Pending button', false) ? 'button--primary button--pending ' : ''}">
               ${text('Button text', 'Edit me')}
             </button>
           </div>
