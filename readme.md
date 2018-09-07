@@ -10,7 +10,7 @@ To use it for your project, [download a copy](https://github.com/voorhoede/lean-
 
 ### Getting started
 
-Read our compleet [getting started guide](https://leanwebkit.voorhoede.nl/en/getting-started/) here. This guide will help you with the CMS setup, cloning the repository and deploying your project using [Netlify](https://www.netlify.com/). In case all you need is a copy of the repository, proceed by following the steps below.
+Read our complete [getting started guide](https://leanwebkit.voorhoede.nl/en/getting-started/) here. This guide will help you with the CMS setup, cloning the repository and deploying your project using [Netlify](https://www.netlify.com/). In case all you need is a copy of the repository, proceed by following the steps below.
 
 * Clone the repository.
 * Copy `.env.example` to `.env` and set the environment variables. Copy them from the [Netlify build configuration](https://app.netlify.com/sites/leanwebkit/settings/deploys#build-environment-variables) or ask your tech lead. 
