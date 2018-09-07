@@ -21,6 +21,7 @@ module.exports = (dato, root, i18n) => {
   root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
   root.createDataFile(`${dataDir}/locales.json`, 'json', locales)
   root.createDataFile(`${dataDir}/menu.json`, 'json', menuToJson(dato, i18n))
+  root.createDataFile(`${dataDir}/404.json`, 'json', notfoundToJson(dato, i18n))
   root.createDataFile(`${dataDir}/pages.json`, 'json', pageSlugMap(dato, i18n))
 
   locales.forEach(locale => {
@@ -47,7 +48,8 @@ function redirectsToText (redirects) {
   const redirectToDefaultLocale = `/ /${defaultLocale}/ 301`
   const redirectRulesFromCms = redirects
     .map(redirect => `${redirect.from} ${redirect.to} ${redirect.statusCode}`)
-  return [redirectToDefaultLocale, ...redirectRulesFromCms].join("\n")
+  const redirectRules404s = locales.map(locale => `/${locale}/* /${locale}/404/ 404`)
+  return [redirectToDefaultLocale, ...redirectRulesFromCms, ...redirectRules404s].join("\n")
 }
 
 function pageSlugMap (dato, i18n) {
@@ -115,7 +117,7 @@ function pageToJson (page, i18n) {
 
   const slug = page.slug ? `${page.slug}/` : '' // makes sure there's always a trailing slash ending each route so we don't get different versions of same page
   const url = `${URL}/${i18n.locale}/${slug}`
-  const seo = { ...page.seo.toMap(), url }
+  const seo = page.seo && { ...page.seo.toMap(), url }
   const slugI18n = locales.reduce((out, locale) => {
     i18n.withLocale(locale, () => out[locale] = page.slug || '')
     return out
@@ -161,6 +163,14 @@ function menuToJson (dato, i18n) {
 function translationsToJson (translations) {
   return translations.reduce((out, item) => {
     out[item.key] = item.value
+    return out
+  }, {})
+}
+
+function notfoundToJson(dato, i18n) {
+  return locales.reduce((out, locale) => {
+    i18n.locale = locale
+    out[locale] = pageToJson(dato['404Page'], i18n)
     return out
   }, {})
 }
