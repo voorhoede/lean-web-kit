@@ -1,5 +1,6 @@
 import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
+import { withKnobs, text } from '@storybook/addon-knobs';
 import readme from './readme.md'
 import PageHeader from './'
 
@@ -7,6 +8,7 @@ import '../app-core/index.css'
 
 storiesOf('Page Header', module)
   .addDecorator(withReadme(readme))
+  .addDecorator(withKnobs)
   .add('Default', () => ({
     components: { PageHeader },
     template: `
@@ -22,18 +24,18 @@ storiesOf('Page Header', module)
           </div>
         </demo>
       </div>`,
-    data () {
+    data() {
       return {
-        title: 'About us',
+        title: text('Heading text', 'About Us'),
         subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Cursus in hac habitasse platea dictumst. Turpis egestas sed tempus urna et pharetra pharetra massa massa.'
       }
     },
   }))
   .add('With background-image', () => ({
     components: { PageHeader },
-    data () {
+    data() {
       return {
-        title: 'About us',
+        title: text('Heading text', 'About Us'),
         subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Cursus in hac habitasse platea dictumst. Turpis egestas sed tempus urna et pharetra pharetra massa massa.',
         image: {
           src: 'https://www.datocms-assets.com/6068/1529677077-photo-1529599087-bcf1dc4a7ae4.jpeg',

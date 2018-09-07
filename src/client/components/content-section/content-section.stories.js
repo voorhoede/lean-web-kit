@@ -1,5 +1,6 @@
 import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import readme from './readme.md'
 import ContentSection from './'
 
@@ -7,14 +8,19 @@ import '../app-core/index.css'
 
 storiesOf('Content section', module)
   .addDecorator(withReadme(readme))
+  .addDecorator(withKnobs)
   .add('With text', () => ({
     components: { ContentSection },
-    template: '<div><content-section v-for="(section, index) in sections" :key="index" :section="section" /></div>',
-    data () {
+    template: `
+    <demo title="Content Section" style="margin-bottom:3rem;" inset knobs>
+      <div><content-section v-for="(section, index) in sections" :key="index" :section="section" /></div>
+    </demo>
+    `,
+    data() {
       return {
         "sections": [
           {
-            "title": "Lorem ipsum",
+            title: text('Heading text', 'Lorem ipsum'),
             "slug": "lorem-ipsum",
             "items": [
               {
@@ -29,12 +35,16 @@ storiesOf('Content section', module)
   }))
   .add('With text and image', () => ({
     components: { ContentSection },
-    template: '<div><content-section v-for="(section, index) in sections" :key="index" :section="section" /></div>',
-    data () {
+    template: `
+    <demo title="Content Section" style="margin-bottom:3rem;" inset knobs>
+      <div><content-section v-for="(section, index) in sections" :key="index" :section="section" /></div>
+    </demo>
+    `,
+    data() {
       return {
         "sections": [
           {
-            "title": "Lorem ipsum",
+            title: text('Heading text', 'Lorem ipsum'),
             "slug": "lorem-ipsum",
             "items": [
               {
@@ -43,13 +53,13 @@ storiesOf('Content section', module)
               },
               {
                 "image": {
-                    "format": "jpeg",
-                    "size": 29514,
-                    "width": 360,
-                    "height": 360,
-                    "title": "landscape",
-                    "alt": "Mountain landscape with a cloudy sky",
-                    "url": "https://www.datocms-assets.com/6068/1529671983-random-image-square.jpeg"
+                  "format": "jpeg",
+                  "size": 29514,
+                  "width": 360,
+                  "height": 360,
+                  "title": text('Image title', 'landscape'),
+                  "alt": "Mountain landscape with a cloudy sky",
+                  "url": "https://www.datocms-assets.com/6068/1529671983-random-image-square.jpeg"
                 },
                 "type": "image"
               }
@@ -61,12 +71,16 @@ storiesOf('Content section', module)
   }))
   .add('With text and video', () => ({
     components: { ContentSection },
-    template: '<div><content-section v-for="(section, index) in sections" :key="index" :section="section" /></div>',
-    data () {
+    template: `
+    <demo title="Content Section" style="margin-bottom:3rem;" inset knobs>
+      <div><content-section v-for="(section, index) in sections" :key="index" :section="section" /></div>
+    </demo>
+    `,
+    data() {
       return {
         "sections": [
           {
-            "title": "Lorem ipsum",
+            title: text('Heading text', 'Lorem ipsum'),
             "slug": "lorem-ipsum",
             "items": [
               {
