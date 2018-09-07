@@ -1,0 +1,14 @@
+.fixed-ratio-demo div {
+  margin: 0 auto var(--spacing-default);
+  max-width: 33.333vh;
+}
+
+.fixed-ratio-demo .fixed-ratio {
+  background-color: var(--action-color);
+  border-radius: 10px;
+  border: 1px 1px 10px #c5c5c5;
+  color: #ffffff;
+  font-weight: bold;
+  line-height: 2.55em;
+  text-align: center;
+}

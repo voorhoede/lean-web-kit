@@ -14,6 +14,7 @@
   box-shadow: var(--shadow-small-grey);
   border: 1px solid transparent; /* https://twitter.com/AmeliasBrain/status/1026521723888226304 and to match the height of the input fields with the buttons. */
   border-radius: 3px;
+  margin-bottom: var(--spacing-half);
 }
 
 .button:hover,
@@ -42,8 +43,8 @@
   vertical-align: middle;
   width: 1.5em;
   height: 1.5em;
-  margin-top: -.25em;
-  margin-left: -.25em;
+  margin-top: -0.25em;
+  margin-left: -0.25em;
   animation: button__spinner 2s linear infinite;
   background-image: url('/images/spinner.png');
   background-size: contain;
@@ -52,6 +53,10 @@
 }
 
 @keyframes button__spinner {
-  0% { transform: rotate(0deg) }
-  100% { transform: rotate(360deg) }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
