@@ -1,0 +1,31 @@
+.form-label {
+  display: block;
+  margin-bottom: var(--spacing-half);
+}
+
+.form-field {
+  margin-bottom: var(--spacing-double);
+}
+
+.form-control {
+  padding: var(--spacing-half) var(--spacing-default);;
+  border-radius: var(--border-radius-small);
+  border: 1px solid var(--text-color);
+}
+
+.form-control:focus {
+  border-color: var(--focus-color);
+  outline: none;
+}
+
+::-webkit-input-placeholder {
+  color: var(--text-light-color);
+}
+
+::-moz-placeholder {
+  color: var(--text-light-color);
+}
+
+:-ms-input-placeholder {
+  color: var(--text-light-color);
+}

@@ -5,22 +5,40 @@
       <h2 class="content-section__title">{{ section.title }}</h2>
     </a>
     <template v-for="(item, index) in section.items">
-      <link-list v-if="item.type === 'link_list'"
-      :key="index"
-      :links="item.links"
-      :ordered="item.ordered" />
-      <button-group v-if="item.type === 'button_group'"
+      <button-group
+        v-if="item.type === 'button_group'"
        :key="index"
        :items="item.links" />
-      <rich-text v-if="item.type === 'text'"
+      <contact-form
+        v-if="item.form && item.form.type === 'contact_form'"
+        :key="index"
+        :form="item.form" />
+      <download-files
+        v-if="item.type === 'file_list'"
+        :key="index"
+        :files="item.files" />
+      <email-form
+        v-if="item.form && item.form.type === 'email_form'"
+        :key="index"
+        :form="item.form"
+      />
+      <link-list
+        v-if="item.type === 'link_list'"
+        :key="index"
+        :links="item.links"
+        :ordered="item.ordered" />
+      <rich-text
+        v-if="item.type === 'text'"
         :key="index"
         :text="item.body"
       />
-      <responsive-image v-if="item.type === 'image'"
+      <responsive-image
+        v-if="item.type === 'image'"
         :key="index"
         :image="item.image"
       />
-      <responsive-video v-if="item.type === 'video'"
+      <responsive-video
+        v-if="item.type === 'video'"
         :key="index"
         :video="item.video"
         :autoplay="item.autoplay"
@@ -33,13 +51,16 @@
 
 <script>
 import ButtonGroup from '../button-group'
+import ContactForm from '../contact-form'
+import DownloadFiles from '../download-files'
+import EmailForm from '../email-form'
 import LinkList from '../link-list'
 import ResponsiveImage from '../responsive-image'
 import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
 
 export default {
-  components: { ButtonGroup, LinkList, ResponsiveImage, ResponsiveVideo, RichText, },
+  components: { ButtonGroup, ContactForm, DownloadFiles, EmailForm, LinkList, ResponsiveImage, ResponsiveVideo, RichText, },
   props: {
     section: {
       type: Object,

@@ -8,7 +8,9 @@
             <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
             <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
             <!--[if IE 9]></video><![endif]-->
-            <img class="responsive-image__img" :alt="image.alt" :src="imageUrl({ w: width })" />
+            <transition name="fade">
+              <img class="responsive-image__img" v-show="isLoaded" :alt="image.alt" :src="imageUrl({ w: width })" @load="onLoad"/>
+            </transition>
           </picture>
         </lazy-load>
         <no-script>
@@ -45,6 +47,7 @@ export default {
   data() {
     return {
       width: undefined,
+      isLoaded: false,
     }
   },
   mounted() {
@@ -57,6 +60,9 @@ export default {
     imageUrl(options) {
       return imageUrl(this.image.url, options)
     },
+    onLoad() {
+      this.isLoaded = true
+    }
   }
 }
 </script>

@@ -1,3 +1,6 @@
+# os files
+.DS_Store
+
 # environment variables
 .env
 .envrc

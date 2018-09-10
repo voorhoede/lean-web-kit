@@ -6,10 +6,11 @@
     aria-labelledby="opt-in__title"
     aria-describedby="opt-in__text"
   >
-    <h2 class="a11y-sr-only" >{{title}}</h2>
+    <h2 id="opt-in__title" class="a11y-sr-only" >{{ title }}</h2>
     <div id="opt-in__text" class="opt-in__text" v-html="body"></div>
     <div class="opt-in__buttons">
       <button
+        data-optin-agree
         class="button button--primary"
         @click="onAccept"
         v-test:optInAccept>
@@ -39,26 +40,31 @@
         ? localStorage.getItem(this.name)
         : false
 
-      return { isAccepted }
-    },
-    created () {
-      // Emit accept event if already accepted by user
-      if (this.isAccepted) {
-        this.$emit('accept')
-      }
-    },
-    methods: {
-      onAccept () {
-        if (localStorageSupported) {
-          localStorage.setItem(this.name, true)
-        }
-        this.$emit('accept')
-      },
-      onDecline () {
-        this.$emit('decline')
-      }
+    return { isAccepted }
+  },
+  created () {
+    // Emit accept event if already accepted by user
+    if (this.isAccepted) {
+      this.$emit('accept')
     }
+  },
+  mounted () {
+    if (!this.isAccepted) {
+      this.$el.querySelector('[data-optin-agree]').focus()
+    }
+  },
+  methods: {
+    onAccept () {
+      if (localStorageSupported) {
+        localStorage.setItem(this.name, true)
+      }
+      this.$emit('accept')
+    },
+    onDecline () {
+      this.$emit('decline')
+    },
   }
+}
 </script>
 
 <style>

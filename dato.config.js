@@ -19,7 +19,6 @@ module.exports = (dato, root, i18n) => {
   fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects), 'utf8')
 
   root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
-  root.createDataFile(`${dataDir}/social.json`, 'json', dato.social.toMap())
   root.createDataFile(`${dataDir}/locales.json`, 'json', locales)
   root.createDataFile(`${dataDir}/menu.json`, 'json', menuToJson(dato, i18n))
   root.createDataFile(`${dataDir}/pages.json`, 'json', pageSlugMap(dato, i18n))
@@ -36,7 +35,8 @@ module.exports = (dato, root, i18n) => {
 }
 
 function appSettingsToJson(app) {
-  return pick(app, ['title', 'contact', 'googleAnalyticsTrackingId', 'crispWebsiteId', 'hotjarId'])
+  const socialLinks = app.socialLinks.toMap().map(item => pick(item, ['id', 'platform', 'url']))
+  return { socialLinks, ...pick(app, ['title', 'contact', 'googleAnalyticsTrackingId', 'crispWebsiteId', 'hotjarId', 'emailAddress', 'experimentId'])}
 }
 
 /**
@@ -44,9 +44,10 @@ function appSettingsToJson(app) {
  * @see https://www.netlify.com/docs/redirects/
  */
 function redirectsToText (redirects) {
-  return redirects
+  const redirectToDefaultLocale = `/ /${defaultLocale}/ 301`
+  const redirectRulesFromCms = redirects
     .map(redirect => `${redirect.from} ${redirect.to} ${redirect.statusCode}`)
-    .join("\n")
+  return [redirectToDefaultLocale, ...redirectRulesFromCms].join("\n")
 }
 
 function pageSlugMap (dato, i18n) {
@@ -65,6 +66,12 @@ function pageSlugMap (dato, i18n) {
 function transformItem(item) {
   if (item.type === 'link_list' || item.type === 'button_group') {
     item.links = item.links.map(formatLink)
+  }
+  else if (item.type === 'form') {
+    item.form = Object.assign({}, item.form, {
+      type: item.form.itemType,
+    })
+    delete item.form.itemType
   }
   else if (item.type === 'text') {
     const $ = cheerio.load(item.body)
@@ -95,9 +102,11 @@ function pageToJson (page, i18n) {
 
   const coverImage = page.coverImage ? page.coverImage.toMap() : undefined
 
-  const sections = page.sections.map(({ title, items }) => ({
+  const sections = page.sections
+  .filter(({ title, items }) => (typeof title === 'string' && items.length > 0))
+  .map(({ title, items }) => ({
     title,
-    slug: slugify(title, { lower: true }),
+    slug: title && slugify(title, { lower: true }),
     items: items.toMap()
       .map(item => ({ ...item, type: item.itemType }))
       .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))

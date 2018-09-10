@@ -1,18 +1,20 @@
 <template>
-  <div class="lazy-chat">
+  <div class="lazy-chat" id="chat">
     <!-- Load third-party script conditionally -->
     <script async type="application/javascript"
       v-if="isAccepted"
       :src="provider.script"
       @load="onLoaded"
     />
-    <button v-if="chatButtonIsShown"
+    <button v-show="chatButtonIsShown"
+      type="button"
+      ref="lazyChatButton"
       class="button button--primary lazy-chat__open-button"
-      :class="{ 'button--pending': (isAccepted && !isLoaded) }"
-      @click="isRequested = true"
+      :class="{ 'lazy-chat__open-button--pending': (isAccepted && !isLoaded) }"
+      @click="handleClick"
       v-test:lazyChatButton
     >
-      {{ $t('chat') }}
+      <span class="a11y-sr-only">{{ $t('chat') }}</span>
     </button>
   <opt-in
     v-if="promptIsShown"
@@ -21,7 +23,7 @@
     :title="$t('chat')"
     :body="$t('prompt_terms_conditions')"
     @accept="loadChat"
-    @decline="isRequested = false"
+    @decline="onDeclined"
   />
   </div>
 </template>
@@ -44,11 +46,33 @@ export default {
     loadChat () {
       this.isAccepted = true
       this.provider.onAccepted()
+      this.provider.onSessionLoaded(() => {
+        this.isLoaded = true
+      })
+      this.track('Accepted Opt In')
+      this.provider.onChatOpened(() => this.track('Opened chat'))
+      this.provider.onChatClosed(() => this.track('Closed chat'))
+    },
+    onDeclined () {
+      this.isRequested = false
+      this.isAccepted = false
+      this.track('Declined opt-in')
+      this.$nextTick(() =>  this.$refs.lazyChatButton.focus())
     },
     onLoaded () {
-      this.isLoaded = true
       this.provider.onLoaded()
-    }
+    },
+    handleClick () {
+      this.isRequested = true
+      this.track('Started chat')
+    },
+    track (eventLabel) {
+      this.$ga.event({
+        eventCategory: 'chat',
+        eventAction: 'click',
+        eventLabel
+      })
+    },
   },
   computed: {
     chatButtonIsShown () {
@@ -57,13 +81,14 @@ export default {
     },
     promptIsShown () {
       return (this.isRequested && !this.isAccepted)
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style>
 @import '../app-core/variables.css';
+@import './providers/crisp.css';
 
 .lazy-chat {
   position: fixed;
