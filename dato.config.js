@@ -28,23 +28,25 @@ module.exports = (dato, root, i18n) => {
     i18n.locale = locale
     root.createDataFile(`${dataDir}/${locale}/pages/home.json`, 'json', pageToJson(dato.home, i18n))
 
-    dato.pages.forEach(page => {
-      root.createDataFile(`${dataDir}/${locale}/pages/${page.slug}.json`, 'json', pageToJson(page, i18n))
-    })
+    dato.pages
+      .filter(page => page && page.slug)
+      .forEach(page => {
+        root.createDataFile(`${dataDir}/${locale}/pages/${page.slug}.json`, 'json', pageToJson(page, i18n))
+      })
     root.createDataFile(`${dataDir}/${locale}/messages.json`, 'json', translationsToJson(dato.translations))
   })
 }
 
 function appSettingsToJson(app) {
   const socialLinks = app.socialLinks.toMap().map(item => pick(item, ['id', 'platform', 'url']))
-  return { socialLinks, ...pick(app, ['title', 'contact', 'googleAnalyticsTrackingId', 'crispWebsiteId', 'hotjarId', 'emailAddress', 'experimentId'])}
+  return { socialLinks, ...pick(app, ['title', 'contact', 'googleAnalyticsTrackingId', 'crispWebsiteId', 'hotjarId', 'emailAddress', 'experimentId']) }
 }
 
 /**
  * Write redirects to text with 1 redirect per line
  * @see https://www.netlify.com/docs/redirects/
  */
-function redirectsToText (redirects) {
+function redirectsToText(redirects) {
   const redirectToDefaultLocale = `/ /${defaultLocale}/ 301`
   const redirectRulesFromCms = redirects
     .map(redirect => `${redirect.from} ${redirect.to} ${redirect.statusCode}`)
@@ -52,13 +54,15 @@ function redirectsToText (redirects) {
   return [redirectToDefaultLocale, ...redirectRulesFromCms, ...redirectRules404s].join("\n")
 }
 
-function pageSlugMap (dato, i18n) {
+function pageSlugMap(dato, i18n) {
   i18n.locale = defaultLocale
   return dato.pages.reduce((list, page) => {
     i18n.locale = defaultLocale
     list[page.slug] = locales.reduce((out, locale) => {
       i18n.locale = locale
-      out[locale] = page.slug
+      if (page && page.slug) {
+        out[locale] = page.slug
+      }
       return out
     }, {})
     return list
@@ -99,21 +103,21 @@ function transformItem(item) {
   return item
 }
 
-function pageToJson (page, i18n) {
+function pageToJson(page, i18n) {
   const { title, hasToc, hasShareButton, hasHotjar } = page
 
   const coverImage = page.coverImage ? page.coverImage.toMap() : undefined
 
   const sections = page.sections
-  .filter(({ title, items }) => (typeof title === 'string' && items.length > 0))
-  .map(({ title, items }) => ({
-    title,
-    slug: title && slugify(title, { lower: true }),
-    items: items.toMap()
-      .map(item => ({ ...item, type: item.itemType }))
-      .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
-      .map(transformItem)
-  }))
+    .filter(({ title, items }) => (typeof title === 'string' && items.length > 0))
+    .map(({ title, items }) => ({
+      title,
+      slug: title && slugify(title, { lower: true }),
+      items: items.toMap()
+        .map(item => ({ ...item, type: item.itemType }))
+        .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
+        .map(transformItem)
+    }))
 
   const slug = page.slug ? `${page.slug}/` : '' // makes sure there's always a trailing slash ending each route so we don't get different versions of same page
   const url = `${URL}/${i18n.locale}/${slug}`
@@ -127,7 +131,7 @@ function pageToJson (page, i18n) {
   return { title, slug, slugI18n, seo, sections, hasToc, tocItems, coverImage, url, hasShareButton, hasHotjar }
 }
 
-function formatLink (link) {
+function formatLink(link) {
   const { page, theme, title, url } = link
   if (page) {
     return {
@@ -146,7 +150,7 @@ function formatLink (link) {
   }
 }
 
-function menuToJson (dato, i18n) {
+function menuToJson(dato, i18n) {
   return locales.reduce((menu, locale) => {
     i18n.locale = locale
     const { title, callToAction, isSticky, links } = dato.menu
@@ -160,7 +164,7 @@ function menuToJson (dato, i18n) {
   }, {})
 }
 
-function translationsToJson (translations) {
+function translationsToJson(translations) {
   return translations.reduce((out, item) => {
     out[item.key] = item.value
     return out
