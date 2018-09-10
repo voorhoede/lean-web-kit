@@ -2,6 +2,8 @@ import { crispWebsiteId } from '../../../static/data/app.json'
 
 export const script = 'https://client.crisp.chat/l.js'
 
+export const isEnabled = !!crispWebsiteId
+
 /**
  * By default Crisp only accepts a single callback on an event, like on `chat:closed`.
  * If you push another callback on the same event, the previous callback is removed.

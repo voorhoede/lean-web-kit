@@ -1,5 +1,5 @@
 <template>
-  <div class="lazy-tracking">
+  <div v-if="provider.isEnabled" class="lazy-tracking">
     <!-- Load third-party script conditionally -->
     <script async type="application/javascript"
       v-if="isAccepted"
