@@ -18,8 +18,8 @@ cypress/
 
 If you need a selector to address a specific DOM element, you can use the `v-test` directive:
 
-```html
-<ANY v-test="myTestSelector">
+```vue
+<ANY v-test:myTestSelector>
 ```
 
 This adds a `data-test="myTestSelector"` attribute to the element in the dev and test environment, which you can use in your tests:
