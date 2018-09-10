@@ -1,6 +1,8 @@
 <template>
   <figure class="responsive-image">
-    <img v-if="isVector" :alt="image.alt" :src="image.url" class="responsive-image__img">
+    <lazy-load v-if="isVector">
+      <img :alt="image.alt" :src="image.url" class="responsive-image__img">
+    </lazy-load>
     <div v-if="isBitmap" class="responsive-image__sizer" :style="`max-width:${image.width}px;`">
       <fixed-ratio class="responsive-image__canvas" :width="image.width" :height="image.height">
         <lazy-load>
