@@ -4,5 +4,6 @@
 module.exports = [
   { src: '~/plugins/install-prompt', ssr: false },
   { src: '~/plugins/locale-urls' },
+  { src: '~/plugins/mock-google-analytics' },
   { src: '~/plugins/test-directive' },
 ]
