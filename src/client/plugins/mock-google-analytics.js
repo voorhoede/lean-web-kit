@@ -1,15 +1,15 @@
 import Vue from 'vue'
-import { googleAnalyticsTrackingId} from '../static/data/app.json'
+import { googleAnalyticsTrackingId } from '../static/data/app.json'
 
-Vue.mixin({
-  created() {
-    if (!googleAnalyticsTrackingId) {
+if (!googleAnalyticsTrackingId) {
+  Vue.mixin({
+    created() {
       this.$ga = {
         event() { },
         social() { },
       }
     }
-  }
-})
+  })
+}
 
 
