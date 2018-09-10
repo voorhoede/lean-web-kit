@@ -22,8 +22,6 @@
     "build:server": "netlify-lambda build src/server/functions/",
     "predata": "rimraf src/client/static/data/ src/client/static/_redirects",
     "data": "dato dump",
-    "e2e": "NODE_ENV=testing run-s prebuild build:client && cypress run --config fileServerFolder=dist/client",
-    "e2e-dev": "cypress open --config baseUrl=http://localhost:5326",
     "predev": "rimraf dist/ && npm run data",
     "dev": "run-p dev:*",
     "dev:client": "PORT=5326 nuxt",
@@ -33,7 +31,11 @@
     "precommit": "npm run lint",
     "proxy": "ngrok http 5326",
     "start": "run-p dev:server start:dist",
-    "start:dist": "http-server './dist/client/' -c-1 -o -p 5326 --proxy 'http://localhost:9000/'"
+    "start:dist": "http-server './dist/client/' -c-1 -o -p 5326 --proxy 'http://localhost:9000/'",
+    "test": "run-s test:*",
+    "test:e2e": "NODE_ENV=test run-s prebuild build:client && cypress run --config fileServerFolder=dist/client",
+    "watch": "run-p watch:*",
+    "watch:test-e2e": "cypress open --config baseUrl=http://localhost:5326"
   },
   "dependencies": {
     "@nuxtjs/google-analytics": "^2.0.2",

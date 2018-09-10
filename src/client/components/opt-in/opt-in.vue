@@ -13,13 +13,13 @@
         ref="agreeButton"
         class="button button--primary"
         @click="onAccept"
-        v-test:optInAccept>
+      >
         {{ $t('agree') }}
       </button>
       <button
         class="button"
         @click="onDecline"
-        v-test:optInDecline>
+      >
         {{ $t('decline') }}
       </button>
     </div>

@@ -12,7 +12,6 @@
       class="button button--primary lazy-chat__open-button"
       :class="{ 'lazy-chat__open-button--pending': (isAccepted && !isLoaded) }"
       @click="handleClick"
-      v-test:lazyChatButton
     >
       <span class="a11y-sr-only">{{ $t('chat') }}</span>
     </button>

@@ -1,6 +1,7 @@
 {
   "fixturesFolder": "test/cypress/fixtures",
   "integrationFolder": "test/cypress/integration",
+  "ignoreTestFiles": "*.md",
   "pluginsFile": "test/cypress/plugins",
   "screenshotsFolder": "test/cypress/screenshots",
   "supportFile": "test/cypress/support",
