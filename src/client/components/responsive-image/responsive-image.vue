@@ -1,6 +1,8 @@
 <template>
   <figure class="responsive-image">
-    <img v-if="isVector" :alt="image.alt" :src="image.url" class="responsive-image__img">
+    <lazy-load v-if="isVector">
+      <img :alt="image.alt" :src="image.url" class="responsive-image__img">
+    </lazy-load>
     <div v-if="isBitmap" class="responsive-image__sizer" :style="`max-width:${image.width}px;`">
       <fixed-ratio class="responsive-image__canvas" :width="image.width" :height="image.height">
         <lazy-load>
@@ -28,52 +30,53 @@
 </template>
 
 <script>
-import FixedRatio from '../fixed-ratio'
-import LazyLoad from '../lazy-load'
-import NoScript from '../no-script'
-import imageUrl from '../../lib/image-url'
+import FixedRatio from '../fixed-ratio';
+import LazyLoad from '../lazy-load';
+import NoScript from '../no-script';
+import imageUrl from '../../lib/image-url';
 
 export default {
   components: { FixedRatio, LazyLoad, NoScript },
   props: {
     image: {
       type: Object,
-      required: true,
+      required: true
     },
     widthStep: {
       type: Number,
-      default: 100,
+      default: 100
     }
   },
   data() {
     return {
       width: undefined,
-      isLoaded: false,
-    }
+      isLoaded: false
+    };
   },
   mounted() {
-    const pixelRatio = window.devicePixelRatio || 1
-    const cssWidth = this.$el.getBoundingClientRect().width
-    const width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
-    this.width = Math.min(width, this.image.width)
+    const pixelRatio = window.devicePixelRatio || 1;
+    const cssWidth = this.$el.getBoundingClientRect().width;
+    const width =
+      Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep;
+    this.width = Math.min(width, this.image.width);
   },
   computed: {
     isVector() {
-      return this.image.format === 'svg'
+      return this.image.format === 'svg';
     },
     isBitmap() {
-      return !this.isVector
-    },
+      return !this.isVector;
+    }
   },
   methods: {
     imageUrl(options) {
-      return imageUrl(this.image.url, options)
+      return imageUrl(this.image.url, options);
     },
     onLoad() {
-      this.isLoaded = true
+      this.isLoaded = true;
     }
   }
-}
+};
 </script>
 
 <style>
@@ -97,7 +100,7 @@ export default {
 }
 
 .responsive-image__img:before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   top: 0;
