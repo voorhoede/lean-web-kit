@@ -10,7 +10,7 @@
     <div id="opt-in__text" class="opt-in__text" v-html="body"></div>
     <div class="opt-in__buttons">
       <button
-        data-optin-agree
+        ref="agreeButton"
         class="button button--primary"
         @click="onAccept"
         v-test:optInAccept>
@@ -50,7 +50,7 @@
   },
   mounted () {
     if (!this.isAccepted) {
-      this.$el.querySelector('[data-optin-agree]').focus()
+      this.$refs.agreeButton.focus()
     }
   },
   methods: {
