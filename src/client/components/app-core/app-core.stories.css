@@ -34,3 +34,27 @@
 .links-demo p {
   margin-bottom: .5rem;
 }
+
+.icons-demo li {
+  display: flex;
+  margin-bottom: var(--spacing-default);
+}
+ .icons-demo p {
+  margin: 0;
+}
+
+.icons-demo ul {
+  padding: 0;
+}
+
+.icons-demo img {
+  margin-top: var(--spacing-default);
+}
+
+.icons-demo figure {
+  margin: 0;
+}
+
+.icons-demo figcaption {
+  text-align: left;
+}

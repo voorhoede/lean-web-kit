@@ -51,6 +51,33 @@ storiesOf('Responsive image', module)
       }
     },
   }))
+  .add('Vector (SVG)', () => ({
+    components: { ResponsiveImage },
+    template: `
+      <div>
+        <demo title="Vector" inset>
+          <responsive-image :image="vector" />
+        </demo>
+
+        <demo title="Vector with caption" inset>
+          <responsive-image :image="vectorCaption" />
+        </demo>
+      </div>
+    `,
+    data() {
+      return {
+        vector: {
+          "format": "svg",
+          "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjU2cHgiIGhlaWdodD0iMTg5cHgiIHZpZXdCb3g9IjAgMCAyNTYgMTg5IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIj4KCQk8Zz4KCQkJCTxwb2x5Z29uIGZpbGw9IiM0OEI4ODQiIHBvaW50cz0iMTA5Ljc3NjYgMC4wMDA5IC0wLjAwMDQgMTg4LjIyNTkgMjE5LjU1MjYgMTg4LjIyNTkiPjwvcG9seWdvbj4KCQkJCTxwb2x5Z29uIGZpbGw9IiMzRjdGNzAiIHBvaW50cz0iNzIuODM2MSAxODguMjI2IDI1NS45OTkxIDE4OC4yMjYgMTY0LjQxODEgMzEuMTk4Ij48L3BvbHlnb24+CgkJCQk8cG9seWdvbiBmaWxsPSIjMzY0OTVEIiBwb2ludHM9IjcyLjgzNjEgMTg4LjIyNiAyMTkuNTUyMSAxODguMjI2IDE0Ni4xOTQxIDYyLjQ0NCI+PC9wb2x5Z29uPgoJCTwvZz4KPC9zdmc+Cg=="
+        },
+        vectorCaption: {
+          "format": "svg",
+          "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjU2cHgiIGhlaWdodD0iMTg5cHgiIHZpZXdCb3g9IjAgMCAyNTYgMTg5IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIj4KCQk8Zz4KCQkJCTxwb2x5Z29uIGZpbGw9IiM0OEI4ODQiIHBvaW50cz0iMTA5Ljc3NjYgMC4wMDA5IC0wLjAwMDQgMTg4LjIyNTkgMjE5LjU1MjYgMTg4LjIyNTkiPjwvcG9seWdvbj4KCQkJCTxwb2x5Z29uIGZpbGw9IiMzRjdGNzAiIHBvaW50cz0iNzIuODM2MSAxODguMjI2IDI1NS45OTkxIDE4OC4yMjYgMTY0LjQxODEgMzEuMTk4Ij48L3BvbHlnb24+CgkJCQk8cG9seWdvbiBmaWxsPSIjMzY0OTVEIiBwb2ludHM9IjcyLjgzNjEgMTg4LjIyNiAyMTkuNTUyMSAxODguMjI2IDE0Ni4xOTQxIDYyLjQ0NCI+PC9wb2x5Z29uPgoJCTwvZz4KPC9zdmc+Cg==",
+          "title": "Nuxt logo"
+        },
+      }
+    },
+  }))
   .add('Broken image', () => ({
     components: { ResponsiveImage },
     template: '<responsive-image :image="image" />',

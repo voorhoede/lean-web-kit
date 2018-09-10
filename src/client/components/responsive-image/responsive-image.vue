@@ -1,6 +1,7 @@
 <template>
   <figure class="responsive-image">
-    <div class="responsive-image__sizer" :style="`max-width:${image.width}px;`">
+    <img v-if="isVector" :alt="image.alt" :src="image.url" class="responsive-image__img">
+    <div v-if="isBitmap" class="responsive-image__sizer" :style="`max-width:${image.width}px;`">
       <fixed-ratio class="responsive-image__canvas" :width="image.width" :height="image.height">
         <lazy-load>
           <picture class="responsive-image__picture" v-if="width">
@@ -55,6 +56,14 @@ export default {
     const cssWidth = this.$el.getBoundingClientRect().width
     const width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
     this.width = Math.min(width, this.image.width)
+  },
+  computed: {
+    isVector() {
+      return this.image.format === 'svg'
+    },
+    isBitmap() {
+      return !this.isVector
+    },
   },
   methods: {
     imageUrl(options) {

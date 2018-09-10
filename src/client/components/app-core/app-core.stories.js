@@ -1,24 +1,27 @@
-import { storiesOf } from '@storybook/vue'
-import { withReadme } from 'storybook-readme'
-import readme from './readme.md'
+import { storiesOf } from '@storybook/vue';
+import { withReadme } from 'storybook-readme';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import readme from './readme.md';
 
-import './index.css'
-import './app-core.stories.css'
+import './index.css';
+import './app-core.stories.css';
 
 storiesOf('App core', module)
   .addDecorator(withReadme(readme))
+  .addDecorator(withKnobs)
   .add('Colors', () => ({
-    data(){
+    data() {
       return {
-        colors: [{ varName: 'action-color', color: '#6a9ce4' },
-                 { varName: 'neutral-color', color: '#f5f5f5' },
-                 { varName: 'dark-neutral-color', color: '#4c4c4c' },
-                 { varName: 'background-color', color: '#fff' },
-                 { varName: 'text-color', color: '#000' }],
-      }
+        colors: [
+          { varName: 'action-color', color: '#6a9ce4' },
+          { varName: 'neutral-color', color: '#f5f5f5' },
+          { varName: 'dark-neutral-color', color: '#4c4c4c' },
+          { varName: 'background-color', color: '#fff' },
+          { varName: 'text-color', color: '#000' }
+        ]
+      };
     },
-    template:
-      `<div>
+    template: `<div>
         <demo title="Colors" inset>
           <div class="colors">
             <div v-for="color in this.colors" class="color">
@@ -27,9 +30,12 @@ storiesOf('App core', module)
             </div>
           </div>
         </demo>
-      </div>`,
+      </div>`
   }))
-  .add('Text', () => ({
+  .add('Text', () => {
+    const headingText = text('Heading text', 'She stared through the window at the stars.')
+
+    return {
     template: `
       <div>
         <demo title="Fonts" inset>
@@ -37,24 +43,25 @@ storiesOf('App core', module)
           <p style="font-weight:normal;">Font weight: normal</p>
           <p style="font-weight:bold;">Font weight: bold</p>
         </demo>
-        <demo title="Typography" inset>
+        <demo title="Typography" inset knobs>
           <div class="headings">
             <h2 class="subtitle">Headings</h2>
-            <h1>H1 She stared through the window at the stars.</h1>
-            <h2>H2 She stared through the window at the stars.</h2>
-            <h3>H3 She stared through the window at the stars.</h3>
-            <h4>H4 She stared through the window at the stars.</h4>
-            <h5>H5 She stared through the window at the stars.</h5>
-            <h6>H6 She stared through the window at the stars.</h6>
+            <h1>H1 ${headingText}</h1>
+            <h2>H2 ${headingText}</h2>
+            <h3>H3 ${headingText}</h3>
+            <h4>H4 ${headingText}</h4>
+            <h5>H5 ${headingText}</h5>
+            <h6>H6 ${headingText}</h6>
           </div>
           <div class="paragraphs">
             <h2 class="subtitle">Paragraphs</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vel quam elementum pulvinar etiam non quam lacus suspendisse. Eu tincidunt tortor aliquam nulla.</p>
-            <p>She stared through the window at the <a href="#starts">stars</a>.</p>
+            <p>She stared through the window at the <a href="#stars">stars</a>.</p>
           </div>
         </demo>
-      </div>`,
-  }))
+      </div>`
+    }
+  })
   .add('Lists', () => ({
     template: `
       <div>
@@ -105,21 +112,30 @@ storiesOf('App core', module)
           </ul>
         </demo>
       </div>
-    `,
+    `
   }))
   .add('Buttons', () => ({
     template: `
       <div class="buttons-demo">
-        <demo title="Buttons" inset>
-          <code>class="button"</code>
+        <demo title="Default" inset>
           <button class="button">Default</button>
-          <code>class="button button--primary"</code>
+        </demo>
+        <demo title="Primary" inset>
           <button class="button button--primary">Primary</button>
-          <code>class="button button--primary button--pending"</code>
           <button class="button button--primary button--pending">Pending</button>
         </demo>
+        <demo title="Try it out!" inset knobs>
+          <div>
+            <button class="button ${
+              boolean('Primary button', false) ? 'button--primary ' : ''
+            }
+            ${boolean('Pending button', false) ? 'button--primary button--pending ' : ''}">
+              ${text('Button text', 'Edit me')}
+            </button>
+          </div>
+        </demo>
       </div>
-    `,
+    `
   }))
   .add('Links', () => ({
     template: `
@@ -129,5 +145,32 @@ storiesOf('App core', module)
           <p><a href="https://voorhoede.nl/" target="_blank" rel="noopener" data-outbound>Outbound</a></p>
         </demo>
       </div>
-    `,
+    `
   }))
+  .add('App icons', () => ({
+    data() {
+      return {
+        iconSizes: [ 64, 120, 144, 152, 192, 384, 512 ]
+      }
+    },
+    template: `
+      <div class="icons-demo">
+        <demo title="App icons" inset>
+          <ul>
+            <li v-for="iconSize in this.iconSizes">
+              <figure>
+                <figcaption>
+                  <p>{{iconSize}}x{{iconSize}}</p>
+                  <p>image/png</p>
+                </figcaption>
+                <img 
+                  :style="'height:' + Math.min(192, iconSize) + 'px;width:' + Math.min(192, iconSize) + 'px;'" 
+                  src="/images/logo.svg" :alt="'Icon ' + iconSize + 'x' + iconSize"
+                >
+              </figure>
+            </li>
+          </ul>
+        </demo>
+      </div>
+    `
+  }));

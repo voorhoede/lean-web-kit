@@ -49,11 +49,15 @@ Vue.mixin({
  * Demo component to wrap story items in a consistent layout
  */
 Vue.component('Demo', {
-  props: { inset: { type: Boolean }, title: { type: String } },
+  props: { 
+    inset: { type: Boolean },
+    knobs: { type: Boolean },
+    title: { type: String },
+  },
   template: `
     <section>
       <h1 style="padding:16px; background-color:#F3F3F3; font-weight:700;">
-        {{ title }}
+        {{ title }} <span v-if="knobs" title="Edit via knobs">✎</span>
       </h1>
       <div :style="inset ? 'padding:20px' : ''">
         <slot>Demo</slot>
