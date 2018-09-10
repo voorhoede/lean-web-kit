@@ -35,7 +35,10 @@ src/              <- source files
     functions/    <- Netlify cloud functions
     lib/          <- shared cloud function helpers
 
+test/             <- end-to-end tests and helpers
+
 .env              <- local environment variables
+cypress.json      <- end-to-end test configuration
 dato.config.js    <- data dump configuration
 netlify.toml      <- Netlify build & function config
 nuxt.config.js    <- Nuxt app config
@@ -56,3 +59,5 @@ After installing dependencies using `npm install` the following scripts are avai
 `guide` | Serves guide on [`http://localhost:5327`](http://localhost:5327) for local development.
 `proxy` | Exposes app on localhost to world wide web for testing on other devices.
 `start` | Serves production version of client app from (`/dist/`) on [`http://localhost:5326`](http://localhost:5326).
+`test` | Runs tests on production build of the app.
+`watch` | Runs tests on app during development.

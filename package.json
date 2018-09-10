@@ -31,7 +31,11 @@
     "precommit": "npm run lint",
     "proxy": "ngrok http 5326",
     "start": "run-p dev:server start:dist",
-    "start:dist": "http-server './dist/client/' -c-1 -o -p 5326 --proxy 'http://localhost:9000/'"
+    "start:dist": "http-server './dist/client/' -c-1 -o -p 5326 --proxy 'http://localhost:9000/'",
+    "test": "run-s test:*",
+    "test:e2e": "NODE_ENV=test run-s prebuild build:client && cypress run --config fileServerFolder=dist/client",
+    "watch": "run-p watch:*",
+    "watch:test-e2e": "cypress open --config baseUrl=http://localhost:5326"
   },
   "dependencies": {
     "@nuxtjs/google-analytics": "^2.0.2",
@@ -56,6 +60,7 @@
     "autoprefixer": "9.0.1",
     "babel-eslint": "^8.2.1",
     "cheerio": "^1.0.0-rc.2",
+    "cypress": "3.0.3",
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",

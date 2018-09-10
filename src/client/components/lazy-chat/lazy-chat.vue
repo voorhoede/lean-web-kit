@@ -7,11 +7,11 @@
       @load="onLoaded"
     />
     <button v-show="chatButtonIsShown"
+      type="button"
       ref="lazyChatButton"
       class="button button--primary lazy-chat__open-button"
-      @click="handleClick"
-      type="button"
       :class="{ 'lazy-chat__open-button--pending': (isAccepted && !isLoaded) }"
+      @click="handleClick"
     >
       <span class="a11y-sr-only">{{ $t('chat') }}</span>
     </button>

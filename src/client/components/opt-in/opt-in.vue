@@ -10,9 +10,10 @@
     <div id="opt-in__text" class="opt-in__text" v-html="body"></div>
     <div class="opt-in__buttons">
       <button
-        data-optin-agree
+        ref="agreeButton"
         class="button button--primary"
-        @click="onAccept">
+        @click="onAccept"
+      >
         {{ $t('agree') }}
       </button>
       <button
@@ -26,18 +27,18 @@
 </template>
 
 <script>
-import { isSupported as localStorageSupported } from '../../lib/local-storage'
+  import { isSupported as localStorageSupported } from '../../lib/local-storage'
 
-export default {
-  props: {
-    name: String,
-    title: String,
-    body: String,
-  },
-  data () {
-    const isAccepted = (localStorageSupported)
-      ? localStorage.getItem(this.name)
-      : false
+  export default {
+    props: {
+      name: String,
+      title: String,
+      body: String,
+    },
+    data () {
+      const isAccepted = (localStorageSupported)
+        ? localStorage.getItem(this.name)
+        : false
 
     return { isAccepted }
   },
@@ -49,7 +50,7 @@ export default {
   },
   mounted () {
     if (!this.isAccepted) {
-      this.$el.querySelector('[data-optin-agree]').focus()
+      this.$refs.agreeButton.focus()
     }
   },
   methods: {
@@ -62,13 +63,12 @@ export default {
     onDecline () {
       this.$emit('decline')
     },
-
   }
 }
 </script>
 
 <style>
-@import '../app-core/variables.css';
+  @import '../app-core/variables.css';
 
   .opt-in {
     background-color: var(--background-color);

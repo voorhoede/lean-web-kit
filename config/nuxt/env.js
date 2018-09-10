@@ -12,4 +12,5 @@ require('dotenv-safe').config() // load env variables from .env file into proces
 module.exports = {
   baseUrl: process.env.URL,
   branch: process.env.BRANCH,
+  NODE_ENV: process.env.NODE_ENV,
 }

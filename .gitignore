@@ -1,3 +1,6 @@
+# os files
+.DS_Store
+
 # environment variables
 .env
 .envrc
@@ -18,5 +21,6 @@ src/client/static/_redirects
 src/client/static/sitemap.xml
 src/client/static/sw.js
 
-# os files
-.DS_Store
+# test
+test/cypress/screenshots
+test/cypress/videos
