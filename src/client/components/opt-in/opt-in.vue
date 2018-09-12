@@ -20,6 +20,7 @@
       <button
         class="button"
         @click="onDecline"
+        v-test:optInDeclineButton
       >
         {{ $t('decline') }}
       </button>
