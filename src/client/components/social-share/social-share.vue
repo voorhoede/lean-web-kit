@@ -1,11 +1,11 @@
 <template>
   <div class="social-share">
-    <a class="social-share__button" @click.prevent="showOptions" href="#share" role="button">
+    <a class="social-share__button" @click.prevent="showOptions" href="#share" role="button" v-test:socialShareButton>
       <span class="a11y-sr-only">{{ !optionsAreVisible ? $t('show_sharing_options') : $t('hide_sharing_options') }}</span>
       <img class="social-share__icon" src="/images/share.svg">
     </a>
 
-    <div class="social-share__links" id="share">
+    <div class="social-share__links" id="share" v-test:socialShareLinks>
       <a
         v-for="platform in platforms" :key="platform.name"
         :href="platform.shareUrl({encodedDescription, encodedUrl, title})"
@@ -31,7 +31,7 @@
       </button>
     </div>
 
-    <div :class="{ 'social-share__snackbar--visible' : snackbarIsVisible }" class="social-share__snackbar">
+    <div :class="{ 'social-share__snackbar--visible' : snackbarIsVisible }" class="social-share__snackbar" v-test:socialShareSnackbar>
       {{ $t('link_copied_to_clipboard') }}
     </div>
   </div>
