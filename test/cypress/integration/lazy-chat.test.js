@@ -1,46 +1,47 @@
 import { crispWebsiteId } from '../../../src/client/static/data/app.json'
 
-const lazyChatButtonIdentity = '[data-test="lazyChatButtonIdentity"]'
-const lazyChatOptInIdentity = '[data-test="lazyChatOptInIdentity"]'
+const chatButton = '[data-test="lazyChatButton"]'
+const optInDialog = '[data-test="lazyChatOpt"]'
+const optInAgreeButton = '[data-test="optInAgreeButton"]'
+const chatIsEnabled = !!crispWebsiteId
 
 describe('Lazy chat', () => {
   beforeEach(() => {
     cy.visit('/')
   })
 
-  it('is only present if Crisp ID is set', () => {
-    if (!!crispWebsiteId) {
-      cy.get(lazyChatButtonIdentity).should('be.visible')
+  it('The Lazy Chat button is only present if a Crisp ID is set.', () => {
+    const button = cy.get(chatButton)
+    if (chatIsEnabled) {
+      button.should('be.visible')
     } else {
-      cy.get(lazyChatButtonIdentity).should('not.exist')
+      button.should('not.exist')
     }
   })
 
-  it('asked me to accept the T&C when I hit the chat button ("terms_conditions" === false)', () => {
-    cy.clearLocalStorage()
-    cy.get(lazyChatButtonIdentity).click()
-    cy.get(lazyChatOptInIdentity).should('be.visible')
-  })
+  if (chatIsEnabled) {
+    it("When I haven't accepted the T&C yet, I'm prompt to accept the T&C when I hit the chat button.", () => {
+      cy.clearLocalStorage('terms_conditions')
+      cy.get(chatButton).click()
+      cy.get(optInDialog).should('be.visible')
+    })
 
-  it('dit not ask me to accept the T&C when I hit the chat button ("terms_conditions" === true)', () => {
-    localStorage.setItem('terms_conditions', true);
-    cy.get(lazyChatButtonIdentity).click()
-    cy.get(lazyChatOptInIdentity).should('not.exist')
-  })
+    it('If I have already accepted the T&C, I should not be asked again when I hit the chat button.', () => {
+      localStorage.setItem('terms_conditions', true);
+      cy.get(chatButton).click()
+      cy.get(optInDialog).should('not.exist')
+    })
 
-  it('is only present if T&C is accepted', () => {
-    cy.get(lazyChatButtonIdentity).click()
-    cy.get(`${lazyChatOptInIdentity} .opt-in__buttons`)
-      .children('button.button--primary')
-      .click()
-    cy.get('.crisp-client').should('exist')
-  })
+    it('The Crisp client is only present if the T&C is accepted.', () => {
+      cy.get(chatButton).click()
+      cy.get(optInAgreeButton).click()
+      cy.get('.crisp-client').should('exist')
+    })
 
-  it('setted the focus correctly', () => {
-    cy.get(lazyChatButtonIdentity).click()
-    cy.get(`${lazyChatOptInIdentity} .opt-in__buttons`)
-      .children('button.button--primary')
-      .click()
+    it('Sets the focus on the message input when opening the Crisp client.', () => {
+      cy.get(chatButton).click()
+      cy.get(optInAgreeButton).click()
       cy.focused().should('have.attr', 'name', 'message')
-  })
+    })
+  }
 })
