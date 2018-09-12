@@ -62,7 +62,6 @@ export default {
     },
     onLoaded () {
       this.provider.onLoaded()
-      
     },
     handleClick () {
       this.isRequested = true
