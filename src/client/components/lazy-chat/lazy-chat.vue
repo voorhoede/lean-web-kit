@@ -12,6 +12,7 @@
       class="button button--primary lazy-chat__open-button"
       :class="{ 'lazy-chat__open-button--pending': (isAccepted && !isLoaded) }"
       @click="handleClick"
+      v-test:lazyChatButtonIdentity
     >
       <span class="a11y-sr-only">{{ $t('chat') }}</span>
     </button>
@@ -23,6 +24,7 @@
     :body="$t('prompt_terms_conditions')"
     @accept="loadChat"
     @decline="onDeclined"
+    v-test:lazyChatOptInIdentity
   />
   </div>
 </template>
@@ -60,6 +62,7 @@ export default {
     },
     onLoaded () {
       this.provider.onLoaded()
+      
     },
     handleClick () {
       this.isRequested = true
