@@ -31,20 +31,16 @@ describe('Social share', () => {
   })
 
   it('Social share links should collapse when a link is clicked.', () => {
-    const button = cy.get(socialShareButton)
-
-    button.click()
+    cy.get(socialShareButton).click()
     cy.get(`${socialShareButton}:first-child`).click()
-    button.children().each(link => {
+    cy.get(socialShareButton).children().each(link => {
       cy.wrap(link).should('not.be.visible')
     })
   })
 
   it('Social share sets focus on its button after collapse.', () => {
-    const button = cy.get(socialShareButton)
-
-    button.click()
-    button.click()
+    cy.get(socialShareButton).click()
+    cy.get(socialShareButton).click()
     cy.focused().should('have.attr', 'data-test', 'socialShareButton')
   })
 
