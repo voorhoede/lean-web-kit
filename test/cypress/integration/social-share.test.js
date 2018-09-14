@@ -33,7 +33,7 @@ describe('Social share', () => {
   it('Social share links should collapse when a link is clicked.', () => {
     cy.get(socialShareButton).click()
     cy.get(`${socialShareButton}:first-child`).click()
-    cy.get(socialShareButton).children().each(link => {
+    cy.get(socialShareLinks).children().each(link => {
       cy.wrap(link).should('not.be.visible')
     })
   })
