@@ -4,7 +4,7 @@
     class="app-header"
     :class="{ 'app-header--sticky' : menu.isSticky }"
   >
-    <nuxt-link :to="localeUrl('index')" class="app-header__identity" v-test:appHeaderIdentity>
+    <nuxt-link :to="localeUrl('index')" class="app-header__identity">
       <img class="app-header__logo" src="/images/logo.svg" alt="" width="32" height="40" />
 
       <h1 class="app-header__title">Lean Web Kit<br>
@@ -12,7 +12,7 @@
       </h1>
     </nuxt-link>
 
-    <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }" id="mainmenu">
+    <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }" id="mainmenu" v-test:appHeaderMenu>
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
 
       <ul class="app-header__menu-list">
@@ -33,6 +33,7 @@
         v-if="menu.callToAction"
         class="button button--primary app-header__button app-header__button--desktop"
         :item="menu.callToAction"
+        v-test:appHeaderActionButton
       />
 
       <language-selector :locales="$i18n.locales" class="app-header__language-selector"/>
@@ -46,7 +47,7 @@
       @click.native="closeMenu" />
     </span>
 
-    <button class="app-header__menu-button" @click="toggleMenu" >
+    <button class="app-header__menu-button" @click="toggleMenu" v-test:appHeaderMenuButton>
       <span v-if="menuIsOpen" class="a11y-sr-only">{{ $t('close_menu') }}</span>
       <span v-else class="a11y-sr-only">{{ $t('open_menu') }}</span>
 
