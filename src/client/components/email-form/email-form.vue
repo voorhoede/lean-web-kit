@@ -3,7 +3,8 @@
     v-if="emailAddress"
     :action="`https://formspree.io/${ emailAddress }`"
     class="email-form"
-    method="POST">
+    method="POST"
+    v-test:emailForm>
     <input type="hidden" name="_next" :value="nextUrl" />
     <input type="hidden" name="_subject" :value="form.title" />
     <input type="hidden" name="_language" :value="$i18n.locale" />
@@ -15,7 +16,7 @@
 
     <div class="form-field">
       <label v-if="form.labelEmail" :for="`${formId}-email`" class="email-form__label form-label">{{ form.labelEmail }}</label>
-      <input :id="`${formId}-email`" class="email-form__control form-control" type="email" name="email" placeholder="email@example.com" required>
+      <input :id="`${formId}-email`" class="email-form__control form-control" type="email" name="email" placeholder="email@example.com" required v-test:emailFormField>
       <button class="email-form__submit button button--primary" type="submit">{{ form.labelSubmitButton }}</button>
     </div>
   </form>
