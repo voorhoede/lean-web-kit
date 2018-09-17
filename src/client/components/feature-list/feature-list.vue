@@ -57,7 +57,7 @@ export default {
 }
 
 .feature-item__image {
-  max-width: 150px;
+  max-width: 100px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -69,6 +69,7 @@ export default {
 @media (min-width: 600px) {
   .feature-list {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
   }
 
