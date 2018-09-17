@@ -22,6 +22,10 @@
         :key="index"
         :form="item.form"
       />
+      <feature-list
+        v-if="item.type === 'feature_list'"
+        :key="index"
+        :items="item.features" />
       <link-list
         v-if="item.type === 'link_list'"
         :key="index"
@@ -54,13 +58,14 @@ import ButtonGroup from '../button-group'
 import ContactForm from '../contact-form'
 import DownloadFiles from '../download-files'
 import EmailForm from '../email-form'
+import FeatureList from '../feature-list'
 import LinkList from '../link-list'
 import ResponsiveImage from '../responsive-image'
 import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
 
 export default {
-  components: { ButtonGroup, ContactForm, DownloadFiles, EmailForm, LinkList, ResponsiveImage, ResponsiveVideo, RichText, },
+  components: { ButtonGroup, ContactForm, DownloadFiles, EmailForm, FeatureList, LinkList, ResponsiveImage, ResponsiveVideo, RichText, },
   props: {
     section: {
       type: Object,
