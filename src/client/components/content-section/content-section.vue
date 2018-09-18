@@ -9,6 +9,10 @@
         v-if="item.type === 'button_group'"
        :key="index"
        :items="item.links" />
+      <card-group
+        v-if="item.type === 'card_group'"
+        :key="index"
+        :cards="item.cards" />
       <contact-form
         v-if="item.form && item.form.type === 'contact_form'"
         :key="index"
@@ -51,6 +55,7 @@
 
 <script>
 import ButtonGroup from '../button-group'
+import CardGroup from '../card-group'
 import ContactForm from '../contact-form'
 import DownloadFiles from '../download-files'
 import EmailForm from '../email-form'
@@ -60,7 +65,7 @@ import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
 
 export default {
-  components: { ButtonGroup, ContactForm, DownloadFiles, EmailForm, LinkList, ResponsiveImage, ResponsiveVideo, RichText, },
+  components: { ButtonGroup, CardGroup, ContactForm, DownloadFiles, EmailForm, LinkList, ResponsiveImage, ResponsiveVideo, RichText, },
   props: {
     section: {
       type: Object,
