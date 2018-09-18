@@ -25,7 +25,7 @@
       <feature-list
         v-if="item.type === 'feature_list'"
         :key="index"
-        :items="item.features" />
+        :features="item.features" />
       <link-list
         v-if="item.type === 'link_list'"
         :key="index"

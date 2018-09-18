@@ -1,15 +1,15 @@
 <template>
   <ul class="feature-list">
     <li
-      v-for="item in items"
-      :key="item.id"
+      v-for="feature in features"
+      :key="feature.id"
       class="feature-list__item">
       <div class="feature-item">
         <div class="feature-item__image">
-          <responsive-image :image="item.image" />
+          <responsive-image :image="feature.image" />
         </div>
-        <h3 class="feature-item__title">{{ item.title }}</h3>
-        <rich-text :text="item.body" class="feature-item__body" />
+        <h3 class="feature-item__title">{{ feature.title }}</h3>
+        <rich-text :text="feature.body" class="feature-item__body" />
       </div>
     </li>
   </ul>
@@ -22,7 +22,7 @@ import RichText from '../rich-text'
 export default {
   components: { ResponsiveImage, RichText },
   props: {
-    items: {
+    features: {
       type: Array,
       require: true,
     },
