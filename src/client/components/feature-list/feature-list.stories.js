@@ -137,15 +137,15 @@ storiesOf('Feature list', module)
     template: `
       <div>
         <demo title="Single feature" inset>
-          <feature-list :items="singleItem" />
+          <feature-list :features="singleItem" />
         </demo>
 
         <demo title="Multiple features" inset>
-          <feature-list :items="multipleItems" />
+          <feature-list :features="multipleItems" />
         </demo>
 
         <demo title="Extreme example" inset>
-          <feature-list :items="extremeExample" />
+          <feature-list :features="extremeExample" />
         </demo>
       </div>
       `
@@ -295,15 +295,15 @@ storiesOf('Feature list', module)
     template: `
       <div>
         <demo title="Single feature with body" inset>
-          <feature-list :items="singleItem" />
+          <feature-list :features="singleItem" />
         </demo>
 
         <demo title="Multiple features with body" inset>
-          <feature-list :items="multipleItems" />
+          <feature-list :features="multipleItems" />
         </demo>
 
         <demo title="Extreme example with body" inset>
-          <feature-list :items="extremeExample" />
+          <feature-list :features="extremeExample" />
         </demo>
       </div>
       `
