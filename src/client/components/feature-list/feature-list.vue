@@ -74,7 +74,7 @@ export default {
   }
 
   .feature-list__item {
-    flex-basis: 33%;
+    flex-basis: 30%;
     margin-bottom: 0;
   }
 }
