@@ -73,13 +73,13 @@ function transformItem(item) {
   if (item.type === 'link_list' || item.type === 'button_group') {
     item.links = item.links.map(formatLink)
   }
-  else if (item.type === 'card_group') {
-    item.cards = item.cards.map(card => ({
-      id: card.id,
-      title: card.title,
-      body: card.body,
-      image: card.image,
-      link: formatLink(card.callToAction),
+  if (item.type === 'card_group') {
+    item.cards = item.cards.map(({ id, title, body, image, link }) => ({
+      id,
+      title,
+      body,
+      image,
+      link: formatLink(link)
     }))
   }
   if (item.type === 'form') {

@@ -10,14 +10,14 @@
         <div class="card-item__content">
           <h3 class="card-item__title">
             <nuxt-link
-              v-if="card.link.type === 'page'"
+              v-if="card.link && card.link.type === 'page'"
               :to="localeUrl({ name: 'slug', params: { slug: card.link.slug } })"
               class="card-item__link">
               {{ card.title }}
             </nuxt-link>
           </h3>
           <rich-text :text="card.body" class="card-item__body" />
-          <span class="card-item__call-to-action button">{{ card.link.title }}</span>
+          <span v-if="card.link" class="card-item__call-to-action button">{{ card.link.title }}</span>
         </div>
       </article>
     </li>
