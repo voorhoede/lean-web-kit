@@ -75,13 +75,14 @@ function transformItem(item) {
   }
   else if (item.type === 'card_group') {
     item.cards = item.cards.map(card => ({
+      id: card.id,
       title: card.title,
       body: card.body,
       image: card.image,
-      callToAction: formatLink(card.callToAction),
+      link: formatLink(card.callToAction),
     }))
   }
-  if (item.type === 'form') {
+  else if (item.type === 'form') {
     item.form = Object.assign({}, item.form, {
       type: item.form.itemType,
     })
