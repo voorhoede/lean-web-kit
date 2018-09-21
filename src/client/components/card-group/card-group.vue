@@ -4,31 +4,35 @@
       v-for="card in cards"
       :key="card.id"
       class="card-list__item">
-      <article class="card-item">
-        <div class="card-item__image" :style="`background-image: url(${card.image.url})`"></div>
-        <div class="card-item__content">
-          <h3 class="card-item__title">{{ card.title }}</h3>
-          <rich-text :text="card.body" class="card-item__body" />
-          <button-group :items="card.links" />
-        </div>
-      </article>
+
+        <article class="card-item">
+          <div class="card-item__image" :style="`background-image: url(${card.image.url}?auto=compress&auto=quality&w=700)`"></div>
+          <div class="card-item__content">
+            <h3 class="card-item__title">
+              <nuxt-link
+                :to="localeUrl({ name: 'slug', params: { slug: card.callToAction.slug } })"
+                class="card-item__link">{{ card.title }}</nuxt-link>
+            </h3>
+            <rich-text :text="card.body" class="card-item__body" />
+            <span class="card-item__call-to-action button">{{ card.callToAction.title }}</span>
+          </div>
+        </article>
     </li>
   </ul>
 </template>
 
 <script>
-import ButtonGroup from '../button-group'
 import RichText from '../rich-text'
 import ResponsiveImage from '../responsive-image'
 
 export default {
-  components: { ButtonGroup, ResponsiveImage, RichText },
+  components: { ResponsiveImage, RichText },
   props: {
     cards: {
       type: Array,
       required: true,
     },
-  }
+  },
 }
 </script>
 
@@ -43,9 +47,12 @@ export default {
 
 .card-list__item {
   width: 100%;
+  min-width: 250px;
   padding: 1rem;
 }
+
 .card-item {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -62,6 +69,26 @@ export default {
 
 .card-item__title {
   margin-bottom: var(--spacing-default);
+}
+
+.card-item__link:hover {
+  color: var(--action-color);
+  border: 0;
+}
+
+.card-item__link::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.card-item:hover .card-item__call-to-action {
+  color: var(--background-color);
+  background-color: var(--action-color);
+  border: 1px solid var(--action-color);
 }
 
 .card-item__image {

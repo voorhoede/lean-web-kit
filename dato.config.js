@@ -73,7 +73,15 @@ function transformItem(item) {
   if (item.type === 'link_list' || item.type === 'button_group') {
     item.links = item.links.map(formatLink)
   }
-  else if (item.type === 'form') {
+  else if (item.type === 'card_group') {
+    item.cards = item.cards.map(card => ({
+      title: card.title,
+      body: card.body,
+      image: card.image,
+      callToAction: formatLink(card.callToAction),
+    }))
+  }
+  if (item.type === 'form') {
     item.form = Object.assign({}, item.form, {
       type: item.form.itemType,
     })
@@ -113,7 +121,7 @@ function pageToJson (page, i18n) {
   .map(({ title, items }) => ({
     title,
     slug: title && slugify(title, { lower: true }),
-    items: items.toMap()
+    items: items.toMap(5)
       .map(item => ({ ...item, type: item.itemType }))
       .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
       .map(transformItem)
