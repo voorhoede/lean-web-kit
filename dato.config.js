@@ -79,7 +79,8 @@ function transformItem(item) {
       title,
       body,
       image,
-      link: formatLink(link)
+      link: formatLink(link),
+      callToAction: item.callToAction
     }))
   }
   if (item.type === 'form') {

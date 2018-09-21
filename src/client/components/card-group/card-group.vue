@@ -17,7 +17,7 @@
             </nuxt-link>
           </h3>
           <rich-text :text="card.body" class="card-item__body" />
-          <span v-if="card.link" class="card-item__call-to-action button">{{ card.link.title }}</span>
+          <span v-if="card.callToAction" class="card-item__call-to-action button">{{ card.link.title }}</span>
         </div>
       </article>
     </li>
