@@ -82,7 +82,7 @@ function transformItem(item) {
       link: formatLink(card.callToAction),
     }))
   }
-  else if (item.type === 'form') {
+  if (item.type === 'form') {
     item.form = Object.assign({}, item.form, {
       type: item.form.itemType,
     })

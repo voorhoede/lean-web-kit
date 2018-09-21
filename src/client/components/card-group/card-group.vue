@@ -5,18 +5,21 @@
       :key="card.id"
       class="card-list__item">
 
-        <article class="card-item">
-          <div class="card-item__image" :style="`background-image: url(${card.image.url}?auto=compress&auto=quality&w=700)`"></div>
-          <div class="card-item__content">
-            <h3 class="card-item__title">
-              <nuxt-link
-                :to="localeUrl({ name: 'slug', params: { slug: card.callToAction.slug } })"
-                class="card-item__link">{{ card.title }}</nuxt-link>
-            </h3>
-            <rich-text :text="card.body" class="card-item__body" />
-            <span class="card-item__call-to-action button">{{ card.callToAction.title }}</span>
-          </div>
-        </article>
+      <article class="card-item">
+        <div class="card-item__image" :style="`background-image: url(${card.image.url}?auto=compress&auto=quality&w=700)`"></div>
+        <div class="card-item__content">
+          <h3 class="card-item__title">
+            <nuxt-link
+              v-if="card.link.type === 'page'"
+              :to="localeUrl({ name: 'slug', params: { slug: card.link.slug } })"
+              class="card-item__link">
+              {{ card.title }}
+            </nuxt-link>
+          </h3>
+          <rich-text :text="card.body" class="card-item__body" />
+          <span class="card-item__call-to-action button">{{ card.link.title }}</span>
+        </div>
+      </article>
     </li>
   </ul>
 </template>
