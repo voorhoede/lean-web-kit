@@ -31,7 +31,7 @@ export default {
       this.isIntersected = true
     }
   },
-  unmounted() {
+  beforeDestroy() {
     this.unobserve()
   },
   methods: {
