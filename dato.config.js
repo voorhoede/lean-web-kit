@@ -80,7 +80,6 @@ function transformItem(item) {
       body,
       image,
       link: formatLink(link),
-      callToAction: item.callToAction
     }))
   }
   if (item.type === 'form') {
