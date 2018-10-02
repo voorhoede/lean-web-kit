@@ -59,7 +59,12 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
+  transition: transform 100ms ease-in;
   box-shadow: 0 2px 38px -4px rgba(0,0,0,0.25)
+}
+
+.card-item:hover {
+  transform: scale(1.03);
 }
 
 .card-item__content {
@@ -86,12 +91,6 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-}
-
-.card-item:hover .card-item__call-to-action {
-  color: var(--background-color);
-  background-color: var(--action-color);
-  border: 1px solid var(--action-color);
 }
 
 .card-item__image {
