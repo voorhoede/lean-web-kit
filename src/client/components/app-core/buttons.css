@@ -9,7 +9,7 @@
   font-size: var(--font-size-default);
   color: var(--action-color);
   text-transform: uppercase;
-  letter-spacing: 1px; /* use letter spacing when capitals are used for readability */
+  letter-spacing: .5px; /* use letter spacing when capitals are used for readability */
   background-color: var(--background-color);
   box-shadow: var(--shadow-small-grey);
   border: 1px solid transparent; /* https://twitter.com/AmeliasBrain/status/1026521723888226304 and to match the height of the input fields with the buttons. */
@@ -28,6 +28,14 @@
   color: var(--background-color);
   background-color: var(--action-color);
   border: 1px solid var(--action-color);
+}
+
+.button--stealth:hover {
+  color: var(--action-color);
+  border: 1px solid transparent;
+}
+.button--smaller {
+  font-size: .9rem;
 }
 
 .button--primary:hover,

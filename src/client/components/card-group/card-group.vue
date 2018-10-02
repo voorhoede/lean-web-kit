@@ -8,16 +8,9 @@
       <article class="card-list__item-content">
         <div class="card-list__item-image" :style="`background-image: url(${card.image.url}?auto=compress&auto=quality&w=700)`"></div>
         <div class="card-list__item-info">
-          <h3 class="card-list__item-title">
-            <nuxt-link
-              v-if="card.link && card.link.type === 'page'"
-              :to="localeUrl({ name: 'slug', params: { slug: card.link.slug } })"
-              class="card-item__link">
-              {{ card.title }}
-            </nuxt-link>
-          </h3>
+          <h3 class="card-list__item-title">{{ card.title }}</h3>
           <rich-text :text="card.body" class="card-list__item-body" />
-          <span v-if="card.callToAction" class="button">{{ card.link.title }}</span>
+          <smart-link :item="card.link" class="card-item__link button button--stealth button--smaller" />
         </div>
       </article>
     </li>
@@ -27,9 +20,10 @@
 <script>
 import RichText from '../rich-text'
 import ResponsiveImage from '../responsive-image'
+import SmartLink from '../smart-link'
 
 export default {
-  components: { ResponsiveImage, RichText },
+  components: { ResponsiveImage, RichText, SmartLink },
   props: {
     cards: {
       type: Array,
@@ -59,12 +53,7 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: transform 100ms ease-in;
-  box-shadow: 0 2px 38px -4px rgba(0,0,0,0.25)
-}
-
-.card-list__item-content:hover {
-  transform: scale(1.03);
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.25);
 }
 
 .card-list__item-info {
@@ -84,7 +73,7 @@ export default {
   border: 0;
 }
 
-.card-item__link::after {
+.card-item__link::before {
   content: '';
   position: absolute;
   top: 0;
