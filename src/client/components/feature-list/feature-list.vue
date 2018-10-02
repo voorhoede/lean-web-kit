@@ -4,12 +4,12 @@
       v-for="feature in features"
       :key="feature.id"
       class="feature-list__item">
-      <div class="feature-item">
-        <div class="feature-item__image">
+      <div class="feature-list__item-content">
+        <div class="feature-list__item-image">
           <responsive-image :image="feature.image" />
         </div>
-        <h3 class="feature-item__title">{{ feature.title }}</h3>
-        <rich-text :text="feature.body" class="feature-item__body" />
+        <h3 class="feature-list__item-title">{{ feature.title }}</h3>
+        <rich-text :text="feature.body" class="feature-list__item-body" />
       </div>
     </li>
   </ul>
@@ -46,23 +46,23 @@ export default {
   margin-bottom: 0;
 }
 
-.feature-item {
+.feature-list__item {
   text-align: center;
 }
 
-.feature-item__title {
+.feature-list__item-title {
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: var(--spacing-default);
 }
 
-.feature-item__image {
+.feature-list__item-image {
   max-width: 100px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.feature-item__body {
+.feature-list__item-body {
   margin-bottom: 0;
 }
 
@@ -74,8 +74,14 @@ export default {
   }
 
   .feature-list__item {
-    flex-basis: 30%;
+    flex-basis: 40%;
     margin-bottom: 0;
+  }
+}
+
+@media (min-width: 800px) {
+  .feature-list__item {
+    flex-basis: 30%;
   }
 }
 </style>
