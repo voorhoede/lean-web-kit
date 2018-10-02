@@ -5,10 +5,10 @@
       :key="card.id"
       class="card-list__item">
 
-      <article class="card-item">
-        <div class="card-item__image" :style="`background-image: url(${card.image.url}?auto=compress&auto=quality&w=700)`"></div>
-        <div class="card-item__content">
-          <h3 class="card-item__title">
+      <article class="card-list__item-content">
+        <div class="card-list__item-image" :style="`background-image: url(${card.image.url}?auto=compress&auto=quality&w=700)`"></div>
+        <div class="card-list__item-info">
+          <h3 class="card-list__item-title">
             <nuxt-link
               v-if="card.link && card.link.type === 'page'"
               :to="localeUrl({ name: 'slug', params: { slug: card.link.slug } })"
@@ -16,8 +16,8 @@
               {{ card.title }}
             </nuxt-link>
           </h3>
-          <rich-text :text="card.body" class="card-item__body" />
-          <span v-if="card.callToAction" class="card-item__call-to-action button">{{ card.link.title }}</span>
+          <rich-text :text="card.body" class="card-list__item-body" />
+          <span v-if="card.callToAction" class="button">{{ card.link.title }}</span>
         </div>
       </article>
     </li>
@@ -54,7 +54,7 @@ export default {
   padding: 1rem;
 }
 
-.card-item {
+.card-list__item-content {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -63,11 +63,11 @@ export default {
   box-shadow: 0 2px 38px -4px rgba(0,0,0,0.25)
 }
 
-.card-item:hover {
+.card-list__item-content:hover {
   transform: scale(1.03);
 }
 
-.card-item__content {
+.card-list__item-info {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -75,7 +75,7 @@ export default {
   padding: 1rem;
 }
 
-.card-item__title {
+.card-list__item-title {
   margin-bottom: var(--spacing-default);
 }
 
@@ -93,14 +93,14 @@ export default {
   left: 0;
 }
 
-.card-item__image {
+.card-list__item-image {
   padding-bottom: 56.2%;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.card-item__body {
+.card-list__item-body {
   flex-grow: 1;
   font-size: .9rem;
 }
