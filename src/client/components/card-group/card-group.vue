@@ -4,7 +4,6 @@
       v-for="card in cards"
       :key="card.id"
       class="card-list__item">
-
       <article class="card-list__item-content">
         <div class="card-list__item-image" :style="`background-image: url(${card.image.url}?auto=compress&auto=quality&w=700)`"></div>
         <div class="card-list__item-info">
