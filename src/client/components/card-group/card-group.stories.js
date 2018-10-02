@@ -22,7 +22,6 @@ storiesOf('Card group', module)
               "title": "Hoc enim",
               "slug": "add-your-footer",
             },
-            callToAction: true,
           },
         ],
         multipleItems: [
@@ -38,7 +37,6 @@ storiesOf('Card group', module)
               "title": "Hoc enim",
               "slug": "add-your-footer",
             },
-            callToAction: true,
           },
           {
             "id": "394126",
@@ -48,11 +46,10 @@ storiesOf('Card group', module)
               "url": "https://www.datocms-assets.com/6068/1536933511-hotjar.png"
             },
             "link": {
-              "type": "page",
+              "type": "url",
               "title": "Suo genere",
-              "slug": "add-your-footer",
+              "url": "https://voorhoede.nl/"
             },
-            callToAction: true,
           },
           {
             "id": "394127",
@@ -66,7 +63,6 @@ storiesOf('Card group', module)
               "title": "Ingeniosi vocantur",
               "slug": "add-your-footer",
             },
-            callToAction: true,
           },
           {
             "id": "394128",
@@ -80,7 +76,6 @@ storiesOf('Card group', module)
               "title": "Modo etiam",
               "slug": "add-your-footer",
             },
-            callToAction: true,
           },
           {
             "id": "394129",
@@ -94,7 +89,6 @@ storiesOf('Card group', module)
               "title": "Quod si ita",
               "slug": "add-your-footer",
             },
-            callToAction: true,
           },
         ],
       }
@@ -119,7 +113,6 @@ storiesOf('Card group', module)
           {
             "id": "394125",
             "title": "Unum nescio, quo modo possit",
-            "body": null,
             "image": {
               "url": "https://www.datocms-assets.com/6068/1536933511-hotjar.png"
             },
@@ -128,14 +121,12 @@ storiesOf('Card group', module)
               "title": "Hoc enim",
               "slug": "add-your-footer",
             },
-            callToAction: true,
           },
         ],
         multipleItems: [
           {
             "id": "394125",
             "title": "Unum nescio, quo modo possit",
-            "body": null,
             "image": {
               "url": "https://www.datocms-assets.com/6068/1536933511-hotjar.png"
             },
@@ -144,12 +135,10 @@ storiesOf('Card group', module)
               "title": "Hoc enim",
               "slug": "add-your-footer",
             },
-            callToAction: true,
           },
           {
             "id": "394126",
             "title": "Natura profectae subito a sapientia relictae sint",
-            "body": null,
             "image": {
               "url": "https://www.datocms-assets.com/6068/1536933511-hotjar.png"
             },
@@ -158,12 +147,10 @@ storiesOf('Card group', module)
               "title": "Suo genere",
               "slug": "add-your-footer",
             },
-            callToAction: true,
           },
           {
             "id": "394127",
             "title": "Nec vero sum nescius esse",
-            "body": null,
             "image": {
               "url": "https://www.datocms-assets.com/6068/1536933511-hotjar.png"
             },
@@ -172,12 +159,10 @@ storiesOf('Card group', module)
               "title": "Ingeniosi vocantur",
               "slug": "add-your-footer",
             },
-            callToAction: true,
           },
           {
             "id": "394128",
             "title": "Nam Metrodorum non puto ipsum professum",
-            "body": null,
             "image": {
               "url": "https://www.datocms-assets.com/6068/1536933511-hotjar.png"
             },
@@ -186,12 +171,10 @@ storiesOf('Card group', module)
               "title": "Modo etiam",
               "slug": "add-your-footer",
             },
-            callToAction: true,
           },
           {
             "id": "394129",
             "title": "Neque enim disputari sine reprehensione",
-            "body": null,
             "image": {
               "url": "https://www.datocms-assets.com/6068/1536933511-hotjar.png"
             },
@@ -200,7 +183,6 @@ storiesOf('Card group', module)
               "title": "Quod si ita",
               "slug": "add-your-footer",
             },
-            callToAction: true,
           },
         ],
       }
@@ -212,111 +194,6 @@ storiesOf('Card group', module)
         </demo>
 
         <demo title="Multiple cards" inset>
-          <card-group :cards="multipleItems" />
-        </demo>
-      </div>
-      `
-  }))
-  .add('Card: title', () => ({
-    components: { CardGroup },
-    data() {
-      return {
-        singleItem: [
-          {
-            "id": "394125",
-            "title": "Unum nescio, quo modo possit",
-            "body": null,
-            "image": {
-              "url": "https://www.datocms-assets.com/6068/1536933511-hotjar.png"
-            },
-            "link": {
-              "type": "page",
-              "title": "Hoc enim",
-              "slug": "add-your-footer",
-            }
-          },
-        ],
-        multipleItems: [
-          {
-            "id": "394125",
-            "title": "Unum nescio, quo modo possit",
-            "body": null,
-            "image": {
-              "url": "https://www.datocms-assets.com/6068/1536933511-hotjar.png"
-            },
-            "link": {
-              "type": "page",
-              "title": "Hoc enim",
-              "slug": "add-your-footer",
-            },
-            callToAction: false,
-          },
-          {
-            "id": "394126",
-            "title": "Natura profectae subito a sapientia relictae sint",
-            "body": null,
-            "image": {
-              "url": "https://www.datocms-assets.com/6068/1536933511-hotjar.png"
-            },
-            "link": {
-              "type": "page",
-              "title": "Suo genere",
-              "slug": "add-your-footer",
-            },
-            callToAction: false,
-          },
-          {
-            "id": "394127",
-            "title": "Nec vero sum nescius esse",
-            "body": null,
-            "image": {
-              "url": "https://www.datocms-assets.com/6068/1536933511-hotjar.png"
-            },
-            "link": {
-              "type": "page",
-              "title": "Ingeniosi vocantur",
-              "slug": "add-your-footer",
-            },
-            callToAction: false,
-          },
-          {
-            "id": "394128",
-            "title": "Nam Metrodorum non puto ipsum professum",
-            "body": null,
-            "image": {
-              "url": "https://www.datocms-assets.com/6068/1536933511-hotjar.png"
-            },
-            "link": {
-              "type": "page",
-              "title": "Modo etiam",
-              "slug": "add-your-footer",
-            },
-            callToAction: false,
-          },
-          {
-            "id": "394129",
-            "title": "Neque enim disputari sine reprehensione",
-            "body": null,
-            "image": {
-              "url": "https://www.datocms-assets.com/6068/1536933511-hotjar.png"
-            },
-            "link": {
-              "type": "page",
-              "title": "Quod si ita",
-              "slug": "add-your-footer",
-            },
-            callToAction: false,
-          },
-        ],
-      }
-    },
-    template: `
-      <div>
-        <demo title="Single card" inset>
-          <card-group :cards="singleItem" />
-        </demo>
-
-        <demo title="Single card" inset>
           <card-group :cards="multipleItems" />
         </demo>
       </div>

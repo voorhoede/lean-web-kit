@@ -67,11 +67,6 @@ export default {
   margin-bottom: var(--spacing-default);
 }
 
-.card-item__link:hover {
-  color: var(--action-color);
-  border: 0;
-}
-
 .card-item__link::before {
   content: '';
   position: absolute;
