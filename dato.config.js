@@ -73,6 +73,12 @@ function transformItem(item) {
   if (item.type === 'link_list' || item.type === 'button_group') {
     item.links = item.links.map(formatLink)
   }
+  else if (item.type === 'quote') {
+    const quote = Object.keys(item).reduce(
+      (quote, next) => ({ quote: item}), {})
+    item = quote
+    item.type = quote.quote.type
+  }
   else if (item.type === 'form') {
     item.form = Object.assign({}, item.form, {
       type: item.form.itemType,
