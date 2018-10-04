@@ -78,6 +78,7 @@ function transformItem(item) {
       (quote, next) => ({ quote: item}), {})
     item = quote
     item.type = quote.quote.type
+    delete quote.quote.type
   }
   else if (item.type === 'form') {
     item.form = Object.assign({}, item.form, {
