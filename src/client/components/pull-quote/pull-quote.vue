@@ -39,7 +39,6 @@ export default {
 }
 
 .pull-quote__image {
-  display: inline-block;
   width: 30px;
   margin: 0;
   margin-right: .5rem;
