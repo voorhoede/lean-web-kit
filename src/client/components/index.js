@@ -1,5 +1,6 @@
 export { default as AppFooter } from './app-footer'
 export { default as AppHeader } from './app-header'
+export { default as AppSearch } from './app-search'
 export { default as ContentSection } from './content-section'
 export { default as DownloadFiles } from './download-files'
 export { default as EmailForm } from './email-form'

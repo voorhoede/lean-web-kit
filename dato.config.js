@@ -3,6 +3,7 @@ const cheerio = require('cheerio')
 const dotenv = require('dotenv-safe')
 const { pick, omit } = require('lodash')
 const slugify = require('slugify')
+const striptags = require('striptags')
 
 dotenv.config()
 
@@ -11,6 +12,7 @@ const staticDir = `src/client/static`
 const dataDir = `${staticDir}/data`
 let defaultLocale
 let locales = []
+let searchData = []
 
 module.exports = (dato, root, i18n) => {
   locales = i18n.availableLocales
@@ -34,6 +36,7 @@ module.exports = (dato, root, i18n) => {
       root.createDataFile(`${dataDir}/${locale}/pages/${page.slug}.json`, 'json', pageToJson(page, i18n))
     })
     root.createDataFile(`${dataDir}/${locale}/messages.json`, 'json', translationsToJson(dato.translations))
+    root.createDataFile(`${dataDir}/search-${locale}.json`, 'json', searchIndex())
   })
 }
 
@@ -105,19 +108,17 @@ function transformItem(item) {
 
 function pageToJson (page, i18n) {
   const { title, hasToc, hasShareButton, hasHotjar } = page
-
   const coverImage = page.coverImage ? page.coverImage.toMap() : undefined
-
   const sections = page.sections
-  .filter(({ title, items }) => (typeof title === 'string' && items.length > 0))
-  .map(({ title, items }) => ({
-    title,
-    slug: title && slugify(title, { lower: true }),
-    items: items.toMap()
-      .map(item => ({ ...item, type: item.itemType }))
-      .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
-      .map(transformItem)
-  }))
+    .filter(({ title, items }) => (typeof title === 'string' && items.length > 0))
+    .map(({ title, items }) => ({
+      title,
+      slug: title && slugify(title, { lower: true }),
+      items: items.toMap()
+        .map(item => ({ ...item, type: item.itemType }))
+        .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
+        .map(transformItem)
+    }))
 
   const slug = page.slug ? `${page.slug}/` : '' // makes sure there's always a trailing slash ending each route so we don't get different versions of same page
   const url = `${URL}/${i18n.locale}/${slug}`
@@ -128,7 +129,38 @@ function pageToJson (page, i18n) {
   }, {})
   const tocItems = sections.map(section => pick(section, ['title', 'slug']))
 
+  getPages({ sections, title, slug })
+
   return { title, slug, slugI18n, seo, sections, hasToc, tocItems, coverImage, url, hasShareButton, hasHotjar }
+}
+
+/*
+ * Get specific data from all pages to use for search data
+ */
+function getPages({ sections, title, slug }) {
+  const searchIndex = sections.reduce((sectionAcc, section) => {
+    const sectionItems = section.items.reduce((itemAcc, item) => {
+      if (title && item.type === 'text') {
+        itemAcc.push({
+          title,
+          slug,
+          section: {
+            title: section.title,
+            slug: section.slug,
+            body: striptags(item.body)
+          }
+        })
+      }
+      return itemAcc
+    }, [])
+    return [...sectionAcc, ...sectionItems]
+  }, [])
+
+  searchData = [...searchData, ...searchIndex]
+}
+
+function searchIndex() {
+  return searchData
 }
 
 function formatLink (link) {
