@@ -10,9 +10,9 @@
         <li
           v-for="(searchResult, index) in searchResults"
           :key="index">
-          <p>title: {{ searchResult.title }}</p>
+          <p><nuxt-link :to="`/${$i18n.locale}/${searchResult.slug}#${searchResult.section.slug}`">{{ searchResult.title }}</nuxt-link></p>
           <p>section title: {{ searchResult.section.title }}</p>
-          <p>section body: {{ searchResult.section.body }}</p>
+          <p>{{ searchResult.section.body }}</p>
         </li>
       </ol>
     </div>
