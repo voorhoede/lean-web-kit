@@ -12,7 +12,7 @@
           :key="index">
           <p><nuxt-link :to="`/${$i18n.locale}/${searchResult.slug}#${searchResult.section.slug}`">{{ searchResult.title }}</nuxt-link></p>
           <p>section title: {{ searchResult.section.title }}</p>
-          <p>{{ searchResult.section.body }}</p>
+          <rich-text :text="searchResult.section.body" />
         </li>
       </ol>
     </div>
@@ -21,8 +21,10 @@
 
 <script>
 import fusejs from 'fuse.js'
+import RichText from '../rich-text'
 
 export default {
+  components: { RichText },
   props: {
     pages: {
       type: Array,
@@ -38,7 +40,7 @@ export default {
   methods: {
     onChange () {
       const options = {
-        threshold: 0.3,
+        threshold: 0.4,
         minMatchCharLength: 3,
         keys: ['title', 'section.title', 'section.body']
       }
