@@ -97,4 +97,16 @@ export default {
   font-size: var(--font-size-extra-large);
 }
 
+.content-section .rich-text {
+  margin-bottom: var(--spacing-default);
+}
+
+.content-section .responsive-image {
+  margin-bottom: var(--spacing-default);
+}
+
+.content-section .responsive-video {
+  margin-bottom: var(--spacing-double);
+}
+
 </style>
