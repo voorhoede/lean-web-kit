@@ -81,15 +81,6 @@ export default {
 <style>
 @import '../app-core/variables.css';
 
-.responsive-image {
-  margin-bottom: var(--spacing-double);
-}
-
-.responsive-image__sizer {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .responsive-image__canvas {
   background-color: var(--neutral-color);
 }

@@ -11,12 +11,6 @@ export default {
 <style>
 @import '../app-core/variables.css';
 
-.rich-text {
-  width: 100%;
-  max-width: var(--max-width);
-  margin-bottom: var(--spacing-double);
-}
-
 .rich-text td {
   padding: var(--spacing-half);
 }
