@@ -33,8 +33,8 @@ module.exports = (dato, root, i18n) => {
     dato.pages
       .filter(page => page && page.slug)
       .forEach(page => {
-      root.createDataFile(`${dataDir}/${locale}/pages/${page.slug}.json`, 'json', pageToJson(page, i18n))
-    })
+        root.createDataFile(`${dataDir}/${locale}/pages/${page.slug}.json`, 'json', pageToJson(page, i18n))
+      })
     root.createDataFile(`${dataDir}/${locale}/messages.json`, 'json', translationsToJson(dato.translations))
     root.createDataFile(`${dataDir}/search-${locale}.json`, 'json', searchIndex())
   })
@@ -42,14 +42,14 @@ module.exports = (dato, root, i18n) => {
 
 function appSettingsToJson(app) {
   const socialLinks = app.socialLinks.toMap().map(item => pick(item, ['id', 'platform', 'url']))
-  return { socialLinks, ...pick(app, ['title', 'contact', 'googleAnalyticsTrackingId', 'crispWebsiteId', 'hotjarId', 'emailAddress', 'experimentId'])}
+  return { socialLinks, ...pick(app, ['title', 'contact', 'googleAnalyticsTrackingId', 'crispWebsiteId', 'hotjarId', 'emailAddress', 'experimentId']) }
 }
 
 /**
  * Write redirects to text with 1 redirect per line
  * @see https://www.netlify.com/docs/redirects/
  */
-function redirectsToText (redirects) {
+function redirectsToText(redirects) {
   const redirectToDefaultLocale = `/ /${defaultLocale}/ 301`
   const redirectRulesFromCms = redirects
     .map(redirect => `${redirect.from} ${redirect.to} ${redirect.statusCode}`)
@@ -57,7 +57,7 @@ function redirectsToText (redirects) {
   return [redirectToDefaultLocale, ...redirectRulesFromCms, ...redirectRules404s].join("\n")
 }
 
-function pageSlugMap (dato, i18n) {
+function pageSlugMap(dato, i18n) {
   i18n.locale = defaultLocale
   return dato.pages.reduce((list, page) => {
     i18n.locale = defaultLocale
@@ -106,7 +106,7 @@ function transformItem(item) {
   return item
 }
 
-function pageToJson (page, i18n) {
+function pageToJson(page, i18n) {
   const { title, hasToc, hasShareButton, hasHotjar } = page
   const coverImage = page.coverImage ? page.coverImage.toMap() : undefined
   const sections = page.sections
@@ -138,32 +138,36 @@ function pageToJson (page, i18n) {
  * Get specific data from all pages to use for search data
  */
 function getPages({ sections, title, slug }) {
-  const searchIndex = sections.reduce((sectionAcc, section) => {
-    const sectionItems = section.items.reduce((itemAcc, item) => {
-      if (title && item.type === 'text') {
-        itemAcc.push({
-          title,
-          slug,
-          section: {
-            title: section.title,
-            slug: section.slug,
-            body: striptags(item.body)
-          }
-        })
+  const body = sections.flatMap(sectionItem =>
+    sectionItem.items.flatMap(item => {
+      if (item.type === 'text' && item.body) {
+        return item.body
       }
-      return itemAcc
-    }, [])
-    return [...sectionAcc, ...sectionItems]
-  }, [])
+    })
+  ).join(' ')
 
-  searchData = [...searchData, ...searchIndex]
+  if (!body) {
+    return false
+  }
+
+  const page = {
+    title,
+    slug,
+    body: striptags(body)
+  }
+
+  searchData = [...searchData, page]
 }
 
 function searchIndex() {
+  addIndex()
   return searchData
 }
+function addIndex() {
+  searchData = searchData.map((item, index) => ({ id: index, ...item }))
+}
 
-function formatLink (link) {
+function formatLink(link) {
   const { page, theme, title, url } = link
   if (page) {
     return {
@@ -182,7 +186,7 @@ function formatLink (link) {
   }
 }
 
-function menuToJson (dato, i18n) {
+function menuToJson(dato, i18n) {
   return locales.reduce((menu, locale) => {
     i18n.locale = locale
     const { title, callToAction, isSticky, links } = dato.menu
@@ -196,7 +200,7 @@ function menuToJson (dato, i18n) {
   }, {})
 }
 
-function translationsToJson (translations) {
+function translationsToJson(translations) {
   return translations.reduce((out, item) => {
     out[item.key] = item.value
     return out

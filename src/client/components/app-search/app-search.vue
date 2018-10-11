@@ -10,9 +10,8 @@
         <li
           v-for="(searchResult, index) in searchResults"
           :key="index">
-          <p><nuxt-link :to="`/${$i18n.locale}/${searchResult.slug}#${searchResult.section.slug}`">{{ searchResult.title }}</nuxt-link></p>
-          <p>section title: {{ searchResult.section.title }}</p>
-          <rich-text :text="searchResult.section.body" />
+          <p><nuxt-link :to="`/${$i18n.locale}/${searchResult.slug}`">{{ searchResult.title }}</nuxt-link></p>
+          <rich-text :text="searchResult.body" />
         </li>
       </ol>
     </div>
@@ -41,8 +40,9 @@ export default {
     onChange () {
       const options = {
         threshold: 0.4,
+        shouldSort: true,
         minMatchCharLength: 3,
-        keys: ['title', 'section.title', 'section.body']
+        keys: ['title', 'body']
       }
 
       const fuse = new fusejs(this.pages, options)
