@@ -6,6 +6,7 @@
       v-model.trim="searchTerm"
       placeholder="Search site" />
     <div>
+      <div v-if="searchResultsCount">{{ searchResultsCount }} search results found</div>
       <ol>
         <li
           v-for="(searchResult, index) in searchResults"
@@ -33,22 +34,21 @@ export default {
   data () {
     return {
       searchTerm: '',
-      searchResults: []
+      searchResults: [],
+      searchResultsCount: 0
     }
   },
   methods: {
     onChange () {
-      const options = {
-        threshold: 0.4,
-        shouldSort: true,
-        minMatchCharLength: 3,
-        keys: ['title', 'body']
-      }
-
-      const fuse = new fusejs(this.pages, options)
-      this.searchResults = fuse.search(this.searchTerm)
+      this.searchResults = []
+      const findSearchTerm = this.pages.forEach(page => {
+        const hasFoundText = page.body.indexOf(this.searchTerm) !== -1
+        if (this.searchTerm.length >= 3 && hasFoundText) {
+          this.searchResults.push(page)
+        }
+      })
+      this.searchResultsCount = this.searchResults.length
     }
   }
 }
 </script>
-
