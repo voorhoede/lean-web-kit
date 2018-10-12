@@ -3,19 +3,25 @@
     <page-header :title="page.title" :subtitle="page.subtitle" :image="page.coverImage" />
 
     <div class="page-layout__body">
-      <div
-        v-if="page.hasToc && page.tocItems.length"
-        class="page-layout__sidebar"
-      >
-        <table-of-contents :items="page.tocItems" />
-      </div>
-
-      <div class="page-layout__sections">
-        <content-section 
-          v-for="(section, index) in page.sections" 
-          :key="index" 
-          :section="section" 
-        />
+      <div class="page-layout__columns">
+        <div class="page-layout__column" v-if="page.columns.length === 1">
+          <div
+            v-if="page.hasToc && page.tocItems.length && page.columns.length"
+            class="page-layout__sidebar">
+            <table-of-contents :items="page.tocItems" />
+          </div>
+        </div>
+        <div
+          v-for="(column, columnIndex) in page.columns"
+          :key="columnIndex"
+          class="page-layout__column">
+          <div class="page-layout__sections">
+            <content-section
+              v-for="(section, sectionIndex) in column"
+              :key="sectionIndex"
+              :section="section" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -28,7 +34,7 @@ import TableOfContents from '../table-of-contents'
 
 export default {
   components: { ContentSection, PageHeader, TableOfContents },
-  
+
   props: {
     page: { type: Object, required: true }
   },
@@ -64,6 +70,18 @@ export default {
     flex-grow: 1;
     margin: 0 var(--spacing-double) 0 0;
     max-width: 300px;
+  }
+
+  .page-layout__columns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-layout__column {
+    width: 48%;
   }
 }
 </style>
