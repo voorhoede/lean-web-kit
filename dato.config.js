@@ -104,11 +104,12 @@ function transformItem(item) {
 }
 
 function pageToJson(page, i18n) {
-  const { title, hasToc, hasShareButton, hasHotjar } = page
-  const coverImage = page.coverImage ? page.coverImage.toMap() : undefined
   if (!page.columns) {
     return
   }
+
+  const { title, hasToc, hasShareButton, hasHotjar } = page
+  const coverImage = page.coverImage ? page.coverImage.toMap() : undefined
   const columns = page.columns
     .toMap()
     .map(column =>
@@ -130,9 +131,9 @@ function pageToJson(page, i18n) {
     i18n.withLocale(locale, () => out[locale] = page.slug || '')
     return out
   }, {})
-  // const tocItems = sections.map(section => pick(section, ['title', 'slug']))
+  const tocItems = columns.length === 1 ? columns[0].map(section => pick(section, ['title', 'slug'])) : []
 
-  return { title, slug, slugI18n, seo, columns, hasToc, coverImage, url, hasShareButton, hasHotjar }
+  return { title, slug, slugI18n, seo, hasToc, tocItems, coverImage, url, hasShareButton, hasHotjar, columns, }
 }
 
 function formatLink(link) {
