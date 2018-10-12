@@ -42,12 +42,21 @@ export default {
     onChange () {
       this.searchResults = []
       const findSearchTerm = this.pages.forEach(page => {
-        const hasFoundText = page.body.indexOf(this.searchTerm) !== -1
+        const index = page.body.indexOf(this.searchTerm)
+        const hasFoundText = index !== -1
         if (this.searchTerm.length >= 3 && hasFoundText) {
+          this.trimSearchResult({ page })
+          let highlightTerm = page.body.substring(index, index + this.searchTerm.length)
+          highlightTerm = `...${page.body.slice(index - 50, index + 50)}...`
+          page.body = highlightTerm
           this.searchResults.push(page)
         }
       })
       this.searchResultsCount = this.searchResults.length
+    },
+    trimSearchResult({ page }) {
+      console.log(page.title)
+
     }
   }
 }

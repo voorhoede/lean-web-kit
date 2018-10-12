@@ -153,18 +153,18 @@ function getPages({ sections, title, slug }) {
   const page = {
     title,
     slug,
-    body: striptags(body)
+    body: cleanString(body)
   }
 
   searchData = [...searchData, page]
 }
 
-function searchIndex() {
-  addIndex()
-  return searchData
+function cleanString(str) {
+  return striptags(str.replace(/\n/g, '').toLowerCase())
 }
-function addIndex() {
-  searchData = searchData.map((item, index) => ({ id: index, ...item }))
+
+function searchIndex() {
+  return searchData
 }
 
 function formatLink(link) {
