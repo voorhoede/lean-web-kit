@@ -2,7 +2,6 @@
  * @see https://nuxtjs.org/api/configuration-build
  */
 module.exports = {
-  vendor: ['babel-polyfill', 'unfetch/polyfill'],
   postcss: [
     require('postcss-import')(),
     require('postcss-custom-properties')(),
@@ -11,14 +10,14 @@ module.exports = {
   /*
   ** Run ESLint on save
   */
-  extend (config, { isDev, isClient }) {
+  extend(config, { isDev }) {
     config.module.rules.forEach((rule) => {
       if (rule.test.toString() === '/\\.(png|jpe?g|gif|svg|webp)$/') {
         rule.test = /\.(png|jpe?g|gif|webp)$/
       }
     })
 
-    if (isDev && isClient) {
+    if (isDev && process.client) {
       config.module.rules.push({
         enforce: 'pre',
         test: /\.(js|vue)$/,
