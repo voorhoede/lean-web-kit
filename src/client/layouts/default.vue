@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import babelPolyfill from 'babel-polyfill'
+
 import menuI18n from '../static/data/menu.json'
 import { AppFooter, AppHeader, LazyChat, SkipLinks, TrackOutboundLinks } from '../components'
 
@@ -26,5 +28,4 @@ export default {
 
 <style>
 @import '../components/app-core/index.css';
-
 </style>
