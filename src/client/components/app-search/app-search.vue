@@ -4,8 +4,9 @@
       type="search"
       @input="onChange"
       v-model.trim="searchTerm"
-      placeholder="Search site" />
-    <div>
+      placeholder="Search site"
+      class="app-search" />
+    <div class="search-results">
       <div v-if="searchResultsCount">{{ searchResultsCount }} search results found</div>
       <ol>
         <li
@@ -45,18 +46,18 @@ export default {
         const index = page.body.indexOf(this.searchTerm)
         const hasFoundText = index !== -1
         if (this.searchTerm.length >= 3 && hasFoundText) {
-          this.trimSearchResult({ page })
-          let highlightTerm = page.body.substring(index, index + this.searchTerm.length)
-          highlightTerm = `...${page.body.slice(index - 50, index + 50)}...`
-          page.body = highlightTerm
+          page.body = this.trimSearchResult({ page, index })
           this.searchResults.push(page)
         }
       })
       this.searchResultsCount = this.searchResults.length
     },
-    trimSearchResult({ page }) {
+    trimSearchResult({ page, index }) {
       console.log(page.title)
-
+      let highlightTerm = page.body.substring(index, index + this.searchTerm.length)
+      console.log(highlightTerm)
+      highlightTerm = `...${page.body.slice(index - 15, index + 15)}...`
+      return highlightTerm
     }
   }
 }
