@@ -42,13 +42,14 @@
     "@nuxtjs/proxy": "^1.2.4",
     "@nuxtjs/pwa": "2.0.8",
     "@nuxtjs/sitemap": "0.1.1",
+    "babel-polyfill": "^6.26.0",
     "dotenv": "^6.0.0",
     "dotenv-safe": "^6.0.0",
     "normalize.css": "^8.0.0",
     "nuxt": "2.1.0",
     "nuxt-i18n": "^4.0.0",
     "query-string": "5.1.1",
-    "unfetch": "3.1.0"
+    "unfetch": "^4.0.1"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.7",
