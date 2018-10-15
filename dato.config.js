@@ -146,7 +146,7 @@ function getPages({ sections, title, slug }) {
     })
   ).join(' ')
 
-  if (!body) {
+  if (!body || body === ' ') {
     return false
   }
 
@@ -160,7 +160,13 @@ function getPages({ sections, title, slug }) {
 }
 
 function cleanString(str) {
-  return striptags(str.replace(/\n/g, '').toLowerCase())
+  const unicodeHexRegex = /&#x[0-9a-fA-F]{4,5};/g
+  const newLine = /\n/g
+  const body = str
+    .replace(newLine, '')
+    .replace(unicodeHexRegex, '')
+    .toLowerCase()
+  return striptags(body)
 }
 
 function searchIndex() {
