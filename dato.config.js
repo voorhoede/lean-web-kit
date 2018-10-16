@@ -166,7 +166,7 @@ function cleanString(str) {
     .replace(newLine, '')
     .replace(unicodeHexRegex, '')
     .toLowerCase()
-  return striptags(body)
+  return striptags(body, [], ' ')
 }
 
 function searchIndex() {

@@ -1,18 +1,21 @@
 <template>
   <div>
-    <input
-      type="search"
-      @input="onChange"
-      v-model.trim="searchTerm"
-      placeholder="Search site"
-      class="app-search" />
+    <form :action="`/${$i18n.locale}/search/`" method="get">
+      <input
+        type="search"
+        @input="onChange"
+        v-model.trim="searchTerm"
+        placeholder="Type to search"
+        class="form-control" />
+    </form>
+
     <div class="search-results">
-      <div v-if="searchResultsCount">{{ searchResultsCount }} search results found</div>
+      <div v-if="searchResultsCount">{{ searchResultsCount }} results found</div>
       <ol>
         <li
           v-for="(searchResult, index) in searchResults"
           :key="index">
-          <p><nuxt-link :to="`/${$i18n.locale}/${searchResult.slug}`">{{ searchResult.title }}</nuxt-link></p>
+          <h2 class="search-results__title"><nuxt-link :to="`/${$i18n.locale}/${searchResult.slug}`">{{ searchResult.title }}</nuxt-link></h2>
           <rich-text :text="searchResult.body" />
         </li>
       </ol>
@@ -21,7 +24,6 @@
 </template>
 
 <script>
-import fusejs from 'fuse.js'
 import RichText from '../rich-text'
 
 export default {
@@ -29,7 +31,7 @@ export default {
   props: {
     pages: {
       type: Array,
-      required: true
+      required: false
     }
   },
   data () {
@@ -42,23 +44,32 @@ export default {
   methods: {
     onChange () {
       this.searchResults = []
-      const findSearchTerm = this.pages.forEach(page => {
+      this.pages.forEach(page => {
         const index = page.body.indexOf(this.searchTerm)
-        const hasFoundText = index !== -1
-        if (this.searchTerm.length >= 3 && hasFoundText) {
-          page.body = this.trimSearchResult({ page, index })
-          this.searchResults.push(page)
+        if (this.searchTerm.length >= 3 && index !== -1) {
+          const body = this.trimSearchResult({ page, index })
+          const resultPage = Object.assign({}, page, { body })
+          this.searchResults.push(resultPage)
         }
       })
       this.searchResultsCount = this.searchResults.length
     },
     trimSearchResult({ page, index }) {
-      console.log(page.title)
-      let highlightTerm = page.body.substring(index, index + this.searchTerm.length)
-      console.log(highlightTerm)
-      highlightTerm = `...${page.body.slice(index - 15, index + 15)}...`
-      return highlightTerm
+      const highlightTerm = page.body.substring(index, index + this.searchTerm.length)
+      const searchResultBody = `...${page.body.slice(index - 50, index + 50)}...`
+      const highlightSearchResult = searchResultBody.replace(highlightTerm, `<span class="search-results__highlight">${highlightTerm}</span>`)
+      return highlightSearchResult
     }
   }
 }
 </script>
+
+<style>
+.search-results__title {
+  font-size: 1rem;
+}
+
+.search-results__highlight {
+  background-color: yellow;
+}
+</style>
