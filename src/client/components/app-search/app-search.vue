@@ -1,25 +1,25 @@
 <template>
   <div>
-    <form :action="`/${$i18n.locale}/search/`" method="get">
+    <form
+      :action="`/${$i18n.locale}/search/`"
+      method="get"
+      class="form-search">
       <input
         type="search"
         @input="onChange"
         v-model.trim="searchTerm"
         placeholder="Type to search"
         class="form-control" />
-    </form>
 
-    <div class="search-results">
-      <div v-if="searchResultsCount">{{ searchResultsCount }} results found</div>
-      <ol>
-        <li
-          v-for="(searchResult, index) in searchResults"
-          :key="index">
-          <h2 class="search-results__title"><nuxt-link :to="`/${$i18n.locale}/${searchResult.slug}`">{{ searchResult.title }}</nuxt-link></h2>
-          <rich-text :text="searchResult.body" />
-        </li>
-      </ol>
-    </div>
+        <ol v-if="searchResultsCount" class="search-results">
+          <li
+            v-for="(searchResult, index) in searchResults"
+            :key="index">
+            <h2 class="search-results__title"><nuxt-link :to="`/${$i18n.locale}/${searchResult.slug}`">{{ searchResult.title }}</nuxt-link></h2>
+            <rich-text :text="searchResult.body" />
+          </li>
+        </ol>
+    </form>
   </div>
 </template>
 
@@ -57,15 +57,35 @@ export default {
     trimSearchResult({ page, index }) {
       const highlightTerm = page.body.substring(index, index + this.searchTerm.length)
       const searchResultBody = `...${page.body.slice(index - 50, index + 50)}...`
-      const highlightSearchResult = searchResultBody.replace(highlightTerm, `<span class="search-results__highlight">${highlightTerm}</span>`)
-      return highlightSearchResult
+      return this.highlightSearchResult(searchResultBody, highlightTerm)
+    },
+    highlightSearchResult(str, highlightTerm) {
+      return str.replace(highlightTerm, `<span class="search-results__highlight">${highlightTerm}</span>`)
     }
   }
 }
 </script>
 
 <style>
-.search-results__title {
+.form-search {
+  position: relative;
+}
+
+.search-results {
+  list-style: none;
+  padding: 1rem;
+  position: absolute;
+  top: calc(100% + 1rem);
+  height: 300px;
+  width: 400px;
+  overflow: hidden;
+  overflow-y: auto;
+  background: var(--background-color);
+  border-radius: var(--border-radius-small);
+  border: 1px solid var(--text-light-color);
+}
+
+.search-results .search-results__title {
   font-size: 1rem;
 }
 
