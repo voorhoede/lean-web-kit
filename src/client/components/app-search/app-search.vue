@@ -7,41 +7,36 @@
       <input
         type="search"
         @input="onChange"
+        @click="onChange"
         v-model.trim="searchTerm"
         placeholder="Type to search"
         class="form-control" />
-
-        <ol v-if="searchResultsCount" class="search-results">
-          <li
-            v-for="(searchResult, index) in searchResults"
-            :key="index">
-            <h2 class="search-results__title"><nuxt-link :to="`/${$i18n.locale}/${searchResult.slug}`">{{ searchResult.title }}</nuxt-link></h2>
-            <rich-text :text="searchResult.body" />
-          </li>
-        </ol>
+        <search-results
+          v-if="showSearchResults"
+          @close="onClose"
+          :results="searchResults" />
     </form>
   </div>
 </template>
 
 <script>
 import RichText from '../rich-text'
+import SearchResults from '../search-results'
 
 export default {
-  components: { RichText },
-  props: {
-    pages: {
-      type: Array,
-      required: false
-    }
-  },
+  components: { RichText, SearchResults },
   data () {
     return {
       searchTerm: '',
       searchResults: [],
-      searchResultsCount: 0
+      showSearchResults: false,
+      pages: require(`~/static/data/search-${this.$i18n.locale}.json`)
     }
   },
   methods: {
+    onClose() {
+      this.showSearchResults = false
+    },
     onChange () {
       this.searchResults = []
       this.pages.forEach(page => {
@@ -52,7 +47,11 @@ export default {
           this.searchResults.push(resultPage)
         }
       })
-      this.searchResultsCount = this.searchResults.length
+      if (this.searchTerm === '' || this.searchResultsCount === 0) {
+        this.showSearchResults = false
+      } else {
+        this.showSearchResults = true
+      }
     },
     trimSearchResult({ page, index }) {
       const highlightTerm = page.body.substring(index, index + this.searchTerm.length)
@@ -61,6 +60,11 @@ export default {
     },
     highlightSearchResult(str, highlightTerm) {
       return str.replace(highlightTerm, `<span class="search-results__highlight">${highlightTerm}</span>`)
+    }
+  },
+  computed: {
+    searchResultsCount () {
+      return this.searchResults.length
     }
   }
 }
@@ -73,9 +77,9 @@ export default {
 
 .search-results {
   list-style: none;
-  padding: 1rem;
+  padding: var(--spacing-default);
   position: absolute;
-  top: calc(100% + 1rem);
+  top: calc(100% + var(--spacing-half));
   height: 300px;
   width: 400px;
   overflow: hidden;
@@ -83,10 +87,11 @@ export default {
   background: var(--background-color);
   border-radius: var(--border-radius-small);
   border: 1px solid var(--text-light-color);
+  box-shadow: var(--shadow-small-grey);
 }
 
 .search-results .search-results__title {
-  font-size: 1rem;
+  font-size: var(--spacing-default);
 }
 
 .search-results__highlight {
