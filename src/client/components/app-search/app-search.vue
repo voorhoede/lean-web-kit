@@ -27,6 +27,8 @@
 import RichText from '../rich-text'
 import SearchResults from '../search-results'
 
+const trimCharacters = 50
+
 export default {
   components: { RichText, SearchResults },
   data () {
@@ -55,7 +57,7 @@ export default {
           this.searchResults.push(resultPage)
         }
       })
-      if (this.searchResults.length === 0) {
+      if (!this.searchResults.length) {
         this.showSearchResults = false
       } else {
         this.showSearchResults = true
@@ -63,7 +65,8 @@ export default {
     },
     trimSearchResult({ page, index }) {
       const highlightTerm = page.body.substring(index, index + this.searchTerm.length)
-      const searchResultBody = `...${page.body.slice(index - 50, index + 50)}...`
+      const trimLeft = index < trimCharacters ? 0 : index - trimCharacters
+      const searchResultBody = `...${page.body.slice(trimLeft, index + this.searchTerm.length + trimCharacters)}...`
       return this.highlightSearchResult(searchResultBody, highlightTerm)
     },
     highlightSearchResult(str, highlightTerm) {
