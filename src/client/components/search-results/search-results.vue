@@ -3,10 +3,10 @@
     <li
       v-for="(result, index) in results"
       :key="index">
-      <h2 class="search-results__title">
-        <nuxt-link :to="`/${$i18n.locale}/${result.slug}`" @click.native="$emit('close')">{{ result.title }}</nuxt-link>
+      <h2 class="search-results__title" @mousedown="onClick(index)">
+        <nuxt-link :to="`/${locale}/${result.slug}`">{{ result.title }}</nuxt-link>
       </h2>
-      <rich-text :text="result.body" />
+      <rich-text :text="result.body" class="search-results__body" />
     </li>
   </ol>
 </template>
@@ -20,17 +20,27 @@ export default {
     results: {
       type: Array,
       required: true
-    }
-  },
-  data () {
-    return {
-      closeSearchResults: false
+    },
+    locale: {
+      type: String,
+      required: true
     }
   },
   methods: {
-    close () {
-      this.closeSearchResults = true
+    /**
+       * Using mousedown event with a router push to make links in the search results work combined
+       * with the blur event on the <app-search /> component.
+       */
+    onClick (index) {
+      this.$emit('close')
+      this.$router.push({ path: `/${this.locale}/${ this.results[index].slug }` })
     }
   }
 }
 </script>
+
+<style>
+.search-results__body {
+  color: var(--text-light-color);
+}
+</style>

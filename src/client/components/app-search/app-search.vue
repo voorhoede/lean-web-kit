@@ -7,14 +7,18 @@
       <input
         type="search"
         @input="onChange"
-        @click="onChange"
+        @focus="onChange"
+        @blur="showSearchResults = false"
+        spellcheck="false"
+        autocomplete="off"
         v-model.trim="searchTerm"
         placeholder="Type to search"
         class="form-control" />
         <search-results
           v-if="showSearchResults"
           @close="onClose"
-          :results="searchResults" />
+          :results="searchResults"
+          :locale="$i18n.locale" />
     </form>
   </div>
 </template>
@@ -38,6 +42,10 @@ export default {
       this.showSearchResults = false
     },
     onChange () {
+      if (!this.searchTerm) {
+        return
+      }
+
       this.searchResults = []
       this.pages.forEach(page => {
         const index = page.body.indexOf(this.searchTerm)
@@ -47,7 +55,7 @@ export default {
           this.searchResults.push(resultPage)
         }
       })
-      if (this.searchTerm === '' || this.searchResultsCount === 0) {
+      if (this.searchResults.length === 0) {
         this.showSearchResults = false
       } else {
         this.showSearchResults = true
@@ -62,11 +70,6 @@ export default {
       return str.replace(highlightTerm, `<span class="search-results__highlight">${highlightTerm}</span>`)
     }
   },
-  computed: {
-    searchResultsCount () {
-      return this.searchResults.length
-    }
-  }
 }
 </script>
 
@@ -95,6 +98,6 @@ export default {
 }
 
 .search-results__highlight {
-  background-color: yellow;
+  background-color: #ffff37;
 }
 </style>
