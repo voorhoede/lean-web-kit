@@ -10,25 +10,22 @@
     />
 
     <lazy-tracking v-if="page.hasHotjar" />
-    <app-search :pages="pages" />
   </div>
 </template>
 
 <script>
-import AppSearch from '../components/app-search'
 import { LazyTracking, PageLayout, SocialShare } from '../components/'
 import { getPageData, getPagesData, seoHead } from '../lib/'
 
 export default {
-  components: { AppSearch, LazyTracking, PageLayout, SocialShare },
+  components: { LazyTracking, PageLayout, SocialShare },
 
   async asyncData ({ app, params, store }) {
     const { slug } = params
     const page = await getPageData({ slug, locale: app.i18n.locale })
-    const pages = await getPagesData({ locale: app.i18n.locale })
 
     store.commit('setSlugI18n', page.slugI18n)
-    return { page, pages }
+    return { page }
   },
 
   head () {
