@@ -15,6 +15,7 @@
     <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }" id="mainmenu" v-test:appHeaderMenu>
       <h2 class="a11y-sr-only">{{ menu.title }}</h2>
 
+      <app-search />
       <ul class="app-header__menu-list">
         <li
           v-for="(item, index) in menuItems"
@@ -57,12 +58,13 @@
 </template>
 
 <script>
+import AppSearch from '../app-search'
 import LanguageSelector from '../language-selector'
 import SmartLink from '../smart-link'
 import MenuIcon from '../menu-icon'
 
 export default {
-  components: { LanguageSelector, SmartLink, MenuIcon },
+  components: { AppSearch, LanguageSelector, SmartLink, MenuIcon },
   props: {
     menuI18n: { type: Object, required: true },
   },
@@ -103,7 +105,7 @@ export default {
   width: 100%;
   height: var(--app-header-mobile-height);
   background-color: var(--background-color);
-  box-shadow: 0 2px 15px 0 rgba(214,214,214,.5);
+  box-shadow: 0 2px 15px 0 rgba(214, 214, 214, 0.5);
 }
 
 .app-header--sticky {
@@ -120,8 +122,8 @@ export default {
   left: 0;
   width: 100%;
   background-color: var(--background-color);
-  box-shadow: 0px 8px 10px rgba(214,214,214,.3);
-  transition: all .2s ease-in-out;
+  box-shadow: 0px 8px 10px rgba(214, 214, 214, 0.3);
+  transition: all 0.2s ease-in-out;
 }
 
 .app-header__menu--open {
@@ -171,7 +173,7 @@ export default {
 }
 
 .app-header__logo {
-  margin-right: .3rem;
+  margin-right: 0.3rem;
   height: 40px;
 }
 
