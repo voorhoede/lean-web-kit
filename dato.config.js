@@ -27,6 +27,7 @@ module.exports = (dato, root, i18n) => {
   root.createDataFile(`${dataDir}/pages.json`, 'json', pageSlugMap(dato, i18n))
 
   locales.forEach(locale => {
+    searchData = []
     i18n.locale = locale
     root.createDataFile(`${dataDir}/${locale}/pages/home.json`, 'json', pageToJson(dato.home, i18n))
 
@@ -36,7 +37,7 @@ module.exports = (dato, root, i18n) => {
         root.createDataFile(`${dataDir}/${locale}/pages/${page.slug}.json`, 'json', pageToJson(page, i18n))
       })
     root.createDataFile(`${dataDir}/${locale}/messages.json`, 'json', translationsToJson(dato.translations))
-    root.createDataFile(`${dataDir}/search-${locale}.json`, 'json', searchIndex())
+    root.createDataFile(`${dataDir}/${locale}/search.json`, 'json', searchIndex())
   })
 }
 
@@ -119,7 +120,6 @@ function pageToJson(page, i18n) {
         .map(item => omit(item, ['id', 'itemType', 'createdAt', 'updatedAt']))
         .map(transformItem)
     }))
-
   const slug = page.slug ? `${page.slug}/` : '' // makes sure there's always a trailing slash ending each route so we don't get different versions of same page
   const url = `${URL}/${i18n.locale}/${slug}`
   const seo = page.seo && { ...page.seo.toMap(), url }
@@ -129,7 +129,7 @@ function pageToJson(page, i18n) {
   }, {})
   const tocItems = sections.map(section => pick(section, ['title', 'slug']))
 
-  getPages({ sections, title, slug })
+  addPages({ sections, title, slug })
 
   return { title, slug, slugI18n, seo, sections, hasToc, tocItems, coverImage, url, hasShareButton, hasHotjar }
 }
@@ -137,7 +137,7 @@ function pageToJson(page, i18n) {
 /*
  * Get specific data from all pages to use for search data
  */
-function getPages({ sections, title, slug }) {
+function addPages({ sections, title, slug }) {
   const body = sections.flatMap(sectionItem =>
     sectionItem.items.flatMap(item => {
       if (item.type === 'text' && item.body) {
@@ -146,7 +146,7 @@ function getPages({ sections, title, slug }) {
     })
   ).join(' ')
 
-  if (!body || body === ' ') {
+  if (!body || body.length < 50) {
     return false
   }
 
