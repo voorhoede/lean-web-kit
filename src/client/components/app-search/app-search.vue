@@ -93,7 +93,7 @@ export default {
   position: absolute;
   top: calc(100% + var(--spacing-half));
   height: 300px;
-  width: 400px;
+  width: 100%;
   overflow: hidden;
   overflow-y: auto;
   background: var(--background-color);
@@ -108,5 +108,17 @@ export default {
 
 .search-results__highlight {
   background-color: #ffff37;
+}
+
+@media (min-width: 600px) {
+  .search-results {
+    width: 300px;
+  }
+}
+
+@media (min-width: 790px) {
+  .search-results {
+    width: 400px;
+  }
 }
 </style>
