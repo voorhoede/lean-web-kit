@@ -36,7 +36,7 @@ export default {
       searchTerm: '',
       searchResults: [],
       showSearchResults: false,
-      pages: require(`~/static/data/search-${this.$i18n.locale}.json`)
+      pages: require(`~/static/data/${this.$i18n.locale}/search.json`)
     }
   },
   methods: {
