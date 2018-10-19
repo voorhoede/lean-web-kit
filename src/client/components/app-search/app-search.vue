@@ -44,32 +44,38 @@ export default {
       this.showSearchResults = false
     },
     onChange () {
-      if (!this.searchTerm) {
+      this.searchResults = []
+
+      if (this.searchTerm.length < 3) {
+        this.showSearchResults = false
         return
       }
 
-      this.searchResults = []
-      this.pages.forEach(page => {
-        const index = page.body.indexOf(this.searchTerm)
-        if (this.searchTerm.length >= 3 && index !== -1) {
-          const body = this.trimSearchResult({ page, index })
-          const resultPage = Object.assign({}, page, { body })
-          this.searchResults.push(resultPage)
-        }
-      })
+      this.search()
+
       if (!this.searchResults.length) {
         this.showSearchResults = false
       } else {
         this.showSearchResults = true
       }
     },
-    trimSearchResult({ page, index }) {
+    search () {
+      this.pages.forEach(page => {
+        const index = page.body.indexOf(this.searchTerm)
+        if (this.searchTerm.length >= 3 && index !== -1) {
+          const body = this.trimResult({ page, index })
+          const resultPage = Object.assign({}, page, { body })
+          this.searchResults.push(resultPage)
+        }
+      })
+    },
+    trimResult({ page, index }) {
       const highlightTerm = page.body.substring(index, index + this.searchTerm.length)
       const trimLeft = index < trimCharacters ? 0 : index - trimCharacters
       const searchResultBody = `...${page.body.slice(trimLeft, index + this.searchTerm.length + trimCharacters)}...`
-      return this.highlightSearchResult(searchResultBody, highlightTerm)
+      return this.highlightResult(searchResultBody, highlightTerm)
     },
-    highlightSearchResult(str, highlightTerm) {
+    highlightResult(str, highlightTerm) {
       return str.replace(highlightTerm, `<span class="search-results__highlight">${highlightTerm}</span>`)
     }
   },
