@@ -9,11 +9,11 @@
         @input="onChange"
         @focus="onChange"
         @blur="showSearchResults = false"
-        spellcheck="false"
-        autocomplete="off"
         v-model.trim="searchTerm"
         placeholder="Type to search"
-        class="form-control" />
+        spellcheck="false"
+        autocomplete="off"
+        class="form-search__search form-control" />
         <search-results
           v-if="showSearchResults"
           @close="onClose"
@@ -117,6 +117,11 @@ export default {
 }
 
 @media (min-width: 790px) {
+  .form-search__search {
+    width: 160px;
+    margin-right: var(--spacing-default);
+  }
+
   .search-results {
     width: 400px;
   }

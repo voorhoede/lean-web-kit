@@ -260,7 +260,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 900px) {
   .app-header__title {
     display: inline-block;
   }
