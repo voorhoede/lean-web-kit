@@ -21,10 +21,6 @@ export default {
       type: Array,
       required: true
     },
-    locale: {
-      type: String,
-      required: true
-    }
   },
   methods: {
     /**
@@ -34,6 +30,11 @@ export default {
     onClick (index) {
       this.$emit('close')
       this.$router.push({ path: `/${this.locale}/${ this.results[index].slug }` })
+    }
+  },
+  computed: {
+    locale () {
+      return this.$i18n.locale
     }
   }
 }

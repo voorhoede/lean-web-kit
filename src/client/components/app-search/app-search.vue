@@ -17,8 +17,7 @@
         <search-results
           v-if="showSearchResults"
           @close="onClose"
-          :results="searchResults"
-          :locale="$i18n.locale" />
+          :results="searchResults" />
     </form>
   </div>
 </template>
