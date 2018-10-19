@@ -86,43 +86,10 @@ export default {
   position: relative;
 }
 
-.search-results {
-  list-style: none;
-  padding: var(--spacing-default);
-  position: absolute;
-  top: calc(100% + var(--spacing-half));
-  height: 300px;
-  width: 100%;
-  overflow: hidden;
-  overflow-y: auto;
-  background: var(--background-color);
-  border-radius: var(--border-radius-small);
-  border: 1px solid var(--text-light-color);
-  box-shadow: var(--shadow-small-grey);
-}
-
-.search-results .search-results__title {
-  font-size: var(--spacing-default);
-}
-
-.search-results__highlight {
-  background-color: #ffff37;
-}
-
-@media (min-width: 600px) {
-  .search-results {
-    width: 300px;
-  }
-}
-
 @media (min-width: 790px) {
   .form-search__search {
     width: 160px;
     margin-right: var(--spacing-default);
-  }
-
-  .search-results {
-    width: 400px;
   }
 }
 </style>

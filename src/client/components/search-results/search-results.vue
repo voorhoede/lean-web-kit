@@ -41,7 +41,43 @@ export default {
 </script>
 
 <style>
+.search-results {
+  position: absolute;
+  top: calc(100% + var(--spacing-half));
+  height: 300px;
+  width: 100%;
+  padding: var(--spacing-default);
+  z-index: 1;
+  list-style: none;
+  overflow: hidden;
+  overflow-y: auto;
+  background: var(--background-color);
+  border-radius: var(--border-radius-small);
+  border: 1px solid var(--text-light-color);
+  box-shadow: var(--shadow-small-grey);
+}
+
+.search-results .search-results__title {
+  font-size: var(--spacing-default);
+}
+
+.search-results__highlight {
+  background-color: #ffff37;
+}
+
 .search-results__body {
   color: var(--text-light-color);
+}
+
+@media (min-width: 600px) {
+  .search-results {
+    width: 300px;
+  }
+}
+
+@media (min-width: 790px) {
+  .search-results {
+    width: 400px;
+  }
 }
 </style>
