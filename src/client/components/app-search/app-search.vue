@@ -35,6 +35,7 @@ export default {
       searchTerm: '',
       searchResults: [],
       showSearchResults: false,
+      // @todo load data asynchronously
       pages: require(`~/static/data/${this.$i18n.locale}/search.json`)
     }
   },
