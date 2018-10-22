@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { getPagesData } from '../lib/'
 import menuI18n from '../static/data/menu.json'
 import { AppFooter, AppHeader, LazyChat, SkipLinks, TrackOutboundLinks } from '../components'
 
@@ -21,7 +20,7 @@ export default {
     return {
       menuI18n,
     }
-  }
+  },
 }
 </script>
 
