@@ -59,5 +59,5 @@ After installing dependencies using `npm install` the following scripts are avai
 `guide` | Serves guide on [`http://localhost:5327`](http://localhost:5327) for local development.
 `proxy` | Exposes app on localhost to world wide web for testing on other devices.
 `start` | Serves production version of client app from (`/dist/`) on [`http://localhost:5326`](http://localhost:5326).
-`test` | Runs tests on production build of the app.
+`test` | Runs tests on production build of the app. You'll have to install Cypress via npm.
 `watch` | Runs tests on app during development.
