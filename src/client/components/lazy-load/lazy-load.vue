@@ -48,7 +48,9 @@ export default {
       }
     },
     unobserve () {
-      this.observer.unobserve(this.$el)
+      if ('IntersectionObserver' in window) {
+        this.observer.unobserve(this.$el)
+      }
     },
   },
 }
