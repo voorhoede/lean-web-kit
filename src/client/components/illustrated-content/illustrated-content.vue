@@ -1,15 +1,13 @@
 <template>
   <div class="illustrated-content">
     <div class="media-object">
-      <div>
-        <responsive-image :image="image" />
-      </div>
+      <responsive-image :image="image" />
     </div>
 
     <div class="illustrated-content__body">
-      <div>
-        <h3 class="illustrated-content__title">some title</h3>
-        <div class="illustrated-content__text">Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</div>
+      <h3 class="illustrated-content__title">{{ title }}</h3>
+      <div class="illustrated-content__text">
+        <rich-text :text="text" />
       </div>
     </div>
   </div>
@@ -17,6 +15,7 @@
 
 <script>
   import ResponsiveImage from '../responsive-image'
+  import RichText from '../rich-text'
 
   export default {
     props: {
@@ -40,13 +39,6 @@
         required: true,
       },
     },
-    components: { ResponsiveImage },
+    components: { ResponsiveImage, RichText },
   }
 </script>
-
-<style>
-  .illustrated-content {
-
-  }
-</style>
-
