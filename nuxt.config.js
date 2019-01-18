@@ -1,16 +1,16 @@
-import build from './config/nuxt/build'
-import css from './config/nuxt/css'
-import env from './config/nuxt/env'
-import generate from './config/nuxt/generate'
-import head from './config/nuxt/head'
-import loading from './config/nuxt/loading'
-import modules from './config/nuxt/modules'
-import plugins from './config/nuxt/plugins'
-import proxy from './config/nuxt/proxy'
-import router from './config/nuxt/router'
-import sitemap from './config/nuxt/sitemap'
+const build = require('./config/nuxt/build')
+const css = require('./config/nuxt/css')
+const env = require('./config/nuxt/env')
+const generate = require('./config/nuxt/generate')
+const head = require('./config/nuxt/head')
+const loading = require('./config/nuxt/loading')
+const modules = require('./config/nuxt/modules')
+const plugins = require('./config/nuxt/plugins')
+const proxy = require('./config/nuxt/proxy')
+const router = require('./config/nuxt/router')
+const sitemap = require('./config/nuxt/sitemap')
 
-export default {
+module.exports = {
   build,
   css,
   env,
