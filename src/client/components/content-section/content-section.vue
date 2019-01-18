@@ -22,6 +22,16 @@
         :key="index"
         :form="item.form"
       />
+      <illustrated-content
+        v-if="item.type === 'illustrated_content'"
+        :key="index"
+        :title="item.title"
+        :text="item.text"
+        :image="item.image"
+        :layout=item.layout
+        :callToAction="item.callToAction"
+
+         />
       <link-list
         v-if="item.type === 'link_list'"
         :key="index"
@@ -54,13 +64,23 @@ import ButtonGroup from '../button-group'
 import ContactForm from '../contact-form'
 import DownloadFiles from '../download-files'
 import EmailForm from '../email-form'
+import IllustratedContent from '../illustrated-content'
 import LinkList from '../link-list'
 import ResponsiveImage from '../responsive-image'
 import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
 
 export default {
-  components: { ButtonGroup, ContactForm, DownloadFiles, EmailForm, LinkList, ResponsiveImage, ResponsiveVideo, RichText, },
+  components: {
+    ButtonGroup,
+    ContactForm,
+    DownloadFiles,
+    EmailForm,
+    IllustratedContent,
+    LinkList,
+    ResponsiveImage,
+    ResponsiveVideo,
+    RichText, },
   props: {
     section: {
       type: Object,
