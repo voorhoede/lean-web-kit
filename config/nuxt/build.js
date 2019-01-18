@@ -10,14 +10,14 @@ module.exports = {
   /*
   ** Run ESLint on save
   */
-  extend(config, { isDev }) {
+  extend(config, { isDev, isClient }) {
     config.module.rules.forEach((rule) => {
       if (rule.test.toString() === '/\\.(png|jpe?g|gif|svg|webp)$/') {
         rule.test = /\.(png|jpe?g|gif|webp)$/
       }
     })
 
-    if (isDev && process.client) {
+    if (isDev && isClient) {
       config.module.rules.push({
         enforce: 'pre',
         test: /\.(js|vue)$/,
