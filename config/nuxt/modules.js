@@ -1,11 +1,11 @@
-const googleAnalytics = require('./modules/google-analytics')
-const nuxtI18n = require('./modules/nuxt-i18n')
-const nuxtPwa = require('./modules/nuxt-pwa')
+import googleAnalytics from './modules/google-analytics'
+import nuxtI18n from './modules/nuxt-i18n'
+import nuxtPwa from './modules/nuxt-pwa'
 
 /**
  * @see https://nuxtjs.org/api/configuration-modules
  */
-module.exports = [
+export default [
   '@nuxtjs/proxy',
   '@nuxtjs/sitemap',
   googleAnalytics,
