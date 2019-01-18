@@ -9,6 +9,10 @@
     "type": "git",
     "url": "https://github.com/voorhoede/lean-web-kit"
   },
+  "engines": {
+    "node": ">=10",
+    "npm": ">=5"
+  },
   "browserslist": [
     "last 2 versions",
     "ie 11"
@@ -31,55 +35,53 @@
     "precommit": "npm run lint",
     "proxy": "ngrok http 5326",
     "start": "run-p dev:server start:dist",
-    "start:dist": "http-server './dist/client/' -c-1 -o -p 5326 --proxy 'http://localhost:9000/'",
-    "test": "run-s test:*",
-    "test:e2e": "NODE_ENV=test run-s prebuild build:client && cypress run --config fileServerFolder=dist/client",
-    "watch": "run-p watch:*",
-    "watch:test-e2e": "cypress open --config baseUrl=http://localhost:5326"
+    "start:dist": "http-server './dist/client/' -c-1 -o -p 5326 --proxy 'http://localhost:9000/'"
   },
   "dependencies": {
     "@nuxtjs/google-analytics": "^2.0.2",
     "@nuxtjs/proxy": "^1.2.4",
-    "@nuxtjs/pwa": "2.0.8",
-    "@nuxtjs/sitemap": "0.1.1",
+    "@nuxtjs/pwa": "^2.6.0",
+    "@nuxtjs/sitemap": "^0.2.0",
+    "babel-polyfill": "^6.26.0",
     "dotenv": "^6.0.0",
     "dotenv-safe": "^6.0.0",
     "normalize.css": "^8.0.0",
-    "nuxt": "^1.0.0",
-    "nuxt-i18n": "^4.0.0",
-    "query-string": "5.1.1",
-    "unfetch": "3.1.0"
+    "nuxt": "^2.3.4",
+    "nuxt-i18n": "^4.1.0",
+    "query-string": "^6.2.0",
+    "unfetch": "^4.0.1"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.7",
     "@storybook/addon-knobs": "^3.4.7",
     "@storybook/addon-links": "^3.4.7",
     "@storybook/addon-options": "^3.4.7",
-    "@storybook/vue": "^3.4.7",
+    "@storybook/addons": "^4.0.0-alpha.24",
+    "@storybook/vue": "^4.0.0-alpha.24",
     "ajv": "^6.5.1",
-    "autoprefixer": "9.0.1",
-    "babel-eslint": "^8.2.1",
+    "autoprefixer": "^9.4.5",
+    "babel-eslint": "^10.0.1",
+    "babel-preset-vue": "^2.0.2",
     "cheerio": "^1.0.0-rc.2",
-    "cypress": "3.1.0",
-    "eslint": "^4.15.0",
-    "eslint-friendly-formatter": "^3.0.0",
-    "eslint-loader": "^1.7.1",
-    "eslint-plugin-vue": "^4.0.0",
+    "eslint": "^5.12.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-vue": "^5.1.0",
     "http-server": "^0.11.1",
     "lodash": "^4.17.10",
     "lorem-ipsum": "^1.0.5",
-    "netlify-lambda": "^0.4.0",
+    "netlify-lambda": "^1.2.0",
     "ngrok": "^3.0.1",
     "npm-run-all": "^4.1.3",
-    "postcss-custom-properties": "^7.0.0",
-    "postcss-import": "11.1.0",
+    "postcss-custom-properties": "^8.0.9",
+    "postcss-import": "^12.0.1",
     "request": "^2.87.0",
     "request-promise-native": "^1.0.5",
     "rimraf": "^2.6.2",
     "slugify": "^1.3.0",
-    "storybook-readme": "^3.3.0",
+    "storybook-readme": "^4.0.0-beta1",
     "voorhoede-datocms-client": "0.5.2",
     "vue-analytics": "^5.12.2",
-    "vue-svg-loader": "0.5.0"
+    "vue-svg-loader": "^0.11.0"
   }
 }
