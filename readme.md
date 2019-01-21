@@ -1,4 +1,5 @@
 # Lean Web Kit
+hi
 
 **Lean Web Kit to kick-start your web project.**
 
