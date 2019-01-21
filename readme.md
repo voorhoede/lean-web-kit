@@ -1,5 +1,5 @@
 # Lean Web Kit
-
+hi
 **Lean Web Kit to kick-start your web project.**
 
 The Lean Web Kit is a universal [Vue.js](https://vuejs.org/) app made with [Nuxt.js](https://nuxtjs.org/). The app is connected to a hosted headless CMS called [Dato CMS](https://www.datocms.com/). The app is deployed on [Netlify](https://www.netlify.com/) and is configured to use [Netlify cloud functions](https://www.netlify.com/docs/functions/) to connect back-end services.
