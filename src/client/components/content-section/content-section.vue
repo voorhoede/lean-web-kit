@@ -27,6 +27,10 @@
         :key="index"
         :links="item.links"
         :ordered="item.ordered" />
+      <pull-quote
+        v-if="item.type === 'quote'"
+        :key="index"
+        :quote="item.quote" />
       <rich-text
         v-if="item.type === 'text'"
         :key="index"
@@ -55,12 +59,13 @@ import ContactForm from '../contact-form'
 import DownloadFiles from '../download-files'
 import EmailForm from '../email-form'
 import LinkList from '../link-list'
+import PullQuote from '../pull-quote'
 import ResponsiveImage from '../responsive-image'
 import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
 
 export default {
-  components: { ButtonGroup, ContactForm, DownloadFiles, EmailForm, LinkList, ResponsiveImage, ResponsiveVideo, RichText, },
+  components: { ButtonGroup, ContactForm, DownloadFiles, EmailForm, LinkList, PullQuote, ResponsiveImage, ResponsiveVideo, RichText, },
   props: {
     section: {
       type: Object,
