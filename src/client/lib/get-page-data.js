@@ -1,6 +1,8 @@
+import fetch from 'unfetch'
+
 export default function ({ locale, slug }) {
   const url = `/data/${locale}/pages/${slug}.json`
-  
+
   if (process.client) {
     // On client load over http
     return fetch(url).then(res => res.json())

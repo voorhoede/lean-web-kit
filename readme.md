@@ -61,3 +61,4 @@ After installing dependencies using `npm install` the following scripts are avai
 `start` | Serves production version of client app from (`/dist/`) on [`http://localhost:5326`](http://localhost:5326).
 `test` | Runs tests on production build of the app.
 `watch` | Runs tests on app during development.
+
