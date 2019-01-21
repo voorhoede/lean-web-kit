@@ -4,13 +4,13 @@
       v-for="feature in features"
       :key="feature.id"
       class="feature-list__item">
-      <div class="feature-list__item-content">
         <div class="feature-list__item-image">
           <responsive-image :image="feature.image" />
         </div>
-        <h3 class="feature-list__item-title">{{ feature.title }}</h3>
-        <rich-text :text="feature.body" class="feature-list__item-body" />
-      </div>
+        <div class="feature-list__item-text">
+          <h3 class="feature-list__item-title">{{ feature.title }}</h3>
+          <p class="feature-list__item-body">{{ feature.body }}</p>
+        </div>
     </li>
   </ul>
 </template>

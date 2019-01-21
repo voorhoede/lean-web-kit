@@ -163,7 +163,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "https://www.datocms-assets.com/6068/1537194731-iconsearch.png"
             },
-            body: '<p><span>Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.</span></p>'
+            body: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
           }
         ],
         multipleItems: [
@@ -175,7 +175,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "https://www.datocms-assets.com/6068/1537194731-iconsearch.png"
             },
-            body: '<p><span>Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.</span></p>'
+            body: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
           },
           {
             itemType: 'feature',
@@ -185,7 +185,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "https://www.datocms-assets.com/6068/1537195012-iconchat.png"
             },
-            body: '<p><span>Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.</span></p>'
+            body: 'Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.'
           },
           {
             itemType: 'feature',
@@ -195,7 +195,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "https://www.datocms-assets.com/6068/1537195454-iconplugplay.png"
             },
-            body: '<p><span>Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.</span></p>'
+            body: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
           },
         ],
         extremeExample: [
@@ -217,7 +217,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "https://www.datocms-assets.com/6068/1537195012-iconchat.png"
             },
-            body: '<p><span>Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.</span></p>'
+            body: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
           },
           {
             itemType: 'feature',
@@ -227,7 +227,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "https://www.datocms-assets.com/6068/1537195454-iconplugplay.png"
             },
-            body: '<p><span>Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.</span></p>'
+            body: 'Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.'
           },
           {
             itemType: 'feature',
@@ -237,7 +237,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "https://www.datocms-assets.com/6068/1537195012-iconchat.png"
             },
-            body: '<p><span>Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.</span></p>'
+            body: 'Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.'
           },
           {
             itemType: 'feature',
@@ -247,7 +247,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "https://www.datocms-assets.com/6068/1537195454-iconplugplay.png"
             },
-            body: '<p><span>Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.</span></p>'
+            body: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
           },
           {
             itemType: 'feature',
@@ -257,7 +257,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "https://www.datocms-assets.com/6068/1537194731-iconsearch.png"
             },
-            body: '<p>Si dolor summum malum est, dici aliter non potest.</p>'
+            body: 'Si dolor summum malum est, dici aliter non potest.'
           },
           {
             itemType: 'feature',
@@ -267,7 +267,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "https://www.datocms-assets.com/6068/1537195454-iconplugplay.png"
             },
-            body: '<p>Apparet statim, quae sint officia, quae actiones.</p>'
+            body: 'Apparet statim, quae sint officia, quae actiones.'
           },
           {
             itemType: 'feature',
@@ -277,7 +277,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "https://www.datocms-assets.com/6068/1537194731-iconsearch.png"
             },
-            body: '<p><span>Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.</span></p>'
+            body: 'Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.'
           },
           {
             itemType: 'feature',
@@ -287,7 +287,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "https://www.datocms-assets.com/6068/1537195012-iconchat.png"
             },
-            body: '<p><span>Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.</span></p>'
+            body: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
           },
         ],
       }
