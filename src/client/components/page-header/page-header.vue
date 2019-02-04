@@ -81,7 +81,7 @@ export default {
   }
 
   .page-header__subtitle {
-    max-width: 600px;
+    max-width: 38rem;
     font-size: var(--font-size-large);
     letter-spacing: .5px;
     line-height: 1.4;
