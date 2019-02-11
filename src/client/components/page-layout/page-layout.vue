@@ -1,6 +1,9 @@
 <template>
   <div class="page-layout">
-    <page-header :title="page.title" :subtitle="page.subtitle" :image="page.coverImage" />
+    <page-header
+      :title="page.title"
+      :subtitle="page.subtitle"
+      :image="page.coverImage" />
 
     <div class="page-layout__body">
       <div
@@ -11,10 +14,10 @@
       </div>
 
       <div class="page-layout__sections">
-        <content-section 
-          v-for="(section, index) in page.sections" 
-          :key="index" 
-          :section="section" 
+        <content-section
+          v-for="(section, index) in page.sections"
+          :key="index"
+          :section="section"
         />
       </div>
     </div>
@@ -28,7 +31,7 @@ import TableOfContents from '../table-of-contents'
 
 export default {
   components: { ContentSection, PageHeader, TableOfContents },
-  
+
   props: {
     page: { type: Object, required: true }
   },

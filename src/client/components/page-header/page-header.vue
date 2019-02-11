@@ -1,9 +1,9 @@
 <template>
-  <header v-if="image"
-          class="page-header page-header--with-cover-image"
-          :class="{ 'image-enhanced' : imageLoaded }"
-          :style="`background-image:url('${ imageLoaded ? image.url : smallImageSrc }');`"
-  >
+  <header
+    v-if="image"
+    class="page-header page-header--with-cover-image"
+    :class="{ 'image-enhanced' : imageLoaded }"
+    :style="`background-image:url('${ imageLoaded ? image.url : smallImageSrc }');`">
     <h1 class="page-header__title">{{ title }}</h1>
     <p class="page-header__subtitle" v-if="subtitle">{{ subtitle }}</p>
   </header>
@@ -64,7 +64,6 @@ export default {
 }
 
 .page-header__title {
-  padding: var(--spacing-double) 0;
   font-size: 3rem;
 }
 
@@ -82,7 +81,7 @@ export default {
   }
 
   .page-header__subtitle {
-    max-width: 80%;
+    max-width: 38rem;
     font-size: var(--font-size-large);
     letter-spacing: .5px;
     line-height: 1.4;
