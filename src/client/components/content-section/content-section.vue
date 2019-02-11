@@ -28,10 +28,8 @@
         :title="item.title"
         :text="item.text"
         :image="item.image"
-        :layout=item.layout
-        :callToAction="item.callToAction"
-
-         />
+        :inverse-layout=item.inverseLayout
+        :call-to-action="item.callToAction" />
       <link-list
         v-if="item.type === 'link_list'"
         :key="index"
@@ -117,4 +115,7 @@ export default {
   font-size: var(--font-size-extra-large);
 }
 
+.content-section > .responsive-image {
+  margin-bottom: var(--spacing-double);
+}
 </style>
