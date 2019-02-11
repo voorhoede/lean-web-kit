@@ -36,7 +36,7 @@ export default {
     },
     features: {
       type: Array,
-      require: true,
+      required: true,
     }
   }
 }
