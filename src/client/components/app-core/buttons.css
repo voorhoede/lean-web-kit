@@ -14,7 +14,6 @@
   box-shadow: var(--shadow-small-grey);
   border: 1px solid transparent; /* https://twitter.com/AmeliasBrain/status/1026521723888226304 and to match the height of the input fields with the buttons. */
   border-radius: 3px;
-  margin-bottom: var(--spacing-half);
 }
 
 .button:hover,
