@@ -16,6 +16,7 @@
 <script>
 import { LazyTracking, PageLayout, SocialShare } from '../components/'
 import { getPageData, seoHead } from '../lib/'
+import appConfig from '../static/data/app.json'
 
 export default {
   components: { LazyTracking, PageLayout, SocialShare },
@@ -28,7 +29,7 @@ export default {
   },
 
   head () {
-    return seoHead(this.page.seo)
+    return seoHead({ ...this.page.seo, titleTemplate: `%s | ${ appConfig.title }` })
   }
 }
 </script>

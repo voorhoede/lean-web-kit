@@ -6,15 +6,18 @@
  *
  * @param {Object} seo
  * @param {String} seo.title
+ * @param {String} seo.titleTemplate
  * @param {String} seo.description
  * @param {Object} [seo.image]
  * @param {String} [seo.image.url]
  * @param {Number} [seo.image.width]
  * @param {Number} [seo.image.height]
+ * @param {String} seo.url
  */
-export default function seoHead ({ title, description, image, url }) {
+export default function seoHead ({ title, titleTemplate, description, image, url }) {
   return {
     title,
+    titleTemplate,
     link: [
       url && { rel: 'canonical', href: url },
     ].filter(Boolean), // only pass valid <link> objects to template
