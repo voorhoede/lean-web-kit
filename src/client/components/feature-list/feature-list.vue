@@ -12,7 +12,7 @@
           </div>
           <div class="feature-list__item-text">
             <h3 class="feature-list__item-title">{{ feature.title }}</h3>
-            <p class="feature-list__item-body">{{ feature.body }}
+            <p class="feature-list__item-text">{{ feature.text }}
             </p>
             <smart-link v-if="feature.callToAction" :item="feature.callToAction" class="feature-list__item-button button button--primary" />
           </div>
