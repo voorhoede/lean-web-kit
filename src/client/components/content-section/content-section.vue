@@ -22,7 +22,6 @@
         :key="index"
         :form="item.form"
       />
-<<<<<<< HEAD
       <illustrated-content
         v-if="item.type === 'illustrated_content'"
         :key="index"
@@ -31,13 +30,11 @@
         :image="item.image"
         :inverse-layout=item.inverseLayout
         :call-to-action="item.callToAction" />
-=======
       <feature-list
         v-if="item.type === 'feature_list'"
         :key="index"
         :features="item.features"
         :title="item.title" />
->>>>>>> master
       <link-list
         v-if="item.type === 'link_list'"
         :key="index"
@@ -70,31 +67,26 @@ import ButtonGroup from '../button-group'
 import ContactForm from '../contact-form'
 import DownloadFiles from '../download-files'
 import EmailForm from '../email-form'
-<<<<<<< HEAD
 import IllustratedContent from '../illustrated-content'
-=======
 import FeatureList from '../feature-list'
->>>>>>> master
 import LinkList from '../link-list'
 import ResponsiveImage from '../responsive-image'
 import ResponsiveVideo from '../responsive-video'
 import RichText from '../rich-text'
 
 export default {
-<<<<<<< HEAD
   components: {
     ButtonGroup,
     ContactForm,
     DownloadFiles,
     EmailForm,
+    FeatureList,
     IllustratedContent,
     LinkList,
     ResponsiveImage,
     ResponsiveVideo,
-    RichText, },
-=======
-  components: { ButtonGroup, ContactForm, DownloadFiles, EmailForm, FeatureList, LinkList, ResponsiveImage, ResponsiveVideo, RichText, },
->>>>>>> master
+    RichText
+  },
   props: {
     section: {
       type: Object,
