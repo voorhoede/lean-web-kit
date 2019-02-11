@@ -42,7 +42,7 @@
         type: Object,
         default () {
           return {}
-        },
+        }
       },
       inverseLayout: {
         type: Boolean,
