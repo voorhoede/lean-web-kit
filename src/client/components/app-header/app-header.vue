@@ -129,7 +129,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--spacing-default) 0;
+  padding-top: var(--spacing-double);
+  padding-bottom: var(--spacing-double);
 }
 
 .app-header__menu-list {
@@ -142,6 +143,10 @@ export default {
   height: auto;
   margin-bottom: var(--spacing-double);
   list-style-type: none;
+}
+
+.app-header__menu-item:last-child {
+  margin-bottom: 0;
 }
 
 .app-header__menu-link {
