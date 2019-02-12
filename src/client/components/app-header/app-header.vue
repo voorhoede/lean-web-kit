@@ -7,7 +7,7 @@
     <nuxt-link :to="localeUrl('index')" class="app-header__identity">
       <img class="app-header__logo" src="/images/logo.svg" alt="" width="32" height="40" />
 
-      <h1 class="app-header__title">Lean Web Kit<br>
+      <h1 class="app-header__title">Lean Web Kit
         <span class="app-header__subtitle">a Voorhoede product</span>
       </h1>
     </nuxt-link>
@@ -182,6 +182,7 @@ export default {
 }
 
 .app-header__subtitle {
+  display: block;
   font-size: var(--font-size-small);
   white-space: nowrap;
 }
