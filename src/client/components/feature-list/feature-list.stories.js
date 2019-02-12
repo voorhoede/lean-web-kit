@@ -163,7 +163,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
+            text: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
           }
         ],
         multipleItems: [
@@ -175,7 +175,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
+            text: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
           },
           {
             itemType: 'feature',
@@ -185,7 +185,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.'
+            text: 'Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.'
           },
           {
             itemType: 'feature',
@@ -195,7 +195,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
+            text: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
           },
         ],
         multipleActionItems: [
@@ -207,7 +207,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.',
+            text: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.',
             callToAction: {
               title: "quid sentiam",
               type: "url",
@@ -222,7 +222,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.',
+            text: 'Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.',
             callToAction: {
               title: "medicinam luxuriae",
               type: "url",
@@ -237,7 +237,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.',
+            text: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.',
             callToAction: {
               title: "inquit quaeris",
               type: "url",
@@ -254,7 +254,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Nummus in Croesi divitiis obscuratur, pars est tamen divitiarum. '
+            text: 'Nummus in Croesi divitiis obscuratur, pars est tamen divitiarum. '
           },
           {
             itemType: 'feature',
@@ -264,7 +264,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
+            text: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
           },
           {
             itemType: 'feature',
@@ -274,7 +274,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.'
+            text: 'Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.'
           },
           {
             itemType: 'feature',
@@ -284,7 +284,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.'
+            text: 'Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.'
           },
           {
             itemType: 'feature',
@@ -294,7 +294,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
+            text: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
           },
           {
             itemType: 'feature',
@@ -304,7 +304,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Si dolor summum malum est, dici aliter non potest.'
+            text: 'Si dolor summum malum est, dici aliter non potest.'
           },
           {
             itemType: 'feature',
@@ -314,7 +314,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Apparet statim, quae sint officia, quae actiones.'
+            text: 'Apparet statim, quae sint officia, quae actiones.'
           },
           {
             itemType: 'feature',
@@ -324,7 +324,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.'
+            text: 'Quarum ambarum rerum cum medicinam pollicetur, luxuriae licentiam pollicetur.'
           },
           {
             itemType: 'feature',
@@ -334,7 +334,7 @@ storiesOf('Feature list', module)
               "format": "svg",
               "url": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path d='M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z'/></svg>"
             },
-            body: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
+            text: 'Egone quaeris, inquit, quid sentiam? Nunc haec primum fortasse audientis servire debemus.'
           },
         ],
       }

@@ -21,7 +21,12 @@ storiesOf('App header', module)
         menu: menuItems.defaultMenu,
       }
     },
-    i18n: i18n()
+    i18n: i18n(),
+    created() {
+      // mock locales required for language selector
+      this.$i18n.locales = mockLocales(['en', 'nl'])
+    },
+    store: new Vuex.Store()
   }))
   .add('With action button', () => ({
     components: { AppHeader },
@@ -31,7 +36,12 @@ storiesOf('App header', module)
         menu: menuItems.menuWithAction,
       }
     },
-    i18n: i18n()
+    i18n: i18n(),
+    created() {
+      // mock locales required for language selector
+      this.$i18n.locales = mockLocales(['en', 'nl'])
+    },
+    store: new Vuex.Store()
   }))
   .add('With language selection dropdown', () => ({
     components: { AppHeader },
