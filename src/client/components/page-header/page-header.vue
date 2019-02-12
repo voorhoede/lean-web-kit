@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     loadEnhancedImage () {
-      this.imageLoaded = true
+    this.imageLoaded = true
     }
   }
 }
@@ -52,10 +52,12 @@ export default {
   align-items: center;
   padding: var(--spacing-double) var(--spacing-default);
   position: relative;
+  background: linear-gradient(-45deg, #23A6D5, #23D5AB);
 }
 
 .page-header__title {
   font-size: 3rem;
+  letter-spacing: 1px;
 }
 
 .page-header__subtitle {
