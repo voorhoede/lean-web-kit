@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :active-class="activeClass" v-if="item.type === 'page'" :to="localeUrl({ name: 'slug', params: { slug: item.slug } })" >
+  <nuxt-link :active-class="activeClass" v-if="item.type === 'page'" :to="localeUrl(namedRouteObject(item))" >
     {{ item.title }}
   </nuxt-link>
   <a v-else :href="item.url" data-outbound="true" target="_blank" rel="noopener">
@@ -17,7 +17,11 @@ export default {
           return false
         }
         if (item.type === 'page') {
-          return typeof item.slug === 'string'
+          if (item.isHome) {
+            return true
+          } else {
+            return typeof item.slug === 'string'
+          }
         } else {
           return typeof item.url === 'string'
         }
@@ -29,5 +33,17 @@ export default {
       default: '',
     }
   },
+  methods: {
+    namedRouteObject(item) {
+      return item.isHome
+        ? { name: 'index' }
+        : {
+          name: 'slug',
+          params: {
+            slug: item.slug
+          }
+        }
+    }
+  }
 }
 </script>
