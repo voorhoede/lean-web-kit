@@ -18,20 +18,18 @@
     "ie 11"
   ],
   "scripts": {
-    "analyze": "nuxt build --analyze",
+    "analyze": "echo \"not supported by eleventy\"",
     "prebuild": "touch ./.env && rimraf dist/ && npm run data",
     "build": "NODE_ENV=production run-s build:*",
-    "build:client": "nuxt generate",
-    "build:guide": "build-storybook -c config/storybook -o dist/client/guide/",
+    "build:client": "eleventy",
     "build:server": "netlify-lambda build src/server/functions/",
     "predata": "rimraf src/client/static/data/ src/client/static/_redirects",
     "data": "dato dump",
     "predev": "rimraf dist/ && npm run data",
     "dev": "run-p dev:*",
-    "dev:client": "PORT=5326 nuxt",
+    "dev:client": "eleventy --serve --port=5326",
     "dev:server": "netlify-lambda serve src/server/functions/",
-    "guide": "start-storybook -p 5327 -c config/storybook -s src/client/static/",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
     "precommit": "npm run lint",
     "proxy": "ngrok http 5326",
     "start": "run-p dev:server start:dist",
@@ -43,6 +41,7 @@
     "normalize.css": "^8.0.0"
   },
   "devDependencies": {
+    "@11ty/eleventy": "^0.7.1",
     "ajv": "^6.5.1",
     "autoprefixer": "^9.4.5",
     "cheerio": "^1.0.0-rc.2",
