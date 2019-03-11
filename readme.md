@@ -1,8 +1,8 @@
-# Lean Web Kit
+# Lean Web Kit on Eleventy
 
 **Lean Web Kit to kick-start your web project.**
 
-The Lean Web Kit is a universal [Vue.js](https://vuejs.org/) app made with [Nuxt.js](https://nuxtjs.org/). The app is connected to a hosted headless CMS called [Dato CMS](https://www.datocms.com/). The app is deployed on [Netlify](https://www.netlify.com/) and is configured to use [Netlify cloud functions](https://www.netlify.com/docs/functions/) to connect back-end services.
+This fork of Lean Web Kit uses [Eleventy](https://www.11ty.io/) as a sstatic site generator. The app is connected to a hosted headless CMS called [Dato CMS](https://www.datocms.com/). The app is deployed on [Netlify](https://www.netlify.com/) and is configured to use [Netlify cloud functions](https://www.netlify.com/docs/functions/) to connect back-end services.
 
 To use it for your project, [download a copy](https://github.com/voorhoede/lean-web-kit/archive/master.zip) or run `npx degit voorhoede/lean-web-kit` using [degit](https://github.com/Rich-Harris/degit).
 
@@ -13,7 +13,7 @@ To use it for your project, [download a copy](https://github.com/voorhoede/lean-
 Read our complete [getting started guide](https://leanwebkit.voorhoede.nl/en/getting-started/) here. This guide will help you with the CMS setup, cloning the repository and deploying your project using [Netlify](https://www.netlify.com/). In case all you need is a copy of the repository, proceed by following the steps below.
 
 * Clone the repository.
-* Copy `.env.example` to `.env` and set the environment variables. Copy them from the [Netlify build configuration](https://app.netlify.com/sites/leanwebkit/settings/deploys#build-environment-variables) or ask your tech lead. 
+* Copy `.env.example` to `.env` and set the environment variables. Copy them from the [Netlify build configuration](https://app.netlify.com/sites/leanwebkit/settings/deploys#build-environment-variables) or ask your tech lead.
 * Run app in development mode (`npm run dev`), see [scripts](#scripts).
 * Changes on master and content publishing from the CMS trigger a new build and deploy to the [live environment](http://leanwebkit.voorhoede.nl).
 
