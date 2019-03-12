@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>{% block title %}Lean Web Kit{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width, Save-Data">
+    <link rel="icon" type="image/png" href="/favicon.pns">
+    <link rel="dns-prefetch" href="https://www.datocms-assets.com/">
+    {% block meta %}
+      <meta name="description" content"">
+    {% endblock %}
+  </head>
+  <body>
+    {% include "../components/skip-links/skip-links.html" %}
+    {# {% include "/app-header/app-header.html" %} #}
+    <main id="maincontent">
+    {% block main %}
+      <div>
+      </div>
+    {% endblock %}
+    </main>
+    {# {% include "/app-footer/app-footer.html" %}
+    {% include "/lazy-chat/lazy-chat.html" %} #}
+  </body>
+</html>

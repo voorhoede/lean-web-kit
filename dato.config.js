@@ -4,11 +4,11 @@ const dotenv = require('dotenv-safe')
 const { pick, omit } = require('lodash')
 const slugify = require('slugify')
 
+const { static: staticDir, data: dataDir} = require('./config/dir')
+
 dotenv.config()
 
 const { URL } = process.env
-const staticDir = `src/client/static`
-const dataDir = `${staticDir}/data`
 let defaultLocale
 let locales = []
 

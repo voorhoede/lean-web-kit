@@ -13,8 +13,8 @@ npm-debug.log
 
 # generated files
 dist/
-src/client/static/data/
 src/client/static/_redirects
+src/client/static/data
 src/client/static/sitemap.xml
 src/client/static/sw.js
 

@@ -29,6 +29,7 @@
     "dev": "run-p dev:*",
     "dev:client": "eleventy --serve --port=5326",
     "dev:server": "netlify-lambda serve src/server/functions/",
+    "debug": "DEBUG=Eleventy* eleventy --dryrun",
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "precommit": "npm run lint",
     "proxy": "ngrok http 5326",

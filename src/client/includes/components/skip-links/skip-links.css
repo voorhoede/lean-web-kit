@@ -1,0 +1,21 @@
+.skip-links {
+  z-index: 11;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skip-links__item {
+  position: absolute;
+  display: block;
+  top: 10px;
+  left: -60000px;
+  padding: var(--spacing-half);
+  background-color: var(--background-color);
+}
+
+.skip-links__item:focus {
+  left: 10px;
+  border-bottom: 0;
+}
