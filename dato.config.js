@@ -1,14 +1,17 @@
 const fs = require('fs')
+const path = require('path')
 const cheerio = require('cheerio')
 const dotenv = require('dotenv-safe')
 const { pick, omit } = require('lodash')
 const slugify = require('slugify')
 
-const { static: staticDir, data: dataDir} = require('./config/dir')
+const { input, static, data} = require('./config/dir')
 
 dotenv.config()
 
 const { URL } = process.env
+const staticDir = path.join(input, static)
+const dataDir = path.join(input, data)
 let defaultLocale
 let locales = []
 
