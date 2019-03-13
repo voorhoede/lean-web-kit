@@ -1,9 +1,9 @@
 const path = require('path')
 const { input, data } = require('../dir')
-const i18n = require('../i18n')
+const { defaultLocale } = require('../i18n')
 
 module.exports = function (slug) {
-  const locale = locales[0]
+  const { locale = defaultLocale } = this.ctx
   const slugMap = path.resolve('../../', input, data, 'pages.json')
   return `${slugMap[slug][locale]}`
 }
