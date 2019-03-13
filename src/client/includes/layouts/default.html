@@ -13,14 +13,14 @@
   </head>
   <body>
     {% include "../components/skip-links/skip-links.html" %}
-    {# {% include "/app-header/app-header.html" %} #}
+    {# {% include "../components/app-header/app-header.html" %} #}
     <main id="maincontent">
     {% block main %}
       <div>
       </div>
     {% endblock %}
     </main>
-    {# {% include "/app-footer/app-footer.html" %}
-    {% include "/lazy-chat/lazy-chat.html" %} #}
+    {% include "../components/app-footer/app-footer.html" %}
+    {# {% include "../components/lazy-chat/lazy-chat.html" %} #}
   </body>
 </html>

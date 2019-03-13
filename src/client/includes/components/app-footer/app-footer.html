@@ -1,0 +1,45 @@
+<footer role="contentinfo" class="app-footer" id="footer">
+  <div class="app-footer__container">
+    <div>
+      <a href="/{{locale}}" class="app-footer__identity">
+        <img class="app-footer__logo" src="/images/logo.svg" alt="" width="32" height="40" />
+        <p class="app-footer__title">{{ title }}</p>
+      </nuxt-link>
+
+    <ul class="app-footer__social">
+      {% for link in app.socialLinks %}
+      <li class="app-footer__social-item">
+        {# <social-link
+        :platform="link.platform"
+        :url="link.url"
+        class="app-footer__social-link" /> #}
+      </li>
+      {% endfor %}
+    </ul>
+
+    </div>
+    <div class="app-footer__content">
+      <nav class="app-footer__nav">
+        <h2 class="a11y-sr-only">{{ menu.title }}</h2>
+        <ul class="flat-list">
+          {% for item in app.socialLinks %}
+          <li class="app-footer__nav-item">
+            {# <smart-link class="app-footer__nav-link" :item="item">
+              {{ item.title }}
+            </smart-link> #}
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+      <section class="app-footer__contact">
+        <h2 class="app-footer__section-title">{{ 'contact' | t }}</h2>
+        <div class="app-footer__section-body">
+          {{ app.contact | safe }}
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="app-footer__copyright">
+    {{ title }} {{ year }} - All rights reserved
+  </div>
+</footer>
