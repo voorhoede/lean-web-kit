@@ -3,6 +3,7 @@ const { input, output, data } = require('./dir')
 module.exports = function (config) {
 
   config.addNunjucksFilter('t', translate);
+  config.addNunjucksFilter('localeUrl', translate);
 
   return {
     dir: {
