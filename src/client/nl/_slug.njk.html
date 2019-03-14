@@ -3,9 +3,13 @@ locale: nl
 pagination:
   data: nl.pages
   size: 1
+  filter:
+    - home
 permalink: /{{ locale }}/{{ pagination.items[0] | slug }}/index.html
 ---
+{% set page = [locale].pages[pagination.items[0]] %}
+{% set title = page.title %}
 {% extends 'layouts/default.njk.html' %}
 {% block main %}
-
+  {% include 'components/page-layout/page-layout.njk.html' %}
 {% endblock %}

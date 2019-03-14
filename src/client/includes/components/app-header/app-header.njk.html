@@ -1,0 +1,46 @@
+  <header role="banner" class="app-header">
+    <a href="/{{ locale }}" class="app-header__identity">
+      <img class="app-header__logo" src="/images/logo.svg" alt="" width="32" height="40" />
+      <p class="app-header__title">{{ title }}<br>
+        <span class="app-header__subtitle">a Voorhoede product</span>
+      </p>
+    </a>
+
+    <nav class="app-header__menu" id="mainmenu">
+      <ul class="app-header__menu-list">
+        {% for item in menuItems %}
+        <li class="app-header__menu-item">
+          {# <smart-link
+            class="app-header__menu-link"
+            :item="item"
+            @click.native="closeMenu"
+          /> #}
+        </li>
+        {% endfor %}
+      </ul>
+
+      {# <smart-link
+        v-if="menu.callToAction"
+        class="button button--primary app-header__button app-header__button--desktop"
+        :item="menu.callToAction"
+        v-test:appHeaderActionButton
+      /> #}
+
+      {# <language-selector :locales="$i18n.locales" class="app-header__language-selector"/> #}
+    </nav>
+
+    <span class="app-header__button-on-mobile">
+      {# <smart-link
+      v-if="menu.callToAction"
+      class="button button--primary app-header__button"
+      :item="menu.callToAction"
+      @click.native="closeMenu" /> #}
+    </span>
+
+    <button class="app-header__menu-button">
+      <span v-if="menuIsOpen" class="a11y-sr-only">{{ 'close_menu' | t }}</span>
+      <span v-else class="a11y-sr-only">{{ 'open_menu' | t }}</span>
+
+      {# <menu-icon :isOpen="menuIsOpen" /> #}
+    </button>
+  </header>

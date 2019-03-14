@@ -1,0 +1,28 @@
+
+:root {
+  --app-header-offset: 100px;
+}
+.content-section__scroll-anchor {
+  display: block;
+  margin-top: calc(-1 * var(--app-header-offset));
+  height: var(--app-header-offset);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.content-section {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem;
+  max-width: var(--max-width);
+}
+
+.content-section__title {
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  font-size: var(--font-size-extra-large);
+}
+
+.content-section > .responsive-image {
+  margin-bottom: var(--spacing-double);
+}
