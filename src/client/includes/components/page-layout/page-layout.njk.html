@@ -1,0 +1,11 @@
+<div class="page-layout">
+  {% include "../page-header/page-header.njk.html" %}
+  <div class="page-layout__body">
+    <div class="page-layout__sections">
+      {% for section in page.sections %}
+        {# section is used inside included component #}
+        {% include "../content-section/content-section.njk.html" %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

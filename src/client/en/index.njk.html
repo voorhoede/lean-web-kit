@@ -1,8 +1,9 @@
 ---
-locale: nl
+locale: en
 permalink: /{{ locale }}/index.html
 ---
 {% extends 'layouts/default.njk.html' %}
 {% block main %}
-
+  {% set page = en.pages.home %}
+  {% include 'components/page-layout/page-layout.njk.html' %}
 {% endblock %}
