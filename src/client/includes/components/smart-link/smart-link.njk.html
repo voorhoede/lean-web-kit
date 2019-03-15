@@ -1,6 +1,6 @@
 {% macro render(item, locale, class="") %}
   {% if item.type === 'page' %}
-  <a href="{{ item.slug | localeUrl }}" class="{{ class }}">
+  <a href="{{ item.slug | localeUrl(locale) }}" class="{{ class }}">
     {{ item.title }}
   </a>
   {% else %}
