@@ -1,40 +1,37 @@
+{% import '../smart-link/smart-link.njk.html' as smartLink %}
+{% import '../language-selector/language-selector.njk.html' as languageSelector %}
+
   <header role="banner" class="app-header">
     <a href="/{{ locale }}" class="app-header__identity">
       <img class="app-header__logo" src="/images/logo.svg" alt="" width="32" height="40" />
-      <p class="app-header__title">{{ title }}<br>
-        <span class="app-header__subtitle">a Voorhoede product</span>
+      <p class="app-header__title">{{ page.title }}<br>
+        {% if page.subtitle %}
+          <span class="app-header__subtitle">{{ page.subtitle }}</span>
+        {% endif %}
       </p>
     </a>
 
     <nav class="app-header__menu" id="mainmenu">
       <ul class="app-header__menu-list">
-        {% for item in menuItems %}
+        {% for item in menu[locale].items %}
         <li class="app-header__menu-item">
-          {# <smart-link
-            class="app-header__menu-link"
-            :item="item"
-            @click.native="closeMenu"
-          /> #}
+          {{ smartLink.render(item, locale, class = "app-header__menu-link") }}
         </li>
         {% endfor %}
       </ul>
-
-      {# <smart-link
-        v-if="menu.callToAction"
-        class="button button--primary app-header__button app-header__button--desktop"
-        :item="menu.callToAction"
-        v-test:appHeaderActionButton
-      /> #}
-
-      {# <language-selector :locales="$i18n.locales" class="app-header__language-selector"/> #}
+      {% if menu[locale].callToAction %}
+        {{ smartLink.render(
+          menu[locale].callToAction,
+          locale,
+          class="button button--primary app-header__button app-header__button--desktop") }}
+      {% endif %}
+      {{ languageSelector.render(locales, page.slug, locale)}}
     </nav>
 
     <span class="app-header__button-on-mobile">
-      {# <smart-link
-      v-if="menu.callToAction"
-      class="button button--primary app-header__button"
-      :item="menu.callToAction"
-      @click.native="closeMenu" /> #}
+      {% if menu[locale].callToAction %}
+        {% include '../smart-link/smart-link.njk.html' %}
+      {% endif %}
     </span>
 
     <button class="app-header__menu-button">

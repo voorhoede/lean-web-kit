@@ -1,0 +1,36 @@
+{% macro render(locales, currentPage, currentLocale, useDropdown=false) %}
+  <div
+    id="language"
+    class="language-selector {% if useDropdown %}language-selector--dropdown{% endif %}"
+  >
+    {% if useDropdown %}
+    <a
+      aria-label="{{'select_language' | t}}"
+      class="language-selector__open language-selector__item"
+      href="#language"
+    >
+      {{ currentLocale }}
+    </a>
+    {% endif %}
+    <ul
+      class="language-selector__list"
+    >
+      {% for locale in locales %}
+        {% if not useDropdown or locale != currentLocale %}
+        <li
+          class="language-selector__item"
+        >
+          <a
+            class="language-selector__link"
+            rel="alternate"
+            hreflang="{{locale}}"
+            href="{{ currentPage | localeUrl(locale) }}"
+          >
+            {{ locale }}
+          </a>
+        </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endmacro %}

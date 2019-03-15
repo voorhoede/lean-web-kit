@@ -1,0 +1,11 @@
+{% macro render(item, locale, class="") %}
+  {% if item.type === 'page' %}
+  <a href="{{ item.slug | localeUrl }}" class="{{ class }}">
+    {{ item.title }}
+  </a>
+  {% else %}
+  <a href="{{ item.url }}" class="{{ class }}" data-outbound="true" target="_blank" rel="noopener">
+    {{ item.title }}
+  </a>
+  {% endif %}
+{% endmacro %}

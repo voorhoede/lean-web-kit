@@ -1,9 +1,11 @@
 const translate = require('./filters/translate')
+const localeUrl = require('./filters/locale-url')
 const { input, output, data } = require('./dir')
+
 module.exports = function (config) {
 
   config.addNunjucksFilter('t', translate);
-  config.addNunjucksFilter('localeUrl', translate);
+  config.addNunjucksFilter('localeUrl', localeUrl);
 
   return {
     dir: {
