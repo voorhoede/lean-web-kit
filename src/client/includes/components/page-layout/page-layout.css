@@ -1,4 +1,4 @@
-@import '../app-core/index.css';
+@import '../page-header/page-header.css';
 
 .page-layout__body {
   margin: 0 auto;

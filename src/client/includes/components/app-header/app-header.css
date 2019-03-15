@@ -1,3 +1,5 @@
+@import '../language-selector/language-selector.css';
+
 .app-header {
   display: flex;
   justify-content: space-between;
