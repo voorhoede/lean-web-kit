@@ -5,12 +5,11 @@ const dotenv = require('dotenv-safe')
 const { pick, omit } = require('lodash')
 const slugify = require('slugify')
 
-const { input, static, data} = require('./config/dir')
+const { input, data} = require('./config/dir')
 
 dotenv.config()
 
 const { URL } = process.env
-const staticDir = path.join(input, static)
 const dataDir = path.join(input, data)
 let defaultLocale
 let locales = []
@@ -19,7 +18,7 @@ module.exports = (dato, root, i18n) => {
   locales = i18n.availableLocales
   defaultLocale = locales[0]
 
-  fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects), 'utf8')
+  fs.writeFileSync(`${__dirname}/${input}/_redirects`, redirectsToText(dato.redirects), 'utf8')
 
   root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
   root.createDataFile(`${dataDir}/locales.json`, 'json', locales)

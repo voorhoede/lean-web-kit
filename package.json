@@ -24,7 +24,7 @@
     "build:html": "eleventy",
     "build:css": "postcss src/client/assets/*.css --dir dist/client/",
     "build:server": "netlify-lambda build src/server/functions/",
-    "predata": "rimraf src/client/static/data/ src/client/static/_redirects",
+    "predata": "rimraf src/client/data/ src/client/_redirects",
     "data": "dato dump",
     "predev": "rimraf dist/ && npm run data && npm run build:css",
     "dev": "run-p dev:*",

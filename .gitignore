@@ -13,10 +13,10 @@ npm-debug.log
 
 # generated files
 dist/
-src/client/static/_redirects
-src/client/static/data
-src/client/static/sitemap.xml
-src/client/static/sw.js
+src/client/_redirects
+src/client/data
+src/client/sitemap.xml
+src/client/sw.js
 
 # test
 test/cypress/screenshots
