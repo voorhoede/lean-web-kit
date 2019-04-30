@@ -92,20 +92,18 @@ export default {
   font-size: var(--suffix-size);
 
 }
-.language-selector__list {
-  display: flex;
-  justify-content: center;
-  padding: var(--spacing-half);
-}
 
 .language-selector__item {
+  display: inline-block;
   margin-right: var(--spacing-half);
   text-transform: uppercase;
   list-style-type: none;
   border-right: 1px solid var(--action-color);
   padding-right: var(--spacing-half);
 }
+
 .language-selector__item:last-child {
+  padding-right: 0;
   border-right: none;
 }
 
@@ -114,10 +112,6 @@ export default {
 }
 
 @media screen and (min-width: 640px) {
-  .language-selector--dropdown {
-    align-self: flex-start;
-    position: relative;
-  }
   .language-selector--dropdown .language-selector__open {
     display: inline-block;
   }

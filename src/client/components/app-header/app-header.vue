@@ -2,57 +2,52 @@
   <header
     role="banner"
     class="app-header"
-    :class="{ 'app-header--sticky' : menu.isSticky }"
-  >
-    <nuxt-link :to="localeUrl('index')" class="app-header__identity">
-      <img class="app-header__logo" src="/images/logo.svg" alt="" width="32" height="40" />
+    :class="{ 'app-header--sticky' : menu.isSticky }">
+    <div class="app-header__container">
+      <nuxt-link :to="localeUrl('index')" class="app-header__identity">
+        <img class="app-header__logo" src="/images/logo.svg" alt="" width="32" height="40" />
 
-      <h1 class="app-header__title">Lean Web Kit
-        <span class="app-header__subtitle">a Voorhoede product</span>
-      </h1>
-    </nuxt-link>
+        <h1 class="app-header__title">Lean Web Kit<br>
+          <span class="app-header__subtitle">a Voorhoede product</span>
+        </h1>
+      </nuxt-link>
 
-    <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }" id="mainmenu" v-test:appHeaderMenu>
-      <h2 class="a11y-sr-only">{{ menu.title }}</h2>
+      <nav class="app-header__menu" :class="{ 'app-header__menu--open' : menuIsOpen }" id="mainmenu" v-test:appHeaderMenu>
+        <h2 class="a11y-sr-only">{{ menu.title }}</h2>
 
-      <ul class="app-header__menu-list">
-        <li
-          v-for="(item, index) in menuItems"
-          :key="index"
-          class="app-header__menu-item"
-        >
-          <smart-link
-            class="app-header__menu-link"
-            :item="item"
-            @click.native="closeMenu"
-          />
-        </li>
-      </ul>
+        <ul class="app-header__menu-list">
+          <li
+            v-for="(item, index) in menu.items"
+            :key="index"
+            class="app-header__menu-item">
+            <smart-link
+              class="app-header__menu-link"
+              :item="item"
+              @click.native="closeMenu" />
+          </li>
+        </ul>
+      </nav>
 
-      <smart-link
-        v-if="menu.callToAction"
-        class="button button--primary app-header__button app-header__button--desktop"
-        :item="menu.callToAction"
-        v-test:appHeaderActionButton
-      />
+      <span class="app-header__button">
+        <smart-link
+          v-if="menu.callToAction"
+          class="button button--primary app-header__button"
+          :item="menu.callToAction"
+          @click.native="closeMenu" />
+      </span>
 
-      <language-selector :locales="$i18n.locales" class="app-header__language-selector"/>
-    </nav>
+      <language-selector
+          v-if="menu.showLanguages"
+          :locales="$i18n.locales"
+          class="app-header__language-selector" />
 
-    <span class="app-header__button-on-mobile">
-      <smart-link
-      v-if="menu.callToAction"
-      class="button button--primary app-header__button"
-      :item="menu.callToAction"
-      @click.native="closeMenu" />
-    </span>
+      <button class="app-header__menu-button" @click="toggleMenu" v-test:appHeaderMenuButton>
+        <span v-if="menuIsOpen" class="a11y-sr-only">{{ $t('close_menu') }}</span>
+        <span v-else class="a11y-sr-only">{{ $t('open_menu') }}</span>
 
-    <button class="app-header__menu-button" @click="toggleMenu" v-test:appHeaderMenuButton>
-      <span v-if="menuIsOpen" class="a11y-sr-only">{{ $t('close_menu') }}</span>
-      <span v-else class="a11y-sr-only">{{ $t('open_menu') }}</span>
-
-      <menu-icon :isOpen="menuIsOpen" />
-    </button>
+        <menu-icon :isOpen="menuIsOpen" />
+      </button>
+    </div>
   </header>
 </template>
 
@@ -96,14 +91,20 @@ export default {
 @import '../app-core/variables.css';
 
 .app-header {
+  box-shadow: 0 2px 10px 0 rgba(214,214,214,.5);
+  background-color: var(--background-color);
+}
+
+.app-header__container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 var(--spacing-half);
   width: 100%;
   height: var(--app-header-mobile-height);
-  background-color: var(--background-color);
-  box-shadow: 0 2px 15px 0 rgba(214,214,214,.5);
 }
 
 .app-header--sticky {
@@ -128,7 +129,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--spacing-default) 0;
+  padding-top: var(--spacing-double);
+  padding-bottom: var(--spacing-double);
 }
 
 .app-header__menu-list {
@@ -141,6 +143,10 @@ export default {
   height: auto;
   margin-bottom: var(--spacing-double);
   list-style-type: none;
+}
+
+.app-header__menu-item:last-child {
+  margin-bottom: 0;
 }
 
 .app-header__menu-link {
@@ -188,7 +194,7 @@ export default {
 }
 
 .app-header__button {
-  margin-right: var(--spacing-default);
+  margin-left: auto;
   white-space: nowrap;
 }
 
@@ -201,14 +207,19 @@ export default {
 }
 
 .app-header__menu-button {
+  margin-left: var(--spacing-default);
   padding: 0;
   background-color: transparent;
   width: 40px;
   height: 40px;
 }
 
+.app-header__language-selector {
+  display: none;
+}
+
 @media screen and (min-width: 790px) {
-  .app-header {
+  .app-header__container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -225,6 +236,10 @@ export default {
     width: auto;
     background-color: transparent;
     box-shadow: none;
+  }
+
+  .app-header__button {
+    margin-left: 0;
   }
 
   .app-header__button-on-mobile {
@@ -255,6 +270,7 @@ export default {
   }
 
   .app-header__language-selector {
+    display: inline-block;
     margin-right: var(--spacing-default);
   }
 }

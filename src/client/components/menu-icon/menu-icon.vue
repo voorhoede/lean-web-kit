@@ -18,6 +18,7 @@ export default {
 .menu-icon {
   width: 30px;
   height: auto;
+  vertical-align: middle;
 }
 
 .menu-icon__line-top--rotated {

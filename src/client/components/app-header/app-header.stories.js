@@ -48,7 +48,7 @@ storiesOf('App header', module)
     template: '<app-header :menuI18n="menu" />',
     data () {
       return {
-        menu: menuItems.defaultMenu,
+        menu: menuItems.menuWithLanguage,
       }
     },
     i18n: i18n(),
@@ -63,7 +63,7 @@ storiesOf('App header', module)
     template: '<app-header :menuI18n="menu" />',
     data () {
       return {
-        menu: menuItems.menuWithAction,
+        menu: menuItems.menuWithActionAndLanguage,
       }
     },
     i18n: i18n(),

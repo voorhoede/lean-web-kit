@@ -7,11 +7,10 @@
         { "title": "Portfolio", "slug": "faq" },
         { "title": "Careers", "slug": "careers" },
         { "title": "FAQ", "slug": "fsq" },
-        { "title": "something", "slug": "something" },
-        { "title": "something else", "slug": "something else" }
+        { "title": "something", "slug": "something" }
       ]
     },
-    "nl": { 
+    "nl": {
       "title": "Site menu",
       "items": [
         { "title": "Over ons", "slug": "over-ons" },
@@ -31,9 +30,7 @@
         { "title": "About Us", "slug": "about-us" },
         { "title": "Portfolio", "slug": "faq" },
         { "title": "Careers", "slug": "careers" },
-        { "title": "FAQ", "slug": "fasq" },
-        { "title": "something", "slug": "something" },
-        { "title": "something else", "slug": "something else" }
+        { "title": "FAQ", "slug": "fasq" }
       ],
       "callToAction": { "title": "Start Now" }
     },
@@ -41,6 +38,57 @@
       "title": "Site menu",
       "items": [
         { "title": "Over ons", "slug": "over-ons" },
+        { "title": "Veelgestelde vragen", "slug": "veelgestelde-vragen" },
+        { "title": "Over ons", "slug": "over-ons" },
+        { "title": "Veelgestelde vragen", "slug": "veelgestelde-vragesn" },
+        { "title": "Over ons", "slug": "over-osns" },
+        { "title": "Veelgestelde vragen", "slug": "veelgesteldse-vragen" }
+      ],
+      "callToAction": { "title": "Start Nu" }
+    }
+  },
+  "menuWithLanguage": {
+    "en": {
+      "title": "Site menu",
+      "showLanguages": true,
+      "items": [
+        { "title": "About Us", "slug": "about-us" },
+        { "title": "Portfolio", "slug": "faq" },
+        { "title": "Careers", "slug": "careers" },
+        { "title": "FAQ", "slug": "fasq" }
+      ]
+    },
+    "nl": {
+      "title": "Site menu",
+      "showLanguages": true,
+      "items": [
+        { "title": "Over ons", "slug": "over-ons" },
+        { "title": "Veelgestelde vragen", "slug": "veelgestelde-vragen" },
+        { "title": "Over ons", "slug": "over-ons" },
+        { "title": "Veelgestelde vragen", "slug": "veelgestelde-vragesn" },
+        { "title": "Over ons", "slug": "over-osns" },
+        { "title": "Veelgestelde vragen", "slug": "veelgesteldse-vragen" }
+      ],
+      "callToAction": { "title": "Start Nu" }
+    }
+  },
+  "menuWithActionAndLanguage": {
+    "en": {
+      "title": "Site menu",
+      "showLanguages": true,
+      "items": [
+        { "title": "Portfolio", "slug": "faq" },
+        { "title": "Careers", "slug": "careers" },
+        { "title": "FAQ", "slug": "fasq" }
+      ],
+      "callToAction": {
+        "title": "Start Nu"
+      }
+    },
+    "nl": {
+      "title": "Site menu",
+      "showLanguages": true,
+      "items": [
         { "title": "Veelgestelde vragen", "slug": "veelgestelde-vragen" },
         { "title": "Over ons", "slug": "over-ons" },
         { "title": "Veelgestelde vragen", "slug": "veelgestelde-vragesn" },

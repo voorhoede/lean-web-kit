@@ -153,10 +153,11 @@ function formatLink (link) {
 function menuToJson (dato, i18n) {
   return locales.reduce((menu, locale) => {
     i18n.locale = locale
-    const { title, callToAction, isSticky, links } = dato.menu
+    const { title, callToAction, isSticky, showLanguages, links } = dato.menu
     menu[locale] = {
       title,
       isSticky,
+      showLanguages,
       callToAction: callToAction && formatLink(callToAction),
       items: links.map(link => formatLink(link)),
     }
