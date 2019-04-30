@@ -61,9 +61,7 @@ export default {
 }
 
 .feature-list__item {
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: var(--spacing-double);
+  margin: var(--spacing-double) auto;
 }
 
 .feature-list__item-container {
@@ -84,7 +82,12 @@ export default {
 .feature-list__item-image {
   margin-left: auto;
   margin-right: auto;
-  max-width: 200px;
+  max-width: 100px;
+}
+
+.feature-list__item-text {
+  margin-top: var(--spacing-half);
+  margin-bottom: 0;
 }
 
 @media (min-width: 600px) {

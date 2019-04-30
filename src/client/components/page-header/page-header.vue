@@ -54,17 +54,9 @@ export default {
   position: relative;
 }
 
-.page-header:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  width: 40%;
-  max-width: 250px;
-  border: 1px solid var(--action-color);
-}
-
 .page-header__title {
   font-size: 3rem;
+  letter-spacing: 1px;
 }
 
 .page-header__subtitle {
