@@ -7,20 +7,6 @@
           <h1 class="app-footer__title">{{ appConfig.title }}</h1>
         </nuxt-link>
 
-      <ul class="app-footer__social">
-        <li
-          v-for="link in appConfig.socialLinks"
-          :key="link.id"
-          class="app-footer__social-item">
-          <social-link
-          :platform="link.platform"
-          :url="link.url"
-          class="app-footer__social-link" />
-        </li>
-      </ul>
-
-      </div>
-      <div class="app-footer__content">
         <nav class="app-footer__nav">
           <h2 class="a11y-sr-only">{{ menu.title }}</h2>
           <ul class="flat-list">
@@ -33,6 +19,20 @@
             </li>
           </ul>
         </nav>
+
+        <ul class="app-footer__social">
+          <li
+            v-for="link in appConfig.socialLinks"
+            :key="link.id"
+            class="app-footer__social-item">
+            <social-link
+            :platform="link.platform"
+            :url="link.url"
+            class="app-footer__social-link" />
+          </li>
+        </ul>
+      </div>
+      <div class="app-footer__content">
         <section class="app-footer__contact">
           <h2 class="app-footer__section-title">{{ $t('contact') }}</h2>
           <div class="app-footer__section-body" v-html="appConfig.contact"/>
@@ -73,15 +73,11 @@ export default {
   background-color: var(--neutral-color);
 }
 
-.app-footer__container {
-  margin-bottom: var(--spacing-double);
-}
-
 .app-footer__identity {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--spacing-double);
+  margin-bottom: var(--spacing-default);
   color: var(--text-color);
   text-decoration: none;
 }
@@ -140,13 +136,16 @@ export default {
 }
 
 .app-footer__nav {
-  margin-bottom: var(--spacing-double);
+  margin-bottom: var(--spacing-default);
+  text-align: center;
 }
 
-@media (min-width: 480px) {
-  .app-footer__nav {
-    margin-bottom: 0;
-  }
+.app-footer__nav-item {
+  display: inline-block;
+}
+
+.app-footer__nav-item:not(:first-child) {
+  margin-left: var(--spacing-default);
 }
 
 .app-footer__nav-link {
@@ -165,14 +164,14 @@ export default {
   font-size: var(--font-size-small);
 }
 
+.app-footer__content {
+    text-align: center;
+  }
+
 @media (min-width: 400px) {
   .app-footer__content {
     display: flex;
     justify-content: space-between;
-  }
-
-  .app-footer__contact {
-    text-align: right;
   }
 }
 
@@ -202,13 +201,9 @@ export default {
 
   .app-footer__content {
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: var(--spacing-default) 3rem;
-    border-left: 2px solid var(--text-color);
-  }
-
-  .app-footer__contact {
-    text-align: center;
+    text-align: left;
   }
 }
 </style>

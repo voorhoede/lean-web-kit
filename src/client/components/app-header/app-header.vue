@@ -188,6 +188,7 @@ export default {
 }
 
 .app-header__subtitle {
+  display: block;
   font-size: var(--font-size-small);
   white-space: nowrap;
 }
