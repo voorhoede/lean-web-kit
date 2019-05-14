@@ -16,8 +16,9 @@
         :title="platform.name === 'Email' ?
                 $t( 'share_via_email' ) :
                 $t( 'share_on_platform', { platform: platform.name })"
-        @click="handleClick(platform.name)"
-      >
+        @click="(e) => handleClick(e, platform.name)"
+        :tabindex="optionsAreVisible ? '0' : '-1'"
+        @blur="(!copyToClipboardIsVisible && platform.name === 'Email') ? optionsAreVisible = false : null">
         <img class="social-share__icon" :src="`/images/${platform.icon}`">
       </a>
 
@@ -26,7 +27,9 @@
         :class="{ 'social-share__link--visible' : optionsAreVisible }"
         class="social-share__link copy-to-clipboard"
         :title="$t('copy_to_clipboard')"
-        @click="copyToClipboard">
+        @click="copyToClipboard"
+        :tabindex="optionsAreVisible ? '0' : '-1'"
+        @blur="optionsAreVisible = false">
         <img class="social-share__icon" src="/images/copy-to-clipboard.svg">
       </button>
     </div>
@@ -94,10 +97,16 @@ export default {
       this.optionsAreVisible = false
     },
 
-    handleClick (platform) {
-      this.shared(platform)
+    handleClick (e, platform) {
+      const target = e.target
+      const parent = target.parentNode
+      const shareButton = parent.previousElementSibling
 
+      target.blur()
+      shareButton.focus()
       this.hideSharingButtons()
+      
+      this.shared(platform)
     },
 
     copyToClipboard () {
