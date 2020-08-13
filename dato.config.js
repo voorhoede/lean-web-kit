@@ -139,6 +139,7 @@ function formatLink (link) {
       title: title || page.title,
       slug: page.slug,
       theme,
+      isHome: page.entity.itemType.apiKey === 'home'
     }
   } else {
     return {
