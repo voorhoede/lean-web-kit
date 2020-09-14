@@ -30,6 +30,7 @@
     "dev": "run-p dev:*",
     "dev:client": "PORT=5326 nuxt",
     "dev:server": "netlify-lambda serve src/server/functions/",
+    "generate": "nuxt generate --fail-on-error",
     "guide": "start-storybook -p 5327 -c config/storybook -s src/client/static/",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
@@ -46,7 +47,7 @@
     "dotenv": "^6.0.0",
     "dotenv-safe": "^6.0.0",
     "normalize.css": "^8.0.0",
-    "nuxt": "^2.3.4",
+    "nuxt": "^2.14.4",
     "nuxt-i18n": "^4.1.0",
     "query-string": "^5.1.1",
     "unfetch": "^4.0.1"
