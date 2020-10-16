@@ -17,12 +17,12 @@
 
         <ul class="app-header__menu-list">
           <li
-            v-for="(item, index) in menu.items"
+            v-for="(link, index) in menu.links"
             :key="index"
             class="app-header__menu-item">
             <smart-link
               class="app-header__menu-link"
-              :item="item"
+              :item="link"
               @click.native="closeMenu" />
           </li>
         </ul>
@@ -52,26 +52,40 @@
 </template>
 
 <script>
+import getDatoData from '~/lib/get-page-data';
 import LanguageSelector from '../language-selector'
 import SmartLink from '../smart-link'
 import MenuIcon from '../menu-icon'
+import query from "./app-header.query.graphql";
 
 export default {
   components: { LanguageSelector, SmartLink, MenuIcon },
-  props: {
-    menuI18n: { type: Object, required: true },
+
+  async fetch () {
+    // const locale = this.$nuxt.context.app.i18n.locale
+    this.menuData = await getDatoData({
+      query,
+      // variables: {
+      //   locale
+      // }
+    })
   },
 
   data () {
     return {
+      menuData: {
+        menu: {
+          links: []
+        }
+      },
       menuIsOpen: false,
     }
   },
 
   computed: {
     locale() { return this.$i18n.locale },
-    menu() { return this.menuI18n[this.locale] },
-    menuItems() { return (this.menu.callToAction || this.$i18n.locales) ? this.menu.items.slice(0, 3) : this.menu.items.slice(0, 5)}
+    menu() { return this.menuData.menu },
+    // menuItems() { return (this.menu.callToAction || this.$i18n.locales) ? this.menu.items.slice(0, 3) : this.menu.items.slice(0, 5)}
   },
 
   methods: {

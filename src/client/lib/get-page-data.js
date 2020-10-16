@@ -1,14 +1,25 @@
-import fetch from 'unfetch'
+import axios from 'axios'
 
-export default function ({ locale, slug }) {
-  const url = `/data/${locale}/pages/${slug}.json`
+export default function getDatoData({ query, variables }) {
+  return axios({
+    url: 'https://graphql.datocms.com',
+    method: 'post',
+    data: { query, variables },
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${process.env.DATO_API_TOKEN}`,
+    }
+  })
+    .then(response => {
+      if (response.status >= 200 && response.status < 300 && response.data && !response.data.errors) {
+        return response.data.data
+      }
 
-  if (process.client) {
-    // On client load over http
-    return fetch(url).then(res => res.json())
-  } else {
-    // On server load from file system
-    const data = JSON.parse(require('fs').readFileSync(`src/client/static${url}`, 'utf8'))
-    return Promise.resolve(data)
-  }
+      if (response.data && response.data.errors) {
+        return Promise.reject(response.data.errors)
+      }
+
+      return Promise.reject(response.data)
+    })
 }

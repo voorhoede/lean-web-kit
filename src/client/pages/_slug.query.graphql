@@ -1,0 +1,116 @@
+query Page ($locale: SiteLocale, $slug: String) {
+  page (locale: $locale, filter: {slug: {eq: $slug}}) {
+    _allTitlesLocales
+    title
+    subtitle
+    slug
+    seo {
+      title
+      description
+      image {
+        format
+        size
+        width
+        height
+        title
+        alt
+        url
+      }
+    }
+    hasToc
+    hasHotjar
+    hasShareButton
+    sections {
+      title
+      ...sectionItems
+    }
+  }
+}
+
+fragment sectionItems on PageSectionRecord {
+  items {
+    ... on TextRecord {
+      __typename
+      body
+    }
+    ... on ImageRecord {
+      __typename
+      image {
+        format
+        size
+        width
+        height
+        title
+        alt
+        url
+      }
+    }
+    ... on VideoRecord {
+      __typename
+      video {
+        url
+        title
+        width
+        height
+        provider
+        providerUid
+        thumbnailUrl
+      }
+    }
+    ... on LinkListRecord {
+      __typename
+      links {
+        page {
+          ... on PageRecord {
+            slug
+          }
+        }
+      }
+    }
+    ... on FeatureListRecord {
+      __typename
+      features {
+        __typename
+        updatedAt
+        createdAt
+        text
+        title
+        image {
+          format
+          size
+          width
+          height
+          title
+          alt
+          url
+        }
+      }
+    }
+    ... on FormRecord {
+      form {
+        ... on EmailFormRecord {
+          __typename
+          title
+          body
+          confirmationMessage
+          confirmationPage
+          labelSubmitButton
+          labelEmail
+          updatedAt
+          createdAt
+        }
+        ... on ContactFormRecord {
+          __typename
+          title
+          body
+          confirmationMessage
+          confirmationPage
+          labelSubmitButton
+          labelEmail
+          updatedAt
+          createdAt
+        }
+      }
+    }
+  }
+}

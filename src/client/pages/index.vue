@@ -1,33 +1,39 @@
 <template>
   <div>
-    <page-layout :page="page" />
+    <page-layout :page="home" />
 
+    <!-- TODO: edit line 8 "home.url"    -->
     <social-share
-      v-if="page.hasShareButton"
-      :url="page.url"
-      :title="page.seo.title"
-      :description="page.seo.description"
+      v-if="home.hasShareButton"
+      :url="'undefined'"
+      :title="home.seo.title"
+      :description="home.seo.description"
     />
-
-    <lazy-tracking v-if="page.hasHotjar" />
+    <lazy-tracking v-if="home.hasHotjar" />
   </div>
 </template>
 
 <script>
 import { LazyTracking, PageLayout, SocialShare } from '../components/'
-import { getPageData, seoHead } from '../lib/'
+import { seoHead } from '../lib/'
+import getDatoData from '~/lib/get-page-data';
+import query from './index.query.graphql'
 
 export default {
   components: { LazyTracking, PageLayout, SocialShare },
 
   async asyncData ({ app }) {
-    const page = await getPageData({ slug: 'home', locale: app.i18n.locale })
-
-    return { page }
+    const locale = app.i18n.locale
+    return await getDatoData({
+      query,
+      variables: {
+        locale
+      }
+    })
   },
 
   head () {
-    return seoHead(this.page.seo)
+    return seoHead(this.home.seo)
   },
 }
 </script>

@@ -30,5 +30,11 @@ module.exports = {
       test: /\.svg$/,
       loader: 'vue-svg-loader'
     })
+
+    config.module.rules.push({
+      test: /\.(graphql|gql)$/,
+      exclude: /node_modules/,
+      loader: 'raw-loader'
+    })
   }
 }

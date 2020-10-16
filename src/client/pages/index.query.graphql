@@ -1,0 +1,55 @@
+query HomePage ($locale: SiteLocale){
+  home (locale: $locale){
+    title
+    seo {
+      title
+      description
+    }
+    hasToc
+    hasHotjar
+    hasShareButton
+    sections {
+      title
+      ...sectionItems
+    }
+  }
+}
+
+fragment sectionItems on PageSectionRecord {
+  items {
+    ... on FeatureListRecord {
+      __typename
+      features {
+        __typename
+        updatedAt
+        createdAt
+        text
+        title
+        image {
+          format
+          size
+          width
+          height
+          title
+          alt
+          url
+        }
+      }
+    }
+    ... on FormRecord {
+      form {
+        ... on EmailFormRecord {
+          __typename
+          title
+          body
+          confirmationMessage
+          confirmationPage
+          labelSubmitButton
+          labelEmail
+          updatedAt
+          createdAt
+        }
+      }
+    }
+  }
+}

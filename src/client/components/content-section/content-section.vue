@@ -6,24 +6,24 @@
     </a>
     <template v-for="(item, index) in section.items">
       <button-group
-        v-if="item.type === 'button_group'"
+        v-if="item.__typename === 'ButtonGroupRecord'"
        :key="index"
        :items="item.links" />
       <contact-form
-        v-if="item.form && item.form.type === 'contact_form'"
+        v-if="item.form && item.form.__typename === 'ContactFormRecord'"
         :key="index"
         :form="item.form" />
       <download-files
-        v-if="item.type === 'file_list'"
+        v-if="item.__typename === 'file_list'"
         :key="index"
         :files="item.files" />
       <email-form
-        v-if="item.form && item.form.type === 'email_form'"
+        v-if="item.form && item.form.__typename === 'EmailFormRecord'"
         :key="index"
         :form="item.form"
       />
       <illustrated-content
-        v-if="item.type === 'illustrated_content'"
+        v-if="item.__typename === 'IllustratedContentRecord'"
         :key="index"
         :title="item.title"
         :text="item.text"
@@ -31,27 +31,27 @@
         :inverse-layout=item.inverseLayout
         :call-to-action="item.callToAction" />
       <feature-list
-        v-if="item.type === 'feature_list'"
+        v-if="item.__typename === 'FeatureListRecord'"
         :key="index"
         :features="item.features"
         :title="item.title" />
       <link-list
-        v-if="item.type === 'link_list'"
+        v-if="item.__typename === 'LinkListRecord'"
         :key="index"
         :links="item.links"
         :ordered="item.ordered" />
       <rich-text
-        v-if="item.type === 'text'"
+        v-if="item.__typename === 'TextRecord'"
         :key="index"
         :text="item.body"
       />
       <responsive-image
-        v-if="item.type === 'image'"
+        v-if="item.__typename === 'ImageRecord'"
         :key="index"
         :image="item.image"
       />
       <responsive-video
-        v-if="item.type === 'video'"
+        v-if="item.__typename === 'VideoRecord'"
         :key="index"
         :video="item.video"
         :autoplay="item.autoplay"
