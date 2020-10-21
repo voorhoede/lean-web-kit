@@ -13,4 +13,5 @@ module.exports = {
   baseUrl: process.env.URL,
   branch: process.env.BRANCH,
   NODE_ENV: process.env.NODE_ENV,
+  DATO_API_TOKEN: process.env.DATO_API_TOKEN
 }
