@@ -26,13 +26,6 @@ module.exports = (dato, root, i18n) => {
 
   locales.forEach(locale => {
     i18n.locale = locale
-    root.createDataFile(`${dataDir}/${locale}/pages/home.json`, 'json', pageToJson(dato.home, i18n))
-
-    dato.pages
-      .filter(page => page && page.slug)
-      .forEach(page => {
-      root.createDataFile(`${dataDir}/${locale}/pages/${page.slug}.json`, 'json', pageToJson(page, i18n))
-    })
     root.createDataFile(`${dataDir}/${locale}/messages.json`, 'json', translationsToJson(dato.translations))
   })
 }

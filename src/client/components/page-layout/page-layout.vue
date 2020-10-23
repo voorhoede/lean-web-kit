@@ -7,10 +7,10 @@
 
     <div class="page-layout__body">
       <div
-        v-if="page.hasToc && page.tocItems.length"
+        v-if="page.hasToc"
         class="page-layout__sidebar"
       >
-        <table-of-contents :items="page.tocItems" />
+        <table-of-contents :items="page.sections" />
       </div>
 
       <div class="page-layout__sections">

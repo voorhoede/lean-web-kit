@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :active-class="activeClass" v-if="item.type === 'page'" :to="localeUrl({ name: 'slug', params: { slug: item.slug } })" >
+  <nuxt-link :active-class="activeClass" v-if="item.type === 'page' || item.__typename === 'PageRecord'" :to="localeUrl({ name: 'slug', params: { slug: item.slug } })" >
     {{ item.title }}
   </nuxt-link>
   <a v-else :href="item.url" data-outbound="true" target="_blank" rel="noopener">
@@ -16,7 +16,7 @@ export default {
         if (typeof item.title !== 'string') {
           return false
         }
-        if (item.type === 'page') {
+        if (item.__typename === 'PageRecord') {
           return typeof item.slug === 'string'
         } else {
           return typeof item.url === 'string'

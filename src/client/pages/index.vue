@@ -2,10 +2,9 @@
   <div>
     <page-layout :page="home" />
 
-    <!-- TODO: edit line 8 "home.url"    -->
     <social-share
       v-if="home.hasShareButton"
-      :url="'undefined'"
+      :url="this.$route.fullPath"
       :title="home.seo.title"
       :description="home.seo.description"
     />

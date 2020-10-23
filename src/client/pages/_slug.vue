@@ -4,7 +4,7 @@
 
     <social-share
       v-if="page.hasShareButton"
-      :url="page.url"
+      :url="page.slug"
       :title="page.seo.title"
       :description="page.seo.description"
     />
@@ -23,25 +23,17 @@ import query from "./_slug.query.graphql";
 export default {
   components: { LazyTracking, PageLayout, SocialShare },
 
-  // async asyncData ({ app, params, store }) {
-  //   const { slug } = params
-  //   const page = await getPageData({ slug, locale: app.i18n.locale })
-  //   store.commit('setSlugI18n', page.slugI18n)
-  //   return { page }
-  // },
-
   async asyncData ({ app, params, store }) {
     const locale = app.i18n.locale
     const { slug } = params
-    const page = await getDatoData({
+    store.commit('setSlugI18n', slug)
+    return await getDatoData({
       query,
       variables: {
         locale,
         slug
       }
     })
-    store.commit('setSlugI18n', page.slug)
-    return { page }
   },
 
   head () {

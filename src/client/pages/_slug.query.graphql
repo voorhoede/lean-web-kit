@@ -1,6 +1,5 @@
 query Page ($locale: SiteLocale, $slug: String) {
-  page (locale: $locale, filter: {slug: {eq: $slug}}) {
-    _allTitlesLocales
+  page (locale: $locale, filter: { slug: { eq: $slug }}) {
     title
     subtitle
     slug
@@ -23,6 +22,15 @@ query Page ($locale: SiteLocale, $slug: String) {
     sections {
       title
       ...sectionItems
+    }
+    coverImage {
+      format
+      size
+      width
+      height
+      title
+      alt
+      url
     }
   }
 }
@@ -62,6 +70,8 @@ fragment sectionItems on PageSectionRecord {
       links {
         page {
           ... on PageRecord {
+            __typename
+            title
             slug
           }
         }
