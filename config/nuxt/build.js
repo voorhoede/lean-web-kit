@@ -12,8 +12,8 @@ module.exports = {
   */
   extend(config, { isDev, isClient }) {
     config.module.rules.forEach((rule) => {
-      if (rule.test.toString() === '/\\.(png|jpe?g|gif|svg|webp)$/') {
-        rule.test = /\.(png|jpe?g|gif|webp)$/
+      if (rule.test.toString() === '/\\.(png|jpe?g|gif|svg|webp|avif)$/i') {
+        rule.test = /\.(png|jpe?g|gif|webp|avif)$/i
       }
     })
 
