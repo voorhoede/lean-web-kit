@@ -1,0 +1,28 @@
+query Menu ($locale: SiteLocale) {
+  menu (locale: $locale) {
+    title
+    isSticky
+    showLanguages
+    callToAction {
+      __typename
+      title
+      url
+      page {
+        ... on PageRecord {
+          slug
+        }
+      }
+    }
+    links {
+      __typename
+      page {
+        ... on PageRecord {
+          __typename
+          slug
+        }
+      }
+      title
+      url
+    }
+  }
+}

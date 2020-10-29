@@ -3,7 +3,7 @@
       :ordered="ordered"
       class="link-list">
       <li v-for="(link, index) in links" :key="index">
-        <smart-link :item="link.page" active-class="link-list__link--active">{{ link.page.title }}</smart-link>
+        <smart-link :item="link" active-class="link-list__link--active">{{ link.page.title }}</smart-link>
       </li>
     </list-tag>
 </template>

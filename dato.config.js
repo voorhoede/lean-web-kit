@@ -20,7 +20,6 @@ module.exports = (dato, root, i18n) => {
 
   root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
   root.createDataFile(`${dataDir}/locales.json`, 'json', locales)
-  root.createDataFile(`${dataDir}/menu.json`, 'json', menuToJson(dato, i18n))
   root.createDataFile(`${dataDir}/404.json`, 'json', notfoundToJson(dato, i18n))
   root.createDataFile(`${dataDir}/pages.json`, 'json', pageSlugMap(dato, i18n))
 
@@ -141,21 +140,6 @@ function formatLink (link) {
       theme,
     }
   }
-}
-
-function menuToJson (dato, i18n) {
-  return locales.reduce((menu, locale) => {
-    i18n.locale = locale
-    const { title, callToAction, isSticky, showLanguages, links } = dato.menu
-    menu[locale] = {
-      title,
-      isSticky,
-      showLanguages,
-      callToAction: callToAction && formatLink(callToAction),
-      items: links.map(link => formatLink(link)),
-    }
-    return menu
-  }, {})
 }
 
 function translationsToJson (translations) {

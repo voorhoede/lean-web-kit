@@ -68,6 +68,7 @@ fragment sectionItems on PageSectionRecord {
     ... on LinkListRecord {
       __typename
       links {
+        __typename
         page {
           ... on PageRecord {
             __typename
