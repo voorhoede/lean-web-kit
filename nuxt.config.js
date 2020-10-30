@@ -6,7 +6,9 @@ const head = require('./config/nuxt/head')
 const loading = require('./config/nuxt/loading')
 const modules = require('./config/nuxt/modules')
 const plugins = require('./config/nuxt/plugins')
+const privateRuntimeConfig = require('./config/nuxt/private-runtime-config')
 const proxy = require('./config/nuxt/proxy')
+const publicRuntimeConfig = require('./config/nuxt/public-runtime-config')
 const router = require('./config/nuxt/router')
 const sitemap = require('./config/nuxt/sitemap')
 
@@ -19,7 +21,9 @@ module.exports = {
   loading,
   modules,
   plugins,
+  privateRuntimeConfig,
   proxy,
+  publicRuntimeConfig,
   router,
   sitemap,
   srcDir: 'src/client/',
