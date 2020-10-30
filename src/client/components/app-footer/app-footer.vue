@@ -11,10 +11,10 @@
           <h2 class="a11y-sr-only">{{ menu.title }}</h2>
           <ul class="flat-list">
             <li class="app-footer__nav-item"
-              v-for="(item, index) in menu.items" :key="index"
+              v-for="(link, index) in menu.links" :key="index"
             >
-              <smart-link class="app-footer__nav-link" :item="item">
-                {{ item.title }}
+              <smart-link class="app-footer__nav-link" :item="link">
+                {{ link.title }}
               </smart-link>
             </li>
           </ul>
@@ -47,19 +47,23 @@
 
 <script>
 import appConfig from '../../static/data/app.json'
-import menuI18n from '../../static/data/menu.json'
 
 import SmartLink from '../smart-link'
 import SocialLink from '../social-link'
 
 export default {
-  components: { SmartLink, SocialLink },
-  data () {
-    return { appConfig, menuI18n, }
+  props: {
+    menu: { type: Object, required: true }
   },
+
+  components: { SmartLink, SocialLink },
+
+  data () {
+    return { appConfig, }
+  },
+
   computed: {
     locale() { return this.$i18n.locale },
-    menu() { return this.menuI18n[this.locale] },
     year() { return new Date().getFullYear() },
   },
 }
