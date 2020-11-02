@@ -1,0 +1,42 @@
+query ErrorPage ($locale: SiteLocale){
+  _404Page (locale: $locale) {
+    title
+    sections {
+      title
+      ...sectionItems
+    }
+  }
+}
+
+fragment sectionItems on PageSectionRecord {
+  items {
+    ... on VideoRecord {
+      __typename
+      loop
+      mute
+      autoplay
+      video {
+        url
+        title
+        width
+        height
+        provider
+        providerUid
+        thumbnailUrl
+      }
+    }
+    ... on LinkListRecord {
+      __typename
+      links {
+        __typename
+        page {
+          ... on PageRecord {
+            __typename
+            title
+            slug
+          }
+        }
+      }
+    }
+  }
+}
