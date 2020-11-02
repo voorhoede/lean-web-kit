@@ -20,7 +20,6 @@ module.exports = (dato, root, i18n) => {
 
   root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
   root.createDataFile(`${dataDir}/locales.json`, 'json', locales)
-  root.createDataFile(`${dataDir}/404.json`, 'json', notfoundToJson(dato, i18n))
   root.createDataFile(`${dataDir}/pages.json`, 'json', pageSlugMap(dato, i18n))
 
   locales.forEach(locale => {
