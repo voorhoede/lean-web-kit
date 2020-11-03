@@ -41,9 +41,9 @@ export default {
 
   methods: {
     updateActiveItem () {
-      const sectionsLenght = this.items.length
+      const sectionsLength = this.items.length
 
-      for (var i = 0; i < sectionsLenght; i++) {
+      for (var i = 0; i < sectionsLength; i++) {
         const section = document.getElementById(this.items[i].slug)
 
         if (this.isBelowScroll(section)) {
