@@ -23,4 +23,5 @@ module.exports = {
   router,
   sitemap,
   srcDir: 'src/client/',
+  target: 'static',
 }

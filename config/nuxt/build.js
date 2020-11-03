@@ -2,11 +2,13 @@
  * @see https://nuxtjs.org/api/configuration-build
  */
 module.exports = {
-  postcss: [
-    require('postcss-import')(),
-    require('postcss-custom-properties')(),
-    require('autoprefixer')(),
-  ],
+  postcss: {
+    plugins: {
+      'postcss-import': {},
+      'postcss-custom-properties': {},
+      'autoprefixer': {},
+    }
+  },
   /*
   ** Run ESLint on save
   */
