@@ -79,7 +79,7 @@
     "request": "^2.88.2",
     "request-promise-native": "^1.0.9",
     "rimraf": "^2.7.1",
-    "slugify": "^1.4.5",
+    "slugify": "^1.4.6",
     "storybook-readme": "^4.0.0-beta1",
     "voorhoede-datocms-client": "0.5.2",
     "vue-analytics": "^5.22.1",

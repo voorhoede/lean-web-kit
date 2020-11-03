@@ -10,12 +10,12 @@
         v-if="page.hasToc"
         class="page-layout__sidebar"
       >
-        <table-of-contents :items="page.sections" />
+        <table-of-contents :items="tocItems"/>
       </div>
 
       <div class="page-layout__sections">
         <content-section
-          v-for="(section, index) in page.sections"
+          v-for="(section, index) in sections"
           :key="index"
           :section="section"
         />
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import slugify from 'slugify'
 import ContentSection from '../content-section'
 import PageHeader from '../page-header'
 import TableOfContents from '../table-of-contents'
@@ -35,6 +36,22 @@ export default {
   props: {
     page: { type: Object, required: true }
   },
+
+  computed: {
+    sections() {
+      return this.page.sections.map(section => {
+        return { ...section, slug: slugify(section.title, {
+            lower: true,
+            strict: true
+          }) }
+      })
+    },
+    tocItems() {
+      return this.sections.map(section => {
+        return {title: section.title, slug: section.slug}
+      })
+    }
+  }
 }
 </script>
 
